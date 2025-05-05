@@ -19,11 +19,11 @@ function Navbar() {
 
             {/* Center: Nav Links */}
             <div className="flex-grow flex justify-center">
-                <ul className="flex space-x-8 lg:space-x-16 text-lg lg:text-xl">
-                <li><Link to="/today" className="hover:text-2xl">TODAY</Link></li>
-                <li><Link to="/hongkong" className="hover:text-2xl">HONG KONG</Link></li>
-                <li><Link to="/china" className="hover:text-2xl">CHINA</Link></li>
-                <li><Link to="/for-you" className="hover:text-2xl">FOR YOU</Link></li>
+                <ul className="flex space-x-8 lg:space-x-16 text-xl lg:text-2xl">
+                <li className="font-semibold hover:text-red-600"><Link to="/today">TODAY</Link></li>
+                <li className="font-semibold hover:text-red-600"><Link to="/hongkong" >HONG KONG</Link></li>
+                <li className="font-semibold hover:text-red-600"><Link to="/china">CHINA</Link></li>
+                <li className="font-semibold hover:text-red-600"><Link to="/for-you">FOR YOU</Link></li>
                 </ul>
             </div>
 

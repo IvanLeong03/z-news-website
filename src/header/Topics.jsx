@@ -34,7 +34,7 @@ function Topics() {
                     <button
                     key={index}
                     onClick={() => handleTopicClick(topic)}
-                    className="font-bold hover:text-red-600"
+                    className="hover:font-semibold"
                     >
                     {topic}
                     </button>
