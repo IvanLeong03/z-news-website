@@ -14,6 +14,7 @@ import Today from "./news-categories/Today"
 import ForYou from "./news-categories/ForYou"
 import Article from "./article-view/Article"
 import SearchResults from "./search/SearchResults"
+import Topic from "./trending-topics/Topic"
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/for-you" element={<ForYou/>} />
           <Route path="/article/:id" element={<Article />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/topics/:topic" element={<Topic />} />
 
 
         </Routes>

@@ -28,7 +28,6 @@ function MainCol() {
                 <Link to={`/article/${article.id}`}>
                   <HeadlineSm headline={article.headline} image={article.image} cPercent={article.cPercent} pPercent={article.pPercent} sources={article.sources} />
                 </Link>
-
               </div>
             ))}
 

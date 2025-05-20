@@ -9,11 +9,11 @@ function Topics() {
         "Two Sessions",
         "Trade War",
         "Tariff",
-        "Topic 5"
+        //"Topic 5"
     ];
 
     const handleTopicClick = (topic) => {
-        navigate(`/search?q=${encodeURIComponent(topic)}`);
+        navigate(`/topics/${encodeURIComponent(topic)}`);
     };
     
 
@@ -23,10 +23,7 @@ function Topics() {
         <div className="w-full h-[8vh] lg:h-[5vh] flex items-center border-t-2 border-b border-[#252525] mb-4">
             <div className="w-[90dvw] flex items-center mx-auto">
                 
-                {/* Left: Date */}
-                <div className="flex-none text-sm">
-                {new Date().toLocaleDateString()}
-                </div>
+                
 
                 {/* Center: Topics */}
                 <div className="flex-grow flex justify-center space-x-10 px-1">
