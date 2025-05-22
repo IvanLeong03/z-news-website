@@ -10,15 +10,18 @@ function Legend() {
         < SplitBar />
         <div className='flex flex-col justify-between my-4 text-[theme(--color-text-grey)]'>
             <p>Centric: pro Chinese stance</p>
-            <p>[維護一國兩制]</p>
+            <p>[Supports the government and the One Country Two Systems principle]</p>
             <br />
             <p >Progressive: opposition</p>
-            { /* <p>[If I say what I want to I'll be in trouble]</p> */ }
             <p>[Does not believe the government is acting for the best interests]</p>
         </div>
         <div className='flex flex-col text-[theme(--color-text-grey)]'>
             < Sentiment sentiment="sentiment analysis" />
-            <p className='my-4'>[As a real hater our AI is trained to hate on everything on the planet]</p>
+            <p className='my-4'>[We analyse the article to judge what the journalist or media feels about the event]</p>
+        </div>
+         <div className='flex flex-col text-[theme(--color-text-grey)]'>
+            < Sentiment sentiment="subjectivity analysis" />
+            <p className='my-4'>[We determine if the article leans more towards expressing the writer's own viewpoint or presenting facts]</p>
         </div>
     </div>
   );

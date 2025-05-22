@@ -24,7 +24,7 @@ function Topic() {
                         { /* left: date, title, metrics */}
                         <div className="flex flex-col w-3/4 px-5">
                             <p className="text-xs">{article.date}</p>
-                            <h2 className="text-2xl font-semibold my-4">{article.title}</h2>
+                            <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title}</h2>
                             <div className="w-3/4 flex justify-between items-center">
                                 <div className="p-2 w-1/4">
                                     <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
