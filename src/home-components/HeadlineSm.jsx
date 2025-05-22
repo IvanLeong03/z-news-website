@@ -2,7 +2,7 @@ import React from "react";
 import SplitBar from "../metric-components/SplitBar";
 import Sentiment from "../metric-components/Sentiment";
 
-function HeadlineSm({headline = "Undefined Headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=-1}) {
+function HeadlineSm({headline = "Undefined Headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=1}) {
     return (
         <article className="flex flex-grow justify-center items-start min-h-[20dvh] mx-auto my-2">
             <div className="w-2/3 flex flex-col pr-2 ">

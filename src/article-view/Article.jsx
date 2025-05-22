@@ -13,8 +13,7 @@ function Article() {
     const article = articles.find((a) => a.id === id);
     if (!article) return <p>Article not found.</p>;
 
-    const summaryCentric = [
-        //summaries for centric 
+    const summary = [
         [
             "Xi Jinping urged global CEOs to safeguard industrial and supply chains",
             "Concerns persist over China’s weak post-pandemic economic recovery",
@@ -51,16 +50,16 @@ function Article() {
                 </div>
                 { /* summaries */}
                 <div className="flex flex-col w-9/10 mx-auto my-8 ">
-                    <div className="flex w-1/3 my-2 gap-1">
-                        <button className="px-4 rounded-xl border border-[theme(--color-line-grey)]">Centric</button>
-                        <button className="px-4 rounded-xl border border-[theme(--color-line-grey)]">Progressive</button>
+                    <div className="flex my-2 gap-4">                    
+                        <label className="w-1/6 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Centric: {article.cPercent}% </label> 
+                        <label className="w-1/6 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
                     </div>
 
                     <div className="grid grid-rows-2 bg-[theme(--color-summary-background)] min-h-[20rem] px-2">
                         <div className="border-b border-[theme(--color-line-grey)] py-4">
                             <h2 className="font-bold">What happened</h2>
                             <ul className="list-disc list-inside">
-                                {summaryCentric[0].map((event, index) => (
+                                {summary[0].map((event, index) => (
                                     <li key={index} className="text-lg px-6 my-1">{event}</li>
                                 ))}
                             </ul>                        
@@ -69,7 +68,7 @@ function Article() {
                         <div className="py-4">
                             <h2 className="font-bold">What it means</h2>
                             <ul className="list-disc list-inside">
-                                {summaryCentric[1].map((implication, index) => (
+                                {summary[1].map((implication, index) => (
                                     <li key={index} className="text-lg px-6 my-1">{implication}</li>
                                 ))}
                             </ul>      
