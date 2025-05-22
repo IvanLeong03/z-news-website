@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Topics() {
+function TopicsBar() {
     const navigate = useNavigate();
 
     const topics = [
@@ -26,12 +26,13 @@ function Topics() {
                 
 
                 {/* Center: Topics */}
-                <div className="flex-grow flex justify-center space-x-10 px-1">
+                <div className="flex-grow flex justify-center px-1">
+                    <p className="px-16 font-bold text-red-400">Trending: </p>
                 {topics.map((topic, index) => (
                     <button
                     key={index}
                     onClick={() => handleTopicClick(topic)}
-                    className="hover:font-semibold"
+                    className="font-bold hover:cursor-grab px-12"
                     >
                     {topic}
                     </button>
@@ -42,9 +43,9 @@ function Topics() {
                 <div className="flex-none flex items-center space-x-1">
                     <button className="hover:text-purple-500">E</button>
                     <p className="text-[#aaaaaa]">|</p>
-                    <button>繁</button>
+                    <button className="hover:text-purple-500">繁</button>
                     <p className="text-[#aaaaaa]">|</p>
-                    <button>简</button>
+                    <button className="hover:text-purple-500">简</button>
                 </div>
                 
             </div>
@@ -53,4 +54,4 @@ function Topics() {
     )
 }
 
-export default Topics;
+export default TopicsBar;

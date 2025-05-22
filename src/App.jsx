@@ -2,7 +2,8 @@ import React from "react"
 import { Route, Routes } from "react-router-dom"
 import Home from "./home-components/Home"
 import Navbar from "./header/Navbar"
-import Topics from "./header/Topics"
+
+import TopicsBar from "./header/TopicsBar"
 import Footer from "./footer/Footer"
 import AboutUs from "./about-us/AboutUs"
 import TermsConditions from "./other-pages/TermsConditions"
@@ -25,7 +26,7 @@ function App() {
       <main className='flex-grow w-full mx-auto bg-[theme(--color-bg-light)]'>
 
         <Navbar />
-        <Topics />
+        <TopicsBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />

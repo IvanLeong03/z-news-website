@@ -36,7 +36,7 @@ function Article() {
 
     return (
         <>
-        <article className="flex justify-center items-start w-dvw h-full mx-auto">
+        <article className="flex justify-center items-start w-[90dvw] h-full mx-auto">
             { /* first column: article itself */}
             <div className="w-3/5 min-h-dvh py-6 px-1">
                 { /* article title and image */ }
@@ -134,7 +134,7 @@ function Article() {
                 
             </div>
             { /* third column: ads */}
-            <div className="flex-col flex-grow w-1/5 min-h-dvh border-l border-r border-black py-6 px-1">
+            <div className="flex-col flex-grow w-1/5 min-h-dvh border-l border-black py-6 px-1">
                 <img src="src/assets/customise-ads-button.svg" className="w-1/3 mx-auto" />
                 {/* make it a button */}
                 <Ads />

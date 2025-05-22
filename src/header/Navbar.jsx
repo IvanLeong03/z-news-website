@@ -23,7 +23,7 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="h-[18dvh] w-[95dvw] mx-auto flex items-center px-1">
+            <nav className="h-[18dvh] w-[90dvw] mx-auto flex items-center px-1">
                 
                 {/* Left: Logo */}
                 <div className="flex items-center flex-none">
@@ -35,11 +35,11 @@ function Navbar() {
 
                 {/* Center: Nav Links */}
                 <div className="flex-grow flex justify-center">
-                    <ul className="flex space-x-8 lg:space-x-16 text-xl lg:text-2xl">
-                    <li className="font-semibold hover:text-purple-600"><Link to="/today">TODAY</Link></li>
-                    <li className="font-semibold hover:text-blue-600"><Link to="/hongkong" >HONG KONG</Link></li>
-                    <li className="font-semibold hover:text-red-600"><Link to="/china">CHINA</Link></li>
-                    <li className="font-semibold hover:text-green-600"><Link to="/for-you">FOR YOU</Link></li>
+                    <ul className="flex space-x-8 lg:space-x-16 text-lg lg:text-xl">
+                    <li className="hover:text-purple-600"><Link to="/today">TODAY</Link></li>
+                    <li className="hover:text-blue-600"><Link to="/hongkong" >HONG KONG</Link></li>
+                    <li className="hover:text-red-600"><Link to="/china">CHINA</Link></li>
+                    <li className="hover:text-green-600"><Link to="/for-you">FOR YOU</Link></li>
                     </ul>
                 </div>
 

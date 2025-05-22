@@ -16,7 +16,7 @@ function Topic() {
     ];
 
     return (
-        <div className="w-[85dvw] min-h-dvh mx-auto my-4 p-2">
+        <div className="w-[85dvw] min-h-dvh mx-auto my-8 p-2">
              <h1 className="text-4xl font-bold my-4 pl-5">{topic}</h1>
              {articles.map((article, index) => (
                 <div key={index} className="grid grid-cols-1">

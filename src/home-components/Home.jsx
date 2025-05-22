@@ -8,7 +8,7 @@ function Home() {
 
     return (
       <>
-      <div className="flex w-[95dvw] justify-between items-start mx-auto ">
+      <div className="flex w-[90dvw] justify-between items-start mx-auto ">
         < LeftCol />
         < MainCol />
         < RightCol />
