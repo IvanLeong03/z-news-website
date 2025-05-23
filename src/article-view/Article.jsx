@@ -51,8 +51,8 @@ function Article() {
                 { /* summaries */}
                 <div className="flex flex-col w-9/10 mx-auto my-8 ">
                     <div className="flex my-2 gap-4">                    
-                        <label className="w-1/6 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Centric: {article.cPercent}% </label> 
-                        <label className="w-1/6 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
+                        <label className="min-w-1/5 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Centric: {article.cPercent}% </label> 
+                        <label className="min-w-1/5 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
                     </div>
 
                     <div className="grid grid-rows-2 bg-[theme(--color-summary-background)] min-h-[20rem] px-2">

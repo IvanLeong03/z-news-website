@@ -17,6 +17,7 @@ function SearchResults() {
         <select id="sort" name="sort" className="border rounded px-2 py-1">
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
+          <option value="oldest">Most popular/relevance</option>
         </select>
       </div>
 
