@@ -12,6 +12,7 @@ function Article() {
     const { id } = useParams(); 
     const article = articles.find((a) => a.id === id);
     if (!article) return <p>Article not found.</p>;
+    const linked_articles = article.linked_articles;
 
     const summary = [
         [
@@ -32,9 +33,7 @@ function Article() {
     ];
     // will have to move these to a separate file that matches summaries to article id, currently all articles have the same summaries
 
-
     return (
-        <>
         <article className="flex justify-center items-start w-[90dvw] h-full mx-auto">
             { /* first column: article itself */}
             <div className="w-3/5 min-h-dvh py-6 px-1">
@@ -71,27 +70,23 @@ function Article() {
                                 {summary[1].map((implication, index) => (
                                     <li key={index} className="text-lg px-6 my-1">{implication}</li>
                                 ))}
-                            </ul>      
-                            
-                        </div>
-                        
+                            </ul>                                  
+                        </div>                        
                         <p className="text-[theme(--color-text-lightgrey)] text-xs px-4">by ZimuthAI | report if you think something is wrong here</p>
                     </div>
-
                 </div>
                 { /* reported articles */}
                 <div className="flex flex-col w-9/10 mx-auto my-4">
                     <h1 className="font-bold text-xl">Reported articles</h1>
-                    <ul className="p-2">
-                        <li>Article 1</li>
-                        <li>Article 2</li>
-                        <li>Article 3</li>
-                    </ul>
+                    <ul className="my-4">
+                        {linked_articles.map((linked_article, index) => (
+                            <li className="py-2">{linked_article}</li>
 
-                </div>
-                
-               
+                        ))}
+                    </ul>    
+                </div>                               
             </div>
+
             { /* second column: distribution, sentiment, subjectivity */}
             <div className="flex-col flex-grow justify-center w-1/5 min-h-dvh border-l border-black py-6 px-1">
                 <div className="w-4/5 mx-auto border-b border-[theme(--color-line-grey)]">
@@ -137,19 +132,11 @@ function Article() {
                 <img src="src/assets/customise-ads-button.svg" className="w-1/3 mx-auto" />
                 {/* make it a button */}
                 <Ads />
-
             </div>
 
+        </article>                
 
-        </article>
-        
-        
-        </>
-    
-    )
-        
-
+    )        
 }
-
 
 export default Article;

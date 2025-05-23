@@ -4,7 +4,7 @@ function AboutUs() {
     return (
         <main className="flex-col w-[80dvw] mx-auto my-20 justify-center items-center text-center">
             <p className="text-left my-8 w-3/4 mx-auto">
-                We are Zimuth News, a platform that aggregates news from various sources and evaluates the bias and sentiment of different media outlets.
+                We are Z News, a platform that aggregates news from various sources and evaluates the bias and sentiment of different media outlets.
                 Our mission is to deliver accurate and timely information to our audience, empowering them to stay informed about the latest events in the Hong Kong and China region. 
             </p>
 

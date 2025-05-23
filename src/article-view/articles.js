@@ -12,6 +12,7 @@ const articles = [
       location: "Beijing, China",
       firstReported: "28 March, 2025",
       published: "28 March, 2025 (updated 2 hours ago)",
+      linked_articles: ['article 1', 'article 2', 'article 3']
     },
     {
       id: "002",
@@ -23,6 +24,7 @@ const articles = [
       location: "Earth",
       firstReported: "30 March, 2025",
       published: "30 March, 2025 (updated 1 hour ago)",
+      linked_articles: ['article 1', 'article 2']
     },
     {
       id: "003",
@@ -34,6 +36,7 @@ const articles = [
       location: "Earth",
       firstReported: "30 March, 2025",
       published: "30 March, 2025 (updated 1 hour ago)",
+      linked_articles: ['article 1', 'article 2', 'article 3', 'article 4']
     },
     {
       id: "004",
@@ -42,6 +45,7 @@ const articles = [
       location: "Earth",
       firstReported: "30 March, 2025",
       published: "30 March, 2025 (updated 1 hour ago)",
+      linked_articles: []
     }
     
 
