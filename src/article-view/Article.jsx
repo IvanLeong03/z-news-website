@@ -92,13 +92,9 @@ function Article() {
                 <div className="w-4/5 mx-auto border-b border-[theme(--color-line-grey)]">
                     <h1 className="font-bold text-xl">Leaning distribution</h1>
                     <div className="mt-4 my-2">
-                        <SplitBar cPercent={50} pPercent={50} />
+                        <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
                     </div>
-                    <div className="flex justify-between w-9/10 mx-auto text-xs">
-                        <p>Centric: 50%</p>
-                        <p>Progressive: 50%</p>
-                        { /* change these to be imported from the article */ }
-                    </div>
+                    
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Outlet listings"} />
                     </div>
