@@ -9,9 +9,9 @@ function SentimentSlider({ sentScore = 0 }) {
 
   return (
     <div className="w-full mb-4">
-      <div className="relative h-4 bg-gray-200 rounded-full">
+      <div className="relative h-3 bg-gray-200 rounded-full">
         <div
-          className="absolute top-0 -mt-1 w-0.5 h-5 bg-black"
+          className="absolute top-0 -mt-1 w-0.5 h-4 bg-black"
           style={{ left: `${percentage}%`, transform: "translateX(-50%)" }}
         />
         {/* optional tick markers */}

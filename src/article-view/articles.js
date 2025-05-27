@@ -41,7 +41,6 @@ const articles = [
     {
       id: "004",
       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      sources: 16,
       location: "Earth",
       firstReported: "30 March, 2025",
       published: "30 March, 2025 (updated 1 hour ago)",

@@ -1,17 +1,17 @@
 import React from "react";
 
 function SubjectivitySlider({ subjScore = 0 }) {
-  // Clamp the score to stay between -1 and 1
+  // Clamp the score to stay between 0 and 1
   const clampedScore = Math.max(0, Math.min(subjScore, 1));
 
   // Convert to percentage (0% to 100%) with 0 at center
-  const percentage = ((clampedScore + 1) / 2) * 100;
+  const percentage = clampedScore * 100;
 
   return (
     <div className="w-full mb-4">
-      <div className="relative h-4 bg-gray-200 rounded-full">
+      <div className="relative h-3 bg-gray-200 rounded-full">
         <div
-          className="absolute top-0 -mt-1 w-0.5 h-5 bg-black"
+          className="absolute top-0 -mt-1 w-0.5 h-4 bg-black"
           style={{ left: `${percentage}%`, transform: "translateX(-50%)" }}
         />
         {/* optional tick markers */}

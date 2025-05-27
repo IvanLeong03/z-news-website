@@ -5,7 +5,7 @@ import Sentiment from "../metric-components/Sentiment";
 function MostRead() {
 
     const mostReadArticles = [
-    {title: 'Article title Article Title Article Title', cPercent: 50, pPercent: 50, sentiment: 'positive', sources: 'xy sources'},
+    {title: 'Article title Article Title Article Title', cPercent: 50, pPercent: 50, sentiment: 'positive', sources: '10 sources'},
     {title: 'Amid Trump uncertainty, is this ‘best time’ for China to win friends in Southeast Asia?', cPercent: 35, pPercent: 65, sentiment: 'default', sources: '21 sources'},
     {title: 'Hong Kong tourism minister floats e-ticketing idea after mix-ups at mega-events', cPercent: 49, pPercent: 51, sentiment: 'default', sources: '16 sources'},
     {title: 'Tech war: China’s top foundry SMIC reports revenue growth in 2024, but net profits plunge', cPercent: 70, pPercent: 30, sentiment: 'default', sources: '19 sources'},
@@ -31,7 +31,7 @@ function MostRead() {
                     </div>
                 </div>
                 <div className="flex my-2">
-                    <p className="text-xs whitespace-nowrap">{article.sources}</p>
+                    <p className="text-xs whitespace-nowrap">({article.sources})</p>
                 </div> 
             </div>   
             ))}  
