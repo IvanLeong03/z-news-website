@@ -15,7 +15,6 @@
 }
 
 @layer base {
-
   :root {
     --color-bg-light: #fefefe;
     --color-bg-grey: rgba(0,0,0,0.1);

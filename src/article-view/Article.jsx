@@ -1,11 +1,11 @@
 import React from "react";
 import SplitBar from "../metric-components/SplitBar";
-import Sentiment from "../metric-components/Sentiment";
 import SentimentExplanation from "../metric-components/SentimentExplanation";
 import Ads from "../home-components/Ads";
 import { useParams } from "react-router-dom";
 import articles from "./articles";
-
+import SentimentSlider from "../metric-components/SentimentSlider";
+import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 
 function Article() {
     
@@ -109,7 +109,7 @@ function Article() {
                 </div>    
                 <div className="w-4/5 mx-auto border-b border-[theme(--color-line-grey)]">
                     <div className="mt-4 mb-2">
-                        <Sentiment />
+                        <SentimentSlider />
                     </div>
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Elaboration"} />
@@ -118,7 +118,7 @@ function Article() {
                 </div>   
                 <div className="w-4/5 mx-auto">
                     <div className="mt-4 mb-2">
-                        <Sentiment sentiment={"subjectivity analysis"} />
+                        <SubjectivitySlider />
                     </div>
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Elaboration"} />
