@@ -11,7 +11,10 @@ function RightCol() {
       <>
       <div className="w-[23%] min-h-dvh flex-grow flex-col justify-center items-center mx-auto ">
         <Legend />
-        <Ads />
+        <div className="w-9/10 mx-auto">
+          <Ads />
+        </div>
+        
         
       </div>
         

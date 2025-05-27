@@ -128,10 +128,14 @@ function Article() {
                 
             </div>
             { /* third column: ads */}
-            <div className="flex-col flex-grow w-1/5 min-h-dvh border-l border-black py-6 px-1">
-                <img src="src/assets/customise-ads-button.svg" className="w-1/3 mx-auto" />
-                {/* make it a button */}
-                <Ads />
+            <div className="w-1/5 min-h-dvh border-l border-black py-6 px-1">
+                <div className="flex flex-col flex-grow">
+                    <img src="/src/assets/customise-ads-button.svg" className="w-1/2 mx-auto" />
+                    {/* make it a button */}
+                    <Ads />
+                    <Ads />
+                </div>
+                
             </div>
 
         </article>                
