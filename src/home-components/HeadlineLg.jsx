@@ -12,10 +12,10 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
                 <div className="w-3/10 px-1">
                     <SplitBar cPercent={cPercent} pPercent={pPercent}/>
                 </div>
-                <div className="w-3/10 px-1">
+                <div className="w-3/10 px-4">
                     <SentimentSlider />
                 </div>
-                <div className="w-3/10 px-1">
+                <div className="w-3/10 px-4">
                     <SubjectivitySlider />
                 </div>
                 <div className="w-1/10 px-1">

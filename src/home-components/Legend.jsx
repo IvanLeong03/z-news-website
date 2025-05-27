@@ -1,6 +1,5 @@
 import React from 'react';
 import SplitBar from '../metric-components/SplitBar';
-import Sentiment from '../metric-components/Sentiment';
 import SentimentSlider from '../metric-components/SentimentSlider';
 import SubjectivitySlider from '../metric-components/SubjectivitySlider';
 
