@@ -1,19 +1,40 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import SplitBar from "../metric-components/SplitBar";
-import Sentiment from "../metric-components/Sentiment";
-
-
+import { useLanguage } from "../context/LanguageContext";
+import SentimentSlider from "../metric-components/SentimentSlider";
+import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 
 function Topic() {
+    const { language } = useLanguage();
 
     const { topic } = useParams();
 
-    const articles = [
+    const articles_en = [
         {id: "101", title: "Article 1", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 49, pPercent: 51, sources:22},
         {id: "102", title: "Article 2", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 60, pPercent: 40, sources:16},
         {id: "103", title: "Article 3", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 40, pPercent: 60, sources:18},
     ];
+
+    const articles_zht = [
+        {id: "101", title: "文章 1", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 49, pPercent: 51, sources:22},
+        {id: "102", title: "文章 2", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 60, pPercent: 40, sources:16},
+        {id: "103", title: "文章 3", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 40, pPercent: 60, sources:18},
+    ];
+    const articles_zhs = [      
+        {id: "101", title: "文章 1", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 49, pPercent: 51, sources:22},
+        {id: "102", title: "文章 2", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 60, pPercent: 40, sources:16},
+        {id: "103", title: "文章 3", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 40, pPercent: 60, sources:18},
+    ];
+
+    let articles;
+    if (language === "zh-Hant") {
+        articles = articles_zht;
+    } else if (language === "zh-Hans") {
+        articles = articles_zhs;
+    } else {
+        articles = articles_en;
+    };
 
     return (
         <div className="w-[85dvw] min-h-dvh mx-auto my-8 p-2">
@@ -25,18 +46,18 @@ function Topic() {
                         <div className="flex flex-col w-3/4 px-5">
                             <p className="text-xs">{article.date}</p>
                             <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title}</h2>
-                            <div className="w-3/4 flex justify-between items-center">
+                            <div className="w-3/4 flex justify-between items-start">
                                 <div className="p-2 w-1/4">
                                     <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
                                 </div>
                                 <div className="p-2 w-1/4">
-                                    <Sentiment />
+                                    <SentimentSlider />
                                 </div>
                                 <div className="p-2 w-1/4">
-                                    <Sentiment sentiment="subjectivity analysis"/>
+                                    <SubjectivitySlider />
                                 </div>
                                 <div className="p-2">
-                                    <p className="text-sm"> {article.sources} sources</p>
+                                    <p className="text-sm"> {article.sources} {language==="zh-Hant"? "來源出處" : language==="zh-Hans" ? "来源出处" : "sources"}</p>
                                 </div>
                    
                             </div>

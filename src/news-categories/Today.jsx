@@ -1,8 +1,9 @@
 import React from "react";
 import SplitBar from "../metric-components/SplitBar";
-
+import { useLanguage } from "../context/LanguageContext";
 
 function Today() {
+    const { language } = useLanguage();
     const articles = [
         
         {
@@ -47,7 +48,7 @@ function Today() {
 
     return (
         <div className="flex flex-col w-[80dvw] mx-auto my-16">
-            <h1 className="text-5xl font-bold my-4 pl-5">Today</h1>
+            <h1 className="text-5xl font-bold my-4 pl-5">{language === "zh-Hant" ? "今日頭條" : language === "zh-Hans" ? "今日头条" : "TODAY"}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article, index) => (
                     <div key={index} className="flex flex-col rounded-lg p-4 m-2">

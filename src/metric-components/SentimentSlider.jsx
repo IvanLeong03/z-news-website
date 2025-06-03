@@ -1,6 +1,9 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 function SentimentSlider({ sentScore = 0 }) {
+
+  const { language } = useLanguage();
   // Clamp the score to stay between -1 and 1
   const clampedScore = Math.max(-1, Math.min(sentScore, 1));
 
@@ -19,7 +22,7 @@ function SentimentSlider({ sentScore = 0 }) {
         <div className="absolute left-1/2 top-full transform -translate-x-1/2 text-xs text-gray-600">0</div>
         <div className="absolute right-0 top-full text-xs text-gray-600">+1</div>
       </div>
-      <p className="text-sm text-center mt-4">Sentiment: {sentScore.toFixed(2)}</p>
+      <p className="text-sm text-center mt-4">{language === 'zh-Hant'? "情緒評分" : language === "zh-Hans" ? "情绪评分" : "Sentiment"}: {sentScore.toFixed(2)}</p>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 function SubjectivitySlider({ subjScore = 0 }) {
+  const { language } = useLanguage();
   // Clamp the score to stay between 0 and 1
   const clampedScore = Math.max(0, Math.min(subjScore, 1));
 
@@ -18,7 +20,7 @@ function SubjectivitySlider({ subjScore = 0 }) {
         <div className="absolute left-0 top-full text-xs text-gray-600">0</div>
         <div className="absolute right-0 top-full text-xs text-gray-600">+1</div>
       </div>
-      <p className="text-sm text-center mt-4">Subjectivity: {subjScore.toFixed(2)}</p>
+      <p className="text-sm text-center mt-4">{language === 'zh-Hant'? "主觀性評分" : language === "zh-Hans" ? "主观性评分" : "Subjectivity"}: {subjScore.toFixed(2)}</p>
     </div>
   );
 }

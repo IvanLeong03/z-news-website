@@ -1,8 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
+import { LanguageProvider } from "./context/LanguageContext"
 import Home from "./home-components/Home"
 import Navbar from "./header/Navbar"
-
 import TopicsBar from "./header/TopicsBar"
 import Footer from "./footer/Footer"
 import AboutUs from "./about-us/AboutUs"
@@ -17,39 +17,29 @@ import Article from "./article-view/Article"
 import SearchResults from "./search/SearchResults"
 import Topic from "./trending-topics/Topic"
 
-
 function App() {
-
-
   return (
-    <>
       <main className='flex-grow w-full mx-auto bg-[theme(--color-bg-light)]'>
-
-        <Navbar />
-        <TopicsBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/terms-and-conditions" element={<TermsConditions />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/contact-us" element={<ContactUs />} /> 
-          <Route path="/china" element={<China />} />       
-          <Route path="/hongkong" element={<HongKong />} />
-          <Route path="/today" element={<Today />} />
-          <Route path="/for-you" element={<ForYou/>} />
-          <Route path="/article/:id" element={<Article />} />
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="/topics/:topic" element={<Topic />} />
-
-
-        </Routes>
-        <Footer />
-        
-
-        
+        <LanguageProvider>
+          <Navbar />
+          <TopicsBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/terms-and-conditions" element={<TermsConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/contact-us" element={<ContactUs />} /> 
+            <Route path="/china" element={<China />} />       
+            <Route path="/hongkong" element={<HongKong />} />
+            <Route path="/today" element={<Today />} />
+            <Route path="/for-you" element={<ForYou/>} />
+            <Route path="/article/:id" element={<Article />} />
+            <Route path="/search" element={<SearchResults />} />
+            <Route path="/topics/:topic" element={<Topic />} />
+          </Routes>
+          <Footer />                
+        </LanguageProvider>  
       </main>
-     
-    </>
   )
 }
 

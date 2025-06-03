@@ -1,50 +1,103 @@
 import React from "react";
 import SplitBar from "../metric-components/SplitBar";
-
+import { useLanguage } from "../context/LanguageContext";
 
 function China() {
-    const articles = [
+    const { language } = useLanguage();
+
+    const articles_en = [   
         {
-            title: "China's Economic Growth Slows",
+            title: "We will select articles that you may be interested in based on you activity",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
+        },
+        {
+            title: "We will select articles that you may be interested in based on you activity",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
+        },
+        {
+            title: "We will select articles that you may be interested in based on you activity",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
+        },
+        {
+            title: "We will select articles that you may be interested in based on you activity",
             cPercent: 50,
             pPercent: 50,
             imageUrl: "image",
         },
+    ];
+
+    const articles_zht = [
         {
-            title: "China's Tech Industry Faces New Regulations",
-            cPercent: 40,
-            pPercent: 60,
-            imageUrl: "src/assets/university1.jpg",
+            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
         },
         {
-            title: "Something that happened in China",
-            cPercent: 62,
-            pPercent: 38,
-            imageUrl: "/src/assets/SampleImage.jpg",
+            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
         },
         {
-            title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
-            cPercent: 31,
-            pPercent: 69,
-            imageUrl: "image1.jpg",
+            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
         },
         {
-            title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
-            cPercent: 43,
-            pPercent: 57,
+            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+            cPercent: 50,
+            pPercent: 50,
             imageUrl: "image",
-        },
-        {
-            title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
-            cPercent: 58,
-            pPercent: 42,
-            imageUrl: "src/assets/sea",
         },
     ];
 
+    const articles_zhs = [
+        {
+            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
+        },
+        {
+            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
+        },
+        {
+            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "src/assets/sea.webp",
+        },
+        {
+            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "image",
+        },
+    ];
+
+    let articles;
+    if (language === "zh-Hant") {
+        articles = articles_zht;
+    } else if (language === "zh-Hans") {
+        articles = articles_zhs;
+    } else {
+        articles = articles_en;
+    }
+
     return (
         <div className="flex flex-col w-[80dvw] mx-auto my-16">
-            <h1 className="text-5xl font-bold my-4 pl-5">China</h1>
+            <h1 className="text-5xl font-bold my-4 pl-5">{language === "zh-Hant" ? "中國" : language === "zh-Hans" ? "中国" : "CHINA"}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article, index) => (
                     <div key={index} className="flex flex-col rounded-lg p-4 m-2">
