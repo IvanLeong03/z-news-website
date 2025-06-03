@@ -16,6 +16,7 @@ import ForYou from "./news-categories/ForYou"
 import Article from "./article-view/Article"
 import SearchResults from "./search/SearchResults"
 import Topic from "./trending-topics/Topic"
+import UserGuide from "./other-pages/UserGuide"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/article/:id" element={<Article />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/topics/:topic" element={<Topic />} />
+            <Route path="/user-guide" element={<UserGuide />} />
           </Routes>
           <Footer />                
         </LanguageProvider>  

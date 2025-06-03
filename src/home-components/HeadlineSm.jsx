@@ -11,7 +11,7 @@ function HeadlineSm({headline = "Undefined Headline", image = "logos/logo_vertic
             <div className="w-2/3 flex flex-col pr-2 ">
                 <img src={image} alt='HeadlineImage' className="w-full"></img>
                 <h1 className="w-full text-2xl font-semibold my-2 text-left">{headline}</h1>
-                <p className="text-sm text-left">({sources} {language === 'zh-Hant' ? "來源出處" : language === 'zh-Hans' ? "来源出处" : "sources" })</p>
+                <p className="text-sm text-left">{sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
 
             </div>
             

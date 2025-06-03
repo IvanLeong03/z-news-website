@@ -21,7 +21,7 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
                     <SubjectivitySlider />
                 </div>
                 <div className="w-1/10 px-1">
-                    <p className="text-sm text-right"> {language === 'zh-Hant' ? "來源出處:" : language === 'zh-Hans' ? "来源出处：" : "" } {sources} {language === "en" ? "sources" : "" }</p>
+                    <p className="text-sm text-right"> {sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
                 </div>
             </div>
         </article>

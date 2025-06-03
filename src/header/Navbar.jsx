@@ -26,7 +26,7 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="h-[18dvh] w-[90dvw] mx-auto flex items-center px-1">
+            <nav className="h-[18vh] w-[90vw] mx-auto flex items-center px-1">
                 {/* Left: Logo */}
                 <div className="flex items-center flex-none">
                     <Link to="/">

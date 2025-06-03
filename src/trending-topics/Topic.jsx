@@ -57,7 +57,7 @@ function Topic() {
                                     <SubjectivitySlider />
                                 </div>
                                 <div className="p-2">
-                                    <p className="text-sm"> {article.sources} {language==="zh-Hant"? "來源出處" : language==="zh-Hans" ? "来源出处" : "sources"}</p>
+                                    <p className="text-sm"> {article.sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
                                 </div>
                    
                             </div>

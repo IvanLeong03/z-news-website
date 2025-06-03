@@ -8,12 +8,17 @@ function Footer() {
 
     return (
         <>
-        <footer className="w-full flex relative bottom-0 justify-center mx-auto border-t border-[theme(--color-dark-turquoise))] py-16 ">
+        <footer className="w-full flex relative bottom-0 justify-center mx-auto border-t border-[rgba(37,37,37,0.75)] py-16 ">
             <div className="flex w-3/5 justify-between">
                 <p>Copyright © 2025</p>
                 <p>
                 <Link to="/about-us" className="hover:text-[theme(--color-dark-turquoise)]">
                     {language === 'zh-Hant' ? "關於我們" : language === "zh-Hans" ? "关于我们" : "About us"}
+                </Link>                    
+                </p>
+                <p>
+                <Link to="/user-guide" className="hover:text-[theme(--color-dark-turquoise)]">
+                    {language === 'zh-Hant' ? "使用指引" : language === "zh-Hans" ? "使用指引" : "User Guide"}
                 </Link>                    
                 </p>
                 <p>

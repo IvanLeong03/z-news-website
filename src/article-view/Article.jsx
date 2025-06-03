@@ -103,7 +103,7 @@ function Article() {
 
                     <div className="grid grid-rows-2 bg-[theme(--color-summary-background)] min-h-[20rem] px-2">
                         <div className="border-b border-[theme(--color-line-grey)] py-4">
-                            <h2 className="font-bold">{language === "zh-Hant" ? "事件摘要" : language === "zh-Hans" ? "事件摘要" : "What happened"}</h2>
+                            <h2 className="font-bold">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What happened"}</h2>
                             <ul className="list-disc list-inside">
                                 {summary[0].map((event, index) => (
                                     <li key={index} className="text-lg px-6 my-1">{event}</li>

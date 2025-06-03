@@ -3,6 +3,8 @@ import SplitBar from '../metric-components/SplitBar';
 import SentimentSlider from '../metric-components/SentimentSlider';
 import SubjectivitySlider from '../metric-components/SubjectivitySlider';
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
+
 
 function Legend() {
 
@@ -39,6 +41,11 @@ function Legend() {
               language === "zh-Hans" ? "根据文中形容词和副词的比例计算主观性，给予0（最客观）至 1 （最主观）的评分" : 
               "[We identify adverbs (and adjectives?) used in the article, with a higher score given to articles that feature them prominently.]"}
             </p>
+
+            <p>To learn more, view the <Link to="/user-guide" className="text-blue-600 hover:cursor-pointer"> user guide </Link>
+            </p>
+
+            
         </div>
     </div>
   );
