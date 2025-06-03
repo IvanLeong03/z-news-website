@@ -26,7 +26,7 @@ const articles = [
     title: {
       en: "‘Reverse Deng’: can Europe pull a role reversal and secure Chinese battery tech?",
       'zh-Hant': "「逆鄧」：歐洲能否扭轉局勢，獲取中國電池技術？",
-      'zh-Hans': "「逆邓」”：欧洲能否扭转局势，获取中国电池技术？"
+      'zh-Hans': "「逆邓」：欧洲能否扭转局势，获取中国电池技术？"
     },
     image: "/src/assets/section-3-background-2.jpg",
     pPercent: 49,
@@ -45,8 +45,8 @@ const articles = [
     id: "003",
     title: {
       en: "Amid Trump uncertainty, is this ‘best time’ for China to win friends in Southeast Asia?",
-      'zh-Hant': "在川普不確定性下，這是中國在東南亞結交朋友的最佳時機嗎？",
-      'zh-Hans': "在特朗普不确定性下，这是中国在东南亚结交朋友的最佳时机吗？"
+      'zh-Hant': "在特朗普不確定性下，這是中國在東南亞結交朋友的最佳時機嗎？",
+      'zh-Hans': "在川普不确定性下，这是中国在东南亚结交朋友的最佳时机吗？"
     },
     image: "/src/assets/university1.jpg",
     pPercent: 60,
