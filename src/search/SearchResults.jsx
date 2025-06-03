@@ -1,23 +1,25 @@
 import { useSearchParams } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 function SearchResults() {
+  const { language } = useLanguage();
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q"); // this will be 'tariff' if URL is /search?q=tariff
 
   return (
     <div className="p-4 w-[80dvw] mx-auto my-16">
-      <h1 className="text-2xl mb-8">Search Results for: "{query}"</h1>
+      <h1 className="text-2xl mb-8">{language === "zh-Hant" ? "搜尋結果" : language === 'zh-Hans' ? "搜寻结果" : "Search Results for"}: "{query}"</h1>
       {/* Render your search results here based on `query` */}
       
 
       <div className="mb-6">
         <label htmlFor="sort" className="mr-2 font-medium">
-          Sort by:
+          { language === 'zh-Hant' ? "優先展示" : language === 'zh-Hans' ? "优先展示" : "Sort by"}:
         </label>
         <select id="sort" name="sort" className="border rounded px-2 py-1">
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-          <option value="oldest">Most popular/relevance</option>
+          <option value="newest">{language === 'zh-Hant' ? "最新" : language === 'zh-Hans' ? "最新" : "Newest"}</option>
+          <option value="oldest">{language === 'zh-Hant' ? "最舊" : language === 'zh-Hans' ? "最旧" : "Oldest"}</option>
+          <option value="oldest">{language === 'zh-Hant' ? "最高點閱" : language === 'zh-Hans' ? "最高点阅" : "Most popular"}</option>
         </select>
       </div>
 

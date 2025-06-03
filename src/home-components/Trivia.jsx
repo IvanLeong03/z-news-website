@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 
 function Trivia() {
-
+    const { language } = useLanguage();
     const question="I oversee trade negotiations while trying not to start a full-blown international incident, and spend my evenings writing letters in flowery English that somehow still offend everyone. My side hustle? Accidentally shaping the future of Hong Kong by signing treaties that definitely needed more fine print. Who am I?";
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const correctAnswerIndex = 1; // Index of the correct answer
@@ -21,7 +22,7 @@ function Trivia() {
     return (
         <>
             <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pt-2 pb-8 border-b-2 border-[rgba(37,37,37,0.75)]">
-                <h3 className="font-bold my-1">Trivia</h3>
+                <h3 className="font-bold my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
                 <p className="mb-4 text-sm">
                     {question}
                 </p>

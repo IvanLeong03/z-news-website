@@ -1,53 +1,78 @@
 // src/data/articles.js
 
-//current array is for testing, only contains the dummy ones from the mockup
 const articles = [
-    {
-      id: "001",
-      title: "China’s Xi meets international business reps as Beijing turns up the charm",
-      image: "/src/assets/university1.jpg",
-      pPercent: 33,
-      cPercent: 67,
-      sources: 30,
-      location: "Beijing, China",
-      firstReported: "28 March, 2025",
-      published: "28 March, 2025 (updated 2 hours ago)",
-      linked_articles: ['article 1', 'article 2', 'article 3']
+  {
+    id: "001",
+    title:{
+      en: "China’s Xi meets international business reps as Beijing turns up the charm",
+      'zh-Hant': "習近平會見國際商界代表，北京展現魅力",
+      'zh-Hans': "习近平会见国际商界代表，北京展现魅力"
     },
-    {
-      id: "002",
-      title: "‘Reverse Deng’: can Europe pull a role reversal and secure Chinese battery tech?",
-      image: "/src/assets/section-3-background-2.jpg",
-      pPercent: 49,
-      cPercent: 51,
-      sources: 22,
-      location: "Earth",
-      firstReported: "30 March, 2025",
-      published: "30 March, 2025 (updated 1 hour ago)",
-      linked_articles: ['article 1', 'article 2']
+    image: "/src/assets/university1.jpg",
+    pPercent: 33,
+    cPercent: 67,
+    sources: 30,
+    location: {
+      en: "Beijing, China",
+      'zh-Hant': "中國北京",
+      'zh-Hans': "中国北京"
     },
-    {
-      id: "003",
-      title: "Amid Trump uncertainty, is this ‘best time’ for China to win friends in Southeast Asia?",
-      image: "/src/assets/university1.jpg",
-      pPercent: 60,
-      cPercent: 40,
-      sources: 16,
-      location: "Earth",
-      firstReported: "30 March, 2025",
-      published: "30 March, 2025 (updated 1 hour ago)",
-      linked_articles: ['article 1', 'article 2', 'article 3', 'article 4']
+    firstReported: "28 March, 2025",
+    published: "28 March, 2025 (updated 2 hours ago)",
+    linked_articles: ['article 1', 'article 2', 'article 3']
+  },
+  {
+    id: "002",
+    title: {
+      en: "‘Reverse Deng’: can Europe pull a role reversal and secure Chinese battery tech?",
+      'zh-Hant': "「逆鄧」：歐洲能否扭轉局勢，獲取中國電池技術？",
+      'zh-Hans': "「逆邓」”：欧洲能否扭转局势，获取中国电池技术？"
     },
-    {
-      id: "004",
-      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      location: "Earth",
-      firstReported: "30 March, 2025",
-      published: "30 March, 2025 (updated 1 hour ago)",
-      linked_articles: []
-    }
-    
+    image: "/src/assets/section-3-background-2.jpg",
+    pPercent: 49,
+    cPercent: 51,
+    sources: 22,
+    location: {
+      en: "Earth",
+      'zh-Hant': "地球",
+      'zh-Hans': "地球"
+    },
+    firstReported: "30 March, 2025",
+    published: "30 March, 2025 (updated 1 hour ago)",
+    linked_articles: ['article 1', 'article 2']
+  },
+  {
+    id: "003",
+    title: {
+      en: "Amid Trump uncertainty, is this ‘best time’ for China to win friends in Southeast Asia?",
+      'zh-Hant': "在川普不確定性下，這是中國在東南亞結交朋友的最佳時機嗎？",
+      'zh-Hans': "在特朗普不确定性下，这是中国在东南亚结交朋友的最佳时机吗？"
+    },
+    image: "/src/assets/university1.jpg",
+    pPercent: 60,
+    cPercent: 40,
+    sources: 16,
+    location: {
+      en: "Earth",
+      'zh-Hant': "地球",
+      'zh-Hans': "地球"
+    },
+    firstReported: "30 March, 2025",
+    published: "30 March, 2025 (updated 1 hour ago)",
+    linked_articles: ['article 1', 'article 2', 'article 3', 'article 4']
+  },
+  {
+    id: "004",
+    title: {
+      en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      'zh-Hant': "下定決心回復單身都不覺荒涼",
+      'zh-Hans': "下定决心回复单身都不觉荒凉"
+    },
+    location: "Earth",
+    firstReported: "30 March, 2025",
+    published: "30 March, 2025 (updated 1 hour ago)",
+    linked_articles: []
+  }
+];
 
-  ];
-  
-  export default articles;
+export default articles;

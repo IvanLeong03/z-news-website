@@ -2,8 +2,10 @@ import React from "react";
 import SplitBar from "../metric-components/SplitBar";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
+import { useLanguage } from "../context/LanguageContext";
 
 function HeadlineLg({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=3}) {
+    const { language } = useLanguage();
     return (
         <article className="flex flex-grow flex-col justify-center items-center w-9/10 min-h-[40vh] mx-auto mt-2 mb-12">
             <img src={image} alt='HeadlineImage' className="w-full"></img>
@@ -19,7 +21,7 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
                     <SubjectivitySlider />
                 </div>
                 <div className="w-1/10 px-1">
-                    <p className="text-sm text-right">{sources} sources</p>
+                    <p className="text-sm text-right"> {language === 'zh-Hant' ? "來源出處:" : language === 'zh-Hans' ? "来源出处：" : "" } {sources} {language === "en" ? "sources" : "" }</p>
                 </div>
             </div>
         </article>

@@ -97,7 +97,6 @@ function HongKong() {
         articles = articles_en;
     }
 
-
     return (
         <div className="flex flex-col w-[80dvw] mx-auto my-16">
             <h1 className="text-5xl font-bold my-4 pl-5">{language === "zh-Hant" ? "香港" : language === "zh-Hans" ? "香港" : "HONG KONG"}</h1>
@@ -122,6 +121,5 @@ function HongKong() {
         </div>
     )
 }   
-
 
 export default HongKong;

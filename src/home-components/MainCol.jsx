@@ -3,9 +3,10 @@ import HeadlineLg from "./HeadlineLg";
 import HeadlineSm from "./HeadlineSm";
 import { Link } from "react-router-dom";
 import articles from "../article-view/articles";
+import { useLanguage } from "../context/LanguageContext";
 
 function MainCol() {
-
+  const { language } = useLanguage();
   const mainArticle = articles.find((a) => a.id === "001");
   const subArticles = articles.filter((a) => a.id !== "001");
 
@@ -15,7 +16,7 @@ function MainCol() {
       {mainArticle && (
       <Link to={`/article/${mainArticle.id}`}>
         <HeadlineLg
-          headline={mainArticle.title}
+          headline={mainArticle.title?.[language]}
           image={mainArticle.image}
           cPercent={mainArticle.cPercent}
           pPercent={mainArticle.pPercent}
@@ -29,7 +30,7 @@ function MainCol() {
             <div key={article.id} className="flex-grow flex-col justify-center items-center mx-auto">
               <Link to={`/article/${article.id}`}>
                 <HeadlineSm
-                  headline={article.title}
+                  headline={article.title?.[language]}
                   image={article.image}
                   cPercent={article.cPercent}
                   pPercent={article.pPercent}
