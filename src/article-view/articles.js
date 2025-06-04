@@ -12,6 +12,8 @@ const articles = [
     pPercent: 33,
     cPercent: 67,
     sources: 30,
+    sentimentScore: -0.25,
+    subjectivityScore: 0.75,
     location: {
       en: "Beijing, China",
       'zh-Hant': "中國北京",
@@ -68,9 +70,25 @@ const articles = [
       'zh-Hant': "下定決心回復單身都不覺荒涼",
       'zh-Hans': "下定决心回复单身都不觉荒凉"
     },
+    image: "/src/assets/university1.jpg",
     location: "Earth",
     firstReported: "30 March, 2025",
     published: "30 March, 2025 (updated 1 hour ago)",
+    linked_articles: []
+  },
+  {
+    id: "005",
+    title: {
+      en: "'Brilliant' Z News wins prestigious award for most innovative news platform in Hong Kong.",
+      'zh-Hant': "此時的我強得可怕",
+      'zh-Hans': "此时的我强得可怕"
+    },
+    sources: 7,
+    sentimentScore: 0.99,
+    subjectivityScore: 0.90,
+    location: "Hong Kong",
+    firstReported: "30 February, 2026",
+    published: "30 February, 2026 (updated 1 hour ago)",
     linked_articles: []
   }
 ];

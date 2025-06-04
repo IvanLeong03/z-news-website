@@ -19,7 +19,7 @@ function SearchBar() {
         type="text"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        className="w-full pr-4 py-2 pl-8 mr-2 mx-auto border border-[rgba(96,96,96,0.3765)] rounded-xl focus:outline-none focus:ring-1 focus:ring-[theme(--color-line-lightgrey)]"
+        className="w-full pr-4 py-2 pl-8 mr-2 mx-auto border border-[rgba(96,96,96,0.3765)] rounded-xl focus:outline-none focus:ring-1 focus:ring-[var(--color-line-lightgrey)]"
       />
       <button type="submit" className="absolute left-2 my-auto hover:cursor-pointer">
         <FaSearch className="text-gray-400" />

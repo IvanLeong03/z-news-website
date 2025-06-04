@@ -7,6 +7,7 @@ import articles from "./articles";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
+import { Link } from "react-router-dom";
 
 function Article() {
     
@@ -86,8 +87,8 @@ function Article() {
                 { /* article title and image */ }
                 <div className="flex-col flex-grow w-9/10 mx-auto">
                     <div className="flex text-[#252525] text-xs">
-                        <p className="pr-4 border-r border-[theme(--color-line-verylightgrey)]">{article.location?.[language]}</p>
-                        <p className="px-4 border-r border-[theme(--color-line-verylightgrey)]">{language === 'zh-Hant'? "首次報導" : language === 'zh-Hans' ? "首次报导" : "First reported"}: {article.firstReported}</p>
+                        <p className="pr-4 border-r border-[var(--color-line-verylightgrey)]">{article.location?.[language]}</p>
+                        <p className="px-4 border-r border-[var(--color-line-verylightgrey)]">{language === 'zh-Hant'? "首次報導" : language === 'zh-Hans' ? "首次报导" : "First reported"}: {article.firstReported}</p>
                         <p className="px-4">Published: {article.published}</p>
                         { /* is this needed? */}
                     </div>
@@ -95,14 +96,16 @@ function Article() {
                     <h1 className="text-3xl font-semibold my-2">{article.title?.[language]}</h1>
                 </div>
                 { /* summaries */}
-                <div className="flex flex-col w-9/10 mx-auto my-8 ">
-                    <div className="flex my-2 gap-4">                    
-                        <label className="min-w-1/5 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Centric: {article.cPercent}% </label> 
-                        <label className="min-w-1/5 text-center p-2 rounded-xl border border-[theme(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
-                    </div>
-
-                    <div className="grid grid-rows-2 bg-[theme(--color-summary-background)] min-h-[20rem] px-2">
-                        <div className="border-b border-[theme(--color-line-grey)] py-4">
+                <div className="flex flex-col w-9/10 mx-auto my-8 ">                                    
+                    <Link to="/user-guide">
+                        <div className="flex my-2 gap-4">    
+                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Centric: {article.cPercent}% </label>                                                 
+                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
+                        </div>
+                    </Link> 
+                    
+                    <div className="grid grid-rows-2 bg-[var(--color-summary-background)] min-h-[20rem] px-2">
+                        <div className="border-b border-[var(--color-line-grey)] py-4">
                             <h2 className="font-bold">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What happened"}</h2>
                             <ul className="list-disc list-inside">
                                 {summary[0].map((event, index) => (
@@ -119,7 +122,7 @@ function Article() {
                                 ))}
                             </ul>                                  
                         </div>                        
-                        <p className="text-[theme(--color-text-lightgrey)] text-xs px-4">by ZimuthAI | report if you think something is wrong here</p>
+                        <p className="text-[var(--color-text-lightgrey)] text-xs px-4">by ZimuthAI | report if you think something is wrong here</p>
                     </div>
                 </div>
                 { /* reported articles */}
@@ -128,7 +131,6 @@ function Article() {
                     <ul className="my-4">
                         {linked_articles.map((linked_article, index) => (
                             <li className="py-2">{linked_article}</li>
-
                         ))}
                     </ul>    
                 </div>                               
@@ -136,7 +138,7 @@ function Article() {
 
             { /* second column: distribution, sentiment, subjectivity */}
             <div className="flex-col flex-grow justify-center w-1/5 min-h-dvh border-l border-black py-6 px-1">
-                <div className="w-4/5 mx-auto border-b border-[theme(--color-line-grey)]">
+                <div className="w-4/5 mx-auto border-b border-[var(--color-line-grey)]">
                     <h1 className="font-bold text-xl">Leaning distribution</h1>
                     <div className="mt-4 my-2">
                         <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
@@ -150,14 +152,13 @@ function Article() {
                     </div>
 
                 </div>    
-                <div className="w-4/5 mx-auto border-b border-[theme(--color-line-grey)]">
+                <div className="w-4/5 mx-auto border-b border-[var(--color-line-grey)]">
                     <div className="mt-4 mb-2">
                         <SentimentSlider />
                     </div>
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Elaboration"} />
-                    </div>
-                
+                    </div>                
                 </div>   
                 <div className="w-4/5 mx-auto">
                     <div className="mt-4 mb-2">
@@ -165,10 +166,8 @@ function Article() {
                     </div>
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Elaboration"} />
-                    </div>
-                
-                </div>              
-                
+                    </div>                
+                </div>                              
             </div>
             { /* third column: ads */}
             <div className="w-1/5 min-h-dvh border-l border-black py-6 px-1">
@@ -177,12 +176,9 @@ function Article() {
                     {/* make it a button */}
                     <Ads />
                     <Ads />
-                </div>
-                
+                </div>                
             </div>
-
         </article>                
-
     )        
 }
 

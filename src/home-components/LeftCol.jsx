@@ -8,7 +8,7 @@ function LeftCol() {
 
     return (
       <>
-      <div className="w-[23%] min-h-dvh flex-grow flex-col justify-center items-center mx-auto ">
+      <div className="w-1/4 h-auto flex flex-col flex-grow justify-center items-center mx-auto ">
         < Trivia />
         < MostRead /> 
         

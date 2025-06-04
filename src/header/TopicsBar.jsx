@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage} from "../context/LanguageContext";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 function TopicsBar() {
     const navigate = useNavigate();
@@ -47,27 +48,23 @@ function TopicsBar() {
     return (
         <>
 
-        <div className="w-full h-[8vh] lg:h-[5vh] flex items-center border-t-2 border-b border-[#252525] mb-4">
-            <div className="w-[90dvw] flex items-center mx-auto">
+        <div className="w-full flex items-center mb-4">
+            <div className="w-9/10 flex items-center mx-auto border-t border-b border-[#252525] py-4">
 
                 {/* Center: Topics */}
                 <div className="flex-grow flex justify-center px-1">
-                    <p className="px-16 font-bold text-red-400">
-                        {language === "zh-Hant"
-                            ? "熱門"
-                            : language === "zh-Hans"
-                            ? "热门"
-                            : "Trending"}
-                    </p>
-                {topics.map((topic, index) => (
-                    <button
-                    key={index}
-                    onClick={() => handleTopicClick(topic)}
-                    className="font-bold hover:cursor-grab px-12"
-                    >
-                    {topic}
-                    </button>
-                ))}
+                    <div className="px-16 font-bold text-red-400">
+                        <MdKeyboardDoubleArrowUp size={24}/>
+                    </div>
+                    {topics.map((topic, index) => (
+                        <button
+                        key={index}
+                        onClick={() => handleTopicClick(topic)}
+                        className="font-bold hover:cursor-grab px-12"
+                        >
+                        {topic}
+                        </button>
+                    ))}
                 </div>
 
                 {/* Right: Language options */}
@@ -84,8 +81,7 @@ function TopicsBar() {
                     <button onClick={() => setLanguage('zh-Hans')} className={language === "zh-Hans" ? "font-bold" : "hover:text-purple-500"}>
                         简
                     </button>
-                    
-                    
+                                        
                 </div>            
             </div>
         </div>

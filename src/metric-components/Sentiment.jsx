@@ -5,7 +5,7 @@ function Sentiment({sentiment="sentiment analysis"}) {
 
 
   return (
-    <div className="flex w-full h-4 justify-center rounded overflow-hidden shadow-sm text-xs text-black bg-[theme(--color-bg-grey)]">
+    <div className="flex w-full h-4 justify-center rounded overflow-hidden shadow-sm text-xs text-black bg-[var(--color-bg-grey)]">
         <p className='text-xs'>[{sentiment}]</p>
       
     </div>

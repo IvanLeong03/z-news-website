@@ -49,7 +49,7 @@ function MostRead() {
         </h2>
 
         {mostReadArticles.map((article, index) => (
-            <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-6 border-b border-[theme(--color-line-grey)]">
+            <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-6 border-b border-[var(--color-line-grey)]">
                 <p className="mt-2 my-4">{article.title}</p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
                     <div className="w-full">

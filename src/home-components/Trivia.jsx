@@ -31,7 +31,7 @@ function Trivia() {
                     <button
                         key={index}
                         onClick={() => handleAnswerClick(index)}
-                        className={`bg-[theme(--color-bg-grey)] rounded-2xl px-4 my-2 ${
+                        className={`bg-[var(--color-bg-grey)] rounded-2xl px-4 my-2 ${
                             selectedAnswer !== null
                                 ? index === correctAnswerIndex
                                     ? "bg-green-500"

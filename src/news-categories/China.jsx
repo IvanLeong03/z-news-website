@@ -101,7 +101,7 @@ function China() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article, index) => (
                     <div key={index} className="flex flex-col rounded-lg p-4 m-2">
-                        <div className="w-full aspect-[16/9] overflow-hidden border border-[theme(--color-line-grey)]">
+                        <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
                             <img
                                 src={article.imageUrl}
                                 alt={article.title}                                
