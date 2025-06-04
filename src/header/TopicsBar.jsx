@@ -27,9 +27,7 @@ function TopicsBar() {
         "贸易战",
         "关税"
     ];
-
     
-
     let topics;
     if (language === "en") {
         topics = topics_en;
@@ -47,12 +45,10 @@ function TopicsBar() {
     
     return (
         <>
-
-        <div className="w-full flex items-center mb-4">
-            <div className="w-9/10 flex items-center mx-auto border-t border-b border-[#252525] py-4">
-
+        <div className="relative w-full flex items-center mb-4">
+            <div className="w-9/10 flex items-center mx-auto border-t border-b border-[#252525] py-2">
                 {/* Center: Topics */}
-                <div className="flex-grow flex justify-center px-1">
+                <div className="flex flex-grow justify-center px-1">
                     <div className="px-16 font-bold text-red-400">
                         <MdKeyboardDoubleArrowUp size={24}/>
                     </div>

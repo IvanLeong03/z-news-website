@@ -20,7 +20,7 @@ import UserGuide from "./other-pages/UserGuide"
 
 function App() {
   return (
-      <main className='flex-grow w-full max-w-[150rem] mx-auto bg-[var(--color-bg-light)]'>
+      <main className='w-full max-w-[160rem] mx-auto bg-[var(--color-bg-light)]'>
         <LanguageProvider>
           <Navbar />
           <TopicsBar />

@@ -21,7 +21,7 @@ function Trivia() {
 
     return (
         <>
-            <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pt-2 pb-8 border-b-2 border-[rgba(37,37,37,0.75)]">
+            <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pb-8 border-b-2 border-[rgba(37,37,37,0.75)]">
                 <h3 className="font-bold my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
                 <p className="mb-4 text-sm">
                     {question}
@@ -33,10 +33,10 @@ function Trivia() {
                         onClick={() => handleAnswerClick(index)}
                         className={`bg-[var(--color-bg-grey)] rounded-2xl px-4 my-2 ${
                             selectedAnswer !== null
-                                ? index === correctAnswerIndex
-                                    ? "bg-green-500"
-                                    : index === selectedAnswer
-                                    ? "bg-red-500"
+                                ? index === selectedAnswer
+                                    ? selectedAnswer === correctAnswerIndex
+                                        ? "bg-green-500"
+                                        : "bg-red-500"
                                     : ""
                                 : ""
                         }`}

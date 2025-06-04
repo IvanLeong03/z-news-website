@@ -6,29 +6,38 @@ import { useLanguage } from "../context/LanguageContext";
 
 function HeadlineLg({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=3, sentScore, subjScore}) {
     const { language } = useLanguage();
+
     return (
-        <article className="flex flex-grow flex-col justify-center items-center w-9/10 min-h-[30rem] mx-auto mt-2 mb-12">
-            <img src={image} alt='HeadlineImage' className="w-full"></img>
-            <h1 className="w-full text-4xl font-bold my-4 text-left">{headline}</h1>
-            <div className="w-full flex justify-between items-start mt-4">
-                <div className="w-3/10 px-1">
-                    <SplitBar cPercent={cPercent} pPercent={pPercent}/>
+        <article className="w-full flex flex-col items-stretch mb-8 max-w-full px-2">
+            {/* Image */}
+            <div className="w-full aspect-[16/9]">
+                <img src={image} alt="Headline" className="w-full h-full object-cover" />
+            </div>
+
+            {/* Headline */}
+            <div className="w-full min-h-[4rem] py-2 flex items-center">
+                <h1 className="w-full min-w-[48rem] text-4xl font-bold text-left block">
+                    {headline}
+                </h1>
+            </div>
+
+            {/* Metrics */}
+            <div className="w-full min-w-[48rem] xl:min-w-[72rem] flex flex-wrap justify-between items-start gap-4 px-4 py-2">
+                <div className="flex-1">
+                    <SplitBar cPercent={cPercent} pPercent={pPercent} />
                 </div>
-                <div className="w-3/10 px-4">
+                <div className="flex-1">
                     <SentimentSlider sentScore={sentScore} />
                 </div>
-                <div className="w-3/10 px-4">
+                <div className="flex-1">
                     <SubjectivitySlider subjScore={subjScore} />
                 </div>
-                <div className="w-1/10 px-1">
-                    <p className="text-sm text-right"> {sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
+                <div className="text-sm text-right">
+                    {sources} {language === 'zh-Hant' || language === 'zh-Hans' ? "篇文章" : "source articles"}
                 </div>
             </div>
         </article>
-    )
-
-
+    );
 }
 
 export default HeadlineLg;
-

@@ -11,7 +11,7 @@ function MainCol() {
   const subArticles = articles.filter((a) => a.id !== "001");
 
   return (
-    <div className="w-full h-auto flex-grow flex-col justify-center items-center mx-auto border-r-2 border-l-2 border-[rgba(37,37,37,0.75)]">
+    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center pt-2 border-r-2 border-l-2 border-[rgba(37,37,37,0.75)]">
       { /* one large article, and 4 smaller ones? */}
       {mainArticle && (
       <Link to={`/article/${mainArticle.id}`}>
@@ -26,8 +26,8 @@ function MainCol() {
         />
       </Link>
     )}
-      <div className="w-9/10 mx-auto pb-8">
-        <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="w-9/10 mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-stretch">
           {Array.isArray(subArticles) && subArticles.map((article) => (
             <div key={article.id} className="flex flex-grow flex-col justify-center items-center mx-auto">
               <Link to={`/article/${article.id}`}>

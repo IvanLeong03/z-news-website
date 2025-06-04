@@ -26,7 +26,7 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="h-[11rem] w-[90%] mx-auto flex items-center px-1">
+            <nav className="h-[11rem] w-9/10 mx-auto flex items-center px-1">
                 {/* Left: Logo */}
                 <div className="flex items-center flex-none">
                     <Link to="/">
@@ -35,7 +35,7 @@ function Navbar() {
                 </div>
 
                 {/* Center: Nav Links */}
-                <div className="flex-grow flex justify-center">
+                <div className="flex flex-grow justify-center">
                     <ul className="flex space-x-8 lg:space-x-16 text-lg lg:text-xl">
                         <li className="hover:text-purple-600">
                             <Link to="/today">
