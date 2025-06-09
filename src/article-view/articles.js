@@ -90,6 +90,28 @@ const articles = [
     firstReported: "30 February, 2026",
     published: "30 February, 2026 (updated 1 hour ago)",
     linked_articles: []
+  },
+  {
+    id: "006",
+    title: {
+      en: "AI breakthrough: New model sets record in language understanding",
+      'zh-Hant': "人工智能突破：新模型創下語言理解新紀錄",
+      'zh-Hans': "人工智能突破：新模型创下语言理解新纪录"
+    },
+    image: "/src/assets/ai-news.jpg",
+    pPercent: 55,
+    cPercent: 45,
+    sources: 18,
+    sentimentScore: 0.72,
+    subjectivityScore: 0.60,
+    location: {
+      en: "San Francisco, USA",
+      'zh-Hant': "美國舊金山",
+      'zh-Hans': "美国旧金山"
+    },
+    firstReported: "1 April, 2025",
+    published: "1 April, 2025 (updated 30 minutes ago)",
+    linked_articles: ['article 2', 'article 5']
   }
 ];
 

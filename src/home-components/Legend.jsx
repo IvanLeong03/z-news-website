@@ -31,7 +31,7 @@ function Legend() {
             <p className='mt-2 mb-8'>
               {language === "zh-Hant" ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分" :
                language === "zh-Hans" ? "根据文中正面和负面用字的比例计算情绪，给予-1（最悲观）至 1 （最乐观）的评分" :
-               "We analyse the article by identifying words with positive or negative connotations, and generate a score from -1 (most negative) to 1 (most positive) based on the ratio"}
+               "We assign a score from -1 (most negative) to 1 (most positive) based on the ratio"}
             </p>
         </div>
          <div className='flex flex-col text-[var(--color-text-grey)] pt-8'>

@@ -27,9 +27,9 @@ function MainCol() {
       </Link>
     )}
       <div className="w-9/10 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 w-full items-stretch">
           {Array.isArray(subArticles) && subArticles.map((article) => (
-            <div key={article.id} className="flex flex-grow flex-col justify-center items-center mx-auto">
+            <div key={article.id} className="flex flex-grow flex-col justify-start items-center mx-auto">
               <Link to={`/article/${article.id}`}>
                 <HeadlineSm
                   headline={article.title?.[language]}

@@ -7,17 +7,17 @@ import { useLanguage } from "../context/LanguageContext";
 function HeadlineSm({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=3, sentScore, subjScore}) {
     const { language } = useLanguage();
     return (
-        <article className="flex items-stretch w-full h-[25rem] mb-6">
-            <div className="w-2/3 min-w-[22rem] flex flex-col h-full flex-shrink-0 border border-black">
+        <article className="flex items-stretch w-full min-h-[20rem] max-h-[30rem] mb-6">
+            <div className="w-2/3 min-w-[16rem] flex flex-col h-full flex-shrink-0 border border-black">
                 <div className="w-full aspect-[16/9]">
                     <img src={image} alt='HeadlineImage' className="w-full h-full object-cover" />
                 </div> 
                                                                    
-                <h1 className="w-full min-w-[22rem] bg-amber-200 text-lg lg:text-xl font-semibold my-2 text-left">{headline}</h1>
+                <h1 className="w-full min-w-[16rem] text-lg lg:text-xl font-semibold my-2 text-left">{headline}</h1>
                 <p className="text-xs text-left">{sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
             </div>
             
-            <div className="w-1/3 min-w-[11rem] h-full px-2 flex flex-col justify-start gap-4 border border-red-300">
+            <div className="w-1/3 min-w-[8rem] h-full px-2 flex flex-col justify-start gap-4 border border-red-300">
                 <div>
                     <SplitBar cPercent={cPercent} pPercent={pPercent}/>
                 </div>

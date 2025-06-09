@@ -8,7 +8,7 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
     const { language } = useLanguage();
 
     return (
-        <article className="w-full flex flex-col items-stretch mb-8 max-w-full px-2">
+        <article className="w-full flex flex-col items-stretch mb-8 px-2">
             {/* Image */}
             <div className="w-full aspect-[16/9]">
                 <img src={image} alt="Headline" className="w-full h-full object-cover" />
@@ -16,13 +16,13 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
 
             {/* Headline */}
             <div className="w-full min-h-[4rem] py-2 flex items-center">
-                <h1 className="w-full min-w-[48rem] text-4xl font-bold text-left block">
+                <h1 className="w-full text-4xl font-bold text-left block">
                     {headline}
                 </h1>
             </div>
 
             {/* Metrics */}
-            <div className="w-full min-w-[48rem] xl:min-w-[72rem] flex flex-wrap justify-between items-start gap-4 px-4 py-2">
+            <div className="w-full min-w-[52rem] flex flex-wrap justify-between items-start gap-4 px-4 py-2">
                 <div className="flex-1">
                     <SplitBar cPercent={cPercent} pPercent={pPercent} />
                 </div>
