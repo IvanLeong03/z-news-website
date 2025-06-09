@@ -1,4 +1,5 @@
 import React from "react";
+import Carousel from "./Carousel"; // Assuming you have a Carousel component
 
 function AboutUs() {
     const [opacity, setOpacity] = React.useState(0.2);
@@ -44,7 +45,8 @@ function AboutUs() {
                     Our other flagship product, Zimuth Terminal, is an AI-powered Media Monitoring assistant that was designed for communication
                     firms. To learn more, please visit <a href="https://zimuth.ai" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">zimuth.ai</a>.
                 </p>    
-                               
+
+                <Carousel />                               
             </div>     
                              
         </main>
