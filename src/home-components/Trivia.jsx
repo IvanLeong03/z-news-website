@@ -21,12 +21,11 @@ function Trivia() {
 
     return (
         <>
-            <div className="relative w-9/10 mx-auto flex flex-grow flex-col justify-start items-start pt-2 pb-8 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+            <div className="relative w-9/10 mx-auto flex flex-grow flex-col justify-start items-start py-2 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
                 <h3 className="font-bold text-xl my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
                 <p className="my-4 text-sm lg:text-base">
                     {question}
                 </p>
-
                 {answers.map((answer, index) => (
                     <button
                         key={index}
@@ -42,7 +41,7 @@ function Trivia() {
                         }`}
                     >
                         <div className="flex flex-grow py-2">
-                            <p className="mx-2">{String.fromCharCode(65 + index)}.</p>
+                            <p className="mx-4">{String.fromCharCode(65 + index)}.</p>
                             <p className="text-left">{answer}</p>
                         </div>
                     </button>

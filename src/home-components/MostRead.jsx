@@ -43,8 +43,8 @@ function MostRead() {
     }
 
     return (
-      <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pt-2 pb-8">
-        <h2 className="font-bold mt-2 mb-6">
+      <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pb-8">
+        <h2 className="font-bold text-xl mt-2 mb-6">
             {language === 'zh-Hant' ? '熱門新聞' : language === 'zh-Hans' ? '热门新闻' : 'Most Read'}
         </h2>
 

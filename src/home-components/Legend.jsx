@@ -31,7 +31,7 @@ function Legend() {
             <p className='mt-2 mb-8'>
               {language === "zh-Hant" ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分" :
                language === "zh-Hans" ? "根据文中正面和负面用字的比例计算情绪，给予-1（最悲观）至 1 （最乐观）的评分" :
-               "We assign a score from -1 (most negative) to 1 (most positive) based on the ratio"}
+               "We assign a score from -1 (most negative) to 1 (most positive)."}
             </p>
         </div>
          <div className='flex flex-col text-[var(--color-text-grey)] pt-8'>
@@ -39,7 +39,7 @@ function Legend() {
             <p className='mt-2 mb-8'>
               {language === "zh-Hant" ? "根據文中形容詞和副詞的比例計算主觀性，給予0（最客觀）至 1 （最主觀）的評分" :
               language === "zh-Hans" ? "根据文中形容词和副词的比例计算主观性，给予0（最客观）至 1 （最主观）的评分" : 
-              "[We identify adverbs (and adjectives?) used in the article, with a higher score given to articles that feature them prominently.]"}
+              "We assign a score from 0 (most objective) to 1 (most subjective)."}
             </p>
 
             <p>To learn more, view the <Link to="/user-guide" className="text-blue-600 hover:cursor-pointer"> user guide </Link>
