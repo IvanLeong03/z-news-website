@@ -20,17 +20,17 @@ function AboutUs() {
     }, []);
 
     return (
-        <main className="flex-col w-4/5 mx-auto my-20 justify-center items-center text-center">            
+        <main className="flex-col w-4/5 mx-auto justify-center items-center text-center">            
             <video
                 src="/src/assets/aboutUsVideo.mp4"
-                className="w-3/4 mx-auto shadow-lg"
+                className="w-full mx-auto shadow-lg"
                 autoPlay
                 muted
                 loop
             />
 
             <div
-                className="bg-[var(--color-light-turquoise)] rounded-xl text-lg my-16 p-2"
+                className="bg-[var(--color-light-turquoise)] rounded-xl text-lg -mt-16 mb-8 p-2"
                 style={{ opacity, transition: "opacity 0.3s" }}
             >    
                 <p className="text-left my-8 w-3/4 mx-auto">

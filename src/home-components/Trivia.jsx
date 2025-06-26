@@ -21,9 +21,9 @@ function Trivia() {
 
     return (
         <>
-            <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pb-8 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
-                <h3 className="font-bold my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
-                <p className="mb-4 text-sm">
+            <div className="relative w-9/10 mx-auto flex flex-grow flex-col justify-start items-start pt-2 pb-8 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+                <h3 className="font-bold text-xl my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
+                <p className="my-4 text-sm lg:text-base">
                     {question}
                 </p>
 
@@ -31,7 +31,7 @@ function Trivia() {
                     <button
                         key={index}
                         onClick={() => handleAnswerClick(index)}
-                        className={`bg-[var(--color-bg-grey)] rounded-2xl px-4 my-2 ${
+                        className={`w-full bg-[var(--color-bg-grey)] rounded-xl lg:rounded-3xl my-2 ${
                             selectedAnswer !== null
                                 ? index === selectedAnswer
                                     ? selectedAnswer === correctAnswerIndex
@@ -41,8 +41,8 @@ function Trivia() {
                                 : ""
                         }`}
                     >
-                        <div className="flex justify-start py-2">
-                            <p className="mr-4">{String.fromCharCode(65 + index)}.</p>
+                        <div className="flex flex-grow py-2">
+                            <p className="mx-2">{String.fromCharCode(65 + index)}.</p>
                             <p className="text-left">{answer}</p>
                         </div>
                     </button>

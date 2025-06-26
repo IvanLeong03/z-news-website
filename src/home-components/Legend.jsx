@@ -11,8 +11,8 @@ function Legend() {
   const { language } = useLanguage();
 
   return (
-    <div className="relative w-9/10 flex-col flex-grow justify-start items-start mx-auto pt-2 pb-4 border-b-2 border-[rgba(37,37,37,0.75)] text-sm">
-        <h2 className='font-bold mt-1 mb-4'>
+    <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start pt-2 pb-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+        <h2 className='font-bold text-xl mt-1 mb-5'>
           {language === "zh-Hant" ? "新聞指標" : language === "zh-Hans" ? "新闻指标" : "What are these?"}
         </h2>
         < SplitBar />
