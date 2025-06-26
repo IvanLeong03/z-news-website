@@ -1,12 +1,13 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 import SearchBar from "../search/SearchBar";
 import { useLanguage } from "../context/LanguageContext";
-
+import { FaUser } from "react-icons/fa";
 
 function Navbar() {
     const { language } = useLanguage(); 
+    const navigate = useNavigate();
 
     return (
         <div className="w-full flex flex-col">
@@ -31,9 +32,11 @@ function Navbar() {
                 <Link to="/">
                     <div className="flex items-center flex-none max-w-[20vw] space-x-2">                    
                         <img src="/logos/logo_icon_turquoise.png" alt="Logo" className="h-16" />
-                        <h1 className="text-lg lg:text-2xl font-bold">Zone News</h1>                   
+                        <h1 className="text-lg lg:text-2xl font-bold break-words whitespace-normal">
+                            Zone News
+                        </h1>                   
                     </div>
-                 </Link>
+                </Link>
 
                 {/* Center: Nav Links */}
                 <div className="flex flex-grow justify-center">
@@ -61,17 +64,19 @@ function Navbar() {
                     </ul>
                 </div>
 
-                {/* Right: Search */}
-                <div className="flex items-center flex-none max-w-[20vw]">
-                    < SearchBar />
+                {/* Right: Search and Account */}
+                <div className="flex items-center flex-none max-w-[20vw] space-x-4">
+                    <SearchBar />
+                    <button
+                        onClick={() => navigate('/account')}
+                        className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                        aria-label="Account"
+                    >
+                        < FaUser />
+                    </button>
                 </div>
             </nav>
         </div>
-        
-
-  
-
-
     )
 }
 
