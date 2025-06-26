@@ -44,12 +44,11 @@ function TopicsBar() {
     };
     
     return (
-        <>
-        <div className="relative w-full flex items-center mb-4">
-            <div className="w-9/10 flex items-center mx-auto border-t border-b border-[#252525] py-2">
-                {/* Center: Topics */}
-                <div className="flex flex-grow justify-center px-1">
-                    <div className="px-16 font-bold text-red-400">
+
+        <div className="relative w-full mx-auto mb-4 border-t border-b border-[#252525] py-2">
+            <div className="w-9/10 mx-auto flex justify-between items-center bg-blue-200">
+                <div className="mx-auto flex justify-center px-1">
+                    <div className="font-bold text-red-400">
                         <MdKeyboardDoubleArrowUp size={24}/>
                     </div>
                     {topics.map((topic, index) => (
@@ -62,26 +61,24 @@ function TopicsBar() {
                         </button>
                     ))}
                 </div>
-
-                {/* Right: Language options */}
-                <div className="flex-none flex items-center space-x-1">
-                    <button onClick={() => setLanguage('en')} className={language === "en" ? "font-bold" : "hover:text-purple-500"}>
-                        E
-                    </button>
-                    <p className="text-[#aaaaaa]">|</p>
-                    <button onClick={() => setLanguage('zh-Hant')}  className={language === "zh-Hant" ? "font-bold" : "hover:text-purple-500"}>
-                        繁
-                    </button>
-
-                    <p className="text-[#aaaaaa]">|</p>
-                    <button onClick={() => setLanguage('zh-Hans')} className={language === "zh-Hans" ? "font-bold" : "hover:text-purple-500"}>
-                        简
-                    </button>
-                                        
+                <div className="flex items-center space-x-1">
+                    <p className="text-sm">
+                        {language === "en" ? "Language" : language === "zh-Hant" ? "語言" : language === "zh-Hans" ? "语言" : "Language"}:
+                    </p>
+                    <select
+                        value={language}
+                        onChange={e => setLanguage(e.target.value)}
+                        className="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    >
+                        <option value="en">English</option>
+                        <option value="zh-Hant">繁體</option>
+                        <option value="zh-Hans">简体</option>
+                    </select>
                 </div>            
             </div>
+            
         </div>
-        </>
+
     )
 }
 

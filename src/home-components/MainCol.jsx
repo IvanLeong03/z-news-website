@@ -11,7 +11,7 @@ function MainCol() {
   const subArticles = articles.filter((a) => a.id !== "001");
 
   return (
-    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center pt-2 border-r border-l border-[rgba(37,37,37,0.75)]">
+    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center pt-2 px-2 border-r border-l border-[rgba(37,37,37,0.75)]">
       { /* one large article, and 4 smaller ones? */}
       {mainArticle && (
       <Link to={`/article/${mainArticle.id}`}>

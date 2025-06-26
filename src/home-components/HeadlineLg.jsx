@@ -8,8 +8,8 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
     const { language } = useLanguage();
 
     return (
-        <article className="w-full flex flex-col items-stretch mb-8 px-2">
-            {/* Image */}
+        <article className="relative w-full min-w-[54vw] max-w-[96rem] flex flex-col mb-12">
+            {/* Image */} 
             <div className="w-full aspect-[16/9]">
                 <img src={image} alt="Headline" className="w-full h-full object-cover" />
             </div>

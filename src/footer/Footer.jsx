@@ -8,7 +8,7 @@ function Footer() {
 
     return (
         <>
-        <footer className="w-full h-[16rem] flex items-center relative bottom-0 justify-center mx-auto border-t border-[rgba(37,37,37,0.75)]">
+        <footer className="w-full h-[25vh] max-h-[10rem] flex items-center relative bottom-0 justify-center mx-auto border-t border-[rgba(37,37,37,0.75)]">
             <div className="flex w-3/5 justify-between">
                 <p>Copyright © 2025</p>
                 <p>

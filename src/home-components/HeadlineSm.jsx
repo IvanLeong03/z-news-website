@@ -7,7 +7,7 @@ import { useLanguage } from "../context/LanguageContext";
 function HeadlineSm({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=3, sentScore, subjScore}) {
     const { language } = useLanguage();
     return (
-        <article className="flex items-stretch w-full min-h-[20rem] max-h-[30rem] mb-6">
+        <article className="flex items-stretch w-full mb-6">
             <div className="w-3/5 flex flex-col h-full flex-shrink-0">
                 <div className="w-full aspect-[16/9]">
                     <img src={image} alt='HeadlineImage' className="w-full h-full object-cover" />
