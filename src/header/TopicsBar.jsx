@@ -46,10 +46,11 @@ function TopicsBar() {
     return (
 
         <div className="relative w-full mx-auto mb-4 border-t border-b border-[#252525] py-2">
-            <div className="w-9/10 mx-auto flex justify-between items-center bg-blue-200">
+            <div className="w-9/10 mx-auto flex justify-between items-center">
                 <div className="mx-auto flex justify-center px-1">
                     <div className="font-bold text-red-400">
-                        <MdKeyboardDoubleArrowUp size={24}/>
+                        {/*<MdKeyboardDoubleArrowUp size={24}/>*/}
+                        {language === "en" ? "Trending" : language === "zh-Hant" ? "熱門" : language === "zh-Hans" ? "热门" : "Trending"}:
                     </div>
                     {topics.map((topic, index) => (
                         <button
@@ -71,8 +72,8 @@ function TopicsBar() {
                         className="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-purple-400"
                     >
                         <option value="en">English</option>
-                        <option value="zh-Hant">繁體</option>
-                        <option value="zh-Hans">简体</option>
+                        <option value="zh-Hant">繁體中文</option>
+                        <option value="zh-Hans">简体中文</option>
                     </select>
                 </div>            
             </div>

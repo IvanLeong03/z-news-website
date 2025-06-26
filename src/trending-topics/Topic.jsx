@@ -36,13 +36,25 @@ function Topic() {
         articles = articles_en;
     };
 
+    // Determine heading based on language
+    const headings = {
+        "en": `Articles related to "${topic}"`,
+        "zh-Hant": `與「${topic}」相關的文章`,
+        "zh-Hans": `与「${topic}」相关的文章`
+    };
+    const heading = language === "zh-Hant"
+        ? headings["zh-Hant"]
+        : language === "zh-Hans"
+        ? headings["zh-Hans"]
+        : headings["en"];
+
     return (
         <div className="w-[85dvw] min-h-dvh mx-auto my-8 p-2">
-             <h1 className="text-4xl font-bold my-4 pl-5">{topic}</h1>
-             {articles.map((article, index) => (
+            <h1 className="text-4xl font-bold my-4 pl-5">{heading}</h1>
+            {articles.map((article, index) => (
                 <div key={index} className="grid grid-cols-1">
                     <div className="flex w-full my-6 min-h-[25dvh]">
-                        { /* left: date, title, metrics */}
+                        {/* left: date, title, metrics */}
                         <div className="flex flex-col w-3/4 px-5">
                             <p className="text-xs">{article.date}</p>
                             <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title}</h2>
@@ -57,26 +69,23 @@ function Topic() {
                                     <SubjectivitySlider />
                                 </div>
                                 <div className="p-2">
-                                    <p className="text-sm"> {article.sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
+                                    <p className="text-sm">
+                                        {article.sources}{" "}
+                                        {language === "zh-Hant"
+                                            ? "篇文章"
+                                            : language === "zh-Hans"
+                                            ? "篇文章"
+                                            : "source articles"}
+                                    </p>
                                 </div>
-                   
                             </div>
                         </div>
-
-                        { /* right: image */}
-                         <div className="w-1/4 bg-pink-300">
-
-                        </div>
-                    </div>      
-                
-
+                        {/* right: image */}
+                        <div className="w-1/4 bg-pink-300"></div>
+                    </div>
                 </div>
-
-             ))}
-
+            ))}
         </div>
-        
-        
     )
 
 }

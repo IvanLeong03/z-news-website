@@ -26,17 +26,18 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="h-[11rem] w-9/10 mx-auto flex items-center px-1">
+            <nav className="w-9/10 mx-auto flex items-center px-1 h-[20vh] max-h-[12rem]">
                 {/* Left: Logo */}
-                <div className="flex items-center flex-none">
-                    <Link to="/">
-                    <img src="/logos/z-news-logo.svg" alt="Logo" className="h-16" />
-                    </Link>
-                </div>
+                <Link to="/">
+                    <div className="flex items-center flex-none max-w-[20vw] space-x-2">                    
+                        <img src="/logos/logo_icon_turquoise.png" alt="Logo" className="h-16" />
+                        <h1 className="text-lg lg:text-2xl font-bold">Zone News</h1>                   
+                    </div>
+                 </Link>
 
                 {/* Center: Nav Links */}
                 <div className="flex flex-grow justify-center">
-                    <ul className="flex space-x-8 lg:space-x-16 text-lg lg:text-xl">
+                    <ul className="flex space-x-8 lg:space-x-16 text-base lg:text-xl">
                         <li className="hover:text-purple-600">
                             <Link to="/today">
                                 {language === "zh-Hant" ? "今日頭條" : language === "zh-Hans" ? "今日头条" : "TODAY"}
@@ -61,7 +62,7 @@ function Navbar() {
                 </div>
 
                 {/* Right: Search */}
-                <div className="flex items-center flex-none">
+                <div className="flex items-center flex-none max-w-[20vw]">
                     < SearchBar />
                 </div>
             </nav>
