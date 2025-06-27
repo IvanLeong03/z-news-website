@@ -33,7 +33,7 @@ function Navbar() {
                     <div className="flex items-center flex-none max-w-[20vw] space-x-2">                    
                         <img src="/logos/logo_icon_turquoise.png" alt="Logo" className="h-16" />
                         <h1 className="text-lg lg:text-2xl font-bold break-words whitespace-normal">
-                            Zone News
+                            {language === "zh-Hant" ? "方位新聞" : language === "zh-Hans" ? "方位新闻" : "Zone News"}
                         </h1>                   
                     </div>
                 </Link>
