@@ -17,6 +17,8 @@ import Article from "./article-view/Article"
 import SearchResults from "./search/SearchResults"
 import Topic from "./trending-topics/Topic"
 import UserGuide from "./other-pages/UserGuide"
+import Account from "./account/account"
+import LoginForm from "./auth/LoginForm"
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
             <Route path="/search" element={<SearchResults />} />
             <Route path="/topics/:topic" element={<Topic />} />
             <Route path="/user-guide" element={<UserGuide />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/login" element={<LoginForm />} />
           </Routes>
           <Footer />                
         </LanguageProvider>  

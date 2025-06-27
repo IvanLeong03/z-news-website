@@ -65,15 +65,30 @@ function Navbar() {
                 </div>
 
                 {/* Right: Search and Account */}
-                <div className="flex items-center flex-none max-w-[20vw] space-x-4">
+                <div className="flex items-center flex-none max-w-[20vw] space-x-4 relative">
                     <SearchBar />
-                    <button
-                        onClick={() => navigate('/account')}
-                        className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
-                        aria-label="Account"
-                    >
-                        < FaUser />
-                    </button>
+                    <div className="relative group">
+                        <button
+                            className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                            aria-label="Account"
+                        >
+                            <FaUser />
+                        </button>
+                        <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                            <li>
+                                <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">Login / Logout</Link>
+                            </li>
+                            <li>
+                                <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">Account Overview</Link>
+                            </li>
+                            <li>
+                                <Link to="/account/settings" className="block px-4 py-2 hover:bg-gray-100">Settings</Link>
+                            </li>
+                            <li>
+                                <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">My Topics</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
