@@ -112,6 +112,28 @@ const articles = [
     firstReported: "1 April, 2025",
     published: "1 April, 2025 (updated 30 minutes ago)",
     linked_articles: ['article 2', 'article 5']
+  },
+   {
+    id: "007",
+    title: {
+      en: "Xiaomi's automotive business expected to turn profitable in Q3-Q4 of this year",
+      'zh-Hant': "小米汽車業務預計今年三四季度實現盈利",
+      'zh-Hans': "小米汽车业务预计今年三四季度实现盈利"
+    },
+    image: "/src/assets/xiaomisu7u1.jpg",
+    pPercent: 62,
+    cPercent: 38,
+    sources: 12,
+    sentimentScore: 0.5,
+    subjectivityScore: 0.84,
+    location: {
+      en: "China",
+      'zh-Hant': "中國",
+      'zh-Hans': "中国"
+    },
+    firstReported: "1 April, 2025",
+    published: "1 April, 2025 (updated 30 minutes ago)",
+    linked_articles: ['article 2', 'article 5']
   }
 ];
 
