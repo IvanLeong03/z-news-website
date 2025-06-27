@@ -65,13 +65,13 @@ function MostRead() {
   const { language } = useLanguage();
 
   return (
-    <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2 pb-8">
+    <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto p-2">
       <h2 className="font-bold text-xl mt-2 mb-6">
         {language === 'zh-Hant' ? '熱門新聞' : language === 'zh-Hans' ? '热门新闻' : 'Most Read'}
       </h2>
 
       {mostReadArticles.map((article, index) => (
-        <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-6 border-b border-[var(--color-line-grey)]">
+        <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)] text-sm">
           <p className="mt-2 my-4">{article.title[language] || article.title.en}</p>
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-1">
             <div className="w-full">
@@ -81,7 +81,7 @@ function MostRead() {
               <Sentiment sentiment={article.sentiment} />
             </div>
           </div>
-          <div className="flex my-2">
+          <div className="flex mt-2">
             <p className="text-xs whitespace-nowrap">
               {article.sources}
               {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' sources'}

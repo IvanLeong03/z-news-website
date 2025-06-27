@@ -150,24 +150,26 @@ function Article() {
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Stats for distribution"} />
                     </div>
-
-                </div>    
-                <div className="w-9/10 mx-auto border-b border-[var(--color-line-grey)]">
-                    <div className="mt-4 mb-2">
-                        <SentimentSlider />
-                    </div>
-                    <div className="my-4">
-                        <SentimentExplanation sentiment={"Elaboration"} />
-                    </div>                
-                </div>   
-                <div className="w-9/10 mx-auto">
-                    <div className="mt-4 mb-2">
-                        <SubjectivitySlider />
-                    </div>
-                    <div className="my-4">
-                        <SentimentExplanation sentiment={"Elaboration"} />
-                    </div>                
-                </div>                              
+                </div>  
+                <div className="w-9/10 mx-auto my-2">
+                    <h1 className="font-bold text-xl">Metric analysis</h1>  
+                    <div className="w-9/10 mx-auto my-12">
+                        <div className="mt-4 mb-2">
+                            <SentimentSlider />
+                        </div>
+                        <div className="my-4">
+                            <SentimentExplanation sentiment={"Elaboration"} />
+                        </div>                
+                    </div>   
+                    <div className="w-9/10 mx-auto my-18">
+                        <div className="mt-4 mb-2">
+                            <SubjectivitySlider />
+                        </div>
+                        <div className="my-4">
+                            <SentimentExplanation sentiment={"Elaboration"} />
+                        </div>                
+                    </div>                  
+                </div>                            
             </div>
             { /* third column: ads */}
             <div className="min-h-dvh h-full py-6 px-1 border-l border-[var(--color-line-darkgrey)]">
