@@ -81,15 +81,15 @@ function Article() {
     // will have to move these to a separate file that matches summaries to article id, currently all articles have the same summaries
 
     return (
-        <article className="flex justify-center items-start w-[90dvw] h-full mx-auto">
+        <article className="grid grid-cols-[3fr_1fr_1fr] overflow-hidden justify-center items-start w-[90dvw] h-full mx-auto">
             { /* first column: article itself */}
-            <div className="w-3/5 min-h-dvh py-6 px-1">
+            <div className="min-h-dvh py-6 px-1">
                 { /* article title and image */ }
                 <div className="flex-col flex-grow w-9/10 mx-auto">
                     <div className="flex text-[#252525] text-xs">
-                        <p className="pr-4 border-r border-[var(--color-line-verylightgrey)]">{article.location?.[language]}</p>
-                        <p className="px-4 border-r border-[var(--color-line-verylightgrey)]">{language === 'zh-Hant'? "首次報導" : language === 'zh-Hans' ? "首次报导" : "First reported"}: {article.firstReported}</p>
-                        <p className="px-4">Published: {article.published}</p>
+                        <p className="pr-2 border-r border-[var(--color-line-verylightgrey)]">{article.location?.[language]}</p>
+                        <p className="px-2 border-r border-[var(--color-line-verylightgrey)]">{language === 'zh-Hant'? "首次報導" : language === 'zh-Hans' ? "首次报导" : "First reported"}: {article.firstReported}</p>
+                        <p className="px-2">Published: {article.published}</p>
                         { /* is this needed? */}
                     </div>
                     <img src={article.image} className="w-full" />
@@ -137,8 +137,8 @@ function Article() {
             </div>
 
             { /* second column: distribution, sentiment, subjectivity */}
-            <div className="flex-col flex-grow justify-center w-1/5 min-h-dvh border-l border-black py-6 px-1">
-                <div className="w-4/5 mx-auto border-b border-[var(--color-line-grey)]">
+            <div className="flex-col flex-grow justify-center min-h-dvh py-6 px-1">
+                <div className="w-9/10 mx-auto border-b border-[var(--color-line-grey)]">
                     <h1 className="font-bold text-xl">Leaning distribution</h1>
                     <div className="mt-4 my-2">
                         <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
@@ -152,7 +152,7 @@ function Article() {
                     </div>
 
                 </div>    
-                <div className="w-4/5 mx-auto border-b border-[var(--color-line-grey)]">
+                <div className="w-9/10 mx-auto border-b border-[var(--color-line-grey)]">
                     <div className="mt-4 mb-2">
                         <SentimentSlider />
                     </div>
@@ -160,7 +160,7 @@ function Article() {
                         <SentimentExplanation sentiment={"Elaboration"} />
                     </div>                
                 </div>   
-                <div className="w-4/5 mx-auto">
+                <div className="w-9/10 mx-auto">
                     <div className="mt-4 mb-2">
                         <SubjectivitySlider />
                     </div>
@@ -170,7 +170,7 @@ function Article() {
                 </div>                              
             </div>
             { /* third column: ads */}
-            <div className="w-1/5 min-h-dvh border-l border-black py-6 px-1">
+            <div className="min-h-dvh h-full py-6 px-1 border-l border-[var(--color-line-darkgrey)]">
                 <div className="flex flex-col flex-grow">
                     <img src="/src/assets/customise-ads-button.svg" className="w-1/2 mx-auto" />
                     {/* make it a button */}
