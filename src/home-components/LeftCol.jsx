@@ -6,7 +6,7 @@ import MostRead from "./MostRead";
 function LeftCol() {
 
   return (
-    <div className="w-full h-auto flex flex-col flex-grow justify-center items-center mx-auto ">
+    <div className="w-full flex flex-col flex-grow justify-start items-center mx-auto">
       < Trivia />
       < MostRead />         
     </div>               

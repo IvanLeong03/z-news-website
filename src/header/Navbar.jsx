@@ -58,7 +58,7 @@ function Navbar() {
                         </li>
                         <li>
                             <Link to="/for-you">
-                                {language === "zh-Hant" ? "為你推薦" : language === "zh-Hans" ? "为你推荐" : "FOR YOU"}
+                                {language === "zh-Hant" ? "個人推薦" : language === "zh-Hans" ? "个人推荐" : "FOR YOU"}
                             </Link>
                         </li>
                     </ul>

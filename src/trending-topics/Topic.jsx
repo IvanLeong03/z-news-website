@@ -5,48 +5,59 @@ import { useLanguage } from "../context/LanguageContext";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 
+const articles = [
+    {
+        id: "101",
+        title: {
+            en: "Article 1",
+            "zh-Hant": "文章 1",
+            "zh-Hans": "文章 1"
+        },
+        image: "src/assets/university1.jpg",
+        date: "30-02-2025",
+        cPercent: 49,
+        pPercent: 51,
+        sources: 22
+    },
+    {
+        id: "102",
+        title: {
+            en: "Article 2",
+            "zh-Hant": "文章 2",
+            "zh-Hans": "文章 2"
+        },
+        image: "src/assets/university1.jpg",
+        date: "30-02-2025",
+        cPercent: 60,
+        pPercent: 40,
+        sources: 16
+    },
+    {
+        id: "103",
+        title: {
+            en: "Article 3",
+            "zh-Hant": "文章 3",
+            "zh-Hans": "文章 3"
+        },
+        image: "src/assets/university1.jpg",
+        date: "30-02-2025",
+        cPercent: 40,
+        pPercent: 60,
+        sources: 18
+    }
+];
+
 function Topic() {
     const { language } = useLanguage();
-
     const { topic } = useParams();
-
-    const articles_en = [
-        {id: "101", title: "Article 1", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 49, pPercent: 51, sources:22},
-        {id: "102", title: "Article 2", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 60, pPercent: 40, sources:16},
-        {id: "103", title: "Article 3", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 40, pPercent: 60, sources:18},
-    ];
-
-    const articles_zht = [
-        {id: "101", title: "文章 1", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 49, pPercent: 51, sources:22},
-        {id: "102", title: "文章 2", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 60, pPercent: 40, sources:16},
-        {id: "103", title: "文章 3", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 40, pPercent: 60, sources:18},
-    ];
-    const articles_zhs = [      
-        {id: "101", title: "文章 1", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 49, pPercent: 51, sources:22},
-        {id: "102", title: "文章 2", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 60, pPercent: 40, sources:16},
-        {id: "103", title: "文章 3", image: "src/assets/university1.jpg", date: "30-02-2025", cPercent: 40, pPercent: 60, sources:18},
-    ];
-
-    let articles;
-    if (language === "zh-Hant") {
-        articles = articles_zht;
-    } else if (language === "zh-Hans") {
-        articles = articles_zhs;
-    } else {
-        articles = articles_en;
-    };
 
     // Determine heading based on language
     const headings = {
-        "en": `Articles related to "${topic}"`,
-        "zh-Hant": `與「${topic}」相關的文章`,
-        "zh-Hans": `与「${topic}」相关的文章`
+        en: `Spotlight: ${topic}`,
+        "zh-Hant": `焦點：${topic}`,
+        "zh-Hans": `聚焦：${topic}`
     };
-    const heading = language === "zh-Hant"
-        ? headings["zh-Hant"]
-        : language === "zh-Hans"
-        ? headings["zh-Hans"]
-        : headings["en"];
+    const heading = headings[language] || headings.en;
 
     return (
         <div className="w-[85dvw] min-h-dvh mx-auto my-8 p-2">
@@ -57,7 +68,7 @@ function Topic() {
                         {/* left: date, title, metrics */}
                         <div className="flex flex-col w-3/4 px-5">
                             <p className="text-xs">{article.date}</p>
-                            <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title}</h2>
+                            <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title[language] || article.title.en}</h2>
                             <div className="w-3/4 flex justify-between items-start">
                                 <div className="p-2 w-1/4">
                                     <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
@@ -70,12 +81,7 @@ function Topic() {
                                 </div>
                                 <div className="p-2">
                                     <p className="text-sm">
-                                        {article.sources}{" "}
-                                        {language === "zh-Hant"
-                                            ? "篇文章"
-                                            : language === "zh-Hans"
-                                            ? "篇文章"
-                                            : "source articles"}
+                                        {article.sources} {language === "zh-Hant" || language === "zh-Hans" ? "篇文章" : "source articles"}
                                     </p>
                                 </div>
                             </div>
@@ -86,8 +92,7 @@ function Topic() {
                 </div>
             ))}
         </div>
-    )
-
+    );
 }
 
 export default Topic;

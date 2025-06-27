@@ -42,6 +42,18 @@ function Today() {
             pPercent: 72,
             imageUrl: "image",
         },
+        {
+            title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
+            cPercent: 80,
+            pPercent: 20,
+            imageUrl: "image",
+        },
+        {
+            title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
+            cPercent: 50,
+            pPercent: 50,
+            imageUrl: "image",
+        }
         
     ];
 
