@@ -6,7 +6,6 @@ import Sentiment from '../metric-components/Sentiment';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 
-
 function Legend() {
 
   const { language } = useLanguage();

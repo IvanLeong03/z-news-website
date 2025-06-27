@@ -174,8 +174,13 @@ function Article() {
                 <div className="flex flex-col flex-grow">
                     <img src="/src/assets/customise-ads-button.svg" className="w-1/2 mx-auto" />
                     {/* make it a button */}
-                    <Ads />
-                    <Ads />
+                    <div className="h-[50vh] my-4">
+                        <Ads />                       
+                    </div>
+                    <div className="h-[50vh] my-4">
+                        <Ads />                       
+                    </div>
+                    
                 </div>                
             </div>
         </article>                
