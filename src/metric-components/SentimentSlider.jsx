@@ -22,7 +22,7 @@ function SentimentSlider({ sentScore = 0 }) {
         <div className="absolute left-1/2 top-full transform -translate-x-1/2 text-xs text-gray-600">0</div>
         <div className="absolute right-0 top-full text-xs text-gray-600">+1</div>
       </div>
-      <p className="text-sm text-center mt-4">{language === 'zh-Hant'? "文本情感分析" : language === "zh-Hans" ? "文本情感分析" : "Sentiment"}: {sentScore.toFixed(2)}</p>
+      <p className="text-xs text-center mt-4">{language === 'zh-Hant'? "文本情感分析" : language === "zh-Hans" ? "文本情感分析" : "Sentiment"}: {sentScore.toFixed(2)}</p>
     </div>
   );
 }

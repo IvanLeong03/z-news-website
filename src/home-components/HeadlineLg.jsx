@@ -8,7 +8,7 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
     const { language } = useLanguage();
 
     return (
-        <article className="relative w-full min-w-[54vw] max-w-[90rem] flex flex-col mb-12">
+        <article className="relative w-full min-w-[54vw] max-w-[90rem] flex flex-col mb-6">
             {/* Image */} 
             <div className="w-full aspect-[16/9]">
                 <img src={image} alt="Headline" className="w-full h-full object-cover" />
@@ -32,7 +32,7 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
                 <div className="flex-1">
                     <SubjectivitySlider subjScore={subjScore} />
                 </div>
-                <div className="text-sm text-right">
+                <div className="text-xs text-right">
                     {sources} {language === 'zh-Hant' || language === 'zh-Hans' ? "篇文章" : "source articles"}
                 </div>
             </div>

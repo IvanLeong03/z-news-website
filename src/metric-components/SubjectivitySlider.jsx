@@ -20,7 +20,7 @@ function SubjectivitySlider({ subjScore = 0 }) {
         <div className="absolute left-0 top-full text-xs text-gray-600">0</div>
         <div className="absolute right-0 top-full text-xs text-gray-600">+1</div>
       </div>
-      <p className="text-sm text-center mt-4">{language === 'zh-Hant'? "主觀性" : language === "zh-Hans" ? "主观性" : "Subjectivity"}: {subjScore.toFixed(2)}</p>
+      <p className="text-xs text-center mt-4">{language === 'zh-Hant'? "主觀性" : language === "zh-Hans" ? "主观性" : "Subjectivity"}: {subjScore.toFixed(2)}</p>
     </div>
   );
 }
