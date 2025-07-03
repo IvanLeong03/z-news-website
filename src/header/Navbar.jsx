@@ -30,24 +30,36 @@ function Navbar() {
             <nav className="w-9/10 mx-auto flex items-center px-1 h-[20vh] max-h-[12rem]">
                 {/* Left: Logo */}
                 <Link to="/">
-                    <div className="flex items-center flex-none max-w-[20vw] space-x-2">                    
+                    <div className="flex items-center flex-none max-w-[24vw] space-x-2">                    
                         <img src="/logos/logo_icon_turquoise.png" alt="Logo" className="h-16" />
-                        <h1 className="text-lg lg:text-2xl font-bold break-words whitespace-normal">
-                            {language === "zh-Hant" ? "方位新聞" : language === "zh-Hans" ? "方位新闻" : "Zone News"}
-                        </h1>                   
+                        <div className="flex flex-col items-start">
+                            <h1 className="text-2xl lg:text-3xl font-bold break-words whitespace-normal">
+                                {language === "zh-Hant" ? "方位" : language === "zh-Hans" ? "方位" : "Zone"}
+                            </h1>   
+                            <h1
+                                className="text-2xl lg:text-3xl font-bold break-words whitespace-normal text-[var(--color-bg-light)]"
+                                style={{
+                                    WebkitTextStroke: "1px var(--color-text-grey",
+                                    textStroke: "1px black",
+                                }}
+                            >
+                                {language === "zh-Hant" ? "新聞" : language === "zh-Hans" ? "新闻" : "News"}
+                            </h1> 
+                        </div>
+                                       
                     </div>
                 </Link>
 
                 {/* Center: Nav Links */}
                 <div className="flex flex-grow justify-center">
-                    <ul className="flex space-x-8 lg:space-x-16 text-base lg:text-xl">
+                    <ul className="flex space-x-8 lg:space-x-16 text-base lg:text-lg">
                         <li>
                             <Link to="/today">
                                 {language === "zh-Hant" ? "今日頭條" : language === "zh-Hans" ? "今日头条" : "TODAY"}
                             </Link>
                         </li>
                         <li>
-                            <Link to="/hongkong">
+                            <Link to="/hk">
                                 {language === "zh-Hant" ? "香港" : language === "zh-Hans" ? "香港" : "HONG KONG"}
                             </Link>
                         </li>

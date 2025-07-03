@@ -7,95 +7,48 @@ function HongKong() {
 
     const { language } = useLanguage();
     
-    const articles_en = [   
+    const articles = [   
         {
-            title: "We will select articles that you may be interested in based on you activity",
+            title: {
+                en: "We will select articles that you may be interested in based on your activity",
+                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
+            },
             cPercent: 50,
             pPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
-            title: "We will select articles that you may be interested in based on you activity",
+            title: {
+                en: "We will select articles that you may be interested in based on your activity",
+                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
+            },
             cPercent: 50,
             pPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
-            title: "We will select articles that you may be interested in based on you activity",
+            title: {
+                en: "We will select articles that you may be interested in based on your activity",
+                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
+            },            
             cPercent: 50,
             pPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
-            title: "We will select articles that you may be interested in based on you activity",
-            cPercent: 50,
+            title: {
+                en: "We will select articles that you may be interested in based on your activity",
+                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
+                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
+            },             cPercent: 50,
             pPercent: 50,
             imageUrl: "image",
         },
     ];
 
-    const articles_zht = [
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "image",
-        },
-    ];
-
-    const articles_zhs = [
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "image",
-        },
-    ];
-
-    let articles;
-    if (language === "zh-Hant") {
-        articles = articles_zht;
-    } else if (language === "zh-Hans") {
-        articles = articles_zhs;
-    } else {
-        articles = articles_en;
-    }
 
     return (
         <div className="flex flex-col w-[80dvw] mx-auto my-16">
@@ -106,8 +59,8 @@ function HongKong() {
                         key={index}
                         className={
                             index === 0
-                                ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem]"
-                                : "flex flex-col rounded-lg p-4 m-2"
+                                ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem] text-3xl"
+                                : "flex flex-col rounded-lg p-4 m-2 text-xl"
                         }
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
@@ -121,7 +74,7 @@ function HongKong() {
                         <div className="w-1/2 my-4">
                             <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
                         </div>
-                        <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
+                        <h2 className="font-semibold mb-2">{article.title?.[language]}</h2>
                     </div>
                 ))}
             </div>

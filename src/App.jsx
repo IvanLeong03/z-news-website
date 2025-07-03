@@ -35,7 +35,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact-us" element={<ContactUs />} /> 
             <Route path="/china" element={<China />} />       
-            <Route path="/hongkong" element={<HongKong />} />
+            <Route path="/hk" element={<HongKong />} />
             <Route path="/today" element={<Today />} />
             <Route path="/for-you" element={<ForYou/>} />
             <Route path="/article/:id" element={<Article />} />
