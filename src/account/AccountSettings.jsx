@@ -14,6 +14,8 @@ const AccountSettings = () => {
     return (
         <div className='max-w-1/2 mx-auto p-6 my-4 bg-white rounded-lg shadow-md'>
             <h2>Account Settings</h2>
+
+
             
         </div>
     );

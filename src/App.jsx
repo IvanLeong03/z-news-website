@@ -24,7 +24,7 @@ import MyTopics from "./account/myTopics"
 
 function App() {
   return (
-      <main className='w-full max-w-[150rem] mx-auto bg-[var(--color-bg-light)]'>
+      <main className='w-full max-w-[128rem] max-h-[72rem] mx-auto bg-[var(--color-bg-light)]'>
         <LanguageProvider>
           <Navbar />
           <TopicsBar />
@@ -44,7 +44,7 @@ function App() {
             <Route path="/user-guide" element={<UserGuide />} />
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/account/settings" element={<AccountSettings />} />
+            {/*<Route path="/account/settings" element={<AccountSettings />} />*/}
             <Route path="/account/topics" element={<MyTopics />} />
           </Routes>
           <Footer />                

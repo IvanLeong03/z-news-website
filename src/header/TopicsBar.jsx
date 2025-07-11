@@ -45,7 +45,7 @@ function TopicsBar() {
     
     return (
 
-        <div className="sticky top-0 z-30 w-full mx-auto mb-4 border-t border-b border-[#252525] py-1 bg-[var(--color-bg-light)] transition-all duration-300 h-8 md:h-10">
+        <div className="sticky top-0 z-30 w-full mx-auto py-6 border-t border-b border-[var(--color-line-lightgrey)] bg-[var(--color-bg-light)] transition-all duration-300 h-8 md:h-10">
             <div className="w-9/10 mx-auto flex justify-between items-center h-full">
                 <div className="mx-auto flex justify-center items-center px-1">
                     <div className="font-semibold text-sm text-red-400">

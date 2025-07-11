@@ -11,7 +11,7 @@ function Legend() {
   const { language } = useLanguage();
 
   return (
-    <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start pt-2 pb-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+    <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start py-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
         <h2 className='font-bold text-xl mt-1 mb-5'>
           {language === "zh-Hant"
             ? "新聞指標"

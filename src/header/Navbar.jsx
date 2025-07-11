@@ -27,19 +27,19 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="w-9/10 mx-auto flex items-center px-1 h-[20vh] max-h-[12rem]">
+            <nav className="w-9/10 mx-auto flex items-center px-1 h-[24vh] max-h-[16rem]">
                 {/* Left: Logo */}
                 <Link to="/">
                     <div className="flex items-center flex-none max-w-[24vw] space-x-2">                    
                         <img src="/logos/logo_icon_turquoise.png" alt="Logo" className="h-16" />
                         <div className="flex flex-col items-start">
-                            <h1 className="text-2xl lg:text-3xl font-bold break-words whitespace-normal">
+                            <h1 className="text-2xl lg:text-3xl font-bold whitespace-normal">
                                 {language === "zh-Hant" ? "方位" : language === "zh-Hans" ? "方位" : "Zone"}
                             </h1>   
                             <h1
-                                className="text-2xl lg:text-3xl font-bold break-words whitespace-normal text-[var(--color-bg-light)]"
+                                className="text-2xl lg:text-3xl font-bold whitespace-normal text-[var(--color-bg-light)]"
                                 style={{
-                                    WebkitTextStroke: "1px var(--color-text-grey",
+                                    WebkitTextStroke: "1px var(--color-text-grey)",
                                     textStroke: "1px black",
                                 }}
                             >
@@ -93,9 +93,11 @@ function Navbar() {
                             <li>
                                 <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">Account Overview</Link>
                             </li>
+                            {/* 
                             <li>
                                 <Link to="/account/settings" className="block px-4 py-2 hover:bg-gray-100">Settings</Link>
                             </li>
+                            */}
                             <li>
                                 <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">My Topics</Link>
                             </li>

@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import SearchObject from "./SearchObject";
 
 function SearchResults() {
   const { language } = useLanguage();
@@ -24,9 +25,9 @@ function SearchResults() {
       </div>
 
       <ul className="flex flex-col gap-16 text-lg">
-        <li>Search Result 1</li>
-        <li>Search Result 2</li>
-        <li>Search Result 3</li>
+        <li><SearchObject index={1} /></li>
+        <li><SearchObject index={2} /></li>
+        <li><SearchObject index={3} /></li>
       </ul>
     </div>
   );
