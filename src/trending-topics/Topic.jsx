@@ -5,11 +5,11 @@ import { useLanguage } from "../context/LanguageContext";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 
-const results = [
+const articles = [
     {
         id: "101",
         title: {
-            en: "result 1",
+            en: "article 1",
             "zh-Hant": "文章 1",
             "zh-Hans": "文章 1"
         },
@@ -22,7 +22,7 @@ const results = [
     {
         id: "102",
         title: {
-            en: "result 2",
+            en: "article 2",
             "zh-Hant": "文章 2",
             "zh-Hans": "文章 2"
         },
@@ -35,7 +35,7 @@ const results = [
     {
         id: "103",
         title: {
-            en: "result 3",
+            en: "article 3",
             "zh-Hant": "文章 3",
             "zh-Hans": "文章 3"
         },
@@ -62,16 +62,16 @@ function Topic() {
     return (
         <div className="w-[85dvw] min-h-dvh mx-auto my-8 p-2">
             <h1 className="text-4xl font-bold my-4 pl-5">{heading}</h1>
-            {results.map((result, index) => (
+            {articles.map((article, index) => (
                 <div key={index} className="grid grid-cols-1">
                     <div className="flex w-full my-6 min-h-[25dvh]">
                         {/* left: date, title, metrics */}
                         <div className="flex flex-col w-3/4 px-5">
-                            <p className="text-xs">{result.date}</p>
-                            <h2 className="text-2xl font-semibold mt-6 mb-12">{result.title[language] || result.title.en}</h2>
+                            <p className="text-xs">{article.date}</p>
+                            <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title[language] || article.title.en}</h2>
                             <div className="w-3/4 flex justify-between items-start">
                                 <div className="p-2 w-1/4">
-                                    <SplitBar cPercent={result.cPercent} pPercent={result.pPercent} />
+                                    <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
                                 </div>
                                 <div className="p-2 w-1/4">
                                     <SentimentSlider />
@@ -81,7 +81,7 @@ function Topic() {
                                 </div>
                                 <div className="p-2">
                                     <p className="text-sm">
-                                        {result.sources} {language === "zh-Hant" || language === "zh-Hans" ? "篇文章" : "source results"}
+                                        {article.sources} {language === "zh-Hant" || language === "zh-Hans" ? "篇文章" : "source articles"}
                                     </p>
                                 </div>
                             </div>

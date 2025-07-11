@@ -30,8 +30,8 @@ function SearchObject({index}) {
                 <div className="flex flex-col w-3/4 px-5">
                     <p className="text-xs">{result.date}</p>
                     <h2 className="text-2xl font-semibold mt-6 mb-12">{result.title[language] || result.title.en}</h2>
-                    <div className="w-3/4 flex justify-between items-start">
-                        <div className="p-2 w-1/4">
+                    <div className="w-full flex justify-between items-start">
+                        <div className="p-2 w-1/3">
                             <SplitBar cPercent={result.cPercent} pPercent={result.pPercent} />
                         </div>
                         <div className="p-2 w-1/4">
@@ -42,7 +42,7 @@ function SearchObject({index}) {
                         </div>
                         <div className="p-2">
                             <p className="text-sm">
-                                {result.sources} {language === "zh-Hant" || language === "zh-Hans" ? "篇文章" : "source results"}
+                                {result.sources} {language === "zh-Hant" || language === "zh-Hans" ? "篇文章" : "source articles"}
                             </p>
                         </div>
                     </div>
