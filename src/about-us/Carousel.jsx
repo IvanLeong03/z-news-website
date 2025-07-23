@@ -81,7 +81,7 @@ const Carousel = () => {
     <div className="w-full relative py-20 bg-darkWhite">
       <div className="flex absolute right-0 justify-start w-full">
         <h2 className="w-full max-w-6xl text-left text-[1.5rem] md:text-[2.5rem] font-semibold">
-          Zimuth Exclusive Features
+          Zone News: Features
         </h2>
       </div>
       <div className="relative mt-12 overflow-hidden py-8 w-full">

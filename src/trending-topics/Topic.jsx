@@ -60,7 +60,7 @@ function Topic() {
     const heading = headings[language] || headings.en;
 
     return (
-        <div className="w-[85dvw] min-h-dvh mx-auto my-8 p-2">
+        <div className="w-[85%] min-h-dvh mx-auto my-8 p-2">
             <h1 className="text-4xl font-bold my-4 pl-5">{heading}</h1>
             {articles.map((article, index) => (
                 <div key={index} className="grid grid-cols-1">
@@ -87,7 +87,7 @@ function Topic() {
                             </div>
                         </div>
                         {/* right: image */}
-                        <div className="w-1/4 bg-pink-300"></div>
+                        <div className="w-1/4 bg-linear-to-r from-pink-200 to-pink-500"></div>
                     </div>
                 </div>
             ))}

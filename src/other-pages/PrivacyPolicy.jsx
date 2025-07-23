@@ -2,10 +2,10 @@ import React from "react";
 
 function PrivacyPolicy() {
     return (
-        <main className="w-[80dvw] mx-auto p-20">
+        <main className="w-[80%] mx-auto p-20">
             <h1 className="text-center text-4xl mx-2 my-6">Privacy Policy</h1>
 
-            <div className="text-[var(--color-text-grey)] text-left text-lg my-6">
+            <div className="text-[var(--color-gs-black)] text-left text-lg my-6">
                 At Zimuth News, we value your privacy and are committed to protecting your personal information. 
                 This Privacy Policy outlines how we collect, use, and safeguard the data you provide while
                 using our website. By accessing our site, you consent to the practices described herein. 

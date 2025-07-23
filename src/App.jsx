@@ -24,7 +24,7 @@ import MyTopics from "./account/myTopics"
 
 function App() {
   return (
-      <main className='w-full max-w-[128rem] max-h-[72rem] mx-auto bg-[var(--color-bg-light)]'>
+      <main className='w-full max-w-[128rem] max-h-[72rem] mx-auto bg-[var(--color-gs-white)]'>
         <LanguageProvider>
           <Navbar />
           <TopicsBar />

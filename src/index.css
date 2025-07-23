@@ -4,6 +4,12 @@
 
 @layer base {
   :root {
+    --color-primary: #239b98;
+    --color-secondary-1: #1b2656;
+    --color-secondary-2: #cbfc97;
+    --color-secondary-3: #9aeddd;
+    --color-gs-white: #ffffff;
+    --color-gs-black: #1a1c1c;
     --color-bg-light: #fefefe;
     --color-bg-grey: rgba(0,0,0,0.1);
     --color-text-grey: #252525;

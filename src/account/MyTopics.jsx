@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ALL_TOPICS = ['today', 'politics', 'economy', 'finance', 'technology', 'sport', 'pop culture'];
+const ALL_TOPICS = ['today', 'breakingr', 'politics', 'economy', 'finance', 'technology', 'sport', 'pop culture'];
 
 const MyTopics = () => {
   const [followedTopics, setFollowedTopics] = useState(['today']); // Default topic

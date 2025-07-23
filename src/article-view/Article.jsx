@@ -99,7 +99,7 @@ function Article() {
                 <div className="flex flex-col w-9/10 mx-auto my-8 ">                                    
                     <Link to="/user-guide">
                         <div className="flex my-2 gap-4">    
-                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Centric: {article.cPercent}% </label>                                                 
+                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Conservative: {article.cPercent}% </label>                                                 
                             <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
                         </div>
                     </Link> 

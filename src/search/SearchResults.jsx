@@ -8,7 +8,7 @@ function SearchResults() {
   const query = searchParams.get("q"); // this will be 'tariff' if URL is /search?q=tariff
 
   return (
-    <div className="p-4 w-[80dvw] mx-auto my-16">
+    <div className="p-4 w-[80%] mx-auto my-16">
       <h1 className="text-2xl mb-8">{language === "zh-Hant" ? "搜尋結果" : language === 'zh-Hans' ? "搜寻结果" : "Search Results for"}: "{query}"</h1>
       {/* Render your search results here based on `query` */}
       

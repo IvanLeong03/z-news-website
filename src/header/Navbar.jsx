@@ -37,9 +37,9 @@ function Navbar() {
                                 {language === "zh-Hant" ? "方位" : language === "zh-Hans" ? "方位" : "Zone"}
                             </h1>   
                             <h1
-                                className="text-2xl lg:text-3xl font-bold whitespace-normal text-[var(--color-bg-light)]"
+                                className="text-2xl lg:text-3xl font-bold whitespace-normal text-[var(--color-gs-white)]"
                                 style={{
-                                    WebkitTextStroke: "1px var(--color-text-grey)",
+                                    WebkitTextStroke: "1px var(--color-gs-black)",
                                     textStroke: "1px black",
                                 }}
                             >

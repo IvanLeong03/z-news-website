@@ -22,14 +22,14 @@ function Legend() {
         <div className='w-3/4 mx-auto'>
           <SplitBar />
         </div>
-        <div className='flex flex-col justify-between py-4 my-2 text-[var(--color-text-grey)]'>
+        <div className='flex flex-col justify-between py-4 my-2 text-[var(--color-gs-black)]'>
             <div className='mb-2'>
               <p>
                 {language === "zh-Hant"
                   ? "中立："
                   : language === "zh-Hans"
                   ? "中立："
-                  : "Centric:"}
+                  : "Conservative:"}
               </p>
               <p>
                 {language === "zh-Hant"
@@ -56,9 +56,10 @@ function Legend() {
               </p>
             </div>
         </div>
-        <div className='flex flex-col text-[var(--color-text-grey)] py-2'>
+        <div className='flex flex-col text-[var(--color-gs-black)] py-2'>
             <div className='w-3/4 mx-auto mb-4'>
               <SentimentSlider />
+              <p className='text-center my-4'>or</p>
               <Sentiment />
             </div>
             <p className='mt-2 mb-16'>
@@ -69,7 +70,7 @@ function Legend() {
                 : "We assign a score from -1 (most negative) to 1 (most positive)."}
             </p>
         </div>
-        <div className='flex flex-col text-[var(--color-text-grey)] py-2'>
+        <div className='flex flex-col text-[var(--color-gs-black)] py-2'>
             <div className='w-3/4 mx-auto'>
               <SubjectivitySlider />
             </div>

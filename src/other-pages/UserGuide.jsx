@@ -12,12 +12,12 @@ function UserGuide() {
           </p>
         </section>
         <section className="mb-8">
-          <h3 className="text-lg font-semibold mb-2">Centric</h3>
+          <h3 className="text-lg font-semibold mb-2">Conservative</h3>
           <p className="mb-2">
             <span className="italic">[Looking out of the car window]</span>
           </p>
           <p>
-            The "Centric" metric reflects the perspective or focus of the article. It helps you understand whether the article is written from a neutral, centrist viewpoint or leans towards a particular side. This can help you identify articles that strive for objectivity versus those that may have a more specific agenda or bias.
+            The "Conservative" metric reflects the perspective or focus of the article. It helps you understand whether the article is written from a neutral, centrist viewpoint or leans towards a particular side. This can help you identify articles that strive for objectivity versus those that may have a more specific agenda or bias.
           </p>
         </section>
         <section className="mb-8">
