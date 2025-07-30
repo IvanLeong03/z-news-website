@@ -9,13 +9,12 @@ function HongKong() {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
         const loadArticles = async () => {
             try {
-                // Fetch 4 articles (adjust parameters as needed)
+                // Fetch articles (adjust parameters as needed)
                 const data = await fetchArticles({ 
-                limit: 4,
+                limit: 6,
                 // region: 'hong_kong' // Uncomment when backend supports this
                 });
                 setArticles(data);
@@ -31,7 +30,6 @@ function HongKong() {
     }, []);
 
     if (loading) return <div>Loading articles...</div>;
-
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">

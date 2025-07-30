@@ -1,111 +1,47 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import SplitBar from "../metric-components/SplitBar";
 import { useLanguage } from "../context/LanguageContext";
+import { fetchArticles } from "../services/articleService";
 
 function ForYou() {
-
+    
     const { language } = useLanguage();
-    const articles_en = [   
-        {
-            title: "We will select articles that you may be interested in based on you activity",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "We will select articles that you may be interested in based on you activity",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "We will select articles that you may be interested in based on you activity",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "We will select articles that you may be interested in based on you activity",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "image",
-        },
-    ];
+    const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const articles_zht = [
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "image",
-        },
-    ];
+    useEffect(() => {
+        const loadArticles = async () => {
+            try {
+                // Fetch articles (adjust parameters as needed)
+                const data = await fetchArticles({ 
+                limit: 6,
+                // region: 'hong_kong' // Uncomment when backend supports this
+                });
+                setArticles(data);
+            } catch (error) {
+                console.error("Failed to load articles:", error);
+                // You can set error state here if needed
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    const articles_zhs = [
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
-            cPercent: 50,
-            liberalPercent: 50,
-            imageUrl: "image",
-        },
-    ];
+        loadArticles();
+    }, []);
 
-    let articles;
-    if (language === "zh-Hant") {
-        articles = articles_zht;
-    } else if (language === "zh-Hans") {
-        articles = articles_zhs;
-    } else {
-        articles = articles_en;
-    }
+    if (loading) return <div>Loading articles...</div>;
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">
-            <h1 className="text-5xl font-bold my-4 pl-5">{language === "zh-Hant" ? "為你推薦" : language === "zh-Hans" ? "为你推荐" : "FOR YOU"}</h1>
+            <h1 className="text-5xl font-bold my-4 pl-5">{language === "zh-Hant" ? "個人推薦" : language === "zh-Hans" ? "个人推荐" : "FOR YOU"}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {articles.map((article, index) => (
                     <div
                         key={index}
                         className={
                             index === 0
-                                ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem]"
-                                : "flex flex-col rounded-lg p-4 m-2"
+                                ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem] text-3xl"
+                                : "flex flex-col rounded-lg p-4 m-2 text-xl"
                         }
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
@@ -115,11 +51,11 @@ function ForYou() {
                                 alt={article.title}
                                 className="object-cover w-full h-full"
                             />
-                        </div>                        
+                        </div>
                         <div className="w-1/2 my-4">
                             <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                         </div>
-                        <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
+                        <h2 className="font-semibold mb-2">{article.title?.[language]}</h2>
                     </div>
                 ))}
             </div>
