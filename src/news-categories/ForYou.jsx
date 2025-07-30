@@ -15,7 +15,6 @@ function ForYou() {
                 // Fetch articles (adjust parameters as needed)
                 const data = await fetchArticles({ 
                 limit: 6,
-                // region: 'hong_kong' // Uncomment when backend supports this
                 });
                 setArticles(data);
             } catch (error) {
@@ -47,15 +46,16 @@ function ForYou() {
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
                             <img
-                                src={article.imageUrl}
+                                src={article.pictureURL}
                                 alt={article.title}
                                 className="object-cover w-full h-full"
                             />
                         </div>
                         <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
+                            <SplitBar cPercent={article.coverage.percentage.centric*100} liberalPercent={article.coverage.percentage.progressive*100} />
                         </div>
-                        <h2 className="font-semibold mb-2">{article.title?.[language]}</h2>
+                        {/*<h2 className="font-semibold mb-2">{article.title?.[language]}</h2>*/}
+                        <h2 className="font-semibold mb-2">{article.title}</h2>
                     </div>
                 ))}
             </div>

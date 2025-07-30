@@ -47,7 +47,7 @@ function HongKong() {
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
                             <img
-                                src={article.imageUrl}
+                                src={article.pictureURL}
                                 alt={article.title}
                                 className="object-cover w-full h-full"
                             />
@@ -55,7 +55,7 @@ function HongKong() {
                         <div className="w-1/2 my-4">
                             <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                         </div>
-                        <h2 className="font-semibold mb-2">{article.title?.[language]}</h2>
+                        <h2 className="font-semibold mb-2">{article.title}</h2>
                     </div>
                 ))}
             </div>
