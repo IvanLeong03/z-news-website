@@ -34,6 +34,7 @@ const articles = [
     liberalPercent: 49,
     cPercent: 51,
     sources: 22,
+    sentimentScore: -0.22,
     location: {
       en: "Earth",
       'zh-Hant': "地球",

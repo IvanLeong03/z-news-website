@@ -1,27 +1,53 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
-function SentimentSlider({ sentScore = 0 }) {
-
+function SentimentSlider({ sentiment = 0}) {
   const { language } = useLanguage();
-  // Clamp the score to stay between -1 and 1
-  const clampedScore = Math.max(-1, Math.min(sentScore, 1));
-  // Convert to percentage (0% to 100%) with 0 at center
+
+  // Clamp the score
+  const clampedScore = Math.max(-1, Math.min(sentiment, 1));
+  // Map -1..1 to 0..100%
   const percentage = ((clampedScore + 1) / 2) * 100;
+
+  // Determine color based on score sign
+  const barColor = clampedScore >= 0 ? "#239b98" : "#7f2538";
 
   return (
     <div className="w-full mb-4">
-      <div className="relative h-1 bg-gradient-to-l from-[var(--color-dark-turquoise)] to-[var(--color-light-turquoise)] rounded-full">
-        <div
-          className="absolute top-0 -mt-1 w-0.5 h-4 bg-black"
-          style={{ left: `${percentage}%`, transform: "translateX(-50%)" }}
-        />
-        {/* optional tick markers */}
-        <div className="absolute left-1 top-full text-xs text-gray-600">-1</div>
-        <div className="absolute left-1/2 top-full transform -translate-x-1/2 text-xs text-gray-600">0</div>
-        <div className="absolute right-1 top-full text-xs text-gray-600">+1</div>
+      {/* Title + Sentiment Value */}
+      <div className="flex items-center text-sm font-medium mb-1">
+        <span className="mr-1">
+          {language === "zh-Hant"
+            ? "情感指數"
+            : language === "zh-Hans"
+            ? "情感指数"
+            : "Sentiment Index"}
+        </span>
+        <span className="ml-1 text-[1.25em]" style={{ color: barColor }}>
+          {clampedScore >= 0
+            ? `+${clampedScore.toFixed(2)}`
+            : clampedScore.toFixed(2)}
+        </span>
+        <AiOutlineInfoCircle className="ml-1 text-gray-400" />
       </div>
-      <p className="text-xs text-center mt-4">{language === 'zh-Hant'? "文本情感分析" : language === "zh-Hans" ? "文本情感分析" : "Sentiment"}: {sentScore.toFixed(2)}</p>
+
+      {/* Bar */}
+      <div className="relative w-full h-2 border border-[var(--color-line-grey)] p-1">
+        <div
+          className="absolute top-0 left-1/2 h-2"
+          style={{
+            width: `${Math.abs(percentage - 50)}%`,
+            backgroundColor: barColor,
+            transform:
+              clampedScore >= 0
+                ? "translateX(0)" // fill to right
+                : "translateX(-100%)", // fill to left
+          }}
+        />
+        {/* Midpoint indicator (0) */}
+        <div className="absolute left-1/2 top-0 w-0.25 h-2 bg-[var(--color-line-grey)] transform -translate-x-1/2" />
+      </div>
     </div>
   );
 }

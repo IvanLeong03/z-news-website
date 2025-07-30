@@ -4,7 +4,7 @@ import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 
-function HeadlineSm({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, liberalPercent=50, sources=3, sentScore, subjScore}) {
+function HeadlineSm({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, liberalPercent=50, sources=3, sentimentScore, subjScore}) {
     const { language } = useLanguage();
     return (
         <article className="flex items-stretch w-full mb-6">
@@ -22,7 +22,7 @@ function HeadlineSm({headline = "default headline", image = "logos/logo_vertical
                     <SplitBar cPercent={cPercent} liberalPercent={liberalPercent}/>
                 </div>
                 <div className="pt-6">
-                    <SentimentSlider sentScore={sentScore}/>
+                    <SentimentSlider sentiment={sentimentScore}/>
                 </div>
                 <div>
                     <SubjectivitySlider subjScore={subjScore}/>

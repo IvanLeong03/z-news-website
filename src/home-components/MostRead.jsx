@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import SplitBar from "../metric-components/SplitBar";
-import Sentiment from "../metric-components/Sentiment";
+import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchArticles } from "../services/articleService";
 
@@ -39,14 +38,10 @@ function MostRead() {
       {mostReadArticles.map((article, index) => (
         <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)] text-sm">
           <p className="mt-2 my-4">{article.title}</p>
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-1">
-            <div className="w-full">
-              <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
+
+          <div className="w-full">
+              <SentimentSlider sentiment={article.metrics.sentiment} />
             </div>
-            <div className="w-full">
-              <Sentiment sentiment={article.metrics.sentiment} />
-            </div>
-          </div>
           <div className="flex mt-2">
             <p className="text-xs whitespace-nowrap">
               {article.nSources}

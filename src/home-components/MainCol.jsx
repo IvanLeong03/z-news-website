@@ -37,7 +37,7 @@ function MainCol() {
                   cPercent={article.cPercent}
                   liberalPercent={article.liberalPercent}
                   sources={article.sources}
-                  sentScore={article.sentimentScore}
+                  sentimentScore={article.sentimentScore}
                   subjScore={article.subjectivityScore}
                 />
               </Link>

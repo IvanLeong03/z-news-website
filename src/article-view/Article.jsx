@@ -4,7 +4,7 @@ import SentimentExplanation from "../metric-components/SentimentExplanation";
 import Ads from "../home-components/Ads";
 import { useParams } from "react-router-dom";
 import articles from "./articles";
-import SentimentSlider from "../metric-components/SentimentSlider";
+import SentimentGauge from "../metric-components/SentimentGauge";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
@@ -155,7 +155,7 @@ function Article() {
                     <h1 className="font-bold text-xl">Metric analysis</h1>  
                     <div className="w-9/10 mx-auto my-12">
                         <div className="mt-4 mb-2">
-                            <SentimentSlider />
+                            <SentimentGauge sentiment={article.sentimentScore}/>
                         </div>
                         <div className="my-4">
                             <SentimentExplanation sentiment={"Elaboration"} />

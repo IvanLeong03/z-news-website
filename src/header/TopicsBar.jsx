@@ -56,7 +56,7 @@ function TopicsBar() {
                         <button
                         key={index}
                         onClick={() => handleTopicClick(topic)}
-                        className="font-bold hover:cursor-grab hover:underline hover:underline-offset-2 hover:decoration-[var(--color-dark-turquoise)] px-12"
+                        className="font-bold hover:cursor-grab hover:underline hover:underline-offset-2 hover:decoration-[var(--color-primary)] px-12"
                         >
                         {topic}
                         </button>

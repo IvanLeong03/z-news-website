@@ -2,7 +2,7 @@ import React from 'react';
 import SplitBar from '../metric-components/SplitBar';
 import SentimentSlider from '../metric-components/SentimentSlider';
 import SubjectivitySlider from '../metric-components/SubjectivitySlider';
-import Sentiment from '../metric-components/Sentiment';
+import SentimentGauge from '../metric-components/SentimentGauge';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 
@@ -60,7 +60,7 @@ function Legend() {
             <div className='w-3/4 mx-auto mb-4'>
               <SentimentSlider />
               <p className='text-center my-4'>or</p>
-              <Sentiment />
+              <SentimentGauge />
             </div>
             <p className='mt-2 mb-16'>
               {language === "zh-Hant"
