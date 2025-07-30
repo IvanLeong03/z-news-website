@@ -17,16 +17,16 @@ function UserGuide() {
             <span className="italic">[Looking out of the car window]</span>
           </p>
           <p>
-            The "Conservative" metric reflects the perspective or focus of the article. It helps you understand whether the article is written from a neutral, centrist viewpoint or leans towards a particular side. This can help you identify articles that strive for objectivity versus those that may have a more specific agenda or bias.
+            The "Conservative" metric reflects the traditional or status quo perspective of the article. Articles with a higher Conservative score tend to focus on preserving existing values and institutions, while lower scores may indicate a more progressive or reformist stance.
           </p>
         </section>
         <section className="mb-8">
-          <h3 className="text-lg font-semibold mb-2">Progressive</h3>
+          <h3 className="text-lg font-semibold mb-2">Liberal</h3>
           <p className="mb-2">
             <span className="italic">[Love is blooming]</span>
           </p>
           <p>
-            The "Progressive" metric indicates how forward-thinking or change-oriented the article is. Articles with a higher progressive score tend to advocate for new ideas, reforms, or social change, while lower scores may reflect more traditional or conservative viewpoints.
+            The "Liberal" metric indicates how forward-thinking or change-oriented the article is. Articles with a higher Liberal score tend to advocate for new ideas, reforms, or social change, while lower scores may reflect more traditional or conservative viewpoints.
           </p>
         </section>
         <section className="mb-8">

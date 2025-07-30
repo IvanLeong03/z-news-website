@@ -9,7 +9,7 @@ const articles = [
       'zh-Hans': "习近平会见国际商界代表，北京展现魅力"
     },
     image: "/src/assets/university1.jpg",
-    pPercent: 33,
+    liberalPercent: 33,
     cPercent: 67,
     sources: 30,
     sentimentScore: -0.25,
@@ -31,7 +31,7 @@ const articles = [
       'zh-Hans': "「逆邓」：欧洲能否扭转局势，获取中国电池技术？"
     },
     image: "/src/assets/section-3-background-2.jpg",
-    pPercent: 49,
+    liberalPercent: 49,
     cPercent: 51,
     sources: 22,
     location: {
@@ -51,7 +51,7 @@ const articles = [
       'zh-Hans': "在川普不确定性下，这是中国在东南亚结交朋友的最佳时机吗？"
     },
     image: "/src/assets/university1.jpg",
-    pPercent: 60,
+    liberalPercent: 60,
     cPercent: 40,
     sources: 16,
     location: {
@@ -99,7 +99,7 @@ const articles = [
       'zh-Hans': "人工智能突破：新模型创下语言理解新纪录"
     },
     image: "/src/assets/ai-news.jpg",
-    pPercent: 55,
+    liberalPercent: 55,
     cPercent: 45,
     sources: 18,
     sentimentScore: 0.72,
@@ -121,7 +121,7 @@ const articles = [
       'zh-Hans': "小米汽车业务预计今年三四季度实现盈利"
     },
     image: "/src/assets/xiaomisu7u1.jpg",
-    pPercent: 62,
+    liberalPercent: 62,
     cPercent: 38,
     sources: 12,
     sentimentScore: 0.5,

@@ -11,7 +11,7 @@ function SentimentSlider({ sentScore = 0 }) {
 
   return (
     <div className="w-full mb-4">
-      <div className="relative h-3 bg-gray-200 rounded-full">
+      <div className="relative h-1 bg-gradient-to-l from-[var(--color-dark-turquoise)] to-[var(--color-light-turquoise)] rounded-full">
         <div
           className="absolute top-0 -mt-1 w-0.5 h-4 bg-black"
           style={{ left: `${percentage}%`, transform: "translateX(-50%)" }}

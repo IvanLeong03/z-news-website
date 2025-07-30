@@ -16,7 +16,7 @@ const articles = [
         image: "src/assets/university1.jpg",
         date: "30-02-2025",
         cPercent: 49,
-        pPercent: 51,
+        liberalPercent: 51,
         sources: 22
     },
     {
@@ -29,7 +29,7 @@ const articles = [
         image: "src/assets/university1.jpg",
         date: "30-02-2025",
         cPercent: 60,
-        pPercent: 40,
+        liberalPercent: 40,
         sources: 16
     },
     {
@@ -42,7 +42,7 @@ const articles = [
         image: "src/assets/university1.jpg",
         date: "30-02-2025",
         cPercent: 40,
-        pPercent: 60,
+        liberalPercent: 60,
         sources: 18
     }
 ];
@@ -71,7 +71,7 @@ function Topic() {
                             <h2 className="text-2xl font-semibold mt-6 mb-12">{article.title[language] || article.title.en}</h2>
                             <div className="w-3/4 flex justify-between items-start">
                                 <div className="p-2 w-1/4">
-                                    <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+                                    <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                                 </div>
                                 <div className="p-2 w-1/4">
                                     <SentimentSlider />

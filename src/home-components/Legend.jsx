@@ -45,7 +45,7 @@ function Legend() {
                   ? "進步："
                   : language === "zh-Hans"
                   ? "进步："
-                  : "Progressive:"}
+                  : "Liberal:"}
               </p>
               <p>
                 {language === "zh-Hant"

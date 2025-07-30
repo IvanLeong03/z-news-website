@@ -1,53 +1,36 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import SplitBar from "../metric-components/SplitBar";
 import { useLanguage } from "../context/LanguageContext";
-
+import { fetchArticles } from "../services/articleService";
 
 function HongKong() {
 
     const { language } = useLanguage();
-    
-    const articles = [   
-        {
-            title: {
-                en: "We will select articles that you may be interested in based on your activity",
-                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
-            },
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: {
-                en: "We will select articles that you may be interested in based on your activity",
-                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
-            },
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: {
-                en: "We will select articles that you may be interested in based on your activity",
-                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
-            },            
-            cPercent: 50,
-            pPercent: 50,
-            imageUrl: "src/assets/sea.webp",
-        },
-        {
-            title: {
-                en: "We will select articles that you may be interested in based on your activity",
-                'zh-Hant': "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
-                'zh-Hans': "我们会根据你的浏览记录选择你可能感兴趣的文章"
-            },             cPercent: 50,
-            pPercent: 50,
-            imageUrl: "image",
-        },
-    ];
+    const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        const loadArticles = async () => {
+            try {
+                // Fetch 4 articles (adjust parameters as needed)
+                const data = await fetchArticles({ 
+                limit: 4,
+                // region: 'hong_kong' // Uncomment when backend supports this
+                });
+                setArticles(data);
+            } catch (error) {
+                console.error("Failed to load articles:", error);
+                // You can set error state here if needed
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadArticles();
+    }, []);
+
+    if (loading) return <div>Loading articles...</div>;
 
 
     return (
@@ -72,7 +55,7 @@ function HongKong() {
                             />
                         </div>
                         <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+                            <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                         </div>
                         <h2 className="font-semibold mb-2">{article.title?.[language]}</h2>
                     </div>

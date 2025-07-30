@@ -100,7 +100,7 @@ function Article() {
                     <Link to="/user-guide">
                         <div className="flex my-2 gap-4">    
                             <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Conservative: {article.cPercent}% </label>                                                 
-                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Progressive: {article.pPercent}% </label> 
+                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Liberal: {article.liberalPercent}% </label> 
                         </div>
                     </Link> 
                     
@@ -141,7 +141,7 @@ function Article() {
                 <div className="w-9/10 mx-auto border-b border-[var(--color-line-grey)]">
                     <h1 className="font-bold text-xl">Leaning distribution</h1>
                     <div className="mt-4 my-2">
-                        <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+                        <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                     </div>
                     
                     <div className="my-4">

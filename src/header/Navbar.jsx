@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../search/SearchBar";
 import { useLanguage } from "../context/LanguageContext";
 import { FaUser } from "react-icons/fa";
+import EnLogo from "../assets/ZoneNewsLogo/zonenews__logo_secondary_EN.jpg";
+import ChLogo from "../assets/ZoneNewsLogo/zonenews__logo_secondary_CH.jpg";
+
 
 function Navbar() {
     const { language } = useLanguage(); 
@@ -31,22 +34,9 @@ function Navbar() {
                 {/* Left: Logo */}
                 <Link to="/">
                     <div className="flex items-center flex-none max-w-[24vw] space-x-2">                    
-                        <img src="/logos/logo_icon_turquoise.png" alt="Logo" className="h-16" />
-                        <div className="flex flex-col items-start">
-                            <h1 className="text-2xl lg:text-3xl font-bold whitespace-normal">
-                                {language === "zh-Hant" ? "方位" : language === "zh-Hans" ? "方位" : "Zone"}
-                            </h1>   
-                            <h1
-                                className="text-2xl lg:text-3xl font-bold whitespace-normal text-[var(--color-gs-white)]"
-                                style={{
-                                    WebkitTextStroke: "1px var(--color-gs-black)",
-                                    textStroke: "1px black",
-                                }}
-                            >
-                                {language === "zh-Hant" ? "新聞" : language === "zh-Hans" ? "新闻" : "News"}
-                            </h1> 
-                        </div>
-                                       
+                        <img                             
+                        src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
+                        alt="Logo" className="h-24"/>                                       
                     </div>
                 </Link>
 

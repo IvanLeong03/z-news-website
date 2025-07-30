@@ -9,49 +9,49 @@ function Today() {
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 45,
-            pPercent: 55,
+            liberalPercent: 55,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 52,
-            pPercent: 48,
+            liberalPercent: 48,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 65,
-            pPercent: 35,
+            liberalPercent: 35,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 56,
-            pPercent: 44,
+            liberalPercent: 44,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 40,
-            pPercent: 60,
+            liberalPercent: 60,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 28,
-            pPercent: 72,
+            liberalPercent: 72,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 80,
-            pPercent: 20,
+            liberalPercent: 20,
             imageUrl: "image",
         },
         {
             title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor, purus vel.",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "image",
         }
         
@@ -80,7 +80,7 @@ function Today() {
                             />
                         </div>
                         <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+                            <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                         </div>
                         <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
                     </div>

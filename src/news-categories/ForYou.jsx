@@ -9,25 +9,25 @@ function ForYou() {
         {
             title: "We will select articles that you may be interested in based on you activity",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "We will select articles that you may be interested in based on you activity",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "We will select articles that you may be interested in based on you activity",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "We will select articles that you may be interested in based on you activity",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "image",
         },
     ];
@@ -36,25 +36,25 @@ function ForYou() {
         {
             title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "我們會根據你的瀏覽紀錄選擇你可能感興趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "image",
         },
     ];
@@ -63,25 +63,25 @@ function ForYou() {
         {
             title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "src/assets/sea.webp",
         },
         {
             title: "我们会根据你的浏览记录选择你可能感兴趣的文章",
             cPercent: 50,
-            pPercent: 50,
+            liberalPercent: 50,
             imageUrl: "image",
         },
     ];
@@ -117,7 +117,7 @@ function ForYou() {
                             />
                         </div>                        
                         <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+                            <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                         </div>
                         <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
                     </div>

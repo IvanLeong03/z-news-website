@@ -11,7 +11,7 @@ const mostReadArticles = [
       'zh-Hans': '文章标题 文章标题 文章标题',
     },
     cPercent: 50,
-    pPercent: 50,
+    liberalPercent: 50,
     sentiment: 0,
     sources: 10,
   },
@@ -22,7 +22,7 @@ const mostReadArticles = [
       'zh-Hans': '川普不确定性中，中国赢得东南亚朋友的「最佳时机」？',
     },
     cPercent: 35,
-    pPercent: 65,
+    liberalPercent: 65,
     sentiment: 0.15,
     sources: 21,
   },
@@ -33,7 +33,7 @@ const mostReadArticles = [
       'zh-Hans': '香港旅游事务署长在大型活动中出现混乱后提出电子票务想法',
     },
     cPercent: 49,
-    pPercent: 51,
+    liberalPercent: 51,
     sentiment: 0.38,
     sources: 16,
   },
@@ -44,7 +44,7 @@ const mostReadArticles = [
       'zh-Hans': '科技战：中国顶级晶圆代工厂中芯国际2024年收入增长，但净利润大幅下降',
     },
     cPercent: 70,
-    pPercent: 30,
+    liberalPercent: 30,
     sentiment: -0.55,
     sources: 19,
   },
@@ -55,7 +55,7 @@ const mostReadArticles = [
       'zh-Hans': '国际滑冰联盟对世界锦标赛上展示台湾而非中华台北旗表示歉意',
     },
     cPercent: 42,
-    pPercent: 58,
+    liberalPercent: 58,
     sentiment: -0.27,
     sources: 21,
   },
@@ -75,7 +75,7 @@ function MostRead() {
           <p className="mt-2 my-4">{article.title[language] || article.title.en}</p>
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-1">
             <div className="w-full">
-              <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+              <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
             </div>
             <div className="w-full">
               <Sentiment sentiment={article.sentiment} />
