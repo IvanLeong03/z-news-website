@@ -70,7 +70,7 @@ function SentimentGauge({ sentiment = 0 }) {
 
       {/* Large score */}
       <div
-        className="text-4xl font-bold -mt-12"
+        className="text-5xl font-bold -mt-16"
         style={{ color: arcColor }}
       >
         {clampedScore >= 0

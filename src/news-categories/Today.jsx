@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import SplitBar from "../metric-components/SplitBar";
+import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchArticles } from "../services/articleService";
 
@@ -51,8 +52,9 @@ function Today() {
                                 className="object-cover w-full h-full"
                             />
                         </div>
-                        <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.coverage.percentage.centric*100} liberalPercent={article.coverage.percentage.progressive*100} />
+                        <div className="w-3/4 my-4">
+                            {/*<SplitBar cPercent={article.coverage.percentage.centric*100} liberalPercent={article.coverage.percentage.progressive*100} />*/}
+                            <SentimentSlider sentiment={article.metrics.sentiment} />
                         </div>
                         {/*<h2 className="font-semibold mb-2">{article.title?.[language]}</h2>*/}
                         <h2 className="font-semibold mb-2">{article.title}</h2>

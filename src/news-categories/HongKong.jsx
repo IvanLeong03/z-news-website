@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import SplitBar from "../metric-components/SplitBar";
+import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchArticles } from "../services/articleService";
 
@@ -53,7 +53,7 @@ function HongKong() {
                             />
                         </div>
                         <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
+                            <SentimentSlider sentiment={article.metrics.sentiment} />
                         </div>
                         <h2 className="font-semibold mb-2">{article.title}</h2>
                     </div>
