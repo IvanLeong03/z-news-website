@@ -3,24 +3,35 @@ import { useLanguage } from "../context/LanguageContext";
 
 function SubjectivitySlider({ subjScore = 0 }) {
   const { language } = useLanguage();
-  // Clamp the score to stay between 0 and 1
-  const clampedScore = Math.max(0, Math.min(subjScore, 1));
 
-  // Convert to percentage (0% to 100%) with 0 at center
-  const percentage = clampedScore * 100;
+  const subjScoreRounded = Math.round(subjScore * 100) / 100; // Round to two decimal places
+
+  const boxColor = 
+  subjScoreRounded < 0.2 
+  ? "bg-[var(--color-secondary-3)] text-[var(--color-primary)]" 
+  : subjScoreRounded < 0.6 
+  ? "bg-[#3d776c] text-[var(--color-secondary-3)]"  
+  : "bg-[#2e3d3a] text-[#879693]";
+  
 
   return (
     <div className="w-full mb-4">
-      <div className="relative h-3 bg-gray-200 rounded-full">
-        <div
-          className="absolute top-0 -mt-1 w-0.5 h-4 bg-black"
-          style={{ left: `${percentage}%`, transform: "translateX(-50%)" }}
-        />
-        {/* optional tick markers */}
-        <div className="absolute left-1 top-full text-xs text-gray-600">0</div>
-        <div className="absolute right-1 top-full text-xs text-gray-600">+1</div>
+      <h2 className="text-lg">{language === "zh-Hant" ? "主觀性分析" : language === "zh-Hans" ? "主观性分析": "Subjectivity Index"}</h2>
+      <div className="flex justify-start my-4">
+        <div className="w-2/5 flex items-end">
+          <p className="text-5xl">{subjScoreRounded}</p>
+          <div className="ml-2 text-[var(--color-line-lightgrey)]">/1</div>
+        </div>
+        <div className="w-3/5 text-xs text-center pl-2">
+          <div className={boxColor}>
+            {subjScoreRounded < 0.2 ? "High" : subjScoreRounded < 0.6 ? "Medium" : "Low" } objectivity
+          </div>
+
+        </div>
+        
+
+
       </div>
-      <p className="text-xs text-center mt-4">{language === 'zh-Hant'? "主觀性" : language === "zh-Hans" ? "主观性" : "Subjectivity"}: {subjScore.toFixed(2)}</p>
     </div>
   );
 }

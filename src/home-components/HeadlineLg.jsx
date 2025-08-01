@@ -22,15 +22,12 @@ function HeadlineLg({headline = "default headline", image = "logos/logo_vertical
             </div>
 
             {/* Metrics */}
-            <div className="w-full flex flex-wrap justify-between items-start gap-4 px-4 py-2">
+            <div className="w-full flex flex-wrap justify-between items-center gap-4 px-4 py-2">
                 <div className="flex-1">
                     <SplitBar cPercent={cPercent} liberalPercent={liberalPercent} />
                 </div>
                 <div className="flex-1">
                     <SentimentSlider sentScore={sentScore} />
-                </div>
-                <div className="flex-1">
-                    <SubjectivitySlider subjScore={subjScore} />
                 </div>
                 <div className="text-xs text-right">
                     {sources} {language === 'zh-Hant' || language === 'zh-Hans' ? "篇文章" : "source articles"}

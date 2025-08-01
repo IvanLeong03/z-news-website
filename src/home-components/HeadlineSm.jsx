@@ -11,8 +11,7 @@ function HeadlineSm({headline = "default headline", image = "logos/logo_vertical
             <div className="w-3/5 flex flex-col h-full flex-shrink-0">
                 <div className="w-full aspect-[16/9]">
                     <img src={image} alt='HeadlineImage' className="w-full h-full object-cover" />
-                </div> 
-                                                                   
+                </div>                                                                    
                 <h1 className="w-full text-lg lg:text-xl font-semibold my-2 text-left">{headline}</h1>
                 <p className="text-xs text-left">{sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
             </div>
@@ -23,9 +22,6 @@ function HeadlineSm({headline = "default headline", image = "logos/logo_vertical
                 </div>
                 <div>
                     <SentimentSlider sentiment={sentimentScore}/>
-                </div>
-                <div>
-                    <SubjectivitySlider subjScore={subjScore}/>
                 </div>
             </div>
         </article>

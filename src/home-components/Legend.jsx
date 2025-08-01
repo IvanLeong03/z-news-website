@@ -56,8 +56,8 @@ function Legend() {
               </p>
             </div>
         </div>
-        <div className='flex flex-col text-[var(--color-gs-black)] py-2'>
-            <div className='w-3/4 mx-auto mb-4'>
+        <div className='flex flex-col items-center text-[var(--color-gs-black)] py-2'>
+            <div className='w-4/5 mb-4'>
               <SentimentSlider />
               <p className='text-center my-4'>or</p>
               <SentimentGauge />
@@ -71,7 +71,7 @@ function Legend() {
             </p>
         </div>
         <div className='flex flex-col text-[var(--color-gs-black)] py-2'>
-            <div className='w-3/4 mx-auto'>
+            <div className='w-full mx-auto'>
               <SubjectivitySlider />
             </div>
             <p className='my-2'>

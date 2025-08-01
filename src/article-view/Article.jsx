@@ -8,6 +8,7 @@ import SentimentGauge from "../metric-components/SentimentGauge";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
+import OutletDistribution from "../metric-components/OutletDistribution";
 
 function Article() {
     
@@ -138,14 +139,14 @@ function Article() {
 
             { /* second column: distribution, sentiment, subjectivity */}
             <div className="flex-col flex-grow justify-center min-h-dvh py-6 px-1">
-                <div className="w-9/10 mx-auto border-b border-[var(--color-line-grey)]">
+                <div className="w-11/12 mx-auto border-b border-[var(--color-line-grey)]">
                     <h1 className="font-bold text-xl">Leaning distribution</h1>
                     <div className="mt-4 my-2">
                         <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
                     </div>
                     
                     <div className="my-4">
-                        <SentimentExplanation sentiment={"Outlet listings"} />
+                        <OutletDistribution cPercent={article.cPercent} liberalPercent={article.liberalPercent}/>
                     </div>
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Stats for distribution"} />
@@ -153,15 +154,15 @@ function Article() {
                 </div>  
                 <div className="w-9/10 mx-auto my-2">
                     <h1 className="font-bold text-xl">Metric analysis</h1>  
-                    <div className="w-9/10 mx-auto my-12">
-                        <div className="mt-4 mb-2">
+                    <div className="my-12">
+                        <div className="my-4">
                             <SentimentGauge sentiment={article.sentimentScore}/>
                         </div>
-                        <div className="my-4">
+                        <div className="mb-4 mt-8">
                             <SentimentExplanation sentiment={"Elaboration"} />
                         </div>                
                     </div>   
-                    <div className="w-9/10 mx-auto my-18">
+                    <div className="my-18">
                         <div className="mt-4 mb-2">
                             <SubjectivitySlider />
                         </div>

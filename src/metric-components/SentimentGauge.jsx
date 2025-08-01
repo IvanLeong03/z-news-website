@@ -1,5 +1,6 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
 function SentimentGauge({ sentiment = 0 }) {
   const { language } = useLanguage();
@@ -13,17 +14,23 @@ function SentimentGauge({ sentiment = 0 }) {
     clampedScore >= 0 ? "var(--color-primary)" : "var(--color-secondary-1)";
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center my-4">
       {/* Title */}
-      <div className="w-full text-start text-sm font-medium mb-1 -ml-8">
+      <div className="w-full flex justify-between items-center">
+        <div className="w-full text-start text-sm font-medium mb-1 -ml-8">
         {language === "zh-Hant"
           ? "情感指數"
           : language === "zh-Hans"
           ? "情感指数"
           : "Sentiment Index"}
-      </div>
+        </div>
+        <AiOutlineInfoCircle className="ml-1 text-gray-400" />
 
-      <svg width="220" height="132" viewBox="0 0 228 125" >
+      </div>
+      
+      
+
+      <svg width="220" height="135" viewBox="0 0 228 130">
         {/* Grey background arc */}
         <path
           d="M10 110 A100 100 0 0 1 210 110"
@@ -60,11 +67,17 @@ function SentimentGauge({ sentiment = 0 }) {
         <text x="0" y="120" fontSize="12" fill="#999" textAnchor="start">
           -1
         </text>
+        <text x="0" y="130" fontSize="12" fill="#999" textAnchor="start">
+          negative
+        </text>
         <text x="110" y="4" fontSize="12" fill="#999" textAnchor="middle">
           0
         </text>
         <text x="220" y="120" fontSize="12" fill="#999" textAnchor="end">
           +1
+        </text>
+        <text x="220" y="130" fontSize="12" fill="#999" textAnchor="end">
+          positive
         </text>
       </svg>
 
