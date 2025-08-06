@@ -54,7 +54,7 @@ function MainCol() {
       <div className="mb-8 px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-stretch">
           {Array.isArray(subArticles) && subArticles.map((article) => (
-            <div key={article.articleID} className="flex flex-grow flex-col justify-start items-center mx-auto">
+            <div key={article.articleID} className="flex flex-grow flex-col justify-start items-center mx-auto p-2">
               <Link to={`/article/${article.articleID}`}>
                 <HeadlineSm
                   headline={article.title}

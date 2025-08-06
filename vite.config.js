@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/dev": {
-        target: "http://localhost:5000", // Flask backend
+        target: "http://api.zonenews.io:8000/", // Flask backend
         changeOrigin: true,
         secure: false,
       },

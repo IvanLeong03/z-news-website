@@ -6,9 +6,8 @@ function OutletDistribution({ cPercent, liberalPercent }) {
 
     return (
         <div className="flex flex-col w-full text-xs text-[var(--color-gs-black)]">
-            <div className="flex justify-between w-full mb-1">
-                <span>Conservative</span>
-                <span>Liberal</span>
+            <div className="flex justify-center w-full mb-1">
+                Media outlets
             </div>
 
 

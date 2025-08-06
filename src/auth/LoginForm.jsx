@@ -25,10 +25,27 @@ export default function LoginForm() {
 
     // Simulate API call (replace with real auth logic)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Login attempted with:", { email, password });
-      // Redirect on success (e.g., to account page)
-      navigate("/account");
+      const response = await fetch("http://localhost:5000/dev/login", {
+        method: "POST",
+        credentials: "include", // This is REQUIRED for cookies
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.code === 200) {
+        console.log("Login success:", result);
+        navigate("/account"); // ✅ or wherever
+      } else {
+        setError(result.msg || "Login failed.");
+      }
+
     } catch (err) {
       setError("Invalid email or password.");
     } finally {
@@ -52,7 +69,7 @@ export default function LoginForm() {
             Email
           </label>
           <input
-            type="email"
+            //type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

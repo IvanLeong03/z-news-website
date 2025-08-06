@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchArticles } from "../services/articleService";
+import { Link } from "react-router-dom";
 
 function MostRead() {
   const { language } = useLanguage();
@@ -37,17 +38,19 @@ function MostRead() {
 
       {mostReadArticles.map((article, index) => (
         <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)] text-sm">
-          <p className="mt-2 my-4">{article.title}</p>
-
-          <div className="w-full">
+          <Link to={`/article/${article.articleID}`}>
+            <p className="mt-2 my-4">{article.title}</p>
+          
+            <div className="w-full">
               <SentimentSlider sentiment={article.metrics.sentiment} />
             </div>
-          <div className="flex mt-2">
-            <p className="text-xs whitespace-nowrap">
-              {article.nSources}
-              {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' sources'}
-            </p>
-          </div>
+            <div className="flex mt-2">
+              <p className="text-xs whitespace-nowrap">
+                {article.nSources}
+                {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' sources'}
+              </p>
+            </div>
+          </Link>
         </div>
       ))}
     </div>

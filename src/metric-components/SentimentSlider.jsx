@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
@@ -12,6 +12,12 @@ function SentimentSlider({ sentiment = 0}) {
 
   // Determine color based on score sign
   const barColor = clampedScore >= 0 ? "#239b98" : "#7f2538";
+
+  const [isHovered, setIsHovered] = useState(false);
+  function HoverComponent() {
+    const [isHovered, setIsHovered] = useState(false);
+    // ... rest of your component
+  }
 
   return (
     <div className="w-full mb-4">
@@ -29,7 +35,12 @@ function SentimentSlider({ sentiment = 0}) {
             ? `+${clampedScore.toFixed(2)}`
             : clampedScore.toFixed(2)}
         </span>
-        <AiOutlineInfoCircle className="ml-1 text-gray-400" />
+        <AiOutlineInfoCircle className="ml-2 text-gray-400" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
+          {isHovered && (
+            <label className="absolute bottom-0 right-0 transition-all duration-200 ease-in-out bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs">
+              +1 indicates the most positive sentiment, -1 indicates the most negative.
+            </label>
+          )}
       </div>
 
       {/* Bar */}

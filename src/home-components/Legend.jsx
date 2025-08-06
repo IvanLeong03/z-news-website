@@ -36,7 +36,7 @@ function Legend() {
                   ? "沿途望出車外是盛放的戀愛"
                   : language === "zh-Hans"
                   ? "沿途望出车外是盛放的恋爱"
-                  : "Look out of the car window and love is blooming"}
+                  : "The article leans towards a conservative perspective."}
               </p>
             </div>
             <div className='mt-2 mb-6'>
@@ -52,7 +52,7 @@ function Legend() {
                   ? "我起床後上廁所然後回到床上繼續睡"
                   : language === "zh-Hans"
                   ? "我起床后上厕所然后回到床上继续睡"
-                  : "I woke up, went to the toilet, then went back to bed"}
+                  : "The article takes a liberal stance."}
               </p>
             </div>
         </div>
@@ -62,7 +62,7 @@ function Legend() {
               <p className='text-center my-4'>or</p>
               <SentimentGauge />
             </div>
-            <p className='mt-2 mb-16'>
+            <p className='mt-8 mb-16'>
               {language === "zh-Hant"
                 ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分"
                 : language === "zh-Hans"
@@ -74,7 +74,7 @@ function Legend() {
             <div className='w-full mx-auto'>
               <SubjectivitySlider />
             </div>
-            <p className='my-2'>
+            <p className='my-4'>
               {language === "zh-Hant"
                 ? "根據文中形容詞和副詞的比例計算主觀性，給予0（最客觀）至 1 （最主觀）的評分"
                 : language === "zh-Hans"

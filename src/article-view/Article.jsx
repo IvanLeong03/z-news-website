@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SplitBar from "../metric-components/SplitBar";
 import SentimentExplanation from "../metric-components/SentimentExplanation";
 import Ads from "../home-components/Ads";
@@ -9,14 +9,30 @@ import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
+import { FaRegBookmark , FaBookmark} from "react-icons/fa";
 
 function Article() {
-    
     const { id } = useParams(); 
     const article = articles.find((a) => a.id === id);
     if (!article) return <p>Article not found.</p>;
     const linked_articles = article.linked_articles;
     const { language } = useLanguage();
+    const [bookmarked, setBookmarked] = useState(false);
+
+    // Toggle bookmark state
+    const handleBookmark = () => {
+        setBookmarked(prevState => !prevState); // Toggle the current value
+        
+        // Optional: Add your API call here if saving to backend
+        // Example:
+        // try {
+        //   await api.toggleBookmark(articleId);
+        // } catch (error) {
+        //   setBookmarked(prevState => !prevState); // Revert if API fails
+        //   console.error('Bookmark failed:', error);
+        // }
+    };
+
     const summaryEn = [
         [
             "Xi Jinping urged global CEOs to safeguard industrial and supply chains",
@@ -96,14 +112,22 @@ function Article() {
                     <img src={article.image} className="w-full" />
                     <h1 className="text-3xl font-semibold my-2">{article.title?.[language]}</h1>
                 </div>
-                { /* summaries */}
+                {/* summaries */}
                 <div className="flex flex-col w-9/10 mx-auto my-8 ">                                    
-                    <Link to="/user-guide">
-                        <div className="flex my-2 gap-4">    
-                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Conservative: {article.cPercent}% </label>                                                 
-                            <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Liberal: {article.liberalPercent}% </label> 
-                        </div>
-                    </Link> 
+                    <div className="w-full flex justify-between items-center">
+                        <Link to="/user-guide">
+                            <div className="flex my-2 gap-4">    
+                                <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Conservative: {article.cPercent}% </label>                                                 
+                                <label className="min-w-1/5 text-center p-2 rounded-xl border border-[var(--color-line-grey)]"> Liberal: {article.liberalPercent}% </label> 
+                            </div>
+                        </Link>
+                        <button className="px-2" aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"} onClick={handleBookmark}>
+                            {bookmarked ? (
+                                <FaBookmark className="text-2xl text-[var(--color-accent)] fill-current" />  ) : (
+                                <FaRegBookmark className="text-2xl text-[var(--color-text-lightgrey)] hover:text-[var(--color-text-darkgrey)]" />
+                            )}
+                        </button>
+                    </div>                    
                     
                     <div className="grid grid-rows-2 bg-[var(--color-summary-background)] min-h-[20rem] px-2">
                         <div className="border-b border-[var(--color-line-grey)] py-4">
@@ -131,7 +155,7 @@ function Article() {
                     <h1 className="font-bold text-xl">Reported articles</h1>
                     <ul className="my-4">
                         {linked_articles.map((linked_article, index) => (
-                            <li className="py-2">{linked_article}</li>
+                            <li key={index} className="py-2">{linked_article}</li>
                         ))}
                     </ul>    
                 </div>                               
@@ -158,7 +182,7 @@ function Article() {
                         <div className="my-4">
                             <SentimentGauge sentiment={article.sentimentScore}/>
                         </div>
-                        <div className="mb-4 mt-8">
+                        <div className="mb-4 mt-12">
                             <SentimentExplanation sentiment={"Elaboration"} />
                         </div>                
                     </div>   
