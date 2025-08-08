@@ -16,7 +16,7 @@ function HeadlineSm({headline = "default headline", image = "logos/logo_vertical
                 <p className="text-xs text-left">{sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
             </div>
             
-            <div className="w-2/5 h-full pl-2 flex flex-col justify-start gap-4">
+            <div className="w-2/5 h-full pl-2 flex flex-col justify-start gap-8">
                 <div>
                     <SplitBar cPercent={cPercent*100} liberalPercent={liberalPercent*100}/>
                 </div>

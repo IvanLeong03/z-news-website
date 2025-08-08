@@ -1,5 +1,6 @@
 // services/articleService.js
-const API_URL = "http://localhost:5000";
+const API_URL = "http://api.zonenews.io:8000";
+//const API_URL = "http://localhost:5000";
 
 export async function fetchArticles({ limit = 4 }) {
   const articles = [];
