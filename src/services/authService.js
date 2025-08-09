@@ -1,16 +1,17 @@
 // services/authService.js
+
 export async function login(username, password) {
-  const res = await fetch("/dev/auth/login", {
+  const res = await fetch(`https://api.zonenews.io/dev/auth/login`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include", // 💥 this includes cookies!
-    body: JSON.stringify({ username, password }),
+    credentials: 'include',
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ "username":"admin", "password":"admin" }),
   });
 
   const data = await res.json();
   if (data.code !== 200) {
     throw new Error(data.msg || "Login failed");
   }
-
-  return true; // cookies are now set!
 }

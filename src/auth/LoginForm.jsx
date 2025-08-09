@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Optional: For redirect after login
 import { FaRegEyeSlash } from "react-icons/fa";
+import { login } from "../services/authService";
 
 
 export default function LoginForm() {
@@ -15,7 +16,6 @@ export default function LoginForm() {
     e.preventDefault();
     setError("");
 
-    // Basic validation
     if (!email || !password) {
       setError("Please fill in all fields.");
       return;
@@ -23,31 +23,14 @@ export default function LoginForm() {
 
     setIsLoading(true);
 
-    // Simulate API call (replace with real auth logic)
     try {
-      const response = await fetch("http://localhost:5000/dev/login", {
-        method: "POST",
-        credentials: "include", // This is REQUIRED for cookies
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: email,
-          password,
-        }),
-      });
+      const token = await login(email, password); // <– call your login API
+      console.log("Login success! Token:", token);
+      localStorage.setItem("access_token", token); // ← 💥 this was missing
 
-      const result = await response.json();
-
-      if (response.ok && result.code === 200) {
-        console.log("Login success:", result);
-        navigate("/account"); // ✅ or wherever
-      } else {
-        setError(result.msg || "Login failed.");
-      }
-
+      navigate("/account");
     } catch (err) {
-      setError("Invalid email or password.");
+      setError(err.message || "Login failed.");
     } finally {
       setIsLoading(false);
     }
