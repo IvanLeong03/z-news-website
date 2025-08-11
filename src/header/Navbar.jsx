@@ -14,7 +14,7 @@ function Navbar() {
 
     return (
         <div className="w-full flex flex-col">
-            <div className="flex w-full justify-center space-x-3 text-sm text-center bg-black p-1 text-[#fefefe]">
+            <div className="flex w-full justify-center space-x-6 text-sm text-center bg-black p-1 text-[#fefefe]">
                 <label>
                     {new Date().toLocaleDateString("en-GB", 
                         {
@@ -24,10 +24,14 @@ function Navbar() {
                         })
                     }
                 </label>
-                <label>|</label>
                 <label>
                     {new Date().toLocaleDateString("en-GB", {weekday: "long",})}
                 </label>
+                {/* should we show the time, and how should we handle refreshes
+                <label>
+                    {new Date().toLocaleTimeString("en-GB", {timeStyle: "short",})}
+                </label>
+                */}
             </div>
 
             <nav className="w-9/10 mx-auto flex items-center px-1 h-[24vh] max-h-[14rem]">

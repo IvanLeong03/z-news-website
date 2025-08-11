@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticle } from "../services/articleService2";
+import { fetchArticle } from "../services/articleService";
 import { login } from "../services/authService";
+import { Link} from "react-router-dom";
 
 function ForYou() {
     
@@ -46,6 +47,7 @@ function ForYou() {
                 {articles.map((article, index) => (
                     <div
                         key={index}
+
                         className={
                             index === 0
                                 ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem] text-3xl"
@@ -54,18 +56,24 @@ function ForYou() {
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <img
-                                src={article.pictureURL}
-                                alt={article.title}
-                                className="object-cover w-full h-full"
-                            />
+                            <Link to={`/article/${article.articleID}`}>
+                                <img
+                                    src={article.pictureURL}
+                                    alt={article.title}
+                                    className="object-cover w-full h-full"
+                                />
+                            </Link>
                         </div>
                         <div className="w-1/2 my-4">
-                            <SentimentSlider sentiment={article.metrics.sentiment} />
+                            <Link to={`/article/${article.articleID}`}>
+                                <SentimentSlider sentiment={article.metrics.sentiment} />
+                            </Link>
                         </div>
                         {/*<h2 className="font-semibold mb-2">{article.title?.[language]}</h2>*/}
-                        <h2 className="font-semibold mb-2">{article.title}</h2>
-                    </div>
+                        <Link to={`/article/${article.articleID}`}>
+                            <h2 className="font-semibold my-2">{article.title}</h2>
+                        </Link>
+                </div>
                 ))}
             </div>
         </div>

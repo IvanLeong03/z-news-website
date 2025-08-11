@@ -14,10 +14,6 @@ function SentimentSlider({ sentiment = 0}) {
   const barColor = clampedScore >= 0 ? "#239b98" : "#7f2538";
 
   const [isHovered, setIsHovered] = useState(false);
-  function HoverComponent() {
-    const [isHovered, setIsHovered] = useState(false);
-    // ... rest of your component
-  }
 
   return (
     <div className="w-full mb-4">
@@ -43,7 +39,7 @@ function SentimentSlider({ sentiment = 0}) {
           />
           {isHovered && (
             <div
-              className="absolute left-1/2 -translate-x-[66%] bottom-full mb-2 z-[999] w-56"
+              className="absolute left-1/2 -translate-x-[66%] bottom-full mb-4 z-[999] w-56"
               style={{ pointerEvents: "none" }}
             >
               <div className="relative">

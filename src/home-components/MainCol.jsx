@@ -4,8 +4,7 @@ import HeadlineSm from "./HeadlineSm";
 import { Link } from "react-router-dom";
 import articles from "../article-view/articles";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticle } from "../services/articleService2";
-import { login } from "../services/authService";
+import { fetchArticle } from "../services/articleService";
 
 function MainCol() {
   const { language } = useLanguage();
@@ -14,7 +13,7 @@ function MainCol() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const NUM_ARTICLES = 8; // Change this value to fetch more or fewer articles
+  const NUM_ARTICLES = 10; // Change this value to fetch more or fewer articles
 
   useEffect(() => {
     const loadArticles = async () => {

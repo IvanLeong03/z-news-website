@@ -1,4 +1,4 @@
-// services/articleService2.js
+// services/articleService.js
 // Fetch a single article by ID
 
 export async function fetchArticle(articleID) {

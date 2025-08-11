@@ -1,35 +1,42 @@
 import React, {useState, useEffect} from "react";
-import SplitBar from "../metric-components/SplitBar";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticles } from "../services/articleServiceMulti";
+import { fetchArticle } from "../services/articleService";
+import { Link } from "react-router-dom";
 
 function Today() {
         
     const { language } = useLanguage();
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+    const NUM_ARTICLES = 5;
 
     useEffect(() => {
-        const loadArticles = async () => {
-            try {
-                // Fetch articles (adjust parameters as needed)
-                const data = await fetchArticles({ 
-                limit: 6,
-                });
-                setArticles(data);
-            } catch (error) {
-                console.error("Failed to load articles:", error);
-                // You can set error state here if needed
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadArticles();
-    }, []);
-
-    if (loading) return <div>Loading articles...</div>;
+            const loadArticles = async () => {
+                try {
+                    //await login("admin", "admin");
+    
+                    const fetchPromises = [];
+                    for (let i = 0; i < NUM_ARTICLES; i++) {
+                        fetchPromises.push(fetchArticle(i));
+                    }
+                    const results = await Promise.all(fetchPromises);
+                    setArticles(results);
+                } catch (error) {
+                    console.error("Failed to load articles:", error);
+                    setError(error.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+    
+            loadArticles();
+        }, []);
+    
+        if (loading) return <div>Loading articles...</div>;
+        if (error) return <div className="text-red-500">Error: {error}</div>;
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">
@@ -46,18 +53,23 @@ function Today() {
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <img
-                                src={article.pictureURL}
-                                alt={article.title}
-                                className="object-cover w-full h-full"
-                            />
+                            <Link to={`/article/${article.articleID}`}>
+                                <img
+                                    src={article.pictureURL}
+                                    alt={article.title}
+                                    className="object-cover w-full h-full"
+                                />
+                            </Link>
                         </div>
-                        <div className="w-3/4 my-4">
-                            {/*<SplitBar cPercent={article.coverage.percentage.centric*100} liberalPercent={article.coverage.percentage.progressive*100} />*/}
-                            <SentimentSlider sentiment={article.metrics.sentiment} />
+                        <div className="w-1/2 my-4">
+                            <Link to={`/article/${article.articleID}`}>
+                                <SentimentSlider sentiment={article.metrics.sentiment} />
+                            </Link>
                         </div>
                         {/*<h2 className="font-semibold mb-2">{article.title?.[language]}</h2>*/}
-                        <h2 className="font-semibold mb-2">{article.title}</h2>
+                        <Link to={`/article/${article.articleID}`}>
+                            <h2 className="font-semibold my-2">{article.title}</h2>
+                        </Link>
                     </div>
                 ))}
             </div>

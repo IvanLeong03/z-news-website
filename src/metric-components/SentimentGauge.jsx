@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
@@ -9,10 +9,9 @@ function SentimentGauge({ sentiment = 0 }) {
   const radius = 100;
   const halfCircumference = Math.PI * radius; // Half-circle circumference
   const fillLength = Math.abs(clampedScore) * (halfCircumference / 2);
-
-  const arcColor =
-    clampedScore >= 0 ? "var(--color-primary)" : "var(--color-secondary-1)";
-
+  const arcColor = clampedScore >= 0 ? "var(--color-primary)" : "var(--color-secondary-1)";
+  const [isHovered, setIsHovered] = useState(false);
+  
   return (
     <div className="flex flex-col items-center my-4">
       {/* Title */}
@@ -24,7 +23,34 @@ function SentimentGauge({ sentiment = 0 }) {
           ? "情感指数"
           : "Sentiment Index"}
         </div>
-        <AiOutlineInfoCircle className="ml-1 text-gray-400" />
+        <div className="relative">
+          <AiOutlineInfoCircle
+            className="ml-2 text-gray-400 cursor-pointer z-20"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          />
+          {isHovered && (
+            <div
+              className="absolute left-1/2 -translate-x-[90%] bottom-full mb-4 z-[999] w-56"
+              style={{ pointerEvents: "none" }}
+            >
+              <div className="relative">
+                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
+                  +1 indicates the most positive sentiment, -1 indicates the most negative.
+                </div>
+                {/* Speech bubble tail */}
+                <div
+                  className="absolute left-[90%] top-full -translate-x-1/2 w-0 h-0"
+                  style={{
+                    borderLeft: "8px solid transparent",
+                    borderRight: "8px solid transparent",
+                    borderTop: "8px solid var(--color-gs-black)",
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
 
       </div>
       
