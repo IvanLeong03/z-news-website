@@ -22,7 +22,7 @@ function SentimentSlider({ sentiment = 0}) {
   return (
     <div className="w-full mb-4">
       {/* Title + Sentiment Value */}
-      <div className="flex items-center text-sm font-medium mb-1">
+      <div className="flex items-center text-sm font-medium mb-1 relative">
         <span className="mr-1">
           {language === "zh-Hant"
             ? "情感指數"
@@ -35,15 +35,35 @@ function SentimentSlider({ sentiment = 0}) {
             ? `+${clampedScore.toFixed(2)}`
             : clampedScore.toFixed(2)}
         </span>
-        <AiOutlineInfoCircle className="ml-2 text-gray-400" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
+        <div className="relative">
+          <AiOutlineInfoCircle
+            className="ml-2 text-gray-400 cursor-pointer z-20"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          />
           {isHovered && (
-            <label className="absolute bottom-0 right-0 transition-all duration-200 ease-in-out bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs">
-              +1 indicates the most positive sentiment, -1 indicates the most negative.
-            </label>
+            <div
+              className="absolute left-1/2 -translate-x-[66%] bottom-full mb-2 z-[999] w-56"
+              style={{ pointerEvents: "none" }}
+            >
+              <div className="relative">
+                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
+                  +1 indicates the most positive sentiment, -1 indicates the most negative.
+                </div>
+                {/* Speech bubble tail */}
+                <div
+                  className="absolute left-[66%] top-full -translate-x-1/2 w-0 h-0"
+                  style={{
+                    borderLeft: "8px solid transparent",
+                    borderRight: "8px solid transparent",
+                    borderTop: "8px solid var(--color-gs-black)",
+                  }}
+                />
+              </div>
+            </div>
           )}
+        </div>
       </div>
-
-      {/* Bar */}
       <div className="relative w-full h-2 border border-[var(--color-line-grey)] p-1">
         <div
           className="absolute top-0 left-1/2 h-2"

@@ -30,13 +30,13 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="w-9/10 mx-auto flex items-center px-1 h-[24vh] max-h-[16rem]">
+            <nav className="w-9/10 mx-auto flex items-center px-1 h-[24vh] max-h-[14rem]">
                 {/* Left: Logo */}
                 <Link to="/">
                     <div className="flex items-center flex-none max-w-[24vw] space-x-2">                    
                         <img                             
                         src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
-                        alt="Logo" className="h-24"/>                                       
+                        alt="Logo" className="h-24 lg:h-32 max-h-[16rem]"/>                                       
                     </div>
                 </Link>
 

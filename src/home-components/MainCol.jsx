@@ -4,36 +4,43 @@ import HeadlineSm from "./HeadlineSm";
 import { Link } from "react-router-dom";
 import articles from "../article-view/articles";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticles } from "../services/articleService";
+import { fetchArticle } from "../services/articleService2";
+import { login } from "../services/authService";
 
 function MainCol() {
   const { language } = useLanguage();
   const mainArticle = articles.find((a) => a.id === "001");
-  //const subArticles = articles.filter((a) => a.id !== "001");
-
   const [subArticles, setSubArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  const NUM_ARTICLES = 8; // Change this value to fetch more or fewer articles
 
   useEffect(() => {
-      const loadArticles = async () => {
-          try {
-              // Fetch articles (adjust parameters as needed)
-              const data = await fetchArticles({ 
-              limit: 8,
-              });
-              setSubArticles(data);
-          } catch (error) {
-              console.error("Failed to load articles:", error);
-              // You can set error state here if needed
-          } finally {
-              setLoading(false);
-          }
-      };
+    const loadArticles = async () => {
+      try {
+        // First authenticate
+        //await login("admin", "admin");
 
-      loadArticles();
+        const fetchPromises = [];
+        for (let i = 0; i < NUM_ARTICLES; i++) {
+            fetchPromises.push(fetchArticle(i));
+        }
+        const results = await Promise.all(fetchPromises);
+        setSubArticles(results);
+      } catch (error) {
+        console.error("Failed to load articles:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadArticles();
   }, []);
-
+  
   if (loading) return <div>Loading articles...</div>;
+  if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
     <div className="w-full h-auto flex flex-grow flex-col justify-start items-center pt-6 px-2 border-r border-l border-[var(--color-line-lightgrey)]">

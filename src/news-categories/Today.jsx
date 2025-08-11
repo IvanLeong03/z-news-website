@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import SplitBar from "../metric-components/SplitBar";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticles } from "../services/articleService";
+import { fetchArticles } from "../services/articleServiceMulti";
 
 function Today() {
         

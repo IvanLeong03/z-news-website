@@ -26,7 +26,6 @@ export default function LoginForm() {
     try {
       const token = await login(email, password); // <– call your login API
       console.log("Login success! Token:", token);
-      localStorage.setItem("access_token", token); // ← 💥 this was missing
 
       navigate("/account");
     } catch (err) {

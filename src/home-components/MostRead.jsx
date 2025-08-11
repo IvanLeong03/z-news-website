@@ -1,25 +1,33 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticles } from "../services/articleService";
+import { fetchArticle } from "../services/articleService2";
+import { login } from "../services/authService";
 import { Link } from "react-router-dom";
 
 function MostRead() {
   const { language } = useLanguage();
   const [mostReadArticles, setMostReadArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const NUM_ARTICLES = 5; // Change this value to fetch more or fewer articles
 
   useEffect(() => {
       const loadArticles = async () => {
           try {
-              // Fetch articles (adjust parameters as needed)
-              const data = await fetchArticles({ 
-              limit: 5,
-              });
-              setMostReadArticles(data);
+              // First authenticate
+              //await login("admin", "admin");
+
+              const fetchPromises = [];
+              for (let i = 0; i < NUM_ARTICLES; i++) {
+                  fetchPromises.push(fetchArticle(i));
+              }
+              const results = await Promise.all(fetchPromises);
+              setMostReadArticles(results);
           } catch (error) {
               console.error("Failed to load articles:", error);
-              // You can set error state here if needed
+              setError(error.message);
           } finally {
               setLoading(false);
           }
@@ -29,6 +37,7 @@ function MostRead() {
   }, []);
 
   if (loading) return <div>Loading articles...</div>;
+  if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
     <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto p-2">

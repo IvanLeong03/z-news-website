@@ -1,26 +1,32 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticles } from "../services/articleService";
+import { fetchArticle } from "../services/articleService2";
+import { login } from "../services/authService";
 
 function HongKong() {
 
     const { language } = useLanguage();
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const NUM_ARTICLES = 5; // Change this value to fetch more or fewer articles
 
     useEffect(() => {
         const loadArticles = async () => {
             try {
-                // Fetch articles (adjust parameters as needed)
-                const data = await fetchArticles({ 
-                limit: 6,
-                // region: 'hong_kong' // Uncomment when backend supports this
-                });
-                setArticles(data);
+                //await login("admin", "admin");
+
+                const fetchPromises = [];
+                for (let i = 0; i < NUM_ARTICLES; i++) {
+                    fetchPromises.push(fetchArticle(i));
+                }
+                const results = await Promise.all(fetchPromises);
+                setArticles(results);
             } catch (error) {
                 console.error("Failed to load articles:", error);
-                // You can set error state here if needed
+                setError(error.message);
             } finally {
                 setLoading(false);
             }
@@ -30,6 +36,7 @@ function HongKong() {
     }, []);
 
     if (loading) return <div>Loading articles...</div>;
+    if (error) return <div className="text-red-500">Error: {error}</div>;
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">
