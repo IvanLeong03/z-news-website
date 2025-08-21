@@ -4,25 +4,28 @@ function Account() {
     return (
         <div className="w-1/2 mx-auto">
             <h1 className="text-2xl font-bold my-4">Account Overview and Settings</h1>
-            <p className="text-gray-700 my-2">Manage your account settings and preferences.</p>
-            {/*
-            <form className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                </div>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Save Changes</button>
-            </form>
-            */}
+
             <div className="my-12">
                 {/* fetch every field from user object */}
+                <p className="my-2">Username: admin</p>
                 <p className="my-2">email: something@somedomain.com</p>
-                <p className="mt-8">subscription: free/paid</p>
+                <p className="mt-8">subscription plan: free</p>
                 <button className="rounded-xl my-4 px-2 border border-[var(--color-line-grey)]">edit subscription</button>
+
+                <div className="flex flex-col my-12">
+                    <h2 className="font-semibold">Reading History</h2>
+                    <label className="text-sm text-[var(--color-text-lightgrey)]">View your reading history</label>
+                </div>
+
+                <div className="flex flex-col my-12">
+                    <h2 className="font-semibold">Saved articles</h2>
+                    <label className="text-sm text-[var(--color-text-lightgrey)]">View your saved items</label>
+                </div>
+
+                <div className="flex flex-col my-12">
+                    <h2 className="font-semibold">Media Region</h2>
+                    <label className="text-sm text-[var(--color-text-lightgrey)]">Edit which media to show according to region</label>
+                </div>
 
                 <p>Billing method: None/card/paypal ...</p>
                 <button className="rounded-xl my-4 px-2 border border-[var(--color-line-grey)]">change payment method</button>

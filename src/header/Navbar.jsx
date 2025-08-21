@@ -82,10 +82,10 @@ function Navbar() {
                         </button>
                         <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                             <li>
-                                <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">Login / Logout</Link>
+                                <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">Login</Link>
                             </li>
                             <li>
-                                <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">Account Overview</Link>
+                                <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
                             </li>
                             {/* 
                             <li>

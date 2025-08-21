@@ -19,7 +19,6 @@ import Topic from "./trending-topics/Topic"
 import UserGuide from "./other-pages/UserGuide"
 import Account from "./account/account"
 import LoginForm from "./auth/LoginForm"
-import AccountSettings from "./account/accountSettings"
 import MyTopics from "./account/myTopics"
 
 function App() {

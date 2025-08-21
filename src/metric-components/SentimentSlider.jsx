@@ -60,7 +60,7 @@ function SentimentSlider({ sentiment = 0}) {
           )}
         </div>
       </div>
-      <div className="relative w-full h-2 border border-[var(--color-line-grey)] p-1">
+      <div className="relative w-full h-2 border border-[var(--color-line-grey)] p-1 rounded-lg">
         <div
           className="absolute top-0 left-1/2 h-2"
           style={{
