@@ -70,6 +70,8 @@ function MainCol() {
                   sources={article.nSources}
                   sentimentScore={article.metrics.sentiment}
                   subjScore={article.metrics.subjectivity}
+                  region={article.region}
+                  sector={article.sector}
                 />
               </Link>
             </div>

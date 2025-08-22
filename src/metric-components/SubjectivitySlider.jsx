@@ -16,7 +16,7 @@ function SubjectivitySlider({ subjScore = 0 }) {
 
   return (
     <div className="w-full mb-4">
-      <h2 className="text-lg">{language === "zh-Hant" ? "主觀性分析" : language === "zh-Hans" ? "主观性分析": "Subjectivity Index"}</h2>
+      <h2 className="text-lg">{language === "zh-Hant" ? "主觀性分析" : language === "zh-Hans" ? "主观性分析": "Subjectivity Score"}</h2>
       <div className="flex justify-start my-4">
         <div className="w-2/5 flex items-end">
           <p className="text-5xl">{subjScoreRounded}</p>

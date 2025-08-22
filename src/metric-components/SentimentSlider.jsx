@@ -18,13 +18,13 @@ function SentimentSlider({ sentiment = 0}) {
   return (
     <div className="w-full mb-4">
       {/* Title + Sentiment Value */}
-      <div className="flex items-center text-sm font-medium mb-1 relative">
+      <div className="flex items-center text-sm text-[var(--color-text-grey)] font-medium mb-1 relative">
         <span className="mr-1">
           {language === "zh-Hant"
             ? "情感指數"
             : language === "zh-Hans"
             ? "情感指数"
-            : "Sentiment Index"}
+            : "Sentiment Score"}
         </span>
         <span className="ml-1 text-[1.25em]" style={{ color: barColor }}>
           {clampedScore >= 0

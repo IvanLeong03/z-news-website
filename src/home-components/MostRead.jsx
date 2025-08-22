@@ -47,9 +47,13 @@ function MostRead() {
 
       {mostReadArticles.map((article, index) => (
         <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)] text-sm">
-          <Link to={`/article/${article.articleID}`}>
-            <p className="mt-2 my-4">{article.title}</p>
-          
+          <Link to={`/article/${article.articleID}`}>            
+            <div className="flex text-[var(--color-primary)]">
+              <label>{article.region}</label>
+              <label className="mx-2">|</label>
+              <label>{article.sector}</label>
+            </div>            
+            <h2 className="my-4 text-lg">{article.title}</h2>          
             <div className="w-full">
               <SentimentSlider sentiment={article.metrics.sentiment} />
             </div>

@@ -21,7 +21,7 @@ function SentimentGauge({ sentiment = 0 }) {
           ? "情感指數"
           : language === "zh-Hans"
           ? "情感指数"
-          : "Sentiment Index"}
+          : "Sentiment Score"}
         </div>
         <div className="relative">
           <AiOutlineInfoCircle
@@ -90,20 +90,20 @@ function SentimentGauge({ sentiment = 0 }) {
           )}
 
           {/* Labels */}
-          <text x="0" y="120" fontSize="12" fill="#999" textAnchor="start">
+          <text x="3" y="120" fontSize="12" fill="#999" textAnchor="start">
             -1
           </text>
-          <text x="0" y="135" fontSize="12" fill="#999" textAnchor="start">
-            negative
+          <text x="0" y="138" fontSize="12" fill="#999" textAnchor="start">
+            Pessimistic
           </text>
           <text x="110" y="4" fontSize="12" fill="#999" textAnchor="middle">
             0
           </text>
-          <text x="220" y="120" fontSize="12" fill="#999" textAnchor="end">
+          <text x="217" y="120" fontSize="12" fill="#999" textAnchor="end">
             +1
           </text>
-          <text x="220" y="135" fontSize="12" fill="#999" textAnchor="end">
-            positive
+          <text x="220" y="138" fontSize="12" fill="#999" textAnchor="end">
+            Optimistic
           </text>
         </svg>
 
