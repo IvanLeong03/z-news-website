@@ -20,7 +20,7 @@ function Trivia() {
 
     return (
         <>
-            <div className="relative w-9/10 mx-auto flex flex-col justify-start items-start py-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+            <div className="relative w-9/10 mx-auto flex flex-col justify-start items-start pt-4 pb-16 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
                 <h3 className="font-bold text-xl my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
                 <p className="my-2 text-xs lg:text-sm">
                     {question}
@@ -29,7 +29,7 @@ function Trivia() {
                     <button
                         key={index}
                         onClick={() => handleAnswerClick(index)}
-                        className={`w-full bg-[var(--color-bg-grey)] rounded-xl lg:rounded-2xl text-xs lg:text-sm mt-2 ${
+                        className={`w-full bg-[var(--color-bg-grey)] rounded-xl lg:rounded-2xl text-xs lg:text-sm my-2 ${
                             selectedAnswer !== null
                                 ? index === selectedAnswer
                                     ? selectedAnswer === correctAnswerIndex
