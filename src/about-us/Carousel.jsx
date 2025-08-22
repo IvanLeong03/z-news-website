@@ -1,43 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Img1 from "/src/assets/react.svg";
-import Img2 from "/src/assets/react.svg";
-import Img3 from "/src/assets/react.svg";
-import Img4 from "/src/assets/react.svg";
-import Img5 from "/src/assets/react.svg";
 import FilterImg from "/src/assets/filter-image.webp";
 
 const Carousel = () => {
   const carouselSlides = [
     {
       slideImg: Img1,
-      slideHeading: "Article Selection",
-      slideDesc: "Sorting through the noise.",
-      bottomText: "Zimuth seeks that which is relevant to our clients, by algorithmic shortlisting through a semantic deep learning algorithm tuned specifically at their request.",
+      slideHeading: "Global Coverage",
+      slideDesc: "Global Coverage",
+      bottomText: "We provide news from Hong Kong, China and around the world.",
     },
     {
-      slideImg: Img2,
-      slideHeading: "Content extraction",
-      slideDesc: "Seeking the facts.",
-      bottomText: "Zimuth doesn't just reproduce the text of articles - it determines, extracts and cross-references key points algorithmically for the benefit of men and machine alike.",
+      slideImg: Img1,
+      slideHeading: "Personalized Recommendations",
+      slideDesc: "Personalized Recommendations",
+      bottomText: "Articles tailored to your interests an reading history, selected by our AI algorithms.",
     },
     {
-      slideImg: Img3,
-      slideHeading: "Tailor-made summaries",
-      slideDesc: "Distilling the essence.",
-      bottomText: "Zimuth summaries stand out for their close adherence to style of our clients, achieved by our meticulously engineering of every element of the process."
+      slideImg: Img1,
+      slideHeading: "Powerful Search",
+      slideDesc: "Powerful Search",
+      bottomText: "Find specific news articles and topics quickly."
     },
     {
-      slideImg: Img4,
-      slideHeading: "Fully polished export",
-      slideDesc: "Ready-to-use reports.",
-      bottomText: "Zimuth reports are manually tailored to adhere precisely to the strictest formatting standards of our clients, with additional redundancy checks to boot.",
+      slideImg: Img1,
+      slideHeading: "Coverage Analysis",
+      slideDesc: "Coverage Analysis",
+      bottomText: "Understand different perspectives on important stories.",
     },
     {
-      slideImg: Img5,
-      slideHeading: "Full automation",
-      slideDesc: "Greater than its parts.",
-      bottomText: "Zimuth automates the creation of professional media monitoring reports from start-to-finish, with an uncompromising attitude towards quality throughout.",
+      slideImg: Img1,
+      slideHeading: "Reading History",
+      slideDesc: "Reading History",
+      bottomText: "Keep track of articles you've read so you can revisit them, and your activity helps optimise our recommendations.",
     },
   ];
 
@@ -79,11 +75,9 @@ const Carousel = () => {
 
   return (
     <div className="w-full relative py-20 bg-darkWhite">
-      <div className="flex absolute right-0 justify-start w-full">
-        <h2 className="w-full max-w-6xl text-left text-[1.5rem] md:text-[2.5rem] font-semibold">
-          Zone News: Features
-        </h2>
-      </div>
+      <h2 className="w-full text-center text-[1.5rem] md:text-[2.5rem] font-semibold">
+        Features
+      </h2>
       <div className="relative mt-12 overflow-hidden py-8 w-full">
         <motion.div
           className="flex"
@@ -99,7 +93,7 @@ const Carousel = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative overflow-hidden rounded-xl cursor-pointer h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] max-h-[650px] w-[70dvw] md:w-[40dvw] xl:w-[20dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+              <div className="relative overflow-hidden rounded-xl cursor-pointer h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] max-h-[650px] w-[70dvw] md:w-[40dvw] xl:w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
                     src={slide.slideImg}

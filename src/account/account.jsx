@@ -1,25 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
+import SavedArticles from "./SavedArticles";
 
 function Account() {    
-    return (
-        <div className="w-1/2 mx-auto">
-            <h1 className="text-2xl font-bold my-4">Account Overview and Settings</h1>
+    const { language } = useLanguage();
 
-            <div className="my-12">
+    return (
+        <div className="w-1/2 mx-auto p-4">
+            <h1 className="text-3xl font-bold my-16">Profile and Settings</h1>
+
+            <div className="mt-24">
                 {/* fetch every field from user object */}
-                <p className="my-2">Username: admin</p>
-                <p className="my-2">email: something@somedomain.com</p>
-                <p className="mt-8">subscription plan: free</p>
-                <button className="rounded-xl my-4 px-2 border border-[var(--color-line-grey)]">edit subscription</button>
+                <p className="my-2 font-semibold">admin</p>
+                <p className="mt-2 mb-24 text-[var(--color-text-lightgrey)]">something@somedomain.com</p>
 
                 <div className="flex flex-col my-12">
                     <h2 className="font-semibold">Reading History</h2>
-                    <label className="text-sm text-[var(--color-text-lightgrey)]">View your reading history</label>
+                    <Link to={"/account/reading-history"} className="text-[var(--color-dark-turquoise)] hover:underline">
+                        <label className="text-sm text-[var(--color-text-lightgrey)]">View your reading activity</label>
+                    </Link>
                 </div>
 
                 <div className="flex flex-col my-12">
                     <h2 className="font-semibold">Saved articles</h2>
-                    <label className="text-sm text-[var(--color-text-lightgrey)]">View your saved items</label>
+                    <Link to={"/account/saved-articles"} className="text-[var(--color-dark-turquoise)] hover:underline">
+                        <label className="text-sm text-[var(--color-text-lightgrey)]">View your saved items</label>
+                    </Link>
                 </div>
 
                 <div className="flex flex-col my-12">
@@ -27,21 +34,22 @@ function Account() {
                     <label className="text-sm text-[var(--color-text-lightgrey)]">Edit which media to show according to region</label>
                 </div>
 
-                <p>Billing method: None/card/paypal ...</p>
-                <button className="rounded-xl my-4 px-2 border border-[var(--color-line-grey)]">change payment method</button>
-                <br/>
-                <button className="rounded-xl my-4 px-2 border border-[var(--color-line-grey)]">change password</button>
-                {/* to be added as a feature in future updates
-                <div>
-                    <label className="block font-semibold mb-1">Font Size</label>
-                    <select className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <option>Small</option>
-                        <option>Medium</option>
-                        <option>Large</option>
-                        <option>Extra Large</option>
-                    </select>
+                <div className="flex flex-col my-12">
+                    <h2 className="font-semibold">Billing</h2>
+                    <label className="text-sm text-[var(--color-text-lightgrey)]">Manage your payment methods</label>
                 </div>
-                */}
+                              
+                <div className="flex flex-col my-12">
+                    <h2 className="font-semibold">Manage subscription</h2>
+                    <label className="text-sm text-[var(--color-text-lightgrey)]">View and manage your current subscription</label>
+                </div>
+
+                <div className="flex flex-col my-12">
+                    <h2 className="font-semibold">Reset password</h2>
+                    <Link to={"/account/reading-history"} className="text-[var(--color-dark-turquoise)] hover:underline">
+                        <label className="text-sm text-[var(--color-text-lightgrey)]">Click to receive email link to reset password</label>
+                    </Link>
+                </div>
             </div>
         </div>
     );

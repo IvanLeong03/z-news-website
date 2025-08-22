@@ -64,7 +64,7 @@ function Navbar() {
                         </li>
                         <li>
                             <Link to="/for-you">
-                                {language === "zh-Hant" ? "個人推薦" : language === "zh-Hans" ? "个人推荐" : "FOR YOU"}
+                                {language === "zh-Hant" ? "個人推薦" : language === "zh-Hans" ? "个人推荐" : "RECOMMENDED"}
                             </Link>
                         </li>
                     </ul>
@@ -82,10 +82,14 @@ function Navbar() {
                         </button>
                         <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                             <li>
-                                <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">Login</Link>
+                                <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">
+                                    {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
+                                </Link>
                             </li>
                             <li>
-                                <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
+                                <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">
+                                    {language === "zh-Hant" ? "帳戶" : language === "zh-Hans" ? "账户" : "Profile"}
+                                </Link>
                             </li>
                             {/* 
                             <li>

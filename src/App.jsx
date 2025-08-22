@@ -20,6 +20,8 @@ import UserGuide from "./other-pages/UserGuide"
 import Account from "./account/account"
 import LoginForm from "./auth/LoginForm"
 import MyTopics from "./account/myTopics"
+import SavedArticles from "./account/SavedArticles"
+import ReadingHistory from "./account/ReadingHistory"
 
 function App() {
   return (
@@ -43,8 +45,9 @@ function App() {
             <Route path="/user-guide" element={<UserGuide />} />
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<LoginForm />} />
-            {/*<Route path="/account/settings" element={<AccountSettings />} />*/}
             <Route path="/account/topics" element={<MyTopics />} />
+            <Route path="/account/saved-articles" element={<SavedArticles />} />
+            <Route path="/account/reading-history" element={<ReadingHistory />} />
           </Routes>
           <Footer />                
         </LanguageProvider>  
