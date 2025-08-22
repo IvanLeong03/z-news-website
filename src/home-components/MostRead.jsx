@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchArticle } from "../services/articleService";
-import { login } from "../services/authService";
 import { Link } from "react-router-dom";
 
 function MostRead() {
@@ -16,9 +15,6 @@ function MostRead() {
   useEffect(() => {
       const loadArticles = async () => {
           try {
-              // First authenticate
-              //await login("admin", "admin");
-
               const fetchPromises = [];
               for (let i = 0; i < NUM_ARTICLES; i++) {
                   fetchPromises.push(fetchArticle(i));
@@ -39,6 +35,15 @@ function MostRead() {
   if (loading) return <div>Loading articles...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
+  // Helper function to calculate "hours ago"
+  function getHoursAgo(dateString) {
+    const articleDate = new Date(dateString);
+    const now = new Date();
+    const diffMs = now - articleDate;
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    return diffHours;
+  }
+
   return (
     <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto p-2">
       <h2 className="font-bold text-xl mt-2 mb-6">
@@ -46,9 +51,9 @@ function MostRead() {
       </h2>
 
       {mostReadArticles.map((article, index) => (
-        <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)] text-sm">
+        <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)]">
           <Link to={`/article/${article.articleID}`}>            
-            <div className="flex text-[var(--color-primary)]">
+            <div className="flex text-[var(--color-primary)] text-sm">
               <label>{article.region}</label>
               <label className="mx-2">|</label>
               <label>{article.sector}</label>
@@ -57,10 +62,15 @@ function MostRead() {
             <div className="w-full">
               <SentimentSlider sentiment={article.metrics.sentiment} />
             </div>
-            <div className="flex mt-2">
+            <div className="flex mt-2 items-center">
               <p className="text-xs whitespace-nowrap">
                 {article.nSources}
-                {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' sources'}
+                {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
+              </p>
+              <label className="mx-2"> · </label>
+              <p className="text-xs whitespace-nowrap">
+                {getHoursAgo(article.date)}
+                {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
               </p>
             </div>
           </Link>

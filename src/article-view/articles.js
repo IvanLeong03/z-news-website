@@ -9,7 +9,7 @@ const articles = [
       'zh-Hans': "习近平会见国际商界代表，北京展现魅力"
     },
     image: "/src/assets/university1.jpg",
-    liberalPercent: 33,
+    pPercent: 33,
     cPercent: 67,
     sources: 30,
     sentimentScore: -0.25,
@@ -21,7 +21,7 @@ const articles = [
     },
     firstReported: "28 March, 2025",
     published: "28 March, 2025 (updated 2 hours ago)",
-    linked_articles: ['article 1', 'article 2', 'article 3']
+    relatedArticles: ['article 1', 'article 2', 'article 3']
   },
   {
     id: "002",
@@ -31,7 +31,7 @@ const articles = [
       'zh-Hans': "「逆邓」：欧洲能否扭转局势，获取中国电池技术？"
     },
     image: "/src/assets/section-3-background-2.jpg",
-    liberalPercent: 49,
+    pPercent: 49,
     cPercent: 51,
     sources: 22,
     sentimentScore: -0.22,
@@ -42,7 +42,7 @@ const articles = [
     },
     firstReported: "30 March, 2025",
     published: "30 March, 2025 (updated 1 hour ago)",
-    linked_articles: ['article 1', 'article 2']
+    relatedArticles: ['article 1', 'article 2']
   },
   {
     id: "003",
@@ -52,7 +52,7 @@ const articles = [
       'zh-Hans': "在川普不确定性下，这是中国在东南亚结交朋友的最佳时机吗？"
     },
     image: "/src/assets/university1.jpg",
-    liberalPercent: 60,
+    pPercent: 60,
     cPercent: 40,
     sources: 16,
     location: {
@@ -62,7 +62,7 @@ const articles = [
     },
     firstReported: "30 March, 2025",
     published: "30 March, 2025 (updated 1 hour ago)",
-    linked_articles: ['article 1', 'article 2', 'article 3', 'article 4']
+    relatedArticles: ['article 1', 'article 2', 'article 3', 'article 4']
   },
   {
     id: "004",
@@ -75,7 +75,7 @@ const articles = [
     location: "Earth",
     firstReported: "30 March, 2025",
     published: "30 March, 2025 (updated 1 hour ago)",
-    linked_articles: []
+    relatedArticles: []
   },
   {
     id: "005",
@@ -90,7 +90,7 @@ const articles = [
     location: "Hong Kong",
     firstReported: "30 February, 2026",
     published: "30 February, 2026 (updated 1 hour ago)",
-    linked_articles: []
+    relatedArticles: []
   },
   {
     id: "006",
@@ -100,7 +100,7 @@ const articles = [
       'zh-Hans': "人工智能突破：新模型创下语言理解新纪录"
     },
     image: "/src/assets/ai-news.jpg",
-    liberalPercent: 55,
+    pPercent: 55,
     cPercent: 45,
     sources: 18,
     sentimentScore: 0.72,
@@ -112,7 +112,7 @@ const articles = [
     },
     firstReported: "1 April, 2025",
     published: "1 April, 2025 (updated 30 minutes ago)",
-    linked_articles: ['article 2', 'article 5']
+    relatedArticles: ['article 2', 'article 5']
   },
    {
     id: "007",
@@ -122,7 +122,7 @@ const articles = [
       'zh-Hans': "小米汽车业务预计今年三四季度实现盈利"
     },
     image: "/src/assets/xiaomisu7u1.jpg",
-    liberalPercent: 62,
+    pPercent: 62,
     cPercent: 38,
     sources: 12,
     sentimentScore: 0.5,
@@ -134,7 +134,7 @@ const articles = [
     },
     firstReported: "1 April, 2025",
     published: "1 April, 2025 (updated 30 minutes ago)",
-    linked_articles: ['article 2', 'article 5']
+    relatedArticles: ['article 2', 'article 5']
   }
 ];
 

@@ -17,16 +17,16 @@ function UserGuide() {
             <span className="italic">[Looking out of the car window]</span>
           </p>
           <p>
-            The "Conservative" metric reflects the traditional or status quo perspective of the article. Articles with a higher Conservative score tend to focus on preserving existing values and institutions, while lower scores may indicate a more progressive or reformist stance.
+            The "Conservative" metric reflects the traditional or status quo perspective of the article. Articles with a higher Conservative score tend to focus on preserving existing values and institutions, while lower scores may indicate a more Progressive or reformist stance.
           </p>
         </section>
         <section className="mb-8">
-          <h3 className="text-lg font-semibold mb-2">Liberal</h3>
+          <h3 className="text-lg font-semibold mb-2">Progressive</h3>
           <p className="mb-2">
             <span className="italic">[Love is blooming]</span>
           </p>
           <p>
-            The "Liberal" metric indicates how forward-thinking or change-oriented the article is. Articles with a higher Liberal score tend to advocate for new ideas, reforms, or social change, while lower scores may reflect more traditional or conservative viewpoints.
+            The "Progressive" metric indicates how forward-thinking or change-oriented the article is. Articles with a higher Progressive score tend to advocate for new ideas, reforms, or social change, while lower scores may reflect more traditional or conservative viewpoints.
           </p>
         </section>
         <section className="mb-8">

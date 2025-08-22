@@ -18,7 +18,7 @@ function SearchObject({index}) {
         image: "src/assets/university1.jpg",
         date: "30-02-2025",
         cPercent: 49,
-        liberalPercent: 51,
+        pPercent: 51,
         sources: 22
     };
 
@@ -32,7 +32,7 @@ function SearchObject({index}) {
                     <h2 className="text-2xl font-semibold mt-6 mb-12">{result.title[language] || result.title.en}</h2>
                     <div className="w-full flex justify-between items-start">
                         <div className="p-2 w-1/3">
-                            <SplitBar cPercent={result.cPercent} liberalPercent={result.liberalPercent} />
+                            <SplitBar cPercent={result.cPercent} pPercent={result.pPercent} />
                         </div>
                         <div className="p-2 w-1/4">
                             <SentimentSlider />

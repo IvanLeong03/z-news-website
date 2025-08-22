@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SplitBar({ cPercent = 50, liberalPercent = 50 }) {
+function SplitBar({ cPercent = 50, pPercent = 50 }) {
   return (
     <div className="flex flex-col w-full text-xs text-[var(--color-gs-black)]">
       <p>Conservative</p>
@@ -14,13 +14,13 @@ function SplitBar({ cPercent = 50, liberalPercent = 50 }) {
         </div>
         <div
           className="flex items-center justify-center bg-[var(--color-secondary-3)] py-1"
-          style={{ width:`${liberalPercent}%`, fontSize: liberalPercent < 20 ? '0.40rem' : '0.75rem' }}
+          style={{ width:`${pPercent}%`, fontSize: pPercent < 20 ? '0.40rem' : '0.75rem' }}
         >
-          {liberalPercent}%
+          {pPercent}%
         </div>
       </div>
       <div className='w-full flex justify-end'>
-        <p>Liberal</p>
+        <p>Progressive</p>
       </div>
 
     </div>

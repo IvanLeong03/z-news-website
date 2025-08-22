@@ -50,7 +50,7 @@ function MainCol() {
           headline={mainArticle.title?.[language]}
           image={mainArticle.image}
           cPercent={mainArticle.cPercent}
-          liberalPercent={mainArticle.liberalPercent}
+          pPercent={mainArticle.pPercent}
           sources = {mainArticle.sources}
           sentScore={mainArticle.sentimentScore}
           subjScore={mainArticle.subjectivityScore}
@@ -66,7 +66,7 @@ function MainCol() {
                   headline={article.title}
                   image={article.pictureURL}
                   cPercent={article.coverage.percentage.centric}
-                  liberalPercent={article.coverage.percentage.progressive}
+                  pPercent={article.coverage.percentage.Progressive}
                   sources={article.nSources}
                   sentimentScore={article.metrics.sentiment}
                   subjScore={article.metrics.subjectivity}

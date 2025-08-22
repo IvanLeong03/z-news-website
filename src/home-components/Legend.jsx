@@ -19,11 +19,11 @@ function Legend() {
             ? "新闻指标"
             : "What are these?"}
         </h2>
-        <div className='w-3/4 mx-auto'>
+        <div className='w-full mx-auto'>
           <SplitBar />
         </div>
         <div className='flex flex-col justify-between py-4 my-2 text-[var(--color-gs-black)]'>
-            <div className='mb-2'>
+            <div className='my-4 text-sm'>
               <p>
                 {language === "zh-Hant"
                   ? "中立："
@@ -39,35 +39,35 @@ function Legend() {
                   : "The article leans towards a conservative perspective."}
               </p>
             </div>
-            <div className='mt-2 mb-6'>
+            <div className='my-4 text-sm'>
               <p>
                 {language === "zh-Hant"
                   ? "進步："
                   : language === "zh-Hans"
                   ? "进步："
-                  : "Liberal:"}
+                  : "Progressive:"}
               </p>
               <p>
                 {language === "zh-Hant"
                   ? "我起床後上廁所然後回到床上繼續睡"
                   : language === "zh-Hans"
                   ? "我起床后上厕所然后回到床上继续睡"
-                  : "The article takes a liberal stance."}
+                  : "The article takes a Progressive stance."}
               </p>
             </div>
         </div>
         <div className='flex flex-col items-center text-[var(--color-gs-black)] py-2'>
-            <div className='w-4/5 mb-4'>
+            <div className='w-full mb-4'>
               <SentimentSlider />
               <p className='text-center my-4'>or</p>
               <SentimentGauge />
             </div>
-            <p className='mt-8 mb-16'>
+            <p className='mt-8 mb-16 text-sm'>
               {language === "zh-Hant"
                 ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分"
                 : language === "zh-Hans"
                 ? "根据文中正面和负面用字的比例计算情绪，给予-1（最悲观）至 1 （最乐观）的评分"
-                : "We assign a score from -1 (most negative) to 1 (most positive)."}
+                : "The Sentiment Score measures the emotional tone of the article. An articles receives a score from -1 (most pessimistic) to +1 (most optimistic)."}
             </p>
         </div>
         <div className='flex flex-col text-[var(--color-gs-black)] py-2'>

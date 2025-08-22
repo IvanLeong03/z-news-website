@@ -1,7 +1,7 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-function OutletDistribution({ cPercent, liberalPercent }) {  
+function OutletDistribution({ cPercent, pPercent }) {  
     const { language } = useLanguage();
 
     return (
@@ -19,7 +19,7 @@ function OutletDistribution({ cPercent, liberalPercent }) {
                 </div>
                 <div
                 className="flex items-center justify-center bg-[var(--color-secondary-3)] p-1"
-                style={{ width:`${liberalPercent}%` }}
+                style={{ width:`${pPercent}%` }}
                 >
                 </div>
             </div>

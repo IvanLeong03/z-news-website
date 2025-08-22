@@ -32,7 +32,7 @@ function China() {
                             />
                         </div>
                         <div className="w-1/2 my-4">
-                            <SplitBar cPercent={article.cPercent} liberalPercent={article.liberalPercent} />
+                            <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
                         </div>
                         <h2 className="text-xl font-semibold mb-2">{article.title[language] || article.title.en}</h2>
                     </div>
