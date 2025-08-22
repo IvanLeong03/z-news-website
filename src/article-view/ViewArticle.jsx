@@ -1,85 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SplitBar from "../metric-components/SplitBar";
 import SentimentExplanation from "../metric-components/SentimentExplanation";
 import Ads from "../home-components/Ads";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import SentimentGauge from "../metric-components/SentimentGauge";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
+import { fetchArticle } from "../services/articleService";
 
-function Article() {
-    const { id } = useParams(); 
-    const article = articles.find((a) => a.id === id);
-    if (!article) return <p>Article not found.</p>;
-    const relatedArticles = article.relatedArticles;
+
+function ViewArticle() {
+    const { id } = useParams();
     const { language } = useLanguage();
+    const location = useLocation();
+    const article = location.state?.article;
+    const [error, setError] = useState(null);
     const [bookmarked, setBookmarked] = useState(false);
 
-    // Toggle bookmark state
     const handleBookmark = () => {
         setBookmarked(prevState => !prevState); // Toggle the current value
-        
-        // Optional: Add your API call here if saving to backend
-        // Example:
-        // try {
-        //   await api.toggleBookmark(articleId);
-        // } catch (error) {
-        //   setBookmarked(prevState => !prevState); // Revert if API fails
-        //   console.error('Bookmark failed:', error);
-        // }
+
     };
 
-    const summaryEn = [
-        [
-            "One",
-            "Two",
-            "Three",
-        ], 
-        [
-            "Four",
-            "Five",
-            "Six",
-        ]
-    ];
+    if (error) return <div className="text-red-500 text-center py-8">Error: {error}</div>;
+    if (!article) return <div className="text-center py-8">Article not found.</div>;
 
-    const summaryTraditional = [
-        [
-            "一",
-            "二",
-            "三",
-        ],
-        [
-            "四",
-            "五",
-            "六",
-        ]
-    ];
+    {console.log(article)}
 
-    const summarySimplified = [
-        [
-            "一",
-            "二",
-            "三",
-        ],
-        [
-            "四",
-            "五",
-            "六",
-        ]
-    ];
-
-    let summary;
-    if (language === "zh-Hant") {
-        summary = summaryTraditional;
-    } else if (language === "zh-Hans") {            
-        summary = summarySimplified;
-    } else {
-        summary = summaryEn;
+    function getHoursAgo(dateString) {
+        const articleDate = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - articleDate;
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        return diffHours;
     }
-    // will have to move these to a separate file that matches summaries to article id, currently all articles have the same summaries
 
     return (
         <article className="grid grid-cols-[3fr_1fr_1fr] overflow-hidden justify-center items-start w-[90dvw] h-full mx-auto">
@@ -87,14 +44,19 @@ function Article() {
             <div className="min-h-dvh py-6 px-1">
                 { /* article title and image */ }
                 <div className="flex-col flex-grow w-9/10 mx-auto">
-                    <div className="flex text-[#252525] text-xs">
-                        <p className="pr-2 border-r border-[var(--color-line-verylightgrey)]">{article.location?.[language]}</p>
-                        <p className="px-2 border-r border-[var(--color-line-verylightgrey)]">{language === 'zh-Hant'? "首次報導" : language === 'zh-Hans' ? "首次报导" : "First reported"}: {article.firstReported}</p>
-                        <p className="px-2">Published: {article.published}</p>
-                        { /* is this needed? */}
-                    </div>
-                    <img src={article.image} className="w-full" />
-                    <h1 className="text-3xl font-semibold my-2">{article.title?.[language]}</h1>
+                    <div className="flex justify-between items-center">
+                        <div className="flex text-[var(--color-primary)] mt-1 text-sm">
+                            <label>{article.region}</label>
+                            <label className="mx-2">|</label>
+                            <label>{article.sector}</label>
+                        </div>
+                        <div className="text-[var(--color-text-lightgrey)] text-sm">
+                            {article.date}
+                        </div>
+
+                    </div>                                        
+                    <img src={article.pictureURL} className="w-full" />
+                    <h1 className="text-3xl font-semibold my-2">{article.title}</h1>
                 </div>
                 {/* summaries */}
                 <div className="flex flex-col w-9/10 mx-auto my-8 ">                                    
@@ -107,36 +69,26 @@ function Article() {
                         </button>
                     </div>                    
                     
-                    <div className="grid grid-rows-2 bg-[var(--color-summary-background)] min-h-[20rem] px-2">
+                    <div className="grid grid-rows-2 bg-[var(--color-summary-background)] px-2">
                         <div className="border-b border-[var(--color-line-grey)] py-4">
                             <h2 className="font-bold">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What happened"}</h2>
-                            <ul className="list-disc list-inside">
-                                {summary[0].map((event, index) => (
-                                    <li key={index} className="text-lg px-6 my-1">{event}</li>
-                                ))}
-                            </ul>                        
-                        </div>
-                        
-                        <div className="py-4">
-                            <h2 className="font-bold">{language === "zh-Hant" ? "影響" : language === "zh-Hans" ? "影响" :  "What it means"}</h2>
-                            <ul className="list-disc list-inside">
-                                {summary[1].map((implication, index) => (
-                                    <li key={index} className="text-lg px-6 my-1">{implication}</li>
-                                ))}
-                            </ul>                                  
-                        </div>                        
+                            <p>{article.description}</p>                      
+                        </div>                                               
                         <p className="text-[var(--color-text-lightgrey)] text-xs px-4">This summary is generated by SearcherAI.</p>
                     </div>
                 </div>
-                { /* reported articles */}
-                <div className="flex flex-col w-9/10 mx-auto my-4">
-                    <h1 className="font-bold text-xl">Reported articles</h1>
-                    <ul className="my-4">
-                        {relatedArticles.map((linked_article, index) => (
-                            <li key={index} className="py-2">{linked_article}</li>
-                        ))}
-                    </ul>    
-                </div>                               
+                { /* reported articles */}     
+                <div className="flex items-center px-2">
+                    <p className="text-xs whitespace-nowrap">
+                        {article.nSources}
+                        {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
+                    </p>
+                    <label className="mx-2"> · </label>
+                    <p className="text-xs whitespace-nowrap">
+                        {getHoursAgo(article.date)}
+                        {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                    </p>
+                </div>                        
             </div>
 
             { /* second column: distribution, sentiment, subjectivity */}
@@ -145,12 +97,12 @@ function Article() {
                     <h1 className="font-bold text-xl">Leaning distribution</h1>
                     <div className="mt-4 my-2">
                         <Link to="/user-guide">
-                            <SplitBar cPercent={article.cPercent} pPercent={article.pPercent} />
+                            <SplitBar cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} />
                         </Link>
                     </div>
                     
                     <div className="my-4">
-                        <OutletDistribution cPercent={article.cPercent} pPercent={article.pPercent}/>
+                        <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100}/>
                     </div>
                     <div className="my-4">
                         <SentimentExplanation sentiment={"Stats for distribution"} />
@@ -160,7 +112,7 @@ function Article() {
                     <h1 className="font-bold text-xl">Metric analysis</h1>  
                     <div className="my-12">
                         <div className="my-4">
-                            <SentimentGauge sentiment={article.sentimentScore}/>
+                            <SentimentGauge sentiment={article.metrics.sentiment}/>
                         </div>
                         <div className="mb-4 mt-12">
                             <SentimentExplanation sentiment={"Elaboration"} />
@@ -168,7 +120,7 @@ function Article() {
                     </div>   
                     <div className="my-18">
                         <div className="mt-4 mb-2">
-                            <SubjectivitySlider />
+                            <SubjectivitySlider subjScore={article.metrics.subjectivity}/>
                         </div>
                         <div className="my-4">
                             <SentimentExplanation sentiment={"Elaboration"} />
@@ -192,6 +144,7 @@ function Article() {
             </div>
         </article>                
     )        
+
 }
 
-export default Article;
+export default ViewArticle

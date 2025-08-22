@@ -45,24 +45,24 @@ function MostRead() {
   }
 
   return (
-    <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto p-2">
-      <h2 className="font-bold text-xl mt-2 mb-6">
+    <div className="relative w-9/10 flex-grow flex-col justify-start items-start mx-auto px-2">
+      <h2 className="font-bold text-xl my-2">
         {language === 'zh-Hant' ? '熱門新聞' : language === 'zh-Hans' ? '热门新闻' : 'Most Read'}
       </h2>
 
       {mostReadArticles.map((article, index) => (
-        <div key={index} className="flex-grow flex-col justify-between items-start mt-4 pb-4 border-b border-[var(--color-line-grey)]">
+        <div key={index} className="flex-grow flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)]">
           <Link to={`/article/${article.articleID}`}>            
             <div className="flex text-[var(--color-primary)] text-sm">
               <label>{article.region}</label>
               <label className="mx-2">|</label>
               <label>{article.sector}</label>
             </div>            
-            <h2 className="my-4 text-lg">{article.title}</h2>          
+            <h2 className="my-2 text-lg">{article.title}</h2>          
             <div className="w-full">
               <SentimentSlider sentiment={article.metrics.sentiment} />
             </div>
-            <div className="flex mt-2 items-center">
+            <div className="flex items-center">
               <p className="text-xs whitespace-nowrap">
                 {article.nSources}
                 {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}

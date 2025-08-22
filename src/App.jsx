@@ -22,6 +22,7 @@ import LoginForm from "./auth/LoginForm"
 import MyTopics from "./account/myTopics"
 import SavedArticles from "./account/SavedArticles"
 import ReadingHistory from "./account/ReadingHistory"
+import ViewArticle from "./article-view/ViewArticle"
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             <Route path="/hk" element={<HongKong />} />
             <Route path="/today" element={<Today />} />
             <Route path="/for-you" element={<ForYou/>} />
-            <Route path="/article/:id" element={<Article />} />
+            <Route path="/article/:id" element={<ViewArticle />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/topics/:topic" element={<Topic />} />
             <Route path="/user-guide" element={<UserGuide />} />

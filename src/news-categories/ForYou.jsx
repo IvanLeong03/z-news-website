@@ -12,7 +12,7 @@ function ForYou() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const NUM_ARTICLES = 5; // Change this value to fetch more or fewer articles
+    const NUM_ARTICLES = 6; // Change this value to fetch more or fewer articles
 
     useEffect(() => {
         const loadArticles = async () => {

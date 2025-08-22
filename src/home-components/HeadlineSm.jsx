@@ -1,32 +1,49 @@
 import React from "react";
-import SplitBar from "../metric-components/SplitBar";
 import SentimentSlider from "../metric-components/SentimentSlider";
-import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 
-function HeadlineSm({headline = "default headline", image = "logos/logo_vertical_white_gradientbg.png", cPercent=50, pPercent=50, sources=3, sentimentScore, subjScore, region, sector}) {
+function HeadlineSm({article}) {
     const { language } = useLanguage();
+
+    function getHoursAgo(dateString) {
+        const articleDate = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - articleDate;
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        return diffHours;
+    }
+
     return (
         <article className="flex flex-col items-stretch w-full mb-6">
             <div className="w-full flex">
                 {/* image */}
                 <div className="w-2/5 aspect-[16/9] overflow-hidden">
-                    <img src={image} alt='HeadlineImage' className="w-full h-full object-cover" />
+                    <img src={article.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
                 </div>
                 {/* sentiment score */}
                 <div className="w-3/5 p-2">
-                    <SentimentSlider sentiment={sentimentScore}/>
+                    <SentimentSlider sentiment={article.metrics.sentiment}/>
                 </div>                
             </div>
-
+            {/* region, sector, headline, nSources and time */}
             <div className="w-full flex flex-col">
                 <div className="flex text-[var(--color-primary)] my-2 text-sm">
-                    <label>{region}</label>
+                    <label>{article.region}</label>
                     <label className="mx-2">|</label>
-                    <label>{sector}</label>
+                    <label>{article.sector}</label>
                 </div>                                                                     
-                <h1 className="w-full text-lg lg:text-xl font-semibold text-left">{headline}</h1>
-                <p className="text-xs text-left">{sources} {language === 'zh-Hant' ? "篇文章" : language === 'zh-Hans' ? "篇文章" : "source articles" }</p>
+                <h1 className="w-full text-lg lg:text-xl font-semibold text-left">{article.title}</h1>
+                <div className="flex items-center">
+                    <p className="text-xs whitespace-nowrap">
+                        {article.nSources}
+                        {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
+                    </p>
+                    <label className="mx-2"> · </label>
+                    <p className="text-xs whitespace-nowrap">
+                        {getHoursAgo(article.date)}
+                        {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                    </p>
+                </div>
             </div>
         </article>
     )
