@@ -47,8 +47,7 @@ function MainCol() {
   return (
     <div className="w-full h-auto flex flex-grow flex-col justify-start items-center pt-6 px-2 border-r border-l border-[var(--color-line-lightgrey)]">
       { /* one large article, and the rest will be smaller ones */}
-
-      <Link to={`/article/${mainArticle.articleID}`} state={{ mainArticle }}>
+      <Link to={`/article/${mainArticle.articleID}`} state={{ article: mainArticle }}>
         <HeadlineLg
           article = {mainArticle}
         />

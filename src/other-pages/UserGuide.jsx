@@ -49,6 +49,7 @@ function UserGuide() {
             <li><b>0:</b> Most objective (fact-based)</li>
             <li><b>1:</b> Most subjective (opinion-based)</li>
           </ul>
+          <p>We define objectivity as High if the score is lower than 0.2, Medium if the score lies between 0.2 and 0.6, and Low if the score is above 0.6</p>
         </section>
         <section>
           <h3 className="text-lg font-semibold mb-2">Sources</h3>

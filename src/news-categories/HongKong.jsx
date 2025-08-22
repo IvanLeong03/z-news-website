@@ -17,8 +17,6 @@ function HongKong() {
     useEffect(() => {
         const loadArticles = async () => {
             try {
-                //await login("admin", "admin");
-
                 const fetchPromises = [];
                 for (let i = 0; i < NUM_ARTICLES; i++) {
                     fetchPromises.push(fetchArticle(i));
@@ -54,7 +52,7 @@ function HongKong() {
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <Link to={`/article/${article.articleID}`}>
+                            <Link to={`/article/${article.articleID}`} state={{ article }}>
                                 <img
                                     src={article.pictureURL}
                                     alt={article.title}

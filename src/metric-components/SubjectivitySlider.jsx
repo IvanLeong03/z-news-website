@@ -24,7 +24,7 @@ function SubjectivitySlider({ subjScore = 0 }) {
         </div>
         <div className="w-3/5 text-xs text-center pl-2">
           <div className={boxColor}>
-            {subjScoreRounded < 0.2 ? "High" : subjScoreRounded < 0.6 ? "Medium" : "Low" } objectivity
+            {subjScoreRounded < 0.2 ? "High" : subjScoreRounded < 0.6 ? "Med." : "Low" } objectivity
           </div>
 
         </div>

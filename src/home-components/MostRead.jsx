@@ -52,7 +52,7 @@ function MostRead() {
 
       {mostReadArticles.map((article, index) => (
         <div key={index} className="flex-grow flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)]">
-          <Link to={`/article/${article.articleID}`}>            
+          <Link to={`/article/${article.articleID}`} state={{ article }}>            
             <div className="flex text-[var(--color-primary)] text-sm">
               <label>{article.region}</label>
               <label className="mx-2">|</label>

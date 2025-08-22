@@ -47,7 +47,6 @@ function ForYou() {
                 {articles.map((article, index) => (
                     <div
                         key={index}
-
                         className={
                             index === 0
                                 ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem] text-3xl"
@@ -56,7 +55,7 @@ function ForYou() {
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <Link to={`/article/${article.articleID}`}>
+                            <Link to={`/article/${article.articleID}`} state={{ article }}>
                                 <img
                                     src={article.pictureURL}
                                     alt={article.title}

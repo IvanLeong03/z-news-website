@@ -53,7 +53,7 @@ function Today() {
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <Link to={`/article/${article.articleID}`}>
+                            <Link to={`/article/${article.articleID}`} state={{ article }}>
                                 <img
                                     src={article.pictureURL}
                                     alt={article.title}
