@@ -26,9 +26,9 @@ function Legend() {
             <div className='my-4 text-sm'>
               <p>
                 {language === "zh-Hant"
-                  ? "中立："
+                  ? "保守："
                   : language === "zh-Hans"
-                  ? "中立："
+                  ? "保守："
                   : "Conservative:"}
               </p>
               <p>

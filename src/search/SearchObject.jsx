@@ -5,52 +5,32 @@ import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 
 
-function SearchObject({index}) {
+function SearchObject({article}) {
     const { language } = useLanguage();
-
-    const result = {
-        id: "101",
-        title: {
-            en: `Result ${index}`,  // Fixed string interpolation
-            "zh-Hant": `文章 ${index}`,
-            "zh-Hans": `文章 ${index}`
-        },
-        image: "src/assets/university1.jpg",
-        date: "30-02-2025",
-        cPercent: 49,
-        pPercent: 51,
-        sources: 22
-    };
 
     return (
 
-        <div className="grid grid-cols-1">
-            <div className="flex w-full my-6 min-h-[25dvh]">
-                {/* left: date, title, metrics */}
-                <div className="flex flex-col w-3/4 px-5">
-                    <p className="text-xs">{result.date}</p>
-                    <h2 className="text-2xl font-semibold mt-6 mb-12">{result.title[language] || result.title.en}</h2>
-                    <div className="w-full flex justify-between items-start">
-                        <div className="p-2 w-1/3">
-                            <SplitBar cPercent={result.cPercent} pPercent={result.pPercent} />
-                        </div>
-                        <div className="p-2 w-1/4">
-                            <SentimentSlider />
-                        </div>
-                        <div className="p-2 w-1/4">
-                            <SubjectivitySlider />
-                        </div>
-                        <div className="p-2">
-                            <p className="text-sm">
-                                {result.sources} {language === "zh-Hant" || language === "zh-Hans" ? "篇文章" : "source articles"}
-                            </p>
-                        </div>
+        <div className="grid grid-cols-[3fr_1fr] w-full my-6 min-h-[25dvh]">
+            {/* left: date, title, metrics */}
+            <div className="flex flex-col px-5">
+                <p className="text-xs">{article.date.slice(0, 10)}</p>
+                <h2 className="text-2xl font-semibold my-8">{article.title}</h2>
+                <div className="w-full flex justify-between items-center">                    
+                    <div className="w-full p-4">
+                        <SentimentSlider sentiment={article.metrics.sentiment}/>
+                    </div>
+                    <div className="w-full p-4">
+                        <SubjectivitySlider subjScore={Math.abs(article.metrics.subjectivity)}/>
                     </div>
                 </div>
-                {/* right: image */}
-                <div className="w-1/4 bg-[var(--color-dark-turquoise)]"></div>
             </div>
+            {/* right: image */}
+            <div className="aspect-[16/9] overflow-hidden">
+                <img src={article.pictureURL} className="w-full h-full object-cover"/>
+            </div>
+            
         </div>
+
         
     );
 
