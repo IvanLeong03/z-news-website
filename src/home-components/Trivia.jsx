@@ -20,7 +20,7 @@ function Trivia() {
 
     return (
         <>
-            <div className="relative w-9/10 mx-auto flex flex-col justify-start items-start pt-4 pb-16 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+            <div className="relative w-9/10 mx-auto flex flex-col justify-start items-start pt-4 pb-16 border-b border-[var(--color-line-verylightgrey)] text-xs lg:text-base">
                 <h3 className="font-bold text-xl my-1">{language === 'zh-Hant' ? "問答遊戲" : language === 'zh-Hans' ? "考考你" : "Trivia" }</h3>
                 <p className="my-2 text-xs lg:text-sm">
                     {question}

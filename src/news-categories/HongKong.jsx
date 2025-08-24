@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticle } from "../services/articleService";
+import { fetchFeed } from "../services/feedService";
 import { Link } from "react-router-dom";
 
 function HongKong() {
@@ -9,17 +9,12 @@ function HongKong() {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);    
-    const NUM_ARTICLES = 8;
 
     useEffect(() => {
         const loadArticles = async () => {
             try {
-                const fetchPromises = [];
-                for (let i = 0; i < NUM_ARTICLES; i++) {
-                    fetchPromises.push(fetchArticle(i));
-                }
-                const results = await Promise.all(fetchPromises);
-                setArticles(results);
+                const articles = await fetchFeed("hk");
+                setArticles(articles);
             } catch (error) {
                 console.error("Failed to load articles:", error);
                 setError(error.message);
@@ -56,7 +51,7 @@ function HongKong() {
                         style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <Link to={`/article/${article.articleID}`} state={{ article }}>
+                            <Link to={`/article/${article.articleID}`}>
                                 <img
                                     src={article.pictureURL}
                                     alt={article.title}
@@ -69,12 +64,12 @@ function HongKong() {
                             <label className="mx-2">|</label>
                             <label>{article.sector}</label>
                         </div> 
-                        <Link to={`/article/${article.articleID}`} state={{ article }}>
+                        <Link to={`/article/${article.articleID}`}>
                             <h2 className="font-semibold my-2">{article.title}</h2>
                         </Link>
                         <div className="grid grid-cols-[3fr_1fr] items-center">
                             <div className="my-4">
-                                <Link to={`/article/${article.articleID}`} state={{ article }}>
+                                <Link to={`/article/${article.articleID}`}>
                                     <SentimentSlider sentiment={article.metrics.sentiment} />
                                 </Link>
                             </div>

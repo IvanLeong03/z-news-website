@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage} from "../context/LanguageContext";
-import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 function TopicsBar() {
     const navigate = useNavigate();
@@ -44,9 +43,8 @@ function TopicsBar() {
     };
     
     return (
-
-        <div className="sticky top-0 z-30 w-full mx-auto py-6 border-t border-b border-[var(--color-line-lightgrey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
-            <div className="w-9/10 mx-auto flex justify-between items-center h-full">
+        <div className="w-9/10 mx-auto py-6 border-b border-[var(--color-line-lightgrey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
+            <div className="mx-auto flex justify-between items-center h-full">
                 <div className="mx-auto flex justify-center items-center px-1">
                     <div className="font-semibold text-sm text-red-400">
                         {/*<MdKeyboardDoubleArrowUp size={24}/>*/}

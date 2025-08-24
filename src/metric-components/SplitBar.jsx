@@ -13,7 +13,7 @@ function SplitBar({ cPercent = 50, pPercent = 50 }) {
           {cPercent}%
         </div>
         <div
-          className="flex items-center justify-center bg-[var(--color-secondary-3)] py-1"
+          className="flex items-center justify-center bg-[var(--color-line-grey)] py-1"
           style={{ width:`${pPercent}%`, fontSize: pPercent < 20 ? '0.40rem' : '0.75rem' }}
         >
           {pPercent}%

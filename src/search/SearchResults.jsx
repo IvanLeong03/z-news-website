@@ -32,6 +32,17 @@ function SearchResults() {
     fetchResults();
   }, [query]);
 
+  // Sort results whenever sort or results change
+  const sortedResults = [...results].sort((a, b) => {
+    if (sort === "newest") {
+      // Assuming article.date is ISO string
+      return new Date(b.date) - new Date(a.date);
+    } else if (sort === "oldest") {
+      return new Date(a.date) - new Date(b.date);
+    }
+    return 0;
+  });
+
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
@@ -77,8 +88,8 @@ function SearchResults() {
       
 
       <ul className="flex flex-col gap-16 text-lg">
-        {results.length > 0 ? (
-          results.map((article) => (
+        {sortedResults.length > 0 ? (
+          sortedResults.map((article) => (
             <li key={article.articleID}>
               <SearchObject 
                 article={article} 
