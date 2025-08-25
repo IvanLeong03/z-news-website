@@ -9,7 +9,6 @@ function SearchObject({article}) {
     const { language } = useLanguage();
 
     return (
-
         <div className="grid grid-cols-[3fr_1fr] w-full my-6 min-h-[25dvh]">
             {/* left: date, title, metrics */}
             <div className="flex flex-col px-5">

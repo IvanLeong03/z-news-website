@@ -95,7 +95,7 @@ function ViewArticle() {
                 {/* linked articles */}
                 <div className="flex flex-col w-9/10 mx-auto p-2">                                                                                                    
                     <div className="my-4 px-4">
-                        <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} outletIcons={[...article.coverage.icons.centric, ...article.coverage.icons.progressive]} />
+                        <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
                     </div>                    
                     <div className="py-8">
                         <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "文章一覽" : language === "zh-Hans" ? "文章一览" : "Article List"}</h2>

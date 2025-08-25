@@ -1,26 +1,43 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-function OutletDistribution({ cPercent, pPercent, outletIcons }) {  
+function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {  
     const { language } = useLanguage();
 
     return (
-        <div className="flex flex-col w-3/4 text-xs text-[var(--color-gs-black)]">
+        <div className="flex flex-col w-full text-xs text-[var(--color-gs-black)]">
             <div className="flex justify-center w-full my-4 text-lg">
                 Media outlets
             </div>
             <div className='relative flex w-full h-60 shadow-sm'>
                 {/* Logos plotted inside padded area */}
-                <div className="absolute inset-[10%] w-[80%] h-[80%]">
-                    {outletIcons?.map((icon, idx) => (
+                {/* conservative icons */}
+                <div className="absolute inset-x-[5%] w-[90%] inset-y-[10%] h-[80%] border border-yellow-200">
+                    {cIcons.map((icon, idx) => (
                         <img
                             key={idx}
                             src={icon.logo}
                             alt={`Outlet ${idx}`}                        
                             className="absolute rounded-full shadow-md"
                             style={{
-                                left: `${icon.rx * 90}%`,
-                                top: `${icon.ry * 90}%`,
+                                left: `${icon.rx * 100}%`,
+                                top: `${icon.ry * 100}%`,
+                                width: `${icon.size*4}rem`,
+                                height: `${icon.size*4}rem`,
+                                transform: 'translate(-50%, -50%)',
+                            }}
+                        />
+                    ))}
+
+                    {pIcons.map((icon, idx) => (
+                        <img
+                            key={idx}
+                            src={icon.logo}
+                            alt={`Outlet ${idx}`}                        
+                            className="absolute rounded-full shadow-md"
+                            style={{
+                                left: `${icon.rx * 100}%`,
+                                top: `${icon.ry * 100}%`,
                                 width: `${icon.size*4}rem`,
                                 height: `${icon.size*4}rem`,
                                 transform: 'translate(-50%, -50%)',
@@ -31,12 +48,12 @@ function OutletDistribution({ cPercent, pPercent, outletIcons }) {
                 
                 { /* section for conservative */}
                 <div
-                className="flex items-center justify-center bg-[var(--color-bg-grey)] p-1"
+                className="flex items-center justify-center bg-[var(--color-bg-grey)]"
                 style={{ width:`${cPercent}%`}}
                 />
                 {/* section for progressive */}
                 <div
-                className="flex items-center justify-center bg-[var(--color-line-grey)] p-1"
+                className="flex items-center justify-center bg-[var(--color-line-grey)]"
                 style={{ width:`${pPercent}%` }}
                 />
             </div>
