@@ -20,7 +20,7 @@ function Topic() {
             try {
                 const fetchPromises = [];
                 for (let i = 0; i < NUM_ARTICLES; i++) {
-                    fetchPromises.push(fetchArticle(i));
+                    fetchPromises.push(fetchArticle(i, language));
                 }
                 const results = await Promise.all(fetchPromises);
                 setArticles(results);
@@ -33,7 +33,7 @@ function Topic() {
         };
 
         loadArticles();
-    }, []);
+    }, [language, NUM_ARTICLES]);
 
     if (loading) return <div>Loading articles...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { fetchArticle } from "../services/articleService";
 import { Link } from "react-router-dom";
 
@@ -16,8 +17,9 @@ function MostRead() {
       const loadArticles = async () => {
           try {
               const fetchPromises = [];
+              const backendLang = mapFrontendLangToBackend(language);
               for (let i = 0; i < NUM_ARTICLES; i++) {
-                  fetchPromises.push(fetchArticle(i));
+                  fetchPromises.push(fetchArticle(i, backendLang));
               }
               const results = await Promise.all(fetchPromises);
               setMostReadArticles(results);
@@ -28,9 +30,8 @@ function MostRead() {
               setLoading(false);
           }
       };
-
       loadArticles();
-  }, []);
+  }, [language, NUM_ARTICLES]);
 
   if (loading) return <div>Loading articles...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;

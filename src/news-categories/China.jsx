@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchArticle } from "../services/articleService";
 import { fetchFeed } from "../services/feedService";
 import { Link } from "react-router-dom";
 

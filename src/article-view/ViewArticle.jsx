@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SplitBar from "../metric-components/SplitBar";
 import Ads from "../home-components/Ads";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SentimentGauge from "../metric-components/SentimentGauge";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
@@ -22,7 +23,8 @@ function ViewArticle() {
     useEffect(() => {
         const loadArticle = async () => {
             try {
-                const result = await fetchArticle(id);
+                const backendLang = mapFrontendLangToBackend(language);
+                const result = await fetchArticle(id, backendLang);
                 setArticle(result);
             } catch (err) {
                 setError(err.message);
@@ -31,7 +33,7 @@ function ViewArticle() {
             }
         };
         loadArticle();
-    }, [id]);
+    }, [id, language]);
 
     const handleBookmark = () => {
         setBookmarked(prevState => !prevState); // Toggle the current value
