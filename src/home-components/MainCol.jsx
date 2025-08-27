@@ -27,7 +27,7 @@ function MainCol() {
         }
         // Set 'articles' as subArticles
         const subArticlesResults = results.articles;
-        // Update both states
+
         setMainArticle(mainArticlesArray[0]); //only one main article for now
         setSubArticles(subArticlesResults);
       } catch (error) {
@@ -37,9 +37,8 @@ function MainCol() {
         setLoading(false);
       }
     };
-
     loadArticles();
-  }, []);
+  }, [language]);
   
   if (loading) return <div>Loading articles...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
