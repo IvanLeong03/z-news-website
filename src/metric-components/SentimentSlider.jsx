@@ -21,9 +21,9 @@ function SentimentSlider({ sentiment = 0}) {
       <div className="flex items-center text-sm text-[var(--color-text-grey)] font-medium mb-1 relative">
         <span className="mr-1">
           {language === "zh-Hant"
-            ? "情感指數"
+            ? "情感數值"
             : language === "zh-Hans"
-            ? "情感指数"
+            ? "情感数值"
             : "Sentiment Score"}
         </span>
         <span className="ml-1 text-[1.25em]" style={{ color: barColor }}>

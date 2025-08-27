@@ -18,9 +18,9 @@ function SentimentGauge({ sentiment = 0 }) {
       <div className="w-full flex justify-between items-center">
         <div className="text-lg my-2">
         {language === "zh-Hant"
-          ? "情感指數"
+          ? "情感數值"
           : language === "zh-Hans"
-          ? "情感指数"
+          ? "情感数值"
           : "Sentiment Score"}
         </div>
         <div className="relative">

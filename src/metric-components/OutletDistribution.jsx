@@ -7,7 +7,7 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
     return (
         <div className="flex flex-col w-full text-xs text-[var(--color-gs-black)]">
             <div className="flex justify-center w-full my-4 text-lg">
-                Media outlets
+                {language === 'zh-Hant' ? '媒體分佈' : language === 'zh-Hans' ? '媒体分布' : 'Media Distribution'}
             </div>
             <div className='relative flex w-full h-60 shadow-sm'>
                 {/* Logos plotted inside padded area */}

@@ -50,7 +50,7 @@ function Topic() {
 
     return (
         <div className="w-[85%] min-h-dvh mx-auto my-8 p-2">
-            <h1 className="font-bold text-4xl mt-4 mb-20">Topic: {topic}</h1>
+            <h1 className="font-bold text-4xl mt-4 mb-20">{language === "zh-Hant" ? "主題: " : language === 'zh-Hans' ? '主题: ' :  'Topic: '} {topic}</h1>
             {articles.map((article, index) => (                
                 <div key={index} className="grid grid-cols-[3fr_1fr] w-full my-12 min-h-[25dvh]">
                     {/* left: date, title, metrics */}
