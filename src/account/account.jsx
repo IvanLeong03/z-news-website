@@ -4,7 +4,8 @@ import { useLanguage } from "../context/LanguageContext";
 import SavedArticles from "./SavedArticles";
 
 function Account() {    
-    const { language } = useLanguage();
+    const { language, setLanguage } = useLanguage();
+    
 
     return (
         <div className="w-1/2 mx-auto p-4">
@@ -13,7 +14,22 @@ function Account() {
             <div className="mt-24">
                 {/* fetch every field from user object */}
                 <p className="my-2 font-semibold">admin</p>
-                <p className="mt-2 mb-24 text-[var(--color-text-lightgrey)]">something@somedomain.com</p>
+                <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">something@somedomain.com</p>
+
+                <div className="flex items-center space-x-1">
+                    <p className="text-sm">
+                        {language === "en" ? "Language" : language === "zh-Hant" ? "語言" : language === "zh-Hans" ? "语言" : "Language"}:
+                    </p>
+                    <select
+                        value={language}
+                        onChange={e => setLanguage(e.target.value)}
+                        className="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    >
+                        <option value="en">English</option>
+                        <option value="zh-Hant">繁體中文</option>
+                        <option value="zh-Hans">简体中文</option>
+                    </select>
+                </div>  
 
                 <div className="flex flex-col my-12">
                     <h2 className="font-semibold">Reading History</h2>

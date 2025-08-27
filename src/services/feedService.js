@@ -13,5 +13,5 @@ export async function fetchFeed(tag, language) {
         throw new Error(`Failed to fetch article ${articleID}: ${errorData.msg || res.statusText}`);
     }
     const data = await res.json();
-    return data.data.articles;
+    return data.data;
 }

@@ -16,7 +16,7 @@ function China() {
             try {
                 const backendLang = mapFrontendLangToBackend(language);
                 const articles = await fetchFeed("china", backendLang);            
-                setArticles(articles);
+                setArticles(articles.articles);
             } catch (error) {
                 console.error("Failed to load articles:", error);
                 setError(error.message);

@@ -16,7 +16,6 @@ function TopicsBar() {
             try {
                 const backendLang = mapFrontendLangToBackend(language);
                 const topics = await fetchTopic(backendLang);
-                console.log("Fetched topics:", topics);
                 setTopics(topics);
             } catch (error) {
                 console.error("Failed to load articles:", error);
@@ -52,6 +51,7 @@ function TopicsBar() {
                         </button>
                     ))}
                 </div>
+                {/*}
                 <div className="flex items-center space-x-1">
                     <p className="text-sm">
                         {language === "en" ? "Language" : language === "zh-Hant" ? "語言" : language === "zh-Hans" ? "语言" : "Language"}:
@@ -65,7 +65,8 @@ function TopicsBar() {
                         <option value="zh-Hant">繁體中文</option>
                         <option value="zh-Hans">简体中文</option>
                     </select>
-                </div>            
+                </div>   
+                */}         
             </div>
             
         </div>

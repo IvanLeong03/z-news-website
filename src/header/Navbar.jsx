@@ -85,7 +85,7 @@ function Navbar() {
                             </li>
                             <li>
                                 <Link to="/account" className="block px-4 py-2 hover:bg-gray-100">
-                                    {language === "zh-Hant" ? "帳戶" : language === "zh-Hans" ? "账户" : "Profile"}
+                                    {language === "zh-Hant" ? "帳戶設定" : language === "zh-Hans" ? "账户设置" : "Profile settings"}
                                 </Link>
                             </li>
                             {/* 

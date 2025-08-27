@@ -3,6 +3,8 @@ import HeadlineLg from "./HeadlineLg";
 import HeadlineSm from "./HeadlineSm";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
+import { fetchFeed } from "../services/feedService";
 import { fetchArticle } from "../services/articleService";
 
 function MainCol() {
@@ -12,23 +14,21 @@ function MainCol() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const NUM_ARTICLES = 12; // Change this value to fetch more or fewer articles
-
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        const fetchPromises = [];
-        for (let i = 0; i < NUM_ARTICLES; i++) {
-            fetchPromises.push(fetchArticle(i));
+        const backEndLang = mapFrontendLangToBackend(language);
+        const results = await fetchFeed('today', backEndLang);
+        // use 'headlines' to fetch the main articles
+        const mainArticleResult = results.headlines; 
+        const mainArticlesArray = []; //fetch detailed info for each main article
+        for (let i = 0; i < mainArticleResult.length; i++) {
+          mainArticlesArray.push(await fetchArticle(mainArticleResult[i].articleID));
         }
-        const results = await Promise.all(fetchPromises);
-        // Set main article as the first result
-        const mainArticleResult = results[0];        
-        // Set sub articles as the remaining results
-        const subArticlesResults = results.slice(1);
-        
+        // Set 'articles' as subArticles
+        const subArticlesResults = results.articles;
         // Update both states
-        setMainArticle(mainArticleResult);
+        setMainArticle(mainArticlesArray[0]); //only one main article for now
         setSubArticles(subArticlesResults);
       } catch (error) {
         console.error("Failed to load articles:", error);
