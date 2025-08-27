@@ -1,45 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage} from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
+import { fetchTopic } from "../services/topicService";
 
 function TopicsBar() {
     const navigate = useNavigate();
     const { language, setLanguage } = useLanguage();
+    const [ topics, setTopics ] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);    
 
-    const topics_en = [
-        "Financial Budget",
-        "Two Sessions",
-        "Trade War",
-        "Tariff"
-    ];
+    useEffect(() => {
+        const loadTopics = async () => {
+            try {
+                const backendLang = mapFrontendLangToBackend(language);
+                const topics = await fetchTopic(backendLang);
+                console.log("Fetched topics:", topics);
+                setTopics(topics);
+            } catch (error) {
+                console.error("Failed to load articles:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadTopics();
+    }, [language]);
 
-    const topics_zht = [
-        "財政預算案",
-        "兩會",
-        "貿易戰",
-        "關稅"
-    ];
-
-    const topics_zhs = [
-        "财政预算案",
-        "两会",
-        "贸易战",
-        "关税"
-    ];
-    
-    let topics;
-    if (language === "en") {
-        topics = topics_en;
-    } else if (language === "zh-Hant") {
-        topics = topics_zht;
-    } else if (language === "zh-Hans") {
-        topics = topics_zhs;
-    } else {
-        topics = topics_en; // Default to English if no match
-    }
+    if (loading) return <div>Loading topics...</div>;
+    if (error) return <div className="text-red-500">Error: {error}</div>;   
 
     const handleTopicClick = (topic) => {
-        navigate(`/topics/${encodeURIComponent(topic)}`);
+        navigate(`/topics/${encodeURIComponent(topic.tag)}`);
     };
     
     return (
@@ -47,16 +40,15 @@ function TopicsBar() {
             <div className="mx-auto flex justify-between items-center h-full">
                 <div className="mx-auto flex justify-center items-center px-1">
                     <div className="font-semibold text-sm text-red-400">
-                        {/*<MdKeyboardDoubleArrowUp size={24}/>*/}
                         {language === "en" ? "Trending" : language === "zh-Hant" ? "熱門" : language === "zh-Hans" ? "热门" : "Trending"}:
                     </div>
                     {topics.map((topic, index) => (
                         <button
                         key={index}
                         onClick={() => handleTopicClick(topic)}
-                        className="font-bold hover:cursor-grab hover:underline hover:underline-offset-2 hover:decoration-[var(--color-primary)] px-12"
+                        className="font-bold hover:cursor-grab hover:underline hover:underline-offset-2 hover:decoration-[var(--color-primary)] px-8"
                         >
-                        {topic}
+                        {topic.displayName}
                         </button>
                     ))}
                 </div>

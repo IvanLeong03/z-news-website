@@ -33,9 +33,9 @@ function Legend() {
               </p>
               <p>
                 {language === "zh-Hant"
-                  ? "沿途望出車外是盛放的戀愛"
+                  ? "文章採取較保守的立場"
                   : language === "zh-Hans"
-                  ? "沿途望出车外是盛放的恋爱"
+                  ? "文章采取较保守的立场"
                   : "The article leans towards a conservative perspective."}
               </p>
             </div>
@@ -49,9 +49,9 @@ function Legend() {
               </p>
               <p>
                 {language === "zh-Hant"
-                  ? "我起床後上廁所然後回到床上繼續睡"
+                  ? "文章採取較進步的立場"
                   : language === "zh-Hans"
-                  ? "我起床后上厕所然后回到床上继续睡"
+                  ? "文章采取较进步的立场"
                   : "The article takes a Progressive stance."}
               </p>
             </div>

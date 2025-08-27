@@ -14,7 +14,7 @@ function UserGuide() {
         <section className="mb-8">
           <h3 className="text-lg font-semibold mb-2">Conservative</h3>
           <p className="mb-2">
-            <span className="italic">[Looking out of the car window]</span>
+            <span className="italic">[Upholding traditional ideas and values]</span>
           </p>
           <p>
             The "Conservative" metric reflects the traditional or status quo perspective of the article. Articles with a higher Conservative score tend to focus on preserving existing values and institutions, while lower scores may indicate a more Progressive or reformist stance.
@@ -23,7 +23,7 @@ function UserGuide() {
         <section className="mb-8">
           <h3 className="text-lg font-semibold mb-2">Progressive</h3>
           <p className="mb-2">
-            <span className="italic">[Love is blooming]</span>
+            <span className="italic">[Promote social reforms]</span>
           </p>
           <p>
             The "Progressive" metric indicates how forward-thinking or change-oriented the article is. Articles with a higher Progressive score tend to advocate for new ideas, reforms, or social change, while lower scores may reflect more traditional or conservative viewpoints.
@@ -45,7 +45,7 @@ function UserGuide() {
           <p>
             The subjectivity score measures how subjective or objective the article is. It is calculated based on the proportion of adjectives and adverbs used in the text. The score ranges from <b>0</b> (most objective) to <b>1</b> (most subjective). Higher subjectivity means the article contains more personal opinions or emotional language, while lower subjectivity indicates a more factual, neutral tone.
           </p>
-          <ul className="list-disc ml-6 mt-2">
+          <ul className="list-disc ml-6 my-2">
             <li><b>0:</b> Most objective (fact-based)</li>
             <li><b>1:</b> Most subjective (opinion-based)</li>
           </ul>
@@ -57,7 +57,7 @@ function UserGuide() {
             Each article lists its sources, allowing you to verify the information and explore further reading. Reliable sourcing is key to trustworthy journalism.
           </p>
         </section>
-        <div className="mt-10 text-center text-gray-500">
+        <div className="mt-10 text-left text-gray-500">
           <p>
             If you have questions or feedback about these metrics, please contact us or check back for updates as we continue to improve our analysis tools.
           </p>

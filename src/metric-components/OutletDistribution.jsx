@@ -12,7 +12,7 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
             <div className='relative flex w-full h-60 shadow-sm'>
                 {/* Logos plotted inside padded area */}
                 {/* conservative icons */}
-                <div className="absolute inset-x-[5%] w-[90%] inset-y-[10%] h-[80%] border border-yellow-200">
+                <div className="absolute inset-x-[5%] w-[90%] inset-y-[10%] h-[80%]">
                     {cIcons.map((icon, idx) => (
                         <img
                             key={idx}

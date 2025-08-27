@@ -12,20 +12,20 @@ function ForYou() {
     const [error, setError] = useState(null);    
 
     useEffect(() => {
-            const loadArticles = async () => {
-                try {
-                    const backendLang = mapFrontendLangToBackend(language);
-                    const articles = await fetchFeed("personal", backendLang);
-                    setArticles(articles);
-                } catch (error) {
-                    console.error("Failed to load articles:", error);
-                    setError(error.message);
-                } finally {
-                    setLoading(false);
-                }
-            };
-            loadArticles();
-        }, [language]);
+        const loadArticles = async () => {
+            try {
+                const backendLang = mapFrontendLangToBackend(language);
+                const articles = await fetchFeed("personal", backendLang);
+                setArticles(articles);
+            } catch (error) {
+                console.error("Failed to load articles:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadArticles();
+    }, [language]);
 
     if (loading) return <div>Loading articles...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;
