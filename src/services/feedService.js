@@ -1,7 +1,7 @@
-export async function fetchFeed(tag) {
+export async function fetchFeed(tag, language) {
     const token = localStorage.getItem('jwt_token');
 
-    const res = await fetch(`https://api.zonenews.io/dev/feed?tag=${tag}`, {
+    const res = await fetch(`https://api.zonenews.io/dev/feed?tag=${tag}&lang=${language}`, {
         method: "GET",
         credentials: 'include',
         headers: {

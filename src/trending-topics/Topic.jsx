@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import SplitBar from "../metric-components/SplitBar";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { fetchArticle } from "../services/articleService";
@@ -19,8 +19,9 @@ function Topic() {
         const loadArticles = async () => {
             try {
                 const fetchPromises = [];
+                const backendLang = mapFrontendLangToBackend(language);
                 for (let i = 0; i < NUM_ARTICLES; i++) {
-                    fetchPromises.push(fetchArticle(i, language));
+                    fetchPromises.push(fetchArticle(i, backendLang));
                 }
                 const results = await Promise.all(fetchPromises);
                 setArticles(results);

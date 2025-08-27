@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { fetchFeed } from "../services/feedService";
-import { login } from "../services/authService";
 import { Link} from "react-router-dom";
 
 function ForYou() {
@@ -14,7 +14,8 @@ function ForYou() {
     useEffect(() => {
             const loadArticles = async () => {
                 try {
-                    const articles = await fetchFeed("personal");
+                    const backendLang = mapFrontendLangToBackend(language);
+                    const articles = await fetchFeed("personal", backendLang);
                     setArticles(articles);
                 } catch (error) {
                     console.error("Failed to load articles:", error);
@@ -24,7 +25,7 @@ function ForYou() {
                 }
             };
             loadArticles();
-        }, []);
+        }, [language]);
 
     if (loading) return <div>Loading articles...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;
