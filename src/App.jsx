@@ -18,10 +18,10 @@ import Topic from "./trending-topics/Topic"
 import UserGuide from "./other-pages/UserGuide"
 import Account from "./account/account"
 import LoginForm from "./auth/LoginForm"
-import MyTopics from "./account/myTopics"
 import SavedArticles from "./account/SavedArticles"
 import ReadingHistory from "./account/ReadingHistory"
 import ViewArticle from "./article-view/ViewArticle"
+import MyTopics from "./account/MyTopics"
 
 function App() {
   return (
