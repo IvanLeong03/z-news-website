@@ -11,7 +11,6 @@ import OutletDistribution from "../metric-components/OutletDistribution";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
 import { fetchArticle } from "../services/articleService";
 
-
 function ViewArticle() {
     const { id } = useParams();
     const { language } = useLanguage();
@@ -19,6 +18,7 @@ function ViewArticle() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [bookmarked, setBookmarked] = useState(false);
+    const [sortOption, setSortOption] = useState("newest");
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -51,6 +51,28 @@ function ViewArticle() {
         const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
         return diffHours;
     }
+
+    // Sorting logic for linked articles
+    function sortPublisherArticles(articles) {
+        switch (sortOption) {
+            case "newest":
+                return [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
+            case "oldest":
+                return [...articles].sort((a, b) => new Date(a.date) - new Date(b.date));
+            case "publisherName":
+                return [...articles].sort((a, b) => a.publisherName.localeCompare(b.publisherName));
+            case "publisherRegion":
+                return [...articles].sort((a, b) => (a.publisherRegion || "").localeCompare(b.publisherRegion || ""));
+            case "conservativeToProgressive":
+                return [...articles].sort((a, b) => (a.publisherStance || "").localeCompare(b.publisherStance || ""));
+            case "progressiveToConservative":
+                return [...articles].sort((a, b) => (b.publisherStance || "").localeCompare(a.publisherStance || ""));
+            default:
+                return articles;
+        }
+    }
+
+    const sortedPublisherArticles = article?.articles ? sortPublisherArticles(article.articles) : [];
 
     return (
         <article className="grid grid-cols-[3fr_1fr_1fr] overflow-hidden justify-center items-start w-[90dvw] h-full mx-auto">
@@ -100,18 +122,36 @@ function ViewArticle() {
                         <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
                     </div>                    
                     <div className="py-8">
-                        <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "文章一覽" : language === "zh-Hans" ? "文章一览" : "Article List"}</h2>
+                        <div className="w-full flex justify-between">
+                            <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "文章一覽" : language === "zh-Hans" ? "文章一览" : "Article List"}</h2>
+                            <div className="flex items-center space-x-1 text-sm">
+                                <select
+                                    value={sortOption}
+                                    onChange={e => setSortOption(e.target.value)}
+                                    className="border rounded px-2 py-1 focus:outline-none"
+                                >                                
+                                    <option value="publisherName">Sort by publisher name</option>
+                                    <option value="publisherRegion">Sort by publisher region</option>
+                                    <option value="conservativeToProgressive">From Conservative to Progressive</option>
+                                    <option value="progressiveToConservative">From Progressive to Conservative</option>
+                                    <option value="newest">Sort by newest</option>
+                                    <option value="oldest">Sort by oldest</option>
+                                </select>
+                            </div> 
+                        </div>
                         <ul>
-                            {article.articles.map((publisherArticle, index) => (
+                            {sortedPublisherArticles.map((publisherArticle, index) => (
                                 <div key={index} className="flex justify-between items-start px-2 py-4">
                                     {/* image on the left, source + stance + title on the right */}
                                     {/* right side: source + stance on top, title below */}
                                     <img src={publisherArticle.publisherIcon} width={60} className="rounded-full"/>
                                     <div className="w-full px-4">
                                     <a href={publisherArticle.articleURL} target="_blank" rel="noopener noreferrer">                                                
-                                        <div className="flex text-[var(--color-text-lightgrey)] text-sm gap-4">
-                                            {publisherArticle.publisherName}
-                                            <div className="px-2  bg-[var(--color-bg-grey)]">
+                                        <div className="flex text-[var(--color-text-lightgrey)] text-sm">
+                                            <label>{publisherArticle.publisherName}</label>
+                                            <label className="mx-1">({publisherArticle.publisherRegion || "Unknown Region"})</label>                                                
+                                            
+                                            <div className="px-2 mx-6 bg-[var(--color-bg-grey)]">
                                                 {publisherArticle.publisherStance}
                                             </div>                                        
                                         </div>            

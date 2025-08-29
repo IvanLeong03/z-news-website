@@ -24,7 +24,7 @@ function Account() {
                     <select
                         value={language}
                         onChange={e => setLanguage(e.target.value)}
-                        className="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        className="border rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[var(--colr-secondary-2)]"
                     >
                         <option value="en">English</option>
                         <option value="zh-Hant">繁體中文</option>

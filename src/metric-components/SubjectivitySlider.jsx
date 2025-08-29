@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
+
 
 function SubjectivitySlider({ subjScore = 0 }) {
   const { language } = useLanguage();
+  const [isHovered, setIsHovered] = useState(false);
 
   const subjScoreRounded = Math.round(subjScore * 100) / 100; // Round to two decimal places
 
@@ -16,7 +19,37 @@ function SubjectivitySlider({ subjScore = 0 }) {
 
   return (
     <div className="w-full mb-4">
-      <h2 className="text-lg">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
+      <div className="w-full flex justify-between items-center">
+        <h2 className="text-lg">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
+        <div className="relative">
+          <AiOutlineInfoCircle
+            className="ml-2 text-gray-400 cursor-pointer z-20"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          />
+          {isHovered && (
+            <div
+              className="absolute left-1/2 -translate-x-[90%] bottom-full mb-4 z-[999] w-56"
+              style={{ pointerEvents: "none" }}
+            >
+              <div className="relative">
+                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
+                  0 represents completely objective content, while 1 represents completely subjective content.
+                </div>
+                {/* Speech bubble tail */}
+                <div
+                  className="absolute left-[90%] top-full -translate-x-1/2 w-0 h-0"
+                  style={{
+                    borderLeft: "8px solid transparent",
+                    borderRight: "8px solid transparent",
+                    borderTop: "8px solid var(--color-gs-black)",
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       <div className="flex justify-between my-4">
         <div className="flex items-end">
           <p className="text-5xl">{subjScoreRounded}</p>
