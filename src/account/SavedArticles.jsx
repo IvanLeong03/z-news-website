@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchSaved } from "../services/profileService";
+import { fetchSaved, deleteSavedArticle } from "../services/profileService";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { useLanguage } from "../context/LanguageContext";
+import { Link } from "react-router-dom";
 
 function SavedArticles() {
     const { language } = useLanguage();
@@ -39,15 +40,58 @@ function SavedArticles() {
                     <ul>
                         {savedArticles.map((article) => (
                             <li key={article.articleID} className="mb-4">
-                                <a href={`/article/${article.articleID}`} className="text-blue-600 hover:underline">
-                                    {article.title}
-                                </a>
-                                <p className="text-sm text-gray-500">{new Date(article.date).toLocaleDateString()}</p>
+                                <div className="flex items-start justify-between my-4">
+                                    {/* left: date top, title below it */}
+                                    <div className="px-2 flex flex-col">
+                                        <p className="text-sm text-gray-500">{new Date(article.date).toLocaleDateString()}</p>
+                                        <a href={`/article/${article.articleID}`} className="hover:underline my-1">
+                                            {article.title}
+                                        </a>
+                                        <button
+                                            className="w-1/4 hover:text-[var(--color-primary)] text-sm rounded-xl border border-black px-2 my-2"
+                                            onClick={async () => {
+                                                try {
+                                                    await deleteSavedArticle(article.articleID);
+                                                    setSavedArticles((prev) => prev.filter(a => a.articleID !== article.articleID));
+                                                } catch (err) {
+                                                    setError(err.message);
+                                                }
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                    {/* right: image */}
+                                    <div className="aspect-[16/9] overflow-hidden h-24">
+                                        <Link to={`/article/${article.articleID}`}>
+                                            <img src={article.pictureURL} className="w-full h-full object-cover"/>
+                                        </Link>
+                                    </div>
+                                </div>                                
                             </li>
                         ))}
                     </ul>
+                    
                 )}
-                
+                {savedArticles.length > 0 && (
+                    <div className="flex justify-start my-6">
+                        <button
+                            className="px-4 py-2 rounded hover:text-red-600 text-xl border border-red-600"
+                            onClick={async () => {
+                                try {
+                                    for (const article of savedArticles) {
+                                        await deleteSavedArticle(article.articleID);
+                                    }
+                                    setSavedArticles([]);
+                                } catch (err) {
+                                    setError(err.message);
+                                }
+                            }}
+                        >
+                            Clear All Saved Articles
+                        </button>
+                    </div>
+                )}                                
             </div>
         </div>
     );

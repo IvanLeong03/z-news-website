@@ -1,6 +1,4 @@
 export async function login(username, password) {
-  const token = localStorage.getItem('jwt_token');
-
   try {
     const res = await fetch(`https://api.zonenews.io/dev/auth/login`, {
       method: "POST",
@@ -15,16 +13,16 @@ export async function login(username, password) {
       const errorData = await res.json();
       throw new Error(errorData.msg || "Login failed");
     }
-
     // Extract token from response (if using headers) or verify cookies
     const data = await res.json();
-    
-    // If using header-based token (alternative approach)
-    if (data.access_token) {
-      localStorage.setItem('jwt_token', data.access_token);
+    //console.log("Login response:", data);
+
+    if (data.data.access_token) {
+      localStorage.setItem('jwt_token', data.data.access_token);
     }
     
-    return data;
+    return data.data;
+
   } catch (error) {
     console.error("Login error:", error);
     throw error;

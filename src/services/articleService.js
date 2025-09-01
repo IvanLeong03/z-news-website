@@ -1,4 +1,3 @@
-// services/articleService.js
 // Fetch a single article by ID
 
 export async function fetchArticle(articleID, language) {
@@ -11,11 +10,14 @@ export async function fetchArticle(articleID, language) {
         "Content-Type": "application/json",
         },
     });
+
     if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         console.error(`Detailed error for article ${articleID}:`, errorData); // Add this
         throw new Error(`Failed to fetch article ${articleID}: ${errorData.msg || res.statusText}`);
     }
+
     const data = await res.json();
+    
     return data.data;
 }

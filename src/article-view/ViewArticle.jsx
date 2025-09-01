@@ -42,7 +42,6 @@ function ViewArticle() {
     if (loading) return <div className="text-center py-8">Loading article...</div>;
     if (error) return <div className="text-red-500 text-center py-8">Error: {error}</div>;
     if (!article) return <div className="text-center py-8">Article not found.</div>;
-    {console.log(article)} //for debugging
 
     function getHoursAgo(dateString) {
         const articleDate = new Date(dateString);

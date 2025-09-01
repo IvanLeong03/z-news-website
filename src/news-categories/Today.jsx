@@ -35,8 +35,6 @@ function Today() {
         const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
         return diffHours;
     }
-    // for debugging
-    //console.log(articles); 
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">
