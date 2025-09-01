@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
 import { fetchArticle } from "../services/articleService";
+import { saveArticle } from "../services/profileService";
 
 function ViewArticle() {
     const { id } = useParams();
@@ -35,8 +36,20 @@ function ViewArticle() {
         loadArticle();
     }, [id, language]);
 
-    const handleBookmark = () => {
-        setBookmarked(prevState => !prevState); // Toggle the current value
+    const handleBookmark = async () => {
+        const newState = !bookmarked;
+        setBookmarked(newState);
+        if (newState) {
+            try {
+                await saveArticle(id);
+                //console.log("Article saved:", id);
+            } catch (err) {
+                setBookmarked(false); // Revert if failed
+                setError("Failed to save article.");
+            }
+        } else {
+            
+        }
     };
 
     if (loading) return <div className="text-center py-8">Loading article...</div>;

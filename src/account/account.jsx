@@ -1,22 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import SavedArticles from "./SavedArticles";
+import { fetchProfile } from "../services/profileService";
+
 
 function Account() {    
     const { language, setLanguage } = useLanguage();
-    
+    const [profile, setProfile] = useState();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadProfile = async () => {
+        try {
+            const userProfile = await fetchProfile();
+            setProfile(userProfile);
+        } catch (error) {
+            console.error("Failed to load topics:", error);
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+        };        
+        loadProfile();
+    }, []);
+
     return (
-        <div className="w-1/2 mx-auto p-4">
+        <div className="w-1/2 mx-auto p-4 flex flex-col items-center">
             <h1 className="text-3xl font-bold my-16">
                 {language === "zh-Hant" ? "帳戶設定" : language === "zh-Hans" ? "账户设置" : "Profile settings"}
             </h1>
             <div className="mt-24">
                 {/* fetch every field from user object */}
-                <p className="my-2 font-semibold">admin</p>
+                <div className="w-24 h-24 mb-8">
+                    {profile && 
+                    <img src={profile.profileIcon} className="object-cover"/>
+                    }
+                </div>
+                {profile && <p className="my-2 font-semibold">{profile.profileID}</p>}
                 <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">admin@somedomain.com</p>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 mt-8">
                     <p className="text-sm">
                         {language === "en" ? "Language" : language === "zh-Hant" ? "語言" : language === "zh-Hans" ? "语言" : "Language"}:
                     </p>
