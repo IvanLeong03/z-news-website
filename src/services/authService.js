@@ -1,4 +1,6 @@
 export async function login(username, password) {
+  const token = localStorage.getItem('jwt_token');
+
   try {
     const res = await fetch(`https://api.zonenews.io/dev/auth/login`, {
       method: "POST",

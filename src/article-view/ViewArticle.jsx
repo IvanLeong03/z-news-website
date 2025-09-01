@@ -64,9 +64,9 @@ function ViewArticle() {
             case "publisherRegion":
                 return [...articles].sort((a, b) => (a.publisherRegion || "").localeCompare(b.publisherRegion || ""));
             case "conservativeToProgressive":
-                return [...articles].sort((a, b) => (a.publisherStance || "").localeCompare(b.publisherStance || ""));
+                return [...articles].sort((a, b) => (a.publisherStance.tag || "").localeCompare(b.publisherStance.tag || ""));
             case "progressiveToConservative":
-                return [...articles].sort((a, b) => (b.publisherStance || "").localeCompare(a.publisherStance || ""));
+                return [...articles].sort((a, b) => (b.publisherStance.tag || "").localeCompare(a.publisherStance.tag || ""));
             default:
                 return articles;
         }
@@ -152,7 +152,7 @@ function ViewArticle() {
                                             <label className="mx-1">({publisherArticle.publisherRegion || "Unknown Region"})</label>                                                
                                             
                                             <div className="px-2 mx-6 bg-[var(--color-bg-grey)]">
-                                                {publisherArticle.publisherStance}
+                                                {publisherArticle.publisherStance.displayName}
                                             </div>                                        
                                         </div>            
                                         <h2 className="my-2 text-lg">{publisherArticle.title}</h2>                                             

@@ -23,7 +23,7 @@ function AboutUs() {
         <main className="flex-col w-full mx-auto justify-center items-center text-center">            
             <video
                 src="/src/assets/aboutUsVideo.mp4"
-                className="w-full mx-auto shadow-lg"
+                className="w-full mx-auto shadow-lg z-[51]"
                 autoPlay
                 muted
                 loop

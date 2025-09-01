@@ -3,13 +3,12 @@
 
 export async function fetchArticle(articleID, language) {
     const token = localStorage.getItem('jwt_token');
-    //console.log('Token is:', token); 
 
     const res = await fetch(`https://api.zonenews.io/dev/article/${articleID}?lang=${language}`, {
         method: "GET",
         credentials: 'include',
         headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
         },
     });
     if (!res.ok) {

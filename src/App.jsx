@@ -46,7 +46,7 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/account/topics" element={<MyTopics />} />
-            <Route path="/account/saved-articles" element={<SavedArticles />} />
+            <Route path="/account/saved" element={<SavedArticles />} />
             <Route path="/account/reading-history" element={<ReadingHistory />} />
           </Routes>
           <Footer />                

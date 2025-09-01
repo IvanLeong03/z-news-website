@@ -5,7 +5,7 @@ export async function fetchSearchResult(keyword) {
         method: "GET",
         credentials: 'include',
         headers: {
-        "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
     });
     if (!res.ok) {
@@ -14,9 +14,4 @@ export async function fetchSearchResult(keyword) {
     }
     const data = await res.json();
     return data.data.articles;
-}
-
-export async function fetchFeed(category, language) {
-
-
 }

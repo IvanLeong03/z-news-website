@@ -6,7 +6,6 @@ import SavedArticles from "./SavedArticles";
 function Account() {    
     const { language, setLanguage } = useLanguage();
     
-
     return (
         <div className="w-1/2 mx-auto p-4">
             <h1 className="text-3xl font-bold my-16">
@@ -47,7 +46,7 @@ function Account() {
                     <h2 className="font-semibold">
                         {language === "zh-Hant" ? "已儲存文章" : language === "zh-Hans" ? "已储存文章" : "Saved Articles"}
                     </h2>
-                    <Link to={"/account/saved-articles"} className="text-[var(--color-dark-turquoise)] hover:underline">
+                    <Link to={"/account/saved"} className="text-[var(--color-dark-turquoise)] hover:underline">
                         <label className="text-sm text-[var(--color-text-lightgrey)]">
                             {language === "zh-Hant" ? "查看收藏的文章" : language === "zh-Hans" ? "查看收藏的文章" : "View your saved items"}                            
                         </label>
