@@ -1,10 +1,33 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 import Carousel from "./Carousel"; // Assuming you have a Carousel component
+import { fetchAbout } from "../services/infoService";
 
 function AboutUs() {
-    const [opacity, setOpacity] = React.useState(0.2);
+    const { language, setLanguage } = useLanguage();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [opacity, setOpacity] = useState(0.2);
+    const [about, setAbout] = useState();
 
-    React.useEffect(() => {
+    useEffect(() => {
+        const loadAbout = async () => {
+        try {
+            const backendLang = mapFrontendLangToBackend(language);
+            const aboutUsInfo = await fetchAbout(backendLang);
+            setAbout(aboutUsInfo);
+        } catch (error) {
+            console.error("Failed to load topics:", error);
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+        };        
+        loadAbout();
+    }, []);
+
+    useEffect(() => {
         function handleScroll() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -32,7 +55,13 @@ function AboutUs() {
             <div
                 className="bg-[var(--color-light-turquoise)] rounded-xl text-lg -mt-12 px-2 pt-20 text-[var(--color-gs-black)]"
                 style={{ opacity, transition: "opacity 0.3s" }}
-            >    
+            >   
+                {/* fetched from backend */}            
+                {about && (
+                    <p className="text-left my-8 w-2/3 mx-auto text-[var(--color-secondary-1)]">
+                        {about}
+                    </p>
+                )}
                 <p className="text-left my-8 w-2/3 mx-auto">
                     Zone News is your comprehensive source for the latest news from around the world. We provide balanced,
                     accurate and timely reporting on politics, technology, sport and more.
