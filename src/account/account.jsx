@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { fetchProfile } from "../services/profileService";
+import { fetchProfile, fetchPublisherRegion, editPublisherRegion } from "../services/profileService";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 
 
 function Account() {    
     const { language, setLanguage } = useLanguage();
     const [profile, setProfile] = useState();
+    const [publisherRegions, setPublisherRegions] = useState([]);
+    const [selectedRegions, setSelectedRegions] = useState([]);
+    const [checked, setChecked] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -24,6 +28,39 @@ function Account() {
         };        
         loadProfile();
     }, []);
+
+    useEffect(() => {
+        const loadPublishers = async () => {
+            try {
+                const backendLang = mapFrontendLangToBackend(language);
+                const response = await fetchPublisherRegion(backendLang);
+                setPublisherRegions(response.regions);
+                setSelectedRegions(response.selected);
+            } catch (error) {
+                console.error("Failed to load publisher regions:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadPublishers();
+    }, []);
+
+    const handleCheck = async (e, tag) => {
+        const isChecked = e.target.checked;
+        const action = isChecked ? "ADD" : "REMOVE";
+        const backendLang = mapFrontendLangToBackend(language);
+
+        try {
+            await editPublisherRegion(action, tag, backendLang);
+            setSelectedRegions((prev) =>
+                isChecked ? [...prev, tag] : prev.filter((t) => t !== tag)
+            );
+        } catch (error) {
+            console.error(`Failed to update region ${tag}:`, error);
+            setError(error.message);
+        }
+    };
 
     return (
         <div className="w-1/2 mx-auto p-4 flex flex-col items-center">
@@ -84,6 +121,19 @@ function Account() {
                     <label className="text-sm text-[var(--color-text-lightgrey)]">
                         {language === "zh-Hant" ? "根據地區編輯可供顯示的媒體" : language === "zh-Hans" ? "根据地区编辑可供显示的媒体" : "Edit which media to show according to region"}                    
                     </label>
+                    <div className="grid grid-cols-2">
+                        {publisherRegions.map((region) => (
+                            <label key={region.tag} className="px-2 py-4">
+                                <input
+                                    type="checkbox"
+                                    className="mx-2"
+                                    checked={selectedRegions.includes(region.tag)}
+                                    onChange={(e) => handleCheck(e, region.tag)}
+                                />
+                                {region.displayName}
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="flex flex-col my-12">

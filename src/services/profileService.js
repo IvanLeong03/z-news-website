@@ -165,6 +165,39 @@ export async function editTopic(action, topic, lang) {
     return true; // or return await res.json() if backend sends confirmation
 }
 
+export async function fetchPublisherRegion(language) {
+    const res = await fetch(`https://api.zonenews.io/dev/profile/publisher-region?lang=${language}`, {
+        method: "GET",
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error(`Detailed error for fetching publisher regions:`, errorData); // Add this
+        throw new Error(`Failed to fetch publisher regions: ${errorData.msg || res.statusText}`);
+    }
+    const data = await res.json();
+    return data.data;
+}
 
+export async function editPublisherRegion(action, tag, lang) {
+    const token = localStorage.getItem('jwt_token');
+    const res = await fetch(`https://api.zonenews.io/dev/profile/publisher-region?action=${action}&tag=${tag}&lang=${lang}`, {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+    });
 
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error(`Detailed error for editing publisher region ${tag}:`, errorData); // Add this
+        throw new Error(`Failed to edit region ${tag}: ${errorData.msg || res.statusText}`);
+    }
 
+    return true; // or return await res.json() if backend sends confirmation
+}

@@ -44,9 +44,9 @@ function ReadingHistory() {
                                     {/* left: date top, title below it */}
                                     <div className="px-2 flex flex-col">
                                         <p className="text-sm text-gray-500">{new Date(article.date).toLocaleDateString()}</p>
-                                        <a href={`/article/${article.articleID}`} className="hover:underline my-1">
+                                        <Link to={`/article/${article.articleID}`}>
                                             {article.title}
-                                        </a>
+                                        </Link>
                                         <button
                                             className="w-1/4 hover:text-[var(--color-primary)] text-sm rounded-xl border border-black px-2 my-2"
                                             onClick={async () => {

@@ -25,7 +25,7 @@ function AboutUs() {
         }
         };        
         loadAbout();
-    }, []);
+    }, [language]);
 
     useEffect(() => {
         function handleScroll() {
