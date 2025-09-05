@@ -9,10 +9,6 @@ import AboutUs from "./about-us/AboutUs"
 import TermsConditions from "./other-pages/TermsConditions"
 import PrivacyPolicy from "./other-pages/PrivacyPolicy"
 import ContactUs from "./other-pages/ContactUs"
-import China from "./news-categories/China"
-import HongKong from "./news-categories/HongKong"
-import Today from "./news-categories/Today"
-import ForYou from "./news-categories/ForYou"
 import SearchResults from "./search/SearchResults"
 import Topic from "./trending-topics/Topic"
 import UserGuide from "./other-pages/UserGuide"
@@ -22,6 +18,7 @@ import SavedArticles from "./account/SavedArticles"
 import ReadingHistory from "./account/ReadingHistory"
 import ViewArticle from "./article-view/ViewArticle"
 import MyTopics from "./account/MyTopics"
+import Feed from "./news-categories/Feed"
 
 function App() {
   return (
@@ -35,10 +32,10 @@ function App() {
             <Route path="/terms-and-conditions" element={<TermsConditions />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact-us" element={<ContactUs />} /> 
-            <Route path="/china" element={<China />} />       
-            <Route path="/hk" element={<HongKong />} />
-            <Route path="/today" element={<Today />} />
-            <Route path="/for-you" element={<ForYou/>} />
+            <Route path="/china" element={<Feed tag={"china"} />} />       
+            <Route path="/hk" element={<Feed tag={"hk"} />} />
+            <Route path="/today" element={<Feed tag={"today"} />} />
+            <Route path="/for-you" element={<Feed tag={"personal"} />} />
             <Route path="/article/:id" element={<ViewArticle />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/topics/:topic" element={<Topic />} />

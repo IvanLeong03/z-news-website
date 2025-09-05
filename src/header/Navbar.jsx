@@ -1,11 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import SearchBar from "../search/SearchBar";
 import { useLanguage } from "../context/LanguageContext";
 import { FaUser } from "react-icons/fa";
-import EnLogo from "../assets/ZoneNewsLogo/zonenews__logo_secondary_EN.jpg";
-import ChLogo from "../assets/ZoneNewsLogo/zonenews__logo_secondary_CH.jpg";
+import EnLogo from "../assets/ZoneNewsLogo/zonenews__logo_primary_EN.jpg";
+import ChLogo from "../assets/ZoneNewsLogo/zonenews__logo_primary_CH.jpg";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 
 
@@ -32,18 +31,18 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="w-9/10 mx-auto flex items-center px-1 h-[20vh] max-h-[14rem] bg-[var(--color-gs-white)] border-b border-[var(--color-line-lightgrey)]">
+            <nav className="w-9/10 mx-auto grid grid-cols-[1fr_3fr_1fr] px-1 py-4 bg-[var(--color-gs-white)] border-b border-[var(--color-line-lightgrey)]">
                 {/* Left: Logo */}
                 <Link to="/">
-                    <div className="flex items-center flex-none max-w-[24vw] space-x-2">                    
+                    <div>                    
                         <img                             
                         src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
-                        alt="Logo" className="h-24 lg:h-32 max-h-[16rem]"/>                                       
+                        alt="Logo"/>                                       
                     </div>
                 </Link>
 
                 {/* Center: Nav Links */}
-                <div className="flex flex-grow justify-center">
+                <div className="flex justify-center items-center">
                     <ul className="flex space-x-8 lg:space-x-16 text-base lg:text-lg">
                         <li>
                             <Link to="/hk">
@@ -64,7 +63,7 @@ function Navbar() {
                 </div>
 
                 {/* Right: Search and Account */}
-                <div className="flex items-center flex-none max-w-[20vw] space-x-4 relative">
+                <div className="flex items-center px-2 space-x-4 relative">
                     <SearchBar />
                     <div className="relative group">
                         <button

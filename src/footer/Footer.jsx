@@ -6,21 +6,29 @@ function Footer() {
     const { language, setLanguage } = useLanguage();    
 
     return (
-        <>
         <footer className="w-full h-[25vh] max-h-[10rem] flex flex-col justify-center items-center relative bottom-0 mx-auto border-t border-[rgba(37,37,37,0.75)]">
             <div className="flex items-center space-x-2 my-8">
-                <p className="text-base">
+                <span className="text-base">
                     {language === "en" ? "Language" : language === "zh-Hant" ? "語言" : language === "zh-Hans" ? "语言" : "Language"}:
-                </p>
-                <select
-                    value={language}
-                    onChange={e => setLanguage(e.target.value)}
-                    className="border rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[var(--colr-secondary-2)]"
+                </span>
+                <button
+                    className={`border rounded-xl px-2 py-1 mx-1 ${language === "en" ? "bg-[var(--color-dark-turquoise)] text-white" : ""}`}
+                    onClick={() => setLanguage("en")}
                 >
-                    <option value="en">English</option>
-                    <option value="zh-Hant">繁體中文</option>
-                    <option value="zh-Hans">简体中文</option>
-                </select>
+                    Eng
+                </button>
+                <button
+                    className={`border rounded-xl px-2 py-1 mx-1 ${language === "zh-Hant" ? "bg-[var(--color-dark-turquoise)] text-white" : ""}`}
+                    onClick={() => setLanguage("zh-Hant")}
+                >
+                    繁
+                </button>
+                <button
+                    className={`border rounded-xl px-2 py-1 mx-1 ${language === "zh-Hans" ? "bg-[var(--color-dark-turquoise)] text-white" : ""}`}
+                    onClick={() => setLanguage("zh-Hans")}
+                >
+                    简
+                </button>
             </div> 
             
             <div className="flex w-3/5 mx-auto justify-between items-center">
@@ -54,7 +62,6 @@ function Footer() {
             </div>
 
         </footer>
-        </>
     )
 }
 

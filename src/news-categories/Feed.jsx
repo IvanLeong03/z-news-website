@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import SentimentSlider from "../metric-components/SentimentSlider";
 import { useLanguage } from "../context/LanguageContext";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { fetchFeed } from "../services/feedService";
 import { Link } from "react-router-dom";
 
-function Today() {        
+function Feed(props) {
     const { language } = useLanguage();
+    const { tag } = props;
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);    
@@ -13,8 +15,9 @@ function Today() {
     useEffect(() => {
         const loadArticles = async () => {
             try {
-                const articles = await fetchFeed("today");
-                setArticles(articles);
+                const backendLang = mapFrontendLangToBackend(language);
+                const articles = await fetchFeed(tag, backendLang);
+                setArticles(articles.articles);
             } catch (error) {
                 console.error("Failed to load articles:", error);
                 setError(error.message);
@@ -23,7 +26,7 @@ function Today() {
             }
         };
         loadArticles();
-    }, []);
+    }, [language, tag]);
 
     if (loading) return <div>Loading articles...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;
@@ -35,10 +38,13 @@ function Today() {
         const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
         return diffHours;
     }
+    function capitalizeFirstLetter(val) {
+        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">
-            <h1 className="text-5xl font-bold my-4 pl-5">{language === "zh-Hant" ? "今日頭條" : language === "zh-Hans" ? "今日头条" : "TODAY"}</h1>
+            {tag && (<h1 className="text-5xl font-bold my-4 pl-5">{capitalizeFirstLetter(tag)}</h1>)}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {articles.map((article, index) => (
                     <div
@@ -67,13 +73,13 @@ function Today() {
                         <Link to={`/article/${article.articleID}`}>
                             <h2 className="font-semibold my-2">{article.title}</h2>
                         </Link>
-                        <div className="grid grid-cols-[3fr_1fr] items-center">
-                            <div className="my-4">
+                        <div className={index === 0 ? "grid grid-cols-[3fr_1fr]" : "flex flex-col"} >
+                            <div className={index === 0 ? "my-4 mr-8" : "my-4" }>
                                 <Link to={`/article/${article.articleID}`}>
                                     <SentimentSlider sentiment={article.metrics.sentiment} />
                                 </Link>
                             </div>
-                            <div className="flex items-center px-2 text-xs">
+                            <div className="flex items-center text-xs">
                                 <p className="whitespace-nowrap">
                                     {article.nSources}
                                     {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
@@ -92,5 +98,4 @@ function Today() {
     )
 }   
 
-
-export default Today;
+export default Feed;

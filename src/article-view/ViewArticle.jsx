@@ -11,6 +11,7 @@ import OutletDistribution from "../metric-components/OutletDistribution";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
 import { fetchArticle } from "../services/articleService";
 import { saveArticle } from "../services/profileService";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 function ViewArticle() {
     const { id } = useParams();
@@ -19,7 +20,7 @@ function ViewArticle() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [bookmarked, setBookmarked] = useState(false);
-    const [sortOption, setSortOption] = useState("significance");
+    const [sortOption, setSortOption] = useState("significance-desc"); //user preference should be fetched from backend
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -67,25 +68,41 @@ function ViewArticle() {
 
     // Sorting logic for linked articles
     function sortPublisherArticles(articles) {
-        switch (sortOption) {
-            case "significance":
-                return [...articles].sort((a, b) => b.mediaSignificance - a.mediaSignificance);
-            case "newest":
-                return [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
-            case "oldest":
-                return [...articles].sort((a, b) => new Date(a.date) - new Date(b.date));            
-            case "publisherName":
-                return [...articles].sort((a, b) => a.publisherName.localeCompare(b.publisherName));
-            case "publisherRegion":
-                return [...articles].sort((a, b) => (a.publisherRegion || "").localeCompare(b.publisherRegion || ""));
-            case "conservativeToProgressive":
-                return [...articles].sort((a, b) => (a.publisherStance.tag || "").localeCompare(b.publisherStance.tag || ""));
-            case "progressiveToConservative":
-                return [...articles].sort((a, b) => (b.publisherStance.tag || "").localeCompare(a.publisherStance.tag || ""));
-            default:
-                return articles;
-        }
+    // Split the compound sortOption into criteria and order
+    const [criteria, order] = sortOption.split('-');
+    
+    // First, sort based on the criteria
+    let sortedArticles;
+    switch (criteria) {
+        case "significance":
+            sortedArticles = [...articles].sort((a, b) => b.mediaSignificance - a.mediaSignificance);
+            break;
+        case "publisherName":
+            sortedArticles = [...articles].sort((a, b) => b.publisherName.localeCompare(a.publisherName));
+            break;
+        case "publisherRegion":
+            sortedArticles = [...articles].sort((a, b) => (b.publisherRegion || "").localeCompare(a.publisherRegion || ""));
+            break;
+        case "stance":
+            sortedArticles = [...articles].sort((a, b) => (b.publisherStance.tag || "").localeCompare(a.publisherStance.tag || ""));
+            break;
+        case "date":
+            sortedArticles = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case "title":
+            sortedArticles = [...articles].sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        default:
+            return articles;
     }
+    
+    // Then reverse if order is "asc" (ascending)
+    if (order === "asc") {
+        sortedArticles.reverse();
+    }
+    
+    return sortedArticles;
+}
 
     const sortedPublisherArticles = article?.articles ? sortPublisherArticles(article.articles) : [];
 
@@ -135,62 +152,88 @@ function ViewArticle() {
                     </p>
                 </div>
 
+                
                 {/* linked articles */}
                 <div className="flex flex-col w-9/10 mx-auto p-2">                                                                                                    
                     <div className="my-4 px-4">
                         <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
                     </div>                    
                     <div className="py-8">
-                        <div className="w-full flex justify-between">
-                            <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "文章一覽" : language === "zh-Hans" ? "文章一览" : "Article List"}</h2>
-                            <div className="flex items-center space-x-1 text-sm">
+                        <div className="w-full flex justify-between items-center mb-4">
+                            <h2 className="text-xl font-bold">{language === "zh-Hant" ? "文章一覽" : language === "zh-Hans" ? "文章一览" : "Article List"}</h2>
+                            <div className="flex items-center space-x-2 text-sm">
+                                {/* Criteria dropdown */}
                                 <select
-                                    value={sortOption}
-                                    onChange={e => setSortOption(e.target.value)}
+                                    value={sortOption.split("-")[0]}
+                                    onChange={e => {
+                                        const order = sortOption.split("-")[1] || "desc";
+                                        setSortOption(`${e.target.value}-${order}`);
+                                    }}
                                     className="border rounded px-2 py-1 focus:outline-none"
-                                >                                
+                                >
                                     <option value="significance">
-                                        {language === "zh-Hant" ? "按媒體重要性排序" : language === "zh-Hans" ? "按媒体重要性排序" : "Sort by media significance"}
+                                        {language === "zh-Hant" ? "媒體重要性" : language === "zh-Hans" ? "媒体重要性" : "Media significance"}
                                     </option>
                                     <option value="publisherName">
-                                        {language === "zh-Hant" ? "按發布者名稱排序" : language === "zh-Hans" ? "按发布者名称排序" : "Sort by publisher name"}
+                                        {language === "zh-Hant" ? "發布者名稱" : language === "zh-Hans" ? "发布者名称" : "Publisher name"}
                                     </option>
                                     <option value="publisherRegion">
-                                        {language === "zh-Hant" ? "按發布者地區排序" : language === "zh-Hans" ? "按发布者地区排序" : "Sort by publisher region"}
+                                        {language === "zh-Hant" ? "發布者地區" : language === "zh-Hans" ? "发布者地区" : "Publisher region"}
                                     </option>
-                                    <option value="conservativeToProgressive">
-                                        {language === "zh-Hant" ? "媒體立場：保守" : language === "zh-Hans" ? "媒体立场：保守" : "Stance: conservative"}
+                                    <option value="stance">
+                                        {language === "zh-Hant" ? "媒體立場" : language === "zh-Hans" ? "媒体立场" : "Stance"}
                                     </option>
-                                    <option value="progressiveToConservative">
-                                        {language === "zh-Hant" ? "媒體立場：進步" : language === "zh-Hans" ? "媒体立场：进步" : "Stance: progressive"}
-                                    </option>
-                                    <option value="newest">
-                                        {language === "zh-Hant" ? "最新" : language === "zh-Hans" ? "最新" : "Sort by newest"}
-                                    </option>
-                                    <option value="oldest">
-                                        {language === "zh-Hant" ? "最舊" : language === "zh-Hans" ? "最旧" : "Sort by oldest"}
+                                    <option value="date">
+                                        {language === "zh-Hant" ? "日期" : language === "zh-Hans" ? "日期" : "Date"}
                                     </option>
                                 </select>
+                                {/* Order toggle button */}
+                                <button
+                                    onClick={() => {
+                                        const criteria = sortOption.split("-")[0];
+                                        const currentOrder = sortOption.split("-")[1] || "desc";
+                                        const newOrder = currentOrder === "desc" ? "asc" : "desc";
+                                        setSortOption(`${criteria}-${newOrder}`);
+                                    }}
+                                    className="border rounded focus:outline-none flex px-2 items-center justify-between w-12 h-7"
+                                    title={sortOption.split("-")[1] === "asc" ? "ascending" : "descending"}
+                                >
+                                    {/* Up arrow */}
+                                    <FaArrowUp 
+                                        className={`text-xs  ${
+                                            sortOption.split("-")[1] === "asc" ? 
+                                            "text-[var(--color-text-grey)]" : "text-[var(--color-line-verylightgrey)]"
+                                        }`} 
+                                    />
+                                    {/* Down arrow */}
+                                    <FaArrowDown 
+                                        className={`text-xs h-6 ${
+                                            sortOption.split("-")[1] === "desc" ? 
+                                            "text-[var(--color-text-grey)]" : "text-[var(--color-line-verylightgrey)]"
+                                        }`} 
+                                    />
+
+                                </button>
                             </div> 
                         </div>
                         <ul>
                             {sortedPublisherArticles.map((publisherArticle, index) => (
                                 <div key={index} className="flex justify-between items-start px-2 py-4">
-                                    {/* image on the left, source + stance + title on the right */}
-                                    {/* right side: source + stance on top, title below */}
+                                {/* image on the left, source + stance + title on the right */ }
                                     <img src={publisherArticle.publisherIcon} width={60} className="rounded-full"/>
+                                {/* right side: source + stance on top, title below */}
                                     <div className="w-full px-4">
-                                    <a href={publisherArticle.articleURL} target="_blank" rel="noopener noreferrer">                                                
-                                        <div className="flex text-[var(--color-text-lightgrey)] text-sm">
-                                            <label>{publisherArticle.publisherName}</label>
-                                            <label className="mx-1">({publisherArticle.publisherRegion || "Unknown Region"})</label>                                                
-                                            
-                                            <div className="px-2 mx-6 bg-[var(--color-bg-grey)]">
-                                                {publisherArticle.publisherStance.displayName}
-                                            </div>                                        
-                                        </div>            
-                                        <h2 className="my-2 text-lg">{publisherArticle.title}</h2>                                             
-                                    </a>
+                                        <a href={publisherArticle.articleURL} target="_blank" rel="noopener noreferrer">                                                
+                                            <div className="flex text-[var(--color-text-lightgrey)] text-sm">
+                                                <label>{publisherArticle.publisherName}</label>
+                                                <label className="mx-1">({publisherArticle.publisherRegion || "Unknown Region"})</label>                                                
+                                                
+                                                <div className="px-2 mx-6 bg-[var(--color-bg-grey)]">
+                                                    {publisherArticle.publisherStance.displayName}
+                                                </div>                                        
+                                            </div>            
+                                            <h2 className="my-2 text-lg">{publisherArticle.title}</h2>                                             
+                                        </a>
                                     </div>                                    
                                 </div>
                             ))}                                                                    
@@ -237,6 +280,15 @@ function ViewArticle() {
                     <div className="my-36">
                             <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
                     </div>                  
+                </div>
+
+                <div className="flex flex-col">
+                    <h2>Related topics</h2>
+                    <ul>
+                        {article.relatedTopics.map((topic, index) => (
+                            <li>{topic}</li>
+                        ))}
+                    </ul>
                 </div>                            
             </div>
             { /* third column: ads */}

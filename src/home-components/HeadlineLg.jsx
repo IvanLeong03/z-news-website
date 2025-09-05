@@ -16,25 +16,23 @@ function HeadlineLg({article}) {
     }
 
     return (
-        <article className="relative w-full min-w-[54vw] max-w-[90rem] flex flex-col mb-4">
+        <article className="relative w-4/5 mx-auto flex flex-col mb-8">
             {/* Image */} 
-            <div className="w-full aspect-[16/9]">
+            <div className="aspect-[16/9]">
                 <img src={article.pictureURL} alt="Headline" className="w-full h-full object-cover" />
             </div>
-            {/* Region and sector */}
-            <div className="flex text-[var(--color-primary)] mt-1 text-sm">
+            {/* Region and sector */}            
+            <div className="flex text-[var(--color-primary)] my-1 text-sm">
                 <label>{article.region}</label>
                 <label className="mx-2">|</label>
                 <label>{article.sector}</label>
             </div>
             {/* Title */}
-            <div className="w-full min-h-[4rem] flex items-center">
-                <h1 className="w-full text-2xl lg:text-4xl font-bold text-left block">
-                    {article.title}
-                </h1>
-            </div>
+            <h1 className="my-2 text-2xl lg:text-4xl font-bold text-left block">
+                {article.title}
+            </h1>
             {/* Metrics */}
-            <div className="w-full grid grid-cols-[3fr_1fr]">
+            <div className="w-full px-2 grid grid-cols-[3fr_1fr]">
                 <div className="w-3/4">
                     <SentimentSlider sentiment={article.metrics.sentiment} />
                 </div>

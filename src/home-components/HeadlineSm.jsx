@@ -14,7 +14,7 @@ function HeadlineSm({article}) {
     }
 
     return (
-        <article className="flex flex-col items-stretch w-full mb-6">
+        <article className="flex flex-col items-stretch w-full pb-4 border-b border-[var(--color-line-verylightgrey)]">
             <div className="w-full flex">
                 {/* image */}
                 <div className="w-2/5 aspect-[16/9] overflow-hidden">
