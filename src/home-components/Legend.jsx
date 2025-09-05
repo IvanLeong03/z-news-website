@@ -59,7 +59,7 @@ function Legend() {
         <div className='flex flex-col items-center text-[var(--color-gs-black)] py-2'>
             <div className='w-full mb-4'>
               <SentimentSlider />
-              <p className='text-center my-4'>or</p>
+              <p className='text-center my-4'>{language === "zh-Hant" ? "或" : language === "zh-Hans" ? "或" : "or"}</p>
               <SentimentGauge />
             </div>
             <p className='mt-8 mb-16 text-sm'>

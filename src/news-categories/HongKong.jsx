@@ -70,13 +70,13 @@ function HongKong() {
                         <Link to={`/article/${article.articleID}`}>
                             <h2 className="font-semibold my-2">{article.title}</h2>
                         </Link>
-                        <div className="grid grid-cols-[3fr_1fr] items-center">
-                            <div className="my-4">
+                        <div className={index === 0 ? "grid grid-cols-[3fr_1fr]" : "flex flex-col"} >
+                            <div className={index === 0 ? "my-4 mr-8" : "my-4" }>
                                 <Link to={`/article/${article.articleID}`}>
                                     <SentimentSlider sentiment={article.metrics.sentiment} />
                                 </Link>
                             </div>
-                            <div className="flex items-center px-2 text-xs">
+                            <div className="flex items-center text-xs">
                                 <p className="whitespace-nowrap">
                                     {article.nSources}
                                     {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}

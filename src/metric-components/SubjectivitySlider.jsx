@@ -6,6 +6,21 @@ import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 function SubjectivitySlider({ subjScore = 0 }) {
   const { language } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
+  const highDesc = {
+    "zh-Hant": "高客觀性",
+    "zh-Hans": "高客观性",
+    "en": "High objectivity"
+  };
+  const medDesc = {
+    "zh-Hant": "中等客觀性",
+    "zh-Hans": "中等客观性",
+    "en": "Medium objectivity"
+  };
+  const lowDesc = {
+    "zh-Hant": "低客觀性",
+    "zh-Hans": "低客观性",
+    "en": "Low objectivity" 
+  }
 
   const subjScoreRounded = Math.round(subjScore * 100) / 100; // Round to two decimal places
 
@@ -18,9 +33,9 @@ function SubjectivitySlider({ subjScore = 0 }) {
   
 
   return (
-    <div className="w-full mb-4">
+    <div className="w-full">
       <div className="w-full flex justify-between items-center">
-        <h2 className="text-lg">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
+        <h2 className="text-sm">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
         <div className="relative">
           <AiOutlineInfoCircle
             className="ml-2 text-gray-400 cursor-pointer z-20"
@@ -51,19 +66,15 @@ function SubjectivitySlider({ subjScore = 0 }) {
         </div>
       </div>
       <div className="flex justify-between my-4">
-        <div className="flex items-end">
+        <div className="flex items-end pr-2">
           <p className="text-5xl">{subjScoreRounded}</p>
           <div className="ml-2 text-[var(--color-line-lightgrey)]">/1</div>
         </div>
         <div className="text-xs text-center">
           <div className={boxColor}>
-            {subjScoreRounded < 0.2 ? "High" : subjScoreRounded < 0.6 ? "Medium" : "Low" } objectivity
+            {subjScoreRounded < 0.2 ? highDesc[language] : subjScoreRounded < 0.6 ? medDesc[language] : lowDesc[language] } 
           </div>
-
         </div>
-        
-
-
       </div>
     </div>
   );

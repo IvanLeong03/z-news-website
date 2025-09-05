@@ -84,12 +84,15 @@ const MyTopics = () => {
     }
   };
 
-
   return (
     <div className="max-w-[400px] mx-auto my-8 p-6 border border-[#ddd] rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">Choose Topics to Follow</h2>
+      <h2 className="text-xl font-semibold mb-4">
+        {language === "zh-Hant" ? "選擇追蹤主題" : language === "zh-Hans" ? "选择追踪主题" : "Choose topics to follow"}                                
+      </h2>
       <p className='text-xs text-gray-500 mb-4'>
-        This influences the articles we recommend in your 'For You' tab.
+        {language === "zh-Hant" ? "決定個人推薦頁面中出現的文章" 
+        : language === "zh-Hans" ? "决定个人推荐页面中出现的文章" 
+        : "This influences the articles we recommend in your ‘For You’ tab."}                                
       </p>
 
       {/* Search input with autocomplete */}
@@ -100,7 +103,7 @@ const MyTopics = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setTimeout(() => setIsInputFocused(false), 200)}
-          placeholder="Search topics..."
+          placeholder={language === "zh-Hant" ? "搜尋主題" : language === "zh-Hans" ? "搜索主题" : "Search topics..."}                                
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-dark-turquoise)]"
         />
         
@@ -124,9 +127,11 @@ const MyTopics = () => {
 
       {/* Followed topics section */}
       <div>
-        <h3 className="font-medium mb-3">Following ({followedTopics.length})</h3>
+        <h3 className="font-medium mb-3">{language === "zh-Hant" ? "已追蹤" : language === "zh-Hans" ? "已追踪" : "Following"} ({followedTopics.length})</h3>
         {followedTopics.length === 0 ? (
-          <p className="text-sm text-gray-500">You're not following any topics yet</p>
+          <p className="text-sm text-gray-500">
+            {language === "zh-Hant" ? "未追蹤任何主題" : language === "zh-Hans" ? "未追踪任何主题": "You're not following any topics yet"}
+          </p>
         ) : (
           <div className="flex flex-wrap gap-2">
             {followedTopics.map((topic) => (

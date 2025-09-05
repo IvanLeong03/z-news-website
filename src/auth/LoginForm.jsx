@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Optional: For redirect after login
-import { FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { login } from "../services/authService";
+import { useLanguage } from "../context/LanguageContext";
 
 
 export default function LoginForm() {
+  const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +39,9 @@ export default function LoginForm() {
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center mb-6">Log In</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">
+        {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
+      </h2>
       
       {error && (
         <div className="mb-4 p-2 text-sm text-red-600 bg-red-50 rounded">
@@ -48,7 +52,7 @@ export default function LoginForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Email
+            {language === "zh-Hant" ? "電郵" : language === "zh-Hans" ? "电邮" : "Email"}
           </label>
           <input
             //type="email"
@@ -63,7 +67,7 @@ export default function LoginForm() {
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-            Password
+            {language === "zh-Hant" ? "密碼" : language === "zh-Hans" ? "密码" : "Password"}
           </label>
           <div className="relative mt-1">
             <input
@@ -80,7 +84,7 @@ export default function LoginForm() {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
             >
-              {showPassword ? <FaRegEyeSlash /> : "[show]"}
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </button>
           </div>
         </div>
@@ -93,11 +97,11 @@ export default function LoginForm() {
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
             <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-              Remember me
+              {language === "zh-Hant" ? "保存登入" : language === "zh-Hans" ? "保存登入" : "Remember me"}
             </label>
           </div>
           <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">
-            Forgot password?
+            {language === "zh-Hant" ? "忘記密碼" : language === "zh-Hans" ? "忘记密码" : "Forgot password?"}
           </a>
         </div>
 
@@ -115,9 +119,9 @@ export default function LoginForm() {
       </form>
 
       <div className="mt-4 text-center text-sm text-gray-600">
-        Don’t have an account?{" "}
-        <a href="/signup" className="text-blue-600 hover:underline">
-          Sign up
+        {language === "zh-Hant" ? "新使用者?" : language === "zh-Hans" ? "新使用者?" : "New user?"}
+        <a href="/signup" className="text-blue-600 hover:underline ml-4">
+            {language === "zh-Hant" ? "註冊帳戶" : language === "zh-Hans" ? "注册帐户" : "Sign up"}
         </a>
       </div>
     </div>

@@ -6,17 +6,20 @@ import { useLanguage } from "../context/LanguageContext";
 import { FaUser } from "react-icons/fa";
 import EnLogo from "../assets/ZoneNewsLogo/zonenews__logo_secondary_EN.jpg";
 import ChLogo from "../assets/ZoneNewsLogo/zonenews__logo_secondary_CH.jpg";
+import { mapFrontendLangToBackend } from "../context/LangConverter";
 
 
 function Navbar() {
     const { language } = useLanguage(); 
     const navigate = useNavigate();
+    const locale = mapFrontendLangToBackend(language);
+
 
     return (
         <div className="sticky top-0 z-50 w-full flex flex-col">
             <div className="flex w-full justify-center space-x-6 text-sm text-center bg-black p-1 text-[#fefefe]">
                 <label>
-                    {new Date().toLocaleDateString("en-GB", 
+                    {new Date().toLocaleDateString(locale, 
                         {
                         year: "numeric",
                         month: "long",
@@ -25,7 +28,7 @@ function Navbar() {
                     }
                 </label>
                 <label>
-                    {new Date().toLocaleDateString("en-GB", {weekday: "long",})}
+                    {new Date().toLocaleDateString(locale, {weekday: "long",})}
                 </label>
             </div>
 
@@ -42,13 +45,6 @@ function Navbar() {
                 {/* Center: Nav Links */}
                 <div className="flex flex-grow justify-center">
                     <ul className="flex space-x-8 lg:space-x-16 text-base lg:text-lg">
-                        {/*}
-                        <li>
-                            <Link to="/today">
-                                {language === "zh-Hant" ? "今日頭條" : language === "zh-Hans" ? "今日头条" : "TODAY"}
-                            </Link>
-                        </li>
-                        */}
                         <li>
                             <Link to="/hk">
                                 {language === "zh-Hant" ? "香港" : language === "zh-Hans" ? "香港" : "HONG KONG"}
@@ -88,13 +84,10 @@ function Navbar() {
                                     {language === "zh-Hant" ? "帳戶設定" : language === "zh-Hans" ? "账户设置" : "Profile settings"}
                                 </Link>
                             </li>
-                            {/* 
                             <li>
-                                <Link to="/account/settings" className="block px-4 py-2 hover:bg-gray-100">Settings</Link>
-                            </li>
-                            */}
-                            <li>
-                                <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">My Topics</Link>
+                                <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">
+                                    {language === "zh-Hant" ? "追蹤主題" : language === "zh-Hans" ? "追踪主题" : "My Topics"}                                
+                                </Link>
                             </li>
                         </ul>
                     </div>

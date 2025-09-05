@@ -23,7 +23,7 @@ function MainCol() {
         const mainArticleResult = results.headlines; 
         const mainArticlesArray = []; //fetch detailed info for each main article
         for (let i = 0; i < mainArticleResult.length; i++) {
-          mainArticlesArray.push(await fetchArticle(mainArticleResult[i].articleID));
+          mainArticlesArray.push(await fetchArticle(mainArticleResult[i].articleID, backEndLang));
         }
         // Set 'articles' as subArticles
         const subArticlesResults = results.articles;

@@ -31,7 +31,7 @@ function TopicsBar() {
     if (error) return <div className="text-red-500">Error: {error}</div>;   
 
     const handleTopicClick = (topic) => {
-        navigate(`/topics/${encodeURIComponent(topic.tag)}`);
+        navigate(`/topics/${encodeURIComponent(topic.displayName)}`);
     };
     
     return (

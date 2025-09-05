@@ -63,19 +63,24 @@ function Account() {
     };
 
     return (
-        <div className="w-1/2 mx-auto p-4 flex flex-col items-center">
+        <div className="mx-auto p-4 flex flex-col items-center">
             <h1 className="text-3xl font-bold my-16">
                 {language === "zh-Hant" ? "帳戶設定" : language === "zh-Hans" ? "账户设置" : "Profile settings"}
             </h1>
             <div className="mt-24">
                 {/* fetch every field from user object */}
-                <div className="w-24 h-24 mb-8">
-                    {profile && 
-                    <img src={profile.profileIcon} className="object-cover"/>
-                    }
+                <div className="flex justify-between">                    
+                    <div>
+                        {profile && <p className="my-2">{profile.profileID}</p>}
+                        <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">admin@somedomain.com</p>
+                    </div> 
+                    <div className="w-24 h-24 mb-8">
+                        {profile && 
+                        <img src={profile.profileIcon} className="object-cover rounded-full"/>
+                        }
+                    </div>
                 </div>
-                {profile && <p className="my-2 font-semibold">{profile.profileID}</p>}
-                <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">admin@somedomain.com</p>
+                               
 
                 <div className="flex items-center space-x-4 mt-8">
                     <p className="text-sm">
@@ -123,7 +128,7 @@ function Account() {
                     </label>
                     <div className="grid grid-cols-2">
                         {publisherRegions.map((region) => (
-                            <label key={region.tag} className="px-2 py-4">
+                            <label key={region.tag} className="p-4 rounded-l-full rounded-r-full border border-black mx-2 my-4">
                                 <input
                                     type="checkbox"
                                     className="mx-2"
@@ -138,7 +143,7 @@ function Account() {
 
                 <div className="flex flex-col my-12">
                     <h2 className="font-semibold">
-                        {language === "zh-Hant" ? "付款設定" : language === "zh-Hans" ? "付款设置" : "Billing"}                                                
+                        {language === "zh-Hant" ? "付款設定" : language === "zh-Hans" ? "付款设置" : "Billing"} (to be implemented)                                                   
                     </h2>
                     <label className="text-sm text-[var(--color-text-lightgrey)]">
                         {language === "zh-Hant" ? "修改或新增付款方式" : language === "zh-Hans" ? "修改或新增付款方式" : "Manage your payment methods"}                    
@@ -147,7 +152,7 @@ function Account() {
                               
                 <div className="flex flex-col my-12">
                     <h2 className="font-semibold">
-                        {language === "zh-Hant" ? "管理訂閱" : language === "zh-Hans" ? "管理订阅" : "Manage subscription"}                        
+                        {language === "zh-Hant" ? "管理訂閱" : language === "zh-Hans" ? "管理订阅" : "Manage subscription"}  (to be implemented)                         
                     </h2>
                     <label className="text-sm text-[var(--color-text-lightgrey)]">
                         {language === "zh-Hant" ? "查看並管理您目前的訂閱" : language === "zh-Hans" ? "查看和管理您当前的订阅" : "View and manage your current subscription"}                        
@@ -156,7 +161,7 @@ function Account() {
 
                 <div className="flex flex-col my-12">
                     <h2 className="font-semibold">
-                        {language === "zh-Hant" ? "重設密碼" : language === "zh-Hans" ? "重设密码" : "Reset password"}                        
+                        {language === "zh-Hant" ? "重設密碼" : language === "zh-Hans" ? "重设密码" : "Reset password"} (to be implemented)                   
                     </h2>
                     <Link to={"/account/reading-history"} className="text-[var(--color-dark-turquoise)] hover:underline">
                         <label className="text-sm text-[var(--color-text-lightgrey)]">

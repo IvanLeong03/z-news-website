@@ -16,7 +16,7 @@ function SentimentGauge({ sentiment = 0 }) {
     <div className="flex flex-col items-center my-4">
       {/* Title */}
       <div className="w-full flex justify-between items-center">
-        <div className="text-lg my-2">
+        <div className="text-sm my-2">
         {language === "zh-Hant"
           ? "情感數值"
           : language === "zh-Hans"
@@ -94,7 +94,7 @@ function SentimentGauge({ sentiment = 0 }) {
             -1
           </text>
           <text x="0" y="138" fontSize="12" fill="#999" textAnchor="start">
-            Pessimistic
+            {language === "zh-Hant" ? "悲觀" : language === "zh-Hans" ? "悲观" : "Pessimistic"}                                
           </text>
           <text x="110" y="4" fontSize="12" fill="#999" textAnchor="middle">
             0
@@ -103,7 +103,7 @@ function SentimentGauge({ sentiment = 0 }) {
             +1
           </text>
           <text x="220" y="138" fontSize="12" fill="#999" textAnchor="end">
-            Optimistic
+            {language === "zh-Hant" ? "樂觀" : language === "zh-Hans" ? "乐观" : "Optimistic"}                                
           </text>
         </svg>
 
