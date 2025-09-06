@@ -28,11 +28,13 @@ function AboutUs() {
         loadAbout();
     }, [language]);
 
+    if (error) return <div className="text-red-500">Error: {error}</div>;
+
     useEffect(() => {
         function handleScroll() {
             const scrollY = window.scrollY;
             const newWidth = Math.min(100, 65 + (scrollY / 10)) + '%';
-            const newOpacity = Math.min(1, 0.5 + (scrollY / 1000));
+            const newOpacity = scrollY > 500 ? 1 : Math.min(0.5 + (scrollY / 1000));
             setSectionStyle({ width: newWidth, opacity: newOpacity });
         }
         window.addEventListener("scroll", handleScroll);
@@ -43,14 +45,14 @@ function AboutUs() {
         <main className="flex-col w-full mx-auto justify-center items-center text-center">            
             <video
                 src="/src/assets/aboutUsVideo.mp4"
-                className="w-full mx-auto shadow-lg z-[51]"
+                className="w-full shadow-lg z-10 aspect-auto"
                 autoPlay
                 muted
                 loop
             />
 
             <div
-                className="bg-[var(--color-light-turquoise)] rounded-xl text-lg mx-auto -mt-72 pt-32 px-2 text-[var(--color-gs-black)]"
+                className="relative bg-[var(--color-light-turquoise)] rounded-lg text-lg mx-auto z-20 -mt-[20rem] pt-32 px-2 text-[var(--color-gs-black)]"
                 style={sectionStyle}
             >   
                 {/* fetched from backend */}            

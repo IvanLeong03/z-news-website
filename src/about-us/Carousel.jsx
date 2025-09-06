@@ -93,7 +93,7 @@ const Carousel = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative overflow-hidden cursor-pointer h-[20vh] md:h-[25vh] lg:h-[30vh] xl:h-[40vh] w-[70dvw] md:w-[40dvw] xl:w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+              <div className="relative overflow-hidden cursor-pointer h-[40dvh] w-[30dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
                     src={slide.slideImg}
