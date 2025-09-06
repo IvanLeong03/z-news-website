@@ -16,7 +16,7 @@ function HeadlineLg({article}) {
     return (
         <article className="relative w-4/5 mx-auto flex flex-col mb-8">
             {/* Image */} 
-            <div className="aspect-[16/9]">
+            <div className="aspect-[16/9] w-full h-full">
                 <img src={article.pictureURL} alt="Headline" className="w-full h-full object-cover" />
             </div>
             {/* Region and sector */}            

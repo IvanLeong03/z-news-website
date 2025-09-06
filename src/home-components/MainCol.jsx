@@ -9,7 +9,8 @@ import { fetchArticle } from "../services/articleService";
 
 function MainCol() {
   const { language } = useLanguage();
-  const [mainArticle, setMainArticle] = useState();
+  const [headlineArticles, setHeadlineArticles] = useState([]);
+  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
   const [subArticles, setSubArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,7 +29,8 @@ function MainCol() {
         // Set 'articles' as subArticles
         const subArticlesResults = results.articles;
 
-        setMainArticle(mainArticlesArray[0]); //only one main article for now
+        setHeadlineArticles(mainArticlesArray);
+        setCurrentHeadlineIndex(0); // Start with the first headline
         setSubArticles(subArticlesResults);
       } catch (error) {
         console.error("Failed to load articles:", error);
@@ -43,14 +45,44 @@ function MainCol() {
   if (loading) return <div>Loading articles...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
+  const handleNext = () => {
+    setCurrentHeadlineIndex((prevIndex) =>
+      prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentHeadlineIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : headlineArticles.length - 1
+    );
+  };
+
+  
   return (
     <div className="w-full h-auto flex flex-grow flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-lightgrey)]">
       { /* one large article, and the rest will be smaller ones */}
-      <Link to={`/article/${mainArticle.articleID}`} >
-        <HeadlineLg
-          article = {mainArticle}
-        />
-      </Link>
+      {headlineArticles.length > 0 && (
+        <div className="relative w-full">
+          <button
+            onClick={handlePrev}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 shadow-md z-10"
+          >
+            ◀
+          </button>
+
+          <Link to={`/article/${headlineArticles[currentHeadlineIndex].articleID}`}>
+            <HeadlineLg article={headlineArticles[currentHeadlineIndex]} />
+          </Link>
+
+          <button
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 shadow-md z-10"
+          >
+            ▶
+          </button>
+        </div>
+      )}
+
      
       <div className="mb-8 px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-stretch">

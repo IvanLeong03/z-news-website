@@ -8,7 +8,6 @@ function AboutUs() {
     const { language, setLanguage } = useLanguage();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [opacity, setOpacity] = useState(0.2);
     const [about, setAbout] = useState();
     const [sectionStyle, setSectionStyle] = useState({ width: '65%', opacity: 0.5 });
 
