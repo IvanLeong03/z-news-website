@@ -56,13 +56,13 @@ function SearchResults() {
   return (
     <div className="p-4 w-[80%] mx-auto my-16">
       <div className='w-full flex justify-between items-start my-8'>
-        <h1 className="text-2xl mb-8">
+        <h1 className="text-3xl mb-8">
           {language === "zh-Hant" ? "搜尋結果" : 
-          language === 'zh-Hans' ? "搜寻结果" : "Search Results for"}: "{query}"
+          language === 'zh-Hans' ? "搜寻结果" : "Search Results for"}: {query}
         </h1>
 
         <div className="mb-6">
-          <label htmlFor="sort" className="mr-2 font-medium">
+          <label htmlFor="sort" className="mr-2">
             {language === 'zh-Hant' ? "優先展示" : 
             language === 'zh-Hans' ? "优先展示" : "Sort by"}:
           </label>

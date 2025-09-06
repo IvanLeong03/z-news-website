@@ -44,7 +44,7 @@ function MainCol() {
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
-    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center pt-6 px-2 border-r border-l border-[var(--color-line-lightgrey)]">
+    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-lightgrey)]">
       { /* one large article, and the rest will be smaller ones */}
       <Link to={`/article/${mainArticle.articleID}`} >
         <HeadlineLg

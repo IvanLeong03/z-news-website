@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 
 function Feed(props) {
     const { language } = useLanguage();
+    const headerName = {
+        "hk": "Hong Kong",
+        "china": "China",
+        "personal": "Recommended"
+    };
     const { tag } = props;
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -38,23 +43,19 @@ function Feed(props) {
         const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
         return diffHours;
     }
-    function capitalizeFirstLetter(val) {
-        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-    }
 
     return (
         <div className="flex flex-col w-[80%] mx-auto my-16">
-            {tag && (<h1 className="text-5xl font-bold my-4 pl-5">{capitalizeFirstLetter(tag)}</h1>)}
+            {tag && (<h1 className="text-5xl font-bold mb-8 pl-5">{headerName[tag]}</h1>)}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {articles.map((article, index) => (
                     <div
                         key={index}
                         className={
                             index === 0
-                                ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col rounded-lg p-4 m-2 lg:h-[32rem] text-3xl"
-                                : "flex flex-col rounded-lg p-4 m-2 text-xl"
+                                ? "col-span-1 md:col-span-2 lg:col-span-2 row-span-2 flex flex-col rounded-lg p-4 m-2 text-3xl"
+                                : "flex flex-col p-4 m-2 text-xl border-b border-[var(--color-line-verylightgrey)]"
                         }
-                        style={index === 0 ? { minHeight: '20rem' } : {}}
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
                             <Link to={`/article/${article.articleID}`}>
@@ -73,6 +74,9 @@ function Feed(props) {
                         <Link to={`/article/${article.articleID}`}>
                             <h2 className="font-semibold my-2">{article.title}</h2>
                         </Link>
+                        <p>
+                            {article.description}
+                        </p>
                         <div className={index === 0 ? "grid grid-cols-[3fr_1fr]" : "flex flex-col"} >
                             <div className={index === 0 ? "my-4 mr-8" : "my-4" }>
                                 <Link to={`/article/${article.articleID}`}>

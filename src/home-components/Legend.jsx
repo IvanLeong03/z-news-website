@@ -36,7 +36,7 @@ function Legend() {
                   ? "文章採取較保守的立場"
                   : language === "zh-Hans"
                   ? "文章采取较保守的立场"
-                  : "The article leans towards a conservative perspective."}
+                  : "The article leans towards a Conservative stance."}
               </p>
             </div>
             <div className='my-4 text-sm'>

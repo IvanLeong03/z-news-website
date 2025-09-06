@@ -14,14 +14,14 @@ function HeadlineSm({article}) {
     }
 
     return (
-        <article className="flex flex-col items-stretch w-full pb-4 border-b border-[var(--color-line-verylightgrey)]">
+        <article className="flex flex-col items-stretch w-9/10 mx-auto pb-4 border-b border-[var(--color-line-verylightgrey)]">
             <div className="w-full flex">
                 {/* image */}
                 <div className="w-2/5 aspect-[16/9] overflow-hidden">
                     <img src={article.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
                 </div>
                 {/* sentiment score */}
-                <div className="w-3/5 p-2">
+                <div className="w-3/5 px-4">
                     <SentimentSlider sentiment={article.metrics.sentiment}/>
                 </div>                
             </div>
@@ -33,7 +33,7 @@ function HeadlineSm({article}) {
                     <label>{article.sector}</label>
                 </div>                                                                     
                 <h1 className="w-full text-lg lg:text-xl font-semibold text-left">{article.title}</h1>
-                <div className="flex items-center">
+                <div className="flex items-center my-1">
                     <p className="text-xs whitespace-nowrap">
                         {article.nSources}
                         {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}

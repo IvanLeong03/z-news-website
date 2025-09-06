@@ -10,6 +10,7 @@ function AboutUs() {
     const [error, setError] = useState(null);
     const [opacity, setOpacity] = useState(0.2);
     const [about, setAbout] = useState();
+    const [sectionStyle, setSectionStyle] = useState({ width: '65%', opacity: 0.5 });
 
     useEffect(() => {
         const loadAbout = async () => {
@@ -29,15 +30,11 @@ function AboutUs() {
 
     useEffect(() => {
         function handleScroll() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            // Prevent division by zero
-            const scrollFraction = docHeight > 0 ? scrollTop / docHeight : 0;
-            // Opacity from 0.5 to 1.0
-            const newOpacity = 0.5 + scrollFraction * 0.8;
-            setOpacity(Math.min(1, Math.max(0.5, newOpacity)));
+            const scrollY = window.scrollY;
+            const newWidth = Math.min(100, 65 + (scrollY / 10)) + '%';
+            const newOpacity = Math.min(1, 0.5 + (scrollY / 1000));
+            setSectionStyle({ width: newWidth, opacity: newOpacity });
         }
-
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -53,8 +50,8 @@ function AboutUs() {
             />
 
             <div
-                className="bg-[var(--color-light-turquoise)] rounded-xl text-lg -mt-12 px-2 pt-20 text-[var(--color-gs-black)]"
-                style={{ opacity, transition: "opacity 0.3s" }}
+                className="bg-[var(--color-light-turquoise)] rounded-xl text-lg mx-auto -mt-72 pt-32 px-2 text-[var(--color-gs-black)]"
+                style={sectionStyle}
             >   
                 {/* fetched from backend */}            
                 {about && (
@@ -62,7 +59,7 @@ function AboutUs() {
                         {about}
                     </p>
                 )}
-                <p className="text-left my-8 w-2/3 mx-auto">
+                <p className="text-left my-12 w-2/3 mx-auto">
                     Zone News is your comprehensive source for the latest news from around the world. We provide balanced,
                     accurate and timely reporting on politics, technology, sport and more.
                 </p>

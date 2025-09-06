@@ -90,7 +90,7 @@ function SentimentGauge({ sentiment = 0 }) {
           )}
 
           {/* Labels */}
-          <text x="3" y="120" fontSize="12" fill="#999" textAnchor="start">
+          <text x="3" y="122" fontSize="12" fill="#999" textAnchor="start">
             -1
           </text>
           <text x="0" y="138" fontSize="12" fill="#999" textAnchor="start">
@@ -99,7 +99,7 @@ function SentimentGauge({ sentiment = 0 }) {
           <text x="110" y="4" fontSize="12" fill="#999" textAnchor="middle">
             0
           </text>
-          <text x="217" y="120" fontSize="12" fill="#999" textAnchor="end">
+          <text x="217" y="122" fontSize="12" fill="#999" textAnchor="end">
             +1
           </text>
           <text x="220" y="138" fontSize="12" fill="#999" textAnchor="end">

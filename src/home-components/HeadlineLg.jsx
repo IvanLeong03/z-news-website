@@ -1,7 +1,5 @@
 import React from "react";
-import SplitBar from "../metric-components/SplitBar";
 import SentimentSlider from "../metric-components/SentimentSlider";
-import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { useLanguage } from "../context/LanguageContext";
 
 function HeadlineLg({article}) {
@@ -22,15 +20,18 @@ function HeadlineLg({article}) {
                 <img src={article.pictureURL} alt="Headline" className="w-full h-full object-cover" />
             </div>
             {/* Region and sector */}            
-            <div className="flex text-[var(--color-primary)] my-1 text-sm">
+            <div className="flex text-[var(--color-primary)] my-2 text-sm">
                 <label>{article.region}</label>
                 <label className="mx-2">|</label>
                 <label>{article.sector}</label>
             </div>
             {/* Title */}
-            <h1 className="my-2 text-2xl lg:text-4xl font-bold text-left block">
+            <h1 className="my-1 text-2xl lg:text-4xl font-bold text-left block">
                 {article.title}
             </h1>
+            <p className="text-sm text-[var(--color-text-lightgrey)] mt-2 mb-4 line-clamp-2">
+                {article.description}
+            </p>
             {/* Metrics */}
             <div className="w-full px-2 grid grid-cols-[3fr_1fr]">
                 <div className="w-3/4">

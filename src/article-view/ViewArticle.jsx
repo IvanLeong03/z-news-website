@@ -56,7 +56,6 @@ function ViewArticle() {
     if (loading) return <div className="text-center py-8">Loading article...</div>;
     if (error) return <div className="text-red-500 text-center py-8">Error: {error}</div>;
     if (!article) return <div className="text-center py-8">Article not found.</div>;
-    console.log(article.articles);
 
     function getHoursAgo(dateString) {
         const articleDate = new Date(dateString);
@@ -143,7 +142,7 @@ function ViewArticle() {
                 <div className="flex flex-col w-9/10 mx-auto my-8 px-2 border border-[var(--color-dark-turquoise)] rounded-xl">                                                                                
                     <div className="py-4">
                         <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "Summary"}</h2>
-                        <p className="pb-24">{article.description}</p>                      
+                        <p className="pb-16">{article.description}</p>                      
                     </div>                                               
                     <p className="text-[var(--color-text-lightgrey)] text-xs">
                         {language === "zh-Hant" ? "此摘要由 SearcherAI 生成。" 
@@ -195,22 +194,24 @@ function ViewArticle() {
                                         const newOrder = currentOrder === "desc" ? "asc" : "desc";
                                         setSortOption(`${criteria}-${newOrder}`);
                                     }}
-                                    className="border rounded focus:outline-none flex px-2 items-center justify-between w-12 h-7"
+                                    className="border rounded focus:outline-none flex px-1 items-center justify-between w-12 h-7"
                                     title={sortOption.split("-")[1] === "asc" ? "ascending" : "descending"}
                                 >
                                     {/* Up arrow */}
                                     <FaArrowUp 
-                                        className={`text-xs  ${
+                                        className={`text-xs ${
                                             sortOption.split("-")[1] === "asc" ? 
                                             "text-[var(--color-text-grey)]" : "text-[var(--color-line-verylightgrey)]"
                                         }`} 
+                                        size={32}
                                     />
                                     {/* Down arrow */}
                                     <FaArrowDown 
-                                        className={`text-xs h-6 ${
+                                        className={`text-xs ${
                                             sortOption.split("-")[1] === "desc" ? 
                                             "text-[var(--color-text-grey)]" : "text-[var(--color-line-verylightgrey)]"
-                                        }`} 
+                                        }`}
+                                        size={32} 
                                     />
 
                                 </button>

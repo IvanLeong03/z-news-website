@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import Img1 from "/src/assets/react.svg";
+import Img1 from "/src/assets/ZoneNewsLogo/zonenews_logo_secondary_EN_WHITE.png";
 import FilterImg from "/src/assets/filter-image.webp";
 
 const Carousel = () => {
@@ -40,12 +40,12 @@ const Carousel = () => {
   const loopedSlides = [...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides];
   const controls = useAnimation();
   const [currentX, setCurrentX] = useState(0); // Store current x coordinate to change speed while staying in place
-  const [speed, setSpeed] = useState(-1.8); // Speed in percentage
+  const [speed, setSpeed] = useState(-2.5); // Speed in percentage
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const updateAnimation = () => {
-      const newSpeed = isHovered ? speed*0.4 : speed;
+      const newSpeed = isHovered ? speed*0.5 : speed;
       controls.start({
         x: [currentX, currentX + newSpeed],
         transition: {
@@ -74,11 +74,11 @@ const Carousel = () => {
   };
 
   return (
-    <div className="w-full relative py-20 bg-darkWhite">
+    <div className="w-full relative py-16 bg-darkWhite">
       <h2 className="w-full text-center text-[1.5rem] md:text-[2.5rem] font-semibold">
-        Features
+        Our Features
       </h2>
-      <div className="relative mt-12 overflow-hidden py-8 w-full">
+      <div className="relative my-4 overflow-hidden w-full">
         <motion.div
           className="flex"
           animate={controls}
@@ -93,7 +93,7 @@ const Carousel = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative overflow-hidden rounded-xl cursor-pointer h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] max-h-[650px] w-[70dvw] md:w-[40dvw] xl:w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+              <div className="relative overflow-hidden cursor-pointer h-[20vh] md:h-[25vh] lg:h-[30vh] xl:h-[40vh] w-[70dvw] md:w-[40dvw] xl:w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
                     src={slide.slideImg}
