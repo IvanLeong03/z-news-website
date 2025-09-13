@@ -106,17 +106,16 @@ function ViewArticle() {
     const sortedPublisherArticles = article?.articles ? sortPublisherArticles(article.articles) : [];
 
     return (
-        <article className="grid grid-cols-[3fr_1fr_1fr] overflow-hidden justify-center items-start w-[90dvw] h-full mx-auto">
+        <article className="grid grid-cols-[4fr_1fr] overflow-hidden justify-center items-start w-[90dvw] h-full mx-auto">
             { /* first column: article itself */}
             <div className="min-h-dvh px-1 py-4">
                 { /* article title and image */ }
                 <div className="flex-col flex-grow w-9/10 mx-auto">
                     {/* region, sector, date and time*/}
                     <div className="flex justify-between items-center my-1">
-                        <div className="flex text-[var(--color-primary)] text-base">
-                            <label>{article.region}</label>
-                            <label className="mx-2">|</label>
-                            <label>{article.sector}</label>
+                        <div className="flex text-base text-[var(--color-gs-white)] gap-x-4">
+                            <label className="px-2 rounded-r-lg rounded-l-lg bg-[var(--color-primary)]">{article.region}</label>                            
+                            <label className="px-2 rounded-r-lg rounded-l-lg bg-[var(--color-secondary-1)]">{article.sector}</label>
                         </div>
                         <div className="text-[var(--color-text-lightgrey)] text-sm">
                             {article.date.slice(11,16)}                            
@@ -126,7 +125,7 @@ function ViewArticle() {
                             {article.date.slice(0, 4)}
                         </div>
                     </div>                                        
-                    <img src={article.pictureURL} className="w-full" />
+                    
                     <div className="w-full flex justify-between">
                         <h1 className="text-3xl font-semibold my-2">{article.title}</h1>
                         <button className="px-2" aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"} onClick={handleBookmark}>
@@ -136,15 +135,36 @@ function ViewArticle() {
                             )}
                         </button>                  
                     </div>
+                    <div className="flex space-x-2">
+                        <img src={article.pictureURL} className="w-3/4" />
+                        <div className="mx-auto m-2 p-2 border border-[var(--color-line-lightgrey)] rounded-xl">
+                            <h1 className="font-semibold text-xl">
+                                {language === "zh-Hant" ? "數據解讀" : language === "zh-Hans" ? "数据解读" : "Metric analysis"}                                                
+                            </h1>  
+                            <div className="mb-24 mt-8">
+                                <SentimentGauge sentiment={article.metrics.sentiment}/>            
+                            </div>   
+                            <div className="my-16">
+                                <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
+                            </div>                  
+                        </div>
+
+                    </div>
+                    
                 </div>
 
                 {/* summary */}
                 <div className="flex flex-col w-9/10 mx-auto my-8 px-2 border border-[var(--color-dark-turquoise)] rounded-xl">                                                                                
                     <div className="py-4">
-                        <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "Summary"}</h2>
-                        <p className="pb-16">{article.description}</p>                      
-                    </div>                                               
-                    <p className="text-[var(--color-text-lightgrey)] text-xs">
+                        <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What Happened"}</h2>
+                        <p className="py-2">{article.description}</p>                      
+                    </div>   
+                    <div className="py-4">
+                        <h2 className="text-xl font-bold mb-4">{language === "zh-Hant" ? "影響" : language === "zh-Hans" ? "影响" : "Significance and Implications"}</h2>
+                        <p className="py-2">{article.description}</p>                      
+                    </div> 
+                                                                
+                    <p className="text-[var(--color-text-lightgrey)] text-xs mt-12 py-2">
                         {language === "zh-Hant" ? "此摘要由 SearcherAI 生成。" 
                         : language === "zh-Hans" ? "此摘要由 SearcherAI 生成。" 
                         : "This summary is generated by SearcherAI."}
@@ -256,43 +276,7 @@ function ViewArticle() {
                 </div>                        
             </div>
 
-            { /* second column: distribution, sentiment, subjectivity */}
-            <div className="flex-col flex-grow justify-center min-h-dvh py-6 px-1">
-                <div className="w-11/12 mx-auto border-b border-[var(--color-line-grey)]">
-                    <h1 className="mb-8 text-3xl font-bold">
-                        {language === "zh-Hant" ? "文章分析" : language === "zh-Hans" ? "文章分析" : "Article breakdown"}
-                    </h1>                    
-                    <h2 className="font-bold text-xl my-2">
-                        {language === "zh-Hant" ? "媒體立場" : language === "zh-Hans" ? "媒体立场" : "Leaning distribution"}                        
-                    </h2>
-                    <div className="my-8">
-                        <Link to="/user-guide">
-                            <SplitBar cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} />
-                        </Link>
-                    </div>
-                </div>  
-                <div className="w-9/10 mx-auto my-2">
-                    <h1 className="font-bold text-xl">
-                        {language === "zh-Hant" ? "數據解讀" : language === "zh-Hans" ? "数据解读" : "Metric analysis"}                                                
-                    </h1>  
-                    <div className="mt-16">
-                            <SentimentGauge sentiment={article.metrics.sentiment}/>            
-                    </div>   
-                    <div className="my-36">
-                            <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
-                    </div>                  
-                </div>
-
-                <div className="flex flex-col">
-                    <h2>Related topics</h2>
-                    <ul>
-                        {article.relatedTopics.map((topic, index) => (
-                            <li>{topic}</li>
-                        ))}
-                    </ul>
-                </div>                            
-            </div>
-            { /* third column: ads */}
+            { /* 2nd column: ads */}
             <div className="min-h-dvh h-full py-6 px-1 border-l border-[var(--color-line-darkgrey)]">
                 <div className="flex flex-col flex-grow">
                     <img src="/src/assets/customise-ads-button.svg" className="w-1/2 mx-auto" />

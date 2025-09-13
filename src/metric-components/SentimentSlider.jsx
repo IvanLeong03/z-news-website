@@ -18,13 +18,13 @@ function SentimentSlider({ sentiment = 0}) {
   return (
     <div className="w-full mb-4">
       {/* Title + Sentiment Value */}
-      <div className="flex items-center text-sm text-[var(--color-text-grey)] font-medium mb-1 relative">
+      <div className="flex items-center text-sm text-[var(--color-text-grey)] mb-1 relative">
         <span className="mr-1">
           {language === "zh-Hant"
-            ? "情感數值"
+            ? "情感數值:"
             : language === "zh-Hans"
-            ? "情感数值"
-            : "Sentiment Score"}
+            ? "情感数值:"
+            : "Sentiment:"}
         </span>
         <span className="ml-1 text-[1.25em]" style={{ color: barColor }}>
           {clampedScore >= 0
@@ -33,7 +33,7 @@ function SentimentSlider({ sentiment = 0}) {
         </span>
         <div className="relative">
           <AiOutlineInfoCircle
-            className="ml-2 text-gray-400 cursor-pointer z-20"
+            className="ml-4 text-gray-400 cursor-pointer z-20"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           />

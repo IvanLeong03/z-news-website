@@ -62,7 +62,7 @@ function Legend() {
               <p className='text-center my-4'>{language === "zh-Hant" ? "或" : language === "zh-Hans" ? "或" : "or"}</p>
               <SentimentGauge />
             </div>
-            <p className='mt-8 mb-16 text-sm'>
+            <p className='my-16 text-sm'>
               {language === "zh-Hant"
                 ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分"
                 : language === "zh-Hans"

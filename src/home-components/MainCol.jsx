@@ -6,6 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { fetchFeed } from "../services/feedService";
 import { fetchArticle } from "../services/articleService";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 function MainCol() {
   const { language } = useLanguage();
@@ -65,9 +66,9 @@ function MainCol() {
         <div className="relative w-full">
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 shadow-md z-10"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
           >
-            ◀
+            <FaArrowLeft color="white"/>
           </button>
 
           <Link to={`/article/${headlineArticles[currentHeadlineIndex].articleID}`}>
@@ -76,9 +77,9 @@ function MainCol() {
 
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 shadow-md z-10"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
           >
-            ▶
+            <FaArrowRight color="white"/>
           </button>
         </div>
       )}

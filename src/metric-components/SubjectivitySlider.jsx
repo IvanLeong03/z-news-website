@@ -38,7 +38,7 @@ function SubjectivitySlider({ subjScore = 0 }) {
         <h2 className="text-sm">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
         <div className="relative">
           <AiOutlineInfoCircle
-            className="ml-2 text-gray-400 cursor-pointer z-20"
+            className="ml-2 text-gray-400 cursor-pointer z-20 h-4"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           />
