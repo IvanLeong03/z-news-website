@@ -32,7 +32,9 @@ function Feed(props) {
     const [headlineArticles, setHeadlineArticles] = useState([]);
     const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);    
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);    
+    const [error, setError] = useState(null);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    
 
     useEffect(() => {
         const loadArticles = async () => {
@@ -58,16 +60,25 @@ function Feed(props) {
     }, [language, tag]);
 
     const handleNext = () => {
-        setCurrentHeadlineIndex((prevIndex) =>
+        setIsTransitioning(true);
+        setTimeout(() => {
+            setCurrentHeadlineIndex((prevIndex) =>
             prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
-        );
+            );
+            setIsTransitioning(false);
+        }, 500); // match duration in CSS
     };
 
     const handlePrev = () => {
-        setCurrentHeadlineIndex((prevIndex) =>
+        setIsTransitioning(true);
+        setTimeout(() => {
+            setCurrentHeadlineIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : headlineArticles.length - 1
-        );
+            );
+            setIsTransitioning(false);
+        }, 500);
     };
+
 
     function getHoursAgo(dateString) {
         const articleDate = new Date(dateString);
@@ -88,8 +99,14 @@ function Feed(props) {
         <div className="flex flex-col w-[80%] mx-auto my-16">
             {tag && (<h1 className="text-5xl font-bold mb-8 pl-5">{headerName[tag][language]}</h1>)}
 
-            {headlineArticles.length > 0 && (
-                <div className="relative w-9/10 mx-auto pb-8 mb-8 border-b border-[var(--color-line-verylightgrey)]">
+            {/* headline */}
+            <div
+            className={`transition-opacity duration-300 ease-in-out ${
+                isTransitioning ? 'opacity-20 blur-sm' : 'opacity-100'
+            }`}
+            >
+{headlineArticles.length > 0 && (
+                <div className="relative w-9/10 mx-auto pb-8 mb-4 border-b border-[var(--color-line-grey)]">
                     <button
                         onClick={handlePrev}
                         className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white px-3 py-1 shadow-md z-10"
@@ -109,10 +126,10 @@ function Feed(props) {
                             {headlineArticles[currentHeadlineIndex].title}
                         </h2>
                         <p className="text-sm text-[var(--color-text-lightgrey)] mt-2 line-clamp-4">
-                            {headlineArticles[currentHeadlineIndex].description}
+                            {headlineArticles[currentHeadlineIndex].description.synopsis}
                         </p>
-                        <div className="w-full grid grid-cols-[3fr_1fr] mt-4">                           
-                            <div className="px-8">
+                        <div className="w-full grid grid-cols-[3fr_1fr] my-2">                           
+                            <div className="w-2/3">
                                 <SentimentSlider sentiment={headlineArticles[currentHeadlineIndex].metrics.sentiment} />
 
                             </div>
@@ -123,8 +140,7 @@ function Feed(props) {
                                 <label className="mx-1"> · </label> 
                                 <p className="whitespace-nowrap"> {getHoursAgo(headlineArticles[currentHeadlineIndex].date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'} </p> 
                             </div>
-                        </div>
-                        
+                        </div>                        
                     </Link>
 
                     <button
@@ -134,8 +150,9 @@ function Feed(props) {
                         <FaArrowRight />
                     </button>
                 </div>
-
             )}
+            </div>
+           
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredArticles.map((article, index) => (

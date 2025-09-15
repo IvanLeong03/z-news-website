@@ -22,7 +22,7 @@ import Feed from "./news-categories/Feed"
 
 function App() {
   return (
-      <main className='w-full max-w-[128rem] max-h-[72rem] mx-auto bg-[var(--color-gs-white)]'>
+      <main className='w-full max-w-[120rem] mx-auto bg-[var(--color-gs-white)]'>
         <LanguageProvider>
           <Navbar />
           <TopicsBar />

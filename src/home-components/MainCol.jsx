@@ -43,6 +43,21 @@ function MainCol() {
     loadArticles();
   }, [language]);
   
+  useEffect(() => {
+    if (headlineArticles.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentHeadlineIndex((prevIndex) =>
+        prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
+      );
+    }, 10000); // 10 seconds
+
+    return () => clearInterval(interval); // cleanup on unmount
+  }, [headlineArticles]);
+
+
+  
+  
   if (loading) return <div>Loading articles...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
@@ -58,9 +73,8 @@ function MainCol() {
     );
   };
 
-  
   return (
-    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-lightgrey)]">
+    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-grey)]">
       { /* one large article, and the rest will be smaller ones */}
       {headlineArticles.length > 0 && (
         <div className="relative w-full">
@@ -97,10 +111,13 @@ function MainCol() {
             </div>
           ))}
         </div>
+        <div className="flex justify-center">
+          <button className="relative my-6 px-2 rounded hover:border hover:border-[var(--color-primary)]">Load more ...</button>
+        </div>
       </div>      
     </div>   
   );
 }
   
-  export default MainCol;
+export default MainCol;
   

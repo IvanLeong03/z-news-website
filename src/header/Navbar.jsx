@@ -31,7 +31,7 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="w-9/10 mx-auto grid grid-cols-[1fr_3fr_1fr] px-1 py-4 bg-[var(--color-gs-white)] border-b border-[var(--color-line-lightgrey)]">
+            <nav className="w-full grid grid-cols-[1fr_3fr_1fr] px-16 py-4 bg-[var(--color-gs-white)] border-b border-[var(--color-line-lightgrey)]">
                 {/* Left: Logo */}
                 <Link to="/">
                     <div>                    

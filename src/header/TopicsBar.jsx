@@ -35,7 +35,7 @@ function TopicsBar() {
     };
     
     return (
-        <div className="w-9/10 mx-auto py-4 border-b border-[var(--color-line-lightgrey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
+        <div className="w-9/10 mx-auto py-4 border-b border-[var(--color-line-grey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
             <div className="mx-auto flex justify-between items-center h-full">
                 <div className="mx-auto flex justify-center items-center px-1">
                     <div className="text-sm text-red-400">

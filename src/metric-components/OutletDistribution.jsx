@@ -5,8 +5,8 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
     const { language } = useLanguage();
 
     return (
-        <div className="flex flex-col w-full text-xs text-[var(--color-gs-black)]">
-            <div className="flex justify-center w-full my-4 text-lg">
+        <div className="flex flex-col w-full text-sm text-[var(--color-gs-black)]">
+            <div className="flex justify-center w-full my-4 text-xl">
                 {language === 'zh-Hant' ? '媒體分佈' : language === 'zh-Hans' ? '媒体分布' : 'Media Distribution'}
             </div>
             <div className='relative flex w-full h-60 shadow-sm'>
@@ -59,18 +59,18 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
             </div>
             {/* Labels under the graph */}
             <div className='w-full flex justify-between my-2'>
-                    <div className="flex">
-                        <div className="mr-1 h-4 w-4 rounded-full bg-[var(--color-bg-grey)]" />
-                        <label>
-                            {language === "zh-Hant" ? "保守" : language === "zh-Hans" ? "保守" : "Conservative"}
-                        </label>
-                    </div>
-                    <div className="flex">
-                        <label>
-                            {language === "zh-Hant" ? "進步" : language === "zh-Hans" ? "进步" : "Progressive"}
-                        </label>
-                        <div className="ml-1 h-4 w-4 rounded-full bg-[var(--color-line-grey)]" />
-                    </div>            
+                <div className="flex">
+                    <div className="mr-1 h-4 w-4 rounded-full bg-[var(--color-bg-grey)]" />
+                    <label>
+                        {language === "zh-Hant" ? "保守" : language === "zh-Hans" ? "保守" : "Conservative"}
+                    </label>
+                </div>
+                <div className="flex">
+                    <label>
+                        {language === "zh-Hant" ? "進步" : language === "zh-Hans" ? "进步" : "Progressive"}
+                    </label>
+                    <div className="ml-1 h-4 w-4 rounded-full bg-[var(--color-line-grey)]" />
+                </div>            
             </div>
         </div>
     );

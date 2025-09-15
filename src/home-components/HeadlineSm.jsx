@@ -15,24 +15,20 @@ function HeadlineSm({article}) {
 
     return (
         <article className="flex flex-col items-stretch w-9/10 mx-auto pb-4 border-b border-[var(--color-line-verylightgrey)]">
-            <div className="w-full flex">
-                {/* image */}
-                <div className="w-2/5 aspect-[16/9] overflow-hidden">
-                    <img src={article.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
-                </div>
-                {/* sentiment score */}
-                <div className="w-3/5 px-4">
-                    <SentimentSlider sentiment={article.metrics.sentiment}/>
-                </div>                
-            </div>
             {/* region, sector, headline, nSources and time */}
             <div className="w-full flex flex-col">
+                <div className="w-full aspect-[16/9] overflow-hidden">
+                    <img src={article.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
+                </div>
                 <div className="flex text-[var(--color-primary)] my-2 text-sm">
                     <label>{article.region}</label>
                     <label className="mx-2">|</label>
                     <label>{article.sector}</label>
                 </div>                                                                     
                 <h1 className="w-full text-lg lg:text-xl font-semibold text-left">{article.title}</h1>
+                <div className="w-2/3 my-2">
+                    <SentimentSlider sentiment={article.metrics.sentiment}/>
+                </div> 
                 <div className="flex items-center my-1">
                     <p className="text-xs whitespace-nowrap">
                         {article.nSources}
