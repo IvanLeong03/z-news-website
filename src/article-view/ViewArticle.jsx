@@ -14,10 +14,13 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import { TiMessages } from "react-icons/ti";
 import { BiMessageError } from "react-icons/bi";
+import SummarySettingsDropdown from "./SummarySettingsDropdown";
 
 function ViewArticle() {
     const { id } = useParams();
-    const { language } = useLanguage();
+    const { language} = useLanguage();
+    const [summaryLanguage, setSummaryLanguage] = useState(language);
+    const [tone, setTone] = useState("straightforward");
     const navigate = useNavigate();
     const [article, setArticle] = useState(null);
     const [error, setError] = useState(null);
@@ -36,7 +39,8 @@ function ViewArticle() {
         "en": "The position of the icon represents the (bias of the source?) The more biased towards either stance the source is, the further away from the divide the icon lies.",
         "zh-Hant": "圖標的位置反映媒體來源的偏見。來源越偏向任一方立場，圖標距離分界線就越遠。",
         "zh-Hans": "图标的位置代表了媒體来源的偏见。来源越偏向任一立场，图标距离分界线就越远。"
-    }
+    };
+
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -170,41 +174,44 @@ function ViewArticle() {
                         <h1 className="text-4xl font-semibold">{article.title}</h1>                                                
                     </div>
                     {/* picture and metrics (Sentiment and subjectivity) */}
-                    <div className="flex justify-between gap-2">
-                        <div className="w-3/4 aspect-[16/9] overflow-hidden">
+                    <div className="grid grid-cols-[3fr_1fr]">
+                        <div className="aspect-[16/9] overflow-hidden px-4">
                             <img src={article.pictureURL} className="w-full h-full object-cover" />
                         </div>
-                        <div className="px-8 py-2 border border-[var(--color-line-grey)] rounded-xl flex flex-col justify-between items-center">
-                            <h1 className="text-lg xl:text-xl">
-                                {language === "zh-Hant" ? "數據解讀" : language === "zh-Hans" ? "数据解读" : "Metric analysis"}                                                
-                            </h1>
-                            <div className="py-4 flex flex-col gap-8">
-                                <div className="scale-75 2xl:scale-100">
-                                    <SentimentGauge sentiment={article.metrics.sentiment}/>            
-                                </div>
-                                <div className="scale-75 2xl:scale-100">
-                                    <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
-                                </div>
+                        <div className="h-full py-4 px-2 2xl:py-8 border border-[var(--color-line-grey)] rounded-xl flex flex-col justify-between">
+                            <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
+                                <SentimentGauge sentiment={article.metrics.sentiment}/>            
+                            </div>
+                            <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
+                                <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
                             </div>
                             <Link to="/user-guide" className="hover:underline">
-                                <p className="text-sm 2xl:text-base relative bottom-0">Click here to learn more</p>                                           
+                                <p className="text-sm 2xl:text-base relative bottom-0 my-2">Click here to learn more</p>                                           
                             </Link>
-                        </div>
+                        </div>                            
+
                     </div>
                     
                 </div>
 
                 {/* summary */}
-                <div className="flex flex-col w-9/10 mx-auto my-8 p-4 text-lg bg-[var(--color-light-turquoise)] rounded-xl">                                                                                
+                <div className="flex flex-col w-9/10 mx-auto my-8 p-4 text-lg bg-[var(--color-light-turquoise)] rounded-xl">                                                                                                    
                     <div className="py-4">
-                        <h2 className="text-xl font-bold">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What Happened"}</h2>
+                        {/*<h2 className="text-xl font-bold">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What Happened"}</h2>*/}
                         <p className="py-2">{article.description.synopsis}</p>                      
                     </div>   
                     <div className="py-4">
-                        <h2 className="text-xl font-bold">{language === "zh-Hant" ? "影響" : language === "zh-Hans" ? "影响" : "Significance and Implications"}</h2>
+                        {/*<h2 className="text-xl font-bold">{language === "zh-Hant" ? "影響" : language === "zh-Hans" ? "影响" : "Significance and Implications"}</h2>*/}
                         <p className="py-2">{article.description.implications}</p>                      
                     </div>                    
                     <div className="px-4 my-4 flex justify-between items-end">
+                        <SummarySettingsDropdown
+                            language={language}
+                            summaryLanguage={summaryLanguage}
+                            setSummaryLanguage={setSummaryLanguage}
+                            tone={tone}
+                            setTone={setTone}
+                        />
                         <button className="px-4 h-8 bg-[var(--color-primary)] rounded-md text-center">
                             <span className="flex items-center">
                                 <TiMessages color="white"/>
@@ -222,19 +229,17 @@ function ViewArticle() {
                             </span>
                         </button>
                     </div>
-                    
-                    
+                                        
                     {/* disclaimer */}
                     <p className="text-[var(--color-text-lightgrey)] text-xs mt-8 py-2">
                         {language === "zh-Hant" ? "此摘要由 SearcherAI 生成。" 
                         : language === "zh-Hans" ? "此摘要由 SearcherAI 生成。" 
                         : "This summary is generated by SearcherAI."}
-                    </p>
-                    
+                    </p>                    
                 </div>
 
                 {/* leaning distribution */}
-                <div className="grid grid-cols-[1fr_1fr] p-2 w-9/10 mx-auto">                                                                                                    
+                <div className="grid grid-cols-[2fr_1fr] p-2 w-9/10 mx-auto">                                                                                                    
                     <div className="py-4 pr-8 flex flex-col">
                         <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
                         <p className="text-sm whitespace-nowrap my-2 text-center">                            
@@ -371,6 +376,12 @@ function ViewArticle() {
                         </div>                                            
                     </div>                                               
                 </div>
+                {/* timeline */}
+                <div className="w-9/10 mx-auto rounded border border-[var(--color-gs-black)]">
+                    <h2 className="text-2xl font-semibold">Timeline</h2>
+                    
+                </div>
+
                 <Ads />                      
             </div>
 
@@ -393,11 +404,11 @@ function ViewArticle() {
                     <h2 className="text-lg my-1">Related articles: </h2>
                     <ul className="list-disc px-4">
                         {article.relatedArticles.map((a, index) => (
-                            <Link to={`/article/${a.articleID}`}>    
-                                <li key={index} className="my-2 hover:text-[var(--color-primary)]">
-                                    {a.title}
-                                </li>
-                            </Link>
+                            <li key={index} className="my-2 hover:text-[var(--color-primary)]">
+                                <Link to={`/article/${a.articleID}`}> 
+                                {a.title}
+                                </Link>
+                            </li>                            
                         ))}
                     </ul>
                 </div>

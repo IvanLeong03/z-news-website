@@ -32,9 +32,7 @@ function Feed(props) {
     const [headlineArticles, setHeadlineArticles] = useState([]);
     const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);    
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [isTransitioning, setIsTransitioning] = useState(false);
-    
+    const [error, setError] = useState(null);    
 
     useEffect(() => {
         const loadArticles = async () => {
@@ -59,26 +57,28 @@ function Feed(props) {
         loadArticles();
     }, [language, tag]);
 
-    const handleNext = () => {
-        setIsTransitioning(true);
-        setTimeout(() => {
+    //auto-advance every 5s
+    useEffect(() => {
+        const interval = setInterval(() => {
             setCurrentHeadlineIndex((prevIndex) =>
             prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
             );
-            setIsTransitioning(false);
-        }, 500); // match duration in CSS
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [headlineArticles]);
+
+    const handleNext = () => {
+        setCurrentHeadlineIndex((prevIndex) =>
+            prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
+        );        
     };
+
 
     const handlePrev = () => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-            setCurrentHeadlineIndex((prevIndex) =>
+        setCurrentHeadlineIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : headlineArticles.length - 1
-            );
-            setIsTransitioning(false);
-        }, 500);
+        );
     };
-
 
     function getHoursAgo(dateString) {
         const articleDate = new Date(dateString);
@@ -87,7 +87,7 @@ function Feed(props) {
         const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
         return diffHours;
     }
-
+    
     // Filter out headline articles from the main articles list
     const headlineIDs = headlineArticles.map(article => article.articleID);
     const filteredArticles = articles.filter(article => !headlineIDs.includes(article.articleID));
@@ -100,65 +100,64 @@ function Feed(props) {
             {tag && (<h1 className="text-5xl font-bold mb-8 pl-5">{headerName[tag][language]}</h1>)}
 
             {/* headline */}
-            <div
-            className={`transition-opacity duration-300 ease-in-out ${
-                isTransitioning ? 'opacity-20 blur-sm' : 'opacity-100'
-            }`}
-            >
-{headlineArticles.length > 0 && (
-                <div className="relative w-9/10 mx-auto pb-8 mb-4 border-b border-[var(--color-line-grey)]">
-                    <button
-                        onClick={handlePrev}
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white px-3 py-1 shadow-md z-10"
-                    >
-                        <FaArrowLeft />
-                    </button>
-
-                    <Link to={`/article/${headlineArticles[currentHeadlineIndex].articleID}`}>
+            <div className="overflow-hidden relative w-[95%] mx-auto">
+                <div
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentHeadlineIndex * 100}%)` }}
+                >
+                    {headlineArticles.map((article, index) => (
+                    <div key={article.articleID} className="min-w-full px-4 my-8">
+                        <Link to={`/article/${article.articleID}`}>
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
                             <img
-                                src={headlineArticles[currentHeadlineIndex].pictureURL}
-                                alt={headlineArticles[currentHeadlineIndex].title}
-                                className="object-cover w-full h-full"
+                            src={article.pictureURL}
+                            alt={article.title}
+                            className="object-cover w-full h-full"
                             />
                         </div>
-                        <h2 className="text-3xl font-bold mt-4">
-                            {headlineArticles[currentHeadlineIndex].title}
-                        </h2>
-                        <p className="text-sm text-[var(--color-text-lightgrey)] mt-2 line-clamp-4">
-                            {headlineArticles[currentHeadlineIndex].description.synopsis}
+                        <h2 className="text-3xl font-bold mt-4">{article.title}</h2>
+                        <p className="text-sm text-[var(--color-text-lightgrey)] my-2 line-clamp-2">
+                            {article.description.synopsis}
                         </p>
-                        <div className="w-full grid grid-cols-[3fr_1fr] my-2">                           
+                        <div className="w-full grid grid-cols-[3fr_1fr] my-2">
                             <div className="w-2/3">
-                                <SentimentSlider sentiment={headlineArticles[currentHeadlineIndex].metrics.sentiment} />
-
+                                <SentimentSlider sentiment={article.metrics.sentiment} />
                             </div>
                             <div className="flex text-xs px-4 items-center">
                                 <p className="whitespace-nowrap">
-                                    {headlineArticles[currentHeadlineIndex].nSources} {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'} 
-                                </p> 
-                                <label className="mx-1"> · </label> 
-                                <p className="whitespace-nowrap"> {getHoursAgo(headlineArticles[currentHeadlineIndex].date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'} </p> 
+                                    {article.nSources} {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
+                                </p>
+                                <label className="mx-1"> · </label>
+                                <p className="whitespace-nowrap">
+                                    {getHoursAgo(article.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                                </p>
                             </div>
-                        </div>                        
-                    </Link>
-
-                    <button
-                        onClick={handleNext}
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white px-3 py-1 shadow-md z-10"
-                    >
-                        <FaArrowRight />
-                    </button>
+                        </div>
+                        </Link>
+                    </div>
+                    ))}
                 </div>
-            )}
+
+                {/* Navigation buttons */}
+                <button
+                    onClick={handlePrev}
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
+                >
+                    <FaArrowLeft />
+                </button>
+                <button
+                    onClick={handleNext}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
+                >
+                    <FaArrowRight />
+                </button>
             </div>
            
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredArticles.map((article, index) => (
                     <div
                         key={index}
-                        className="flex flex-col p-4 m-2 text-xl rounded-xl border border-[var(--color-line-verylightgrey)] hover:border-[var(--color-primary)]"
+                        className="flex flex-col p-4 m-2 text-xl border-b border-[var(--color-line-verylightgrey)] hover:border-b-2 hover:border-[var(--color-primary)] hover:shadow-md"
                     >
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
                             <Link to={`/article/${article.articleID}`}>

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../search/SearchBar";
 import { useLanguage } from "../context/LanguageContext";
@@ -12,7 +12,16 @@ function Navbar() {
     const { language } = useLanguage(); 
     const navigate = useNavigate();
     const locale = mapFrontendLangToBackend(language);
+    const [isScrolled, setIsScrolled] = useState(false);
 
+    useEffect(() => {
+        const handleScroll = () => {
+        setIsScrolled(window.scrollY > 100); // adjust threshold as needed
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <div className="sticky top-0 z-50 w-full flex flex-col">
@@ -31,13 +40,19 @@ function Navbar() {
                 </label>
             </div>
 
-            <nav className="w-full grid grid-cols-[1fr_3fr_1fr] px-16 py-4 bg-[var(--color-gs-white)] border-b border-[var(--color-line-lightgrey)]">
+            <nav 
+                className={`w-full grid grid-cols-[1fr_3fr_1fr] px-16 bg-[var(--color-gs-white)] border-[var(--color-line-lightgrey)] transition-all duration-300 ${
+                    isScrolled ? "py-0 border-b" : "py-8 border-b-2"
+                }`}
+        >
                 {/* Left: Logo */}
                 <Link to="/">
                     <div>                    
                         <img                             
                         src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
-                        alt="Logo"/>                                       
+                        alt="Logo"
+                        className="h-24"
+                        />                                       
                     </div>
                 </Link>
 
@@ -86,6 +101,11 @@ function Navbar() {
                             <li>
                                 <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">
                                     {language === "zh-Hant" ? "追蹤主題" : language === "zh-Hans" ? "追踪主题" : "My Topics"}                                
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">
+                                    {language === "zh-Hant" ? "個人數據" : language === "zh-Hans" ? "个人数据" : "My Statistics"}                                
                                 </Link>
                             </li>
                         </ul>

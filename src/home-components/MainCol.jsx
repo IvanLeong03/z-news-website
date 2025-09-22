@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import HeadlineLg from "./HeadlineLg";
 import HeadlineSm from "./HeadlineSm";
 import { Link } from "react-router-dom";
@@ -50,14 +50,11 @@ function MainCol() {
       setCurrentHeadlineIndex((prevIndex) =>
         prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
       );
-    }, 10000); // 10 seconds
+    }, 8000); // 10 seconds
 
     return () => clearInterval(interval); // cleanup on unmount
   }, [headlineArticles]);
 
-
-  
-  
   if (loading) return <div>Loading articles...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
@@ -76,29 +73,35 @@ function MainCol() {
   return (
     <div className="w-full h-auto flex flex-grow flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-grey)]">
       { /* one large article, and the rest will be smaller ones */}
-      {headlineArticles.length > 0 && (
-        <div className="relative w-full">
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
-          >
-            <FaArrowLeft color="white"/>
-          </button>
-
-          <Link to={`/article/${headlineArticles[currentHeadlineIndex].articleID}`}>
-            <HeadlineLg article={headlineArticles[currentHeadlineIndex]} />
-          </Link>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
-          >
-            <FaArrowRight color="white"/>
-          </button>
+      <div className="relative w-full overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentHeadlineIndex * 100}%)` }}
+        >
+          {headlineArticles.map((article) => (
+            <div key={article.articleID} className="min-w-full">
+              <Link to={`/article/${article.articleID}`}>
+                <HeadlineLg article={article} />
+              </Link>
+            </div>
+          ))}
         </div>
-      )}
 
-     
+        {/* Navigation buttons */}
+        <button
+          onClick={handlePrev}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
+        >
+          <FaArrowLeft color="white" />
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
+        >
+          <FaArrowRight color="white" />
+        </button>
+      </div>
+
       <div className="mb-8 px-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-stretch">
           {Array.isArray(subArticles) && subArticles.map((article) => (

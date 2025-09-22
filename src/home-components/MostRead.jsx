@@ -52,9 +52,9 @@ function MostRead() {
       </h2>
 
       {mostReadArticles.map((article, index) => (
-        <div key={index} className="flex-grow flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)]">
+        <div key={index} className="flex-grow flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)] hover:border-b-2  hover:border-[var(--color-secondary-1)]">
           <Link to={`/article/${article.articleID}`}>            
-            <div className="flex text-[var(--color-primary)] text-sm">
+            <div className="flex text-[var(--color-primary)] text-sm mt-1">
               <label>{article.region}</label>
               <label className="mx-2">|</label>
               <label>{article.sector}</label>
@@ -63,7 +63,7 @@ function MostRead() {
             <div className="w-full">
               <SentimentSlider sentiment={article.metrics.sentiment} />
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center py-1 mb-1">
               <p className="text-xs whitespace-nowrap">
                 {article.nSources}
                 {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
