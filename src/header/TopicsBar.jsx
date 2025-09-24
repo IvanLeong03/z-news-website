@@ -45,7 +45,7 @@ function TopicsBar() {
                         <button
                         key={index}
                         onClick={() => handleTopicClick(topic)}
-                        className="rounded-xl px-8 mx-4 border border-black hover:border-[var(--color-primary)] hover:bg-[var(--color-light-turquoise)] hover:font-semibold"
+                        className="rounded-xl px-8 mx-4 border border-black hover:border-[var(--color-primary)] hover:bg-[var(--color-light-turquoise)]"
                         >
                         {topic.displayName}
                         </button>

@@ -71,7 +71,7 @@ function Account() {
                 {/* fetch every field from user object */}
                 <div className="flex justify-between">                    
                     <div>
-                        {profile && <p className="my-2">{profile.profileID}</p>}
+                        {profile && <p className="my-2 text-xl text-[var(--color-primary)]">{profile.profileID}</p>}
                         <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">admin@somedomain.com</p>
                     </div> 
                     <div className="w-24 h-24 mb-8">

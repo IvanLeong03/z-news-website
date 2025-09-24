@@ -90,13 +90,13 @@ function MainCol() {
         {/* Navigation buttons */}
         <button
           onClick={handlePrev}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] p-2 shadow-md z-10 rounded-full"
         >
           <FaArrowLeft color="white" />
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] px-2 py-1 shadow-md z-10"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] p-2 shadow-md z-10 rounded-full"
         >
           <FaArrowRight color="white" />
         </button>
@@ -114,8 +114,8 @@ function MainCol() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center">
-          <button className="relative my-6 px-2 rounded hover:border hover:border-[var(--color-primary)]">Load more ...</button>
+        <div className="flex justify-center my-6">
+          <button className="relative px-2 rounded hover:text-[var(--color-primary)]">Load more ...</button>
         </div>
       </div>      
     </div>   

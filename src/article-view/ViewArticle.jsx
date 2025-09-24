@@ -13,8 +13,9 @@ import { saveArticle } from "../services/profileService";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import { TiMessages } from "react-icons/ti";
-import { BiMessageError } from "react-icons/bi";
 import SummarySettingsDropdown from "./SummarySettingsDropdown";
+import TimelineScroller from "./TimelineScroller";
+import FeedbackButton from "./FeedbackButton";
 
 function ViewArticle() {
     const { id } = useParams();
@@ -30,6 +31,7 @@ function ViewArticle() {
     const [showAllC, setShowAllC] = useState(false);
     const [showAllP, setShowAllP] = useState(false);
     const [selectedView, setSelectedView] = useState("progressive"); // or "conservative"
+    const [isHovered, setIsHovered] = useState(false);
     const sizeDesc = {
         "en": "The size of the icon represents the media significance. The more significant the source, the larger the icon.",
         "zh-Hant": "圖標的大小代表該媒體的重要性。來源越重要，圖標就越大。",
@@ -40,7 +42,18 @@ function ViewArticle() {
         "zh-Hant": "圖標的位置反映媒體來源的偏見。來源越偏向任一方立場，圖標距離分界線就越遠。",
         "zh-Hans": "图标的位置代表了媒體来源的偏见。来源越偏向任一立场，图标距离分界线就越远。"
     };
-
+    const timelineEvents = [
+        { date: "02-01-2025", description: "Initial rumors surface about trade negotiations." },
+        { date: "15-01-2025", description: "Vietnamese officials confirm preliminary talks with the U.S." },
+        { date: "28-01-2025", description: "U.S. Commerce Secretary visits Hanoi for closed-door meetings." },
+        { date: "05-02-2025", description: "Draft agreement leaked, sparking debate over tech sector terms." },
+        { date: "12-02-2025", description: "Trump announces progress on trade deal during press briefing." },
+        { date: "20-02-2025", description: "Vietnamese parliament reviews proposed trade framework." },
+        { date: "01-03-2025", description: "Final trade agreement signed in Washington D.C." },
+        { date: "10-03-2025", description: "Joint statement released outlining key sectors impacted." },
+        { date: "18-03-2025", description: "First wave of U.S.–Vietnam tech partnerships announced." },
+        { date: "25-03-2025", description: "Public sentiment analysis shows mixed reactions to deal." }
+    ];
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -178,13 +191,16 @@ function ViewArticle() {
                         <div className="aspect-[16/9] overflow-hidden px-4">
                             <img src={article.pictureURL} className="w-full h-full object-cover" />
                         </div>
-                        <div className="h-full py-4 px-2 2xl:py-8 border border-[var(--color-line-grey)] rounded-xl flex flex-col justify-between">
-                            <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
-                                <SentimentGauge sentiment={article.metrics.sentiment}/>            
+                        <div className="px-4 pt-2 2xl:pt-12 border border-dashed border-[var(--color-line-grey)] rounded-xl flex flex-col justify-between">
+                            <div className="flex flex-col flex-grow justify-between py-8">
+                                <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
+                                    <SentimentGauge sentiment={article.metrics.sentiment}/>            
+                                </div>
+                                <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
+                                    <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
+                                </div>
                             </div>
-                            <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
-                                <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
-                            </div>
+                            
                             <Link to="/user-guide" className="hover:underline">
                                 <p className="text-sm 2xl:text-base relative bottom-0 my-2">Click here to learn more</p>                                           
                             </Link>
@@ -204,7 +220,7 @@ function ViewArticle() {
                         {/*<h2 className="text-xl font-bold">{language === "zh-Hant" ? "影響" : language === "zh-Hans" ? "影响" : "Significance and Implications"}</h2>*/}
                         <p className="py-2">{article.description.implications}</p>                      
                     </div>                    
-                    <div className="px-4 my-4 flex justify-between items-end">
+                    <div className="px-8 my-4 flex justify-between items-start">
                         <SummarySettingsDropdown
                             language={language}
                             summaryLanguage={summaryLanguage}
@@ -212,7 +228,7 @@ function ViewArticle() {
                             tone={tone}
                             setTone={setTone}
                         />
-                        <button className="px-4 h-8 bg-[var(--color-primary)] rounded-md text-center">
+                        <button className="px-4 h-8 w-80 bg-[var(--color-primary)] rounded-md flex justify-center">
                             <span className="flex items-center">
                                 <TiMessages color="white"/>
                                 <label className="mx-2 text-[var(--color-gs-white)] text-sm">
@@ -220,14 +236,17 @@ function ViewArticle() {
                                 </label>
                             </span>
                         </button>
+                        {/*
                         <button className="px-4 h-8 bg-[var(--color-bg-light)] border border-[var(--color-line-verylightgrey)]  rounded-md">
                             <span className="flex items-center">
                                 <BiMessageError />
-                                <label className="mx-2 text-[var(--color-gs-black)]">
+                                <label className="mx-2 text-[var(--color-gs-black)] text-sm">
                                     {language === "zh-Hant" ? "意見回饋" : language === "zh-Hans" ? "意见回馈" : "Provide Feedback"}                                                
                                 </label>
                             </span>
                         </button>
+                        */}
+                        <FeedbackButton language={language} articleID={id} />
                     </div>
                                         
                     {/* disclaimer */}
@@ -377,11 +396,16 @@ function ViewArticle() {
                     </div>                                               
                 </div>
                 {/* timeline */}
-                <div className="w-9/10 mx-auto rounded border border-[var(--color-gs-black)]">
+                <div className="w-9/10 mx-auto rounded">
                     <h2 className="text-2xl font-semibold">Timeline</h2>
-                    
+                    <p>
+                        The timeline shows the publication dates of articles related to this topic in chronological order.
+                        Scroll to explore articles covering the development of this event over time.
+                    </p>
+                    <div className="w-3/4 mx-auto my-4">
+                            < TimelineScroller events={timelineEvents} />
+                    </div>
                 </div>
-
                 <Ads />                      
             </div>
 

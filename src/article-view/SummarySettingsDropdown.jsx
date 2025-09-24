@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
+
 function SummarySettingsDropdown({ language, summaryLanguage, setSummaryLanguage, tone, setTone }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -9,7 +10,7 @@ function SummarySettingsDropdown({ language, summaryLanguage, setSummaryLanguage
     <div className="relative inline-block text-left">
       <button
         onClick={toggleDropdown}
-        className="px-4 h-8 bg-[var(--color-gs-black)] text-[var(--color-gs-white)] rounded-md text-center"
+        className="px-4 h-8 w-80 bg-[var(--color-gs-black)] text-[var(--color-gs-white)] rounded-md flex justify-center"
       >
         <span className="flex items-center">
           <IoSettingsOutline color="white" />
@@ -24,7 +25,7 @@ function SummarySettingsDropdown({ language, summaryLanguage, setSummaryLanguage
       </button>
 
       {isOpen && (
-        <div className="relative right-0 mt-2 w-64 bg-white border border-gray-300 rounded-md shadow-lg z-50 p-4 space-y-4">
+        <div className="relative right-0 w-80 bg-white border border-gray-300 rounded-md shadow-lg z-50 p-4 space-y-4">
           {/* Language Selector */}
           <div>
             <label className="block text-sm font-medium mb-1">Language</label>

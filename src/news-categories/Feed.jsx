@@ -73,7 +73,6 @@ function Feed(props) {
         );        
     };
 
-
     const handlePrev = () => {
         setCurrentHeadlineIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : headlineArticles.length - 1

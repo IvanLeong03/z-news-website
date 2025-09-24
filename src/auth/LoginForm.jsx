@@ -59,9 +59,9 @@ export default function LoginForm() {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="your@email.com"
-            autoComplete="username"
+            className="mt-1 block w-full px-3 py-2 border border-[var(--color-line-verylightgrey)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-line-grey)]"
+            placeholder="Enter your email"
+            autoComplete="email"
           />
         </div>
 
@@ -75,14 +75,14 @@ export default function LoginForm() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
+              className="block w-full px-3 py-2 border border-[var(--color-line-verylightgrey)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-line-grey)]"
+              placeholder="Enter your password"
               autoComplete="current-password"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-[var(--color-line-grey)] hover:text-[var(--color-line-darkgrey)]"
             >
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </button>
@@ -100,7 +100,7 @@ export default function LoginForm() {
               {language === "zh-Hant" ? "保存登入" : language === "zh-Hans" ? "保存登入" : "Remember me"}
             </label>
           </div>
-          <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">
+          <a href="/forgot-password" className="text-sm text-[var(--color-secondary-1)] hover:underline">
             {language === "zh-Hant" ? "忘記密碼" : language === "zh-Hans" ? "忘记密码" : "Forgot password?"}
           </a>
         </div>
@@ -111,7 +111,7 @@ export default function LoginForm() {
           className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 ${
             isLoading
               ? "bg-blue-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
+              : "bg-[var(--color-primary)] hover:bg-[var(--color-secondary-3)]"
           }`}
         >
           {isLoading ? "Logging in..." : "Log In"}
