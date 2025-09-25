@@ -3,6 +3,7 @@ import Ads from "../home-components/Ads";
 import { useParams, useNavigate } from "react-router-dom";
 import SentimentGauge from "../metric-components/SentimentGauge";
 import SubjectivitySlider from "../metric-components/SubjectivitySlider";
+import SplitBar from "../metric-components/SplitBar";
 import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { Link } from "react-router-dom";
@@ -54,6 +55,17 @@ function ViewArticle() {
         { date: "18-03-2025", description: "First wave of U.S.–Vietnam tech partnerships announced." },
         { date: "25-03-2025", description: "Public sentiment analysis shows mixed reactions to deal." }
     ];
+    const cp = (
+        article.coverage?.centric !== undefined
+            ? Math.round(article.coverage.centric * 100)
+            : article.coverage?.percentage?.centric * 100
+    );
+
+    const pp = (
+        article.coverage?.progressive !== undefined
+            ? Math.round(article.coverage.progressive * 100)
+            : article.coverage?.percentage?.progressive * 100
+    );
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -191,18 +203,23 @@ function ViewArticle() {
                         <div className="aspect-[16/9] overflow-hidden px-4">
                             <img src={article.pictureURL} className="w-full h-full object-cover" />
                         </div>
-                        <div className="px-4 pt-2 2xl:pt-12 border border-dashed border-[var(--color-line-grey)] rounded-xl flex flex-col justify-between">
-                            <div className="flex flex-col flex-grow justify-between py-8">
-                                <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
+                        <div className="px-4 rounded-xl flex flex-col justify-between">
+                            <div className="flex flex-col flex-grow justify-between items-center py-8 mb-8 border border-dashed border-[var(--color-line-grey)]">
+                                <div className="w-4/5">
                                     <SentimentGauge sentiment={article.metrics.sentiment}/>            
                                 </div>
-                                <div className="w-full scale-75 2xl:scale-100 2xl:w-4/5 2xl:mx-auto">
+                                <div className="w-4/5">
                                     <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
+                                </div>
+                                <div className="w-4/5">
+                                    <SplitBar cPercent={cp} pPercent={pp}/>
                                 </div>
                             </div>
                             
                             <Link to="/user-guide" className="hover:underline">
-                                <p className="text-sm 2xl:text-base relative bottom-0 my-2">Click here to learn more</p>                                           
+                                <p className="text-sm 2xl:text-base relative bottom-0 my-2">
+                                    Click here to for more details on how we calculate these metrics
+                                </p>                                           
                             </Link>
                         </div>                            
 
@@ -396,14 +413,14 @@ function ViewArticle() {
                     </div>                                               
                 </div>
                 {/* timeline */}
-                <div className="w-9/10 mx-auto rounded">
+                <div className="w-9/10 mx-auto rounded mt-12">
                     <h2 className="text-2xl font-semibold">Timeline</h2>
-                    <p>
+                    <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">
                         The timeline shows the publication dates of articles related to this topic in chronological order.
                         Scroll to explore articles covering the development of this event over time.
                     </p>
-                    <div className="w-3/4 mx-auto my-4">
-                            < TimelineScroller events={timelineEvents} />
+                    <div className="w-4/5 mx-auto my-4 border border-blue-300">
+                        < TimelineScroller events={timelineEvents} />
                     </div>
                 </div>
                 <Ads />                      

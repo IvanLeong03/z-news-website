@@ -87,7 +87,7 @@ function SearchResults() {
       </div>
       
 
-      <ul className="flex flex-col gap-16 text-lg">
+      <ul className="flex flex-col text-lg">
         {sortedResults.length > 0 ? (
           sortedResults.map((article) => (
             <li key={article.articleID}>

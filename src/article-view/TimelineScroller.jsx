@@ -14,7 +14,6 @@ function TimelineScroller({ events }) {
 
   return (
     <div className="relative w-full overflow-hidden px-4 py-6">
-
       {/* Navigation Buttons */}
       <button
         onClick={scrollLeft}
@@ -32,13 +31,14 @@ function TimelineScroller({ events }) {
       {/* Timeline Line + Dots */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto space-x-8 py-4 relative"
+        className="flex overflow-hidden space-x-8 py-4 relative"
         style={{ maxWidth: "100%" }}
       >
+        <div className="pointer-events-none absolute left-0 right-0 top-6 h-[2px] bg-[var(--color-primary)] z-30" />
         {events.map((event, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <div className="w-4 h-4 bg-[var(--color-primary)] rounded-full mb-2" />
-            <p className="text-xs text-gray-500">{event.date}</p>
+          <div key={index} className="relative shrink-0 text-center bg-amber-50" style={{ flex: `0 0 150px` }}>
+            <div className="w-4 h-4 bg-[var(--color-primary)] rounded-full mb-8" /> {/* dot */}
+            <p className="text-xs text-[var(--color-text-lightgrey)]">{event.date}</p> 
             <p className="text-sm text-center">{event.description}</p>
           </div>
         ))}

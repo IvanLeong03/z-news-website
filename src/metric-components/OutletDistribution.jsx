@@ -62,12 +62,12 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
                 <div className="flex">
                     <div className="mr-1 h-4 w-4 rounded-full bg-[var(--color-bg-grey)]" />
                     <label>
-                        {language === "zh-Hant" ? "保守" : language === "zh-Hans" ? "保守" : "Conservative"}
+                        {language === "zh-Hant" ? "保守" : language === "zh-Hans" ? "保守" : "Conservative"} ({cPercent}%)
                     </label>
                 </div>
                 <div className="flex">
                     <label>
-                        {language === "zh-Hant" ? "進步" : language === "zh-Hans" ? "进步" : "Progressive"}
+                        {language === "zh-Hant" ? "進步" : language === "zh-Hans" ? "进步" : "Progressive"} ({pPercent}%)
                     </label>
                     <div className="ml-1 h-4 w-4 rounded-full bg-[var(--color-line-grey)]" />
                 </div>            
