@@ -55,17 +55,6 @@ function ViewArticle() {
         { date: "18-03-2025", description: "First wave of U.S.–Vietnam tech partnerships announced." },
         { date: "25-03-2025", description: "Public sentiment analysis shows mixed reactions to deal." }
     ];
-    const cp = (
-        article.coverage?.centric !== undefined
-            ? Math.round(article.coverage.centric * 100)
-            : article.coverage?.percentage?.centric * 100
-    );
-
-    const pp = (
-        article.coverage?.progressive !== undefined
-            ? Math.round(article.coverage.progressive * 100)
-            : article.coverage?.percentage?.progressive * 100
-    );
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -212,7 +201,7 @@ function ViewArticle() {
                                     <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
                                 </div>
                                 <div className="w-4/5">
-                                    <SplitBar cPercent={cp} pPercent={pp}/>
+                                    <SplitBar cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100}/>
                                 </div>
                             </div>
                             
