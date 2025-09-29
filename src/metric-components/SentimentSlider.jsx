@@ -44,7 +44,15 @@ function SentimentSlider({ sentiment = 0}) {
             >
               <div className="relative">
                 <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
-                  +1 indicates the most positive sentiment, -1 indicates the most negative.
+                  <p>+1 indicates the most positive sentiment, -1 indicates the most negative.</p>
+                  <p>This event has received mostly{" "}
+                    {clampedScore > 0
+                      ? "positive"
+                      : clampedScore < 0
+                      ? "negative"
+                      : "neutral"}{" "}
+                    coverage.
+                  </p>
                 </div>
                 {/* Speech bubble tail */}
                 <div

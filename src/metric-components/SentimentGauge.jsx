@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
 function SentimentGauge({ sentiment = 0 }) {
   const { language } = useLanguage();
   const clampedScore = Math.max(-1, Math.min(sentiment, 1));
-
+  const timerRef = useRef(null);
   const radius = 100;
   const halfCircumference = Math.PI * radius; // Half-circle circumference
   const fillLength = Math.abs(clampedScore) * (halfCircumference / 2);
   const arcColor = clampedScore >= 0 ? "var(--color-primary)" : "var(--color-secondary-1)";
   const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => {
+    // start a timer for 250ms
+    timerRef.current = setTimeout(() => {
+      setIsHovered(true);
+    }, 250);
+  };
+
+  const handleMouseLeave = () => {
+    // clear the timer and hide immediately
+    clearTimeout(timerRef.current);
+    setIsHovered(false);
+  };
   
   return (
     <div className="flex flex-col items-center">
       <div className="w-full flex justify-between items-center">
-        <h2 className="text-sm">{language === "zh-Hant" ? "情感數值" : language === "zh-Hans" ? "情感数值" : "Sentiment Score"}</h2>
+        <h2>{language === "zh-Hant" ? "情感數值" : language === "zh-Hans" ? "情感数值" : "Sentiment Score"}</h2>
         <div className="relative">
           <AiOutlineInfoCircle
           className="ml-2 text-gray-400 cursor-pointer z-20 h-4"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={handleMouseEnter} 
+          onMouseLeave={handleMouseLeave}
         />
           {isHovered && (
             <div
@@ -29,7 +41,15 @@ function SentimentGauge({ sentiment = 0 }) {
             >
               <div className="relative">
                 <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
-                  +1 indicates the most positive sentiment, -1 indicates the most negative.
+                  <p>+1 indicates the most positive sentiment, -1 indicates the most negative.</p>
+                  <p>This event has received mostly{" "}
+                    {clampedScore > 0
+                      ? "positive"
+                      : clampedScore < 0
+                      ? "negative"
+                      : "neutral"}{" "}
+                    coverage.
+                  </p>
                 </div>
                 {/* Speech bubble tail */}
                 <div

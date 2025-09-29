@@ -15,8 +15,8 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import { TiMessages } from "react-icons/ti";
 import SummarySettingsDropdown from "./SummarySettingsDropdown";
-import TimelineScroller from "./TimelineScroller";
 import FeedbackButton from "./FeedbackButton";
+import TimelineCarousel from "./TimelineCarousel";
 
 function ViewArticle() {
     const { id } = useParams();
@@ -31,8 +31,9 @@ function ViewArticle() {
     const [sortOption, setSortOption] = useState("significance-desc"); //user preference should be fetched from backend
     const [showAllC, setShowAllC] = useState(false);
     const [showAllP, setShowAllP] = useState(false);
-    const [selectedView, setSelectedView] = useState("progressive"); // or "conservative"
+    const [selectedView, setSelectedView] = useState("progressive");
     const [isHovered, setIsHovered] = useState(false);
+    const [showChartDesc, setShowChartDesc] = useState(false);
     const sizeDesc = {
         "en": "The size of the icon represents the media significance. The more significant the source, the larger the icon.",
         "zh-Hant": "圖標的大小代表該媒體的重要性。來源越重要，圖標就越大。",
@@ -156,7 +157,7 @@ function ViewArticle() {
                         <div className="flex flex-col justify-between items-start my-1">
                             <div className="flex text-base text-[var(--color-gs-white)] gap-x-4">
                                 <label className="px-2 rounded-r-lg rounded-l-lg bg-[var(--color-primary)]">{article.region}</label>                            
-                                <label className="px-2 rounded-r-lg rounded-l-lg bg-[var(--color-secondary-1)]">{article.sector}</label>
+                                <label className="px-2 rounded-r-lg rounded-l-lg text-[var(--color-primary)] border border-[var(--color-primary)]">{article.sector}</label>
                             </div>
                             <div className="text-[var(--color-text-lightgrey)] text-sm my-2">
                                 <p>
@@ -188,19 +189,19 @@ function ViewArticle() {
                         <h1 className="text-4xl font-semibold">{article.title}</h1>                                                
                     </div>
                     {/* picture and metrics (Sentiment and subjectivity) */}
-                    <div className="grid grid-cols-[3fr_1fr]">
+                    <div className="grid grid-cols-[2fr_1fr] 2xl:grid-cols-[3fr_1fr]">
                         <div className="aspect-[16/9] overflow-hidden px-4">
                             <img src={article.pictureURL} className="w-full h-full object-cover" />
                         </div>
                         <div className="px-4 rounded-xl flex flex-col justify-between">
-                            <div className="flex flex-col flex-grow justify-between items-center py-8 mb-8 border border-dashed border-[var(--color-line-grey)]">
-                                <div className="w-4/5">
+                            <div className="flex flex-col flex-grow justify-between items-center pt-4 2xl:pt-8 pb-4 2xl:pb-16 border border-dashed border-[var(--color-line-grey)]">
+                                <div className="w-4/5 scale-75 2xl:scale-100">
                                     <SentimentGauge sentiment={article.metrics.sentiment}/>            
                                 </div>
-                                <div className="w-4/5">
+                                <div className="w-4/5 scale-75 2xl:scale-100">
                                     <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
                                 </div>
-                                <div className="w-4/5">
+                                <div className="w-4/5 scale-75 2xl:scale-100">
                                     <SplitBar cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100}/>
                                 </div>
                             </div>
@@ -242,16 +243,6 @@ function ViewArticle() {
                                 </label>
                             </span>
                         </button>
-                        {/*
-                        <button className="px-4 h-8 bg-[var(--color-bg-light)] border border-[var(--color-line-verylightgrey)]  rounded-md">
-                            <span className="flex items-center">
-                                <BiMessageError />
-                                <label className="mx-2 text-[var(--color-gs-black)] text-sm">
-                                    {language === "zh-Hant" ? "意見回饋" : language === "zh-Hans" ? "意见回馈" : "Provide Feedback"}                                                
-                                </label>
-                            </span>
-                        </button>
-                        */}
                         <FeedbackButton language={language} articleID={id} />
                     </div>
                                         
@@ -271,8 +262,25 @@ function ViewArticle() {
                             {language === 'zh-Hant' ? '文章數:' : language === 'zh-Hans' ? '文章数:' : 'Number of reports: '}
                             {article.nSources}
                         </p> 
-                        <p className="text-base my-4">{sizeDesc[language]}</p>
-                        <p className="text-base my-4">{posDesc[language]}</p>
+                        <h3
+                            className="text-lg underline mt-6 mb-2 cursor-pointer 
+                            hover:text-[var(--color-primary)]"
+                            onClick={() => setShowChartDesc(true)}
+                        >
+                            How to read the chart?
+                        </h3>
+                        {showChartDesc && (
+                            <div>
+                                <p className="text-base my-4">{sizeDesc[language]}</p>
+                                <p className="text-base my-4">{posDesc[language]}</p>
+                                <button
+                                    className="text-sm text-blue-600 hover:underline mb-2"
+                                    onClick={() => setShowChartDesc(false)}
+                                >
+                                    Hide
+                                </button>
+                            </div>
+                        )}
                     </div>                    
                     <div className="py-8 pl-2">
                         <div className="flex justify-between items-center mb-4">
@@ -358,9 +366,12 @@ function ViewArticle() {
 
                             <ul>
                             {(selectedView === "conservative" ? visibleArticlesC : visibleArticlesP).map((article, index) => (
-                                <li key={index} className="flex flex-col justify-between items-start px-2 py-4">
+                                <li key={index} className="flex flex-col justify-between items-start px-2 py-4 border-b border-dotted border-[var(--color-line-verylightgrey)]">
                                     <div className="flex">
-                                        <img src={article.publisherIcon} width={60} className="rounded-full" />
+                                        <div className="w-16 h-16">
+                                            <img src={article.publisherIcon}className="rounded-full" />
+                                        </div>
+                                        
                                         <div className="mx-4 flex flex-col text-[var(--color-text-lightgrey)] text-sm">
                                             <div>
                                                 <label>{article.publisherName}</label>
@@ -377,7 +388,7 @@ function ViewArticle() {
                                     </div>
                                     <div className="w-full">
                                         <a href={article.articleURL} target="_blank" rel="noopener noreferrer">
-                                            <h2 className="my-2 text-lg hover:text-[var(--color-secondary-1)]">{article.title}</h2>
+                                            <h2 className="my-2 text-base 2xl:text-lg hover:text-[var(--color-secondary-1)]">{article.title}</h2>
                                         </a>
                                     </div>
                                 </li>
@@ -408,9 +419,12 @@ function ViewArticle() {
                         The timeline shows the publication dates of articles related to this topic in chronological order.
                         Scroll to explore articles covering the development of this event over time.
                     </p>
-                    <div className="w-4/5 mx-auto my-4 border border-blue-300">
-                        < TimelineScroller events={timelineEvents} />
+                    {/* tiimeline component */}
+                    <div className="w-3/4 mx-auto max-w-[1200px]">
+                        <TimelineCarousel events={timelineEvents} />
+
                     </div>
+
                 </div>
                 <Ads />                      
             </div>
@@ -434,7 +448,7 @@ function ViewArticle() {
                     <h2 className="text-lg my-1">Related articles: </h2>
                     <ul className="list-disc px-4">
                         {article.relatedArticles.map((a, index) => (
-                            <li key={index} className="my-2 hover:text-[var(--color-primary)]">
+                            <li key={index} className="my-2 hover:text-[var(--color-primary]">
                                 <Link to={`/article/${a.articleID}`}> 
                                 {a.title}
                                 </Link>

@@ -12,57 +12,60 @@ function Legend() {
 
   return (
     <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start py-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
-        <h2 className='font-bold text-xl mt-1 mb-5'>
+        <h2 className='font-bold text-xl mt-1'>
           {language === "zh-Hant"
             ? "新聞指標"
             : language === "zh-Hans"
             ? "新闻指标"
             : "What are these?"}
         </h2>
-        <div className='w-full mx-auto'>
-          <SplitBar />
-        </div>
-        <div className='flex flex-col justify-between py-4 my-2 text-[var(--color-gs-black)]'>
-            <div className='my-4 text-sm'>
-              <p>
+        
+        <div className='flex flex-col justify-between py-4 my-8 text-[var(--color-gs-black)] border-b border-[var(--color-line-verylightgrey)] w-full'>
+            <h3 className='text-center underline'>Leaning distribution</h3>
+            <div className='w-full mx-auto my-8'>
+              <SplitBar />
+            </div>
+            <div className='mb-4'>
+              <p className='text-lg my-2'>
                 {language === "zh-Hant"
-                  ? "保守："
+                  ? "保守"
                   : language === "zh-Hans"
-                  ? "保守："
-                  : "Conservative:"}
+                  ? "保守"
+                  : "Conservative"}
               </p>
-              <p>
+              <p className='text-sm'>
                 {language === "zh-Hant"
                   ? "文章採取較保守的立場"
                   : language === "zh-Hans"
                   ? "文章采取较保守的立场"
-                  : "The article leans towards a Conservative stance."}
+                  : "The article comes from a source that leans towards a Conservative stance."}
               </p>
             </div>
-            <div className='my-4 text-sm'>
-              <p>
+            <div className='my-4'>
+              <p className='text-lg my-2'>
                 {language === "zh-Hant"
-                  ? "進步："
+                  ? "進步"
                   : language === "zh-Hans"
-                  ? "进步："
-                  : "Progressive:"}
+                  ? "进步"
+                  : "Progressive"}
               </p>
-              <p>
+              <p className='text-sm'>
                 {language === "zh-Hant"
                   ? "文章採取較進步的立場"
                   : language === "zh-Hans"
                   ? "文章采取较进步的立场"
-                  : "The article takes a Progressive stance."}
+                  : "The article's source takes a Progressive stance."}
               </p>
             </div>
         </div>
-        <div className='flex flex-col items-center text-[var(--color-gs-black)] py-2'>
-            <div className='w-full mb-4'>
+        <div className='flex flex-col items-center text-[var(--color-gs-black)] py-2 border-b border-[var(--color-line-verylightgrey)] w-full'>
+            <h3 className='text-center underline mb-4'>Sentiment analysis</h3>
+            <div className='w-full my-4'>
               <SentimentSlider />
-              <p className='text-center my-4'>{language === "zh-Hant" ? "或" : language === "zh-Hans" ? "或" : "or"}</p>
+              <p className='text-center my-6'>{language === "zh-Hant" ? "或" : language === "zh-Hans" ? "或" : "or"}</p>
               <SentimentGauge />
             </div>
-            <p className='my-16 text-sm'>
+            <p className='my-16 text-base'>
               {language === "zh-Hant"
                 ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分"
                 : language === "zh-Hans"
@@ -70,8 +73,9 @@ function Legend() {
                 : "The Sentiment Score measures the emotional tone of the article. An articles receives a score from -1 (most pessimistic) to +1 (most optimistic)."}
             </p>
         </div>
-        <div className='flex flex-col text-[var(--color-gs-black)] py-2'>
-            <div className='w-full mx-auto'>
+        <div className='flex flex-col text-[var(--color-gs-black)] py-2 w-full'>
+            <h3 className='text-center underline my-4'>Subjectivity analysis</h3>            
+            <div className='w-full mx-auto my-4'>
               <SubjectivitySlider />
             </div>
             <p className='my-4'>
@@ -86,7 +90,7 @@ function Legend() {
                 ? <>想了解更多指標計算方法，請參閱<Link to="/user-guide" className="text-blue-700 hover:cursor-pointer"> 使用指南 </Link></>
                 : language === "zh-Hans"
                 ? <>想了解更多指标计算方法，请参阅<Link to="/user-guide" className="text-blue-700 hover:cursor-pointer"> 使用指南 </Link></>
-                : <>To learn more about how the metrics are calculated, view the <Link to="/user-guide" className="text-blue-700 hover:cursor-pointer"> user guide </Link></>
+                : <>To learn more about how the metrics are calculated, view the <Link to="/user-guide" className="text-blue-400 hover:text-[var(--color-primary)] hover:cursor-pointer text-base"> user guide </Link></>
               }
             </p>
         </div>

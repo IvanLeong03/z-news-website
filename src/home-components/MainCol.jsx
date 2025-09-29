@@ -71,7 +71,7 @@ function MainCol() {
   };
 
   return (
-    <div className="w-full h-auto flex flex-grow flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-grey)]">
+    <div className="w-full flex flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-grey)]">
       { /* one large article, and the rest will be smaller ones */}
       <div className="relative w-full overflow-hidden">
         <div
@@ -103,7 +103,7 @@ function MainCol() {
       </div>
 
       <div className="mb-8 px-2">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-stretch">
           {Array.isArray(subArticles) && subArticles.map((article) => (
             <div key={article.articleID} className="flex flex-grow flex-col justify-start items-center mx-auto p-2">
               <Link to={`/article/${article.articleID}`}>

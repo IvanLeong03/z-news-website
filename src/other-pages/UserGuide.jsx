@@ -4,8 +4,8 @@ function UserGuide() {
   return (
     <div className="w-full min-h-dvh flex flex-col justify-center items-center px-4 py-8">
       <div className="max-w-2xl w-full">
-        <h1 className="text-3xl font-bold mb-6">User Guide</h1>
-        <section className="mb-8">
+        <h1 className="text-3xl font-bold my-6">User Guide</h1>
+        <section className="my-8">
           <h2 className="text-xl font-semibold mb-2">What are these metrics?</h2>
           <p className="mb-4">
             Our news site provides several metrics to help you better understand the content and tone of each article. Here’s a breakdown of what each metric means and how it’s calculated:
@@ -20,7 +20,7 @@ function UserGuide() {
             The "Conservative" metric reflects the traditional or status quo perspective of the article. Articles with a higher Conservative score tend to focus on preserving existing values and institutions, while lower scores may indicate a more Progressive or reformist stance.
           </p>
         </section>
-        <section className="mb-8">
+        <section className="my-8">
           <h3 className="text-lg font-semibold mb-2">Progressive</h3>
           <p className="mb-2">
             <span className="italic">[Promote social reforms]</span>
@@ -29,7 +29,7 @@ function UserGuide() {
             The "Progressive" metric indicates how forward-thinking or change-oriented the article is. Articles with a higher Progressive score tend to advocate for new ideas, reforms, or social change, while lower scores may reflect more traditional or conservative viewpoints.
           </p>
         </section>
-        <section className="mb-8">
+        <section className="my-8">
           <h3 className="text-lg font-semibold mb-2">Sentiment</h3>
           <p>
             The sentiment score is calculated by analyzing the ratio of positive and negative words in the article. The score ranges from <b>-1</b> (most negative) to <b>1</b> (most positive). A higher score means the article uses more positive language, while a lower score indicates more negative or pessimistic language.

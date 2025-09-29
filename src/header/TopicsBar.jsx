@@ -18,7 +18,7 @@ function TopicsBar() {
                 const topics = await fetchTopic(backendLang);
                 setTopics(topics);
             } catch (error) {
-                console.error("Failed to load articles:", error);
+                console.error("Failed to load articles, please reload page:", error);
                 setError(error.message);
             } finally {
                 setLoading(false);

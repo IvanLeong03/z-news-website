@@ -120,7 +120,7 @@ const Carousel = () => {
                   </div>
                   {/* Bottom text */}
                   <div className="px-4 py-2">
-                    <p className="text-xs md:text-sm lg:text-base text-darkWhite text-ellipsis">
+                    <p className="text-sm md:text-base lg:text-lg text-darkWhite text-ellipsis">
                       {slide.bottomText}
                     </p>
                   </div>

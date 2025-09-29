@@ -4,15 +4,15 @@ import RightCol from "./RightCol";
 import MainCol from "./MainCol";
 
 function Home() {
-    return (
-      <div className="w-9/10 overflow-scroll mx-auto grid grid-cols-1 lg:grid-cols-[1fr_3fr_1fr] gap-2">
-        < LeftCol />
-        < MainCol />
-        < RightCol />
-      </div>
+  return (
+    <div className="w-9/10 overflow-scroll mx-auto grid grid-cols-[1fr_3fr_1fr]">
+     <div className="min-w-0">< LeftCol /></div>
+     <div className="min-w-0">< MainCol /></div>
+     <div className="min-w-0">< RightCol /></div>
+    </div>
 
-    )
-  }
+  )
+}
 
-  export default Home;
+export default Home;
   

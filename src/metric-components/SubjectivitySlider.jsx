@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
@@ -30,17 +30,32 @@ function SubjectivitySlider({ subjScore = 0 }) {
   : subjScoreRounded < 0.6 
   ? "bg-[#3d776c] text-[var(--color-secondary-3)] px-2"  
   : "bg-[#2e3d3a] text-[#879693] px-2";
+
+  const timerRef = useRef(null);
+  const handleMouseEnter = () => {
+    // start a timer for 250ms
+    timerRef.current = setTimeout(() => {
+      setIsHovered(true);
+    }, 250);
+  };
+
+  const handleMouseLeave = () => {
+    // clear the timer and hide immediately
+    clearTimeout(timerRef.current);
+    setIsHovered(false);
+  };
+  
   
 
   return (
     <div className="w-full">
       <div className="w-full flex justify-between items-center">
-        <h2 className="text-sm">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
+        <h2>{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
         <div className="relative">
           <AiOutlineInfoCircle
             className="ml-2 text-gray-400 cursor-pointer z-20 h-4"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           />
           {isHovered && (
             <div
