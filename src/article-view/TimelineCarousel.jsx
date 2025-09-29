@@ -9,7 +9,7 @@ function TimelineCarousel({ events, visible = 5, itemWidth = 200, gap = 24 }) {
   const step = itemWidth + gap;
 
   const canPrev = index > 0;
-  const canNext = index <= maxIndex;
+  const canNext = index < maxIndex;
 
   const translateX = useMemo(() => -(index * step), [index, step]);
 

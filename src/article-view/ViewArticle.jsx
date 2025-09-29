@@ -9,7 +9,7 @@ import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
-import { fetchArticle } from "../services/articleService";
+import { fetchArticle, fetchSummary } from "../services/articleService";
 import { saveArticle } from "../services/profileService";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
@@ -22,11 +22,15 @@ function ViewArticle() {
     const { id } = useParams();
     const { language} = useLanguage();
     const [summaryLanguage, setSummaryLanguage] = useState(language);
+    console.log("Summary language:", summaryLanguage);
     const [tone, setTone] = useState("straightforward");
     const navigate = useNavigate();
     const [article, setArticle] = useState(null);
+    const [summary, setSummary] = useState({"synopsis": "", "implications": ""});
     const [error, setError] = useState(null);
+    const [summaryError, setSummaryError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [summaryLoading, setSummaryLoading] = useState(true);
     const [bookmarked, setBookmarked] = useState(false);
     const [sortOption, setSortOption] = useState("significance-desc"); //user preference should be fetched from backend
     const [showAllC, setShowAllC] = useState(false);
@@ -71,6 +75,25 @@ function ViewArticle() {
         };
         loadArticle();
     }, [id, language]);
+
+    useEffect(() => {
+        const loadSummary = async () => {
+            if (!id || !summaryLanguage) return;
+            const summaryBackendLang = mapFrontendLangToBackend(summaryLanguage);
+            try {
+                const result = await fetchSummary(id, summaryBackendLang);
+                setSummary(result);
+            } catch (err) {
+                console.error("Failed to fetch summary:", err);
+                setSummaryError(err.message);
+            } finally {
+                setSummaryLoading(false);
+            }
+        };
+
+        loadSummary();
+    }, [id, summaryLanguage, language]);
+
 
     const handleBookmark = async () => {
         const newState = !bookmarked;
@@ -218,15 +241,27 @@ function ViewArticle() {
                 </div>
 
                 {/* summary */}
-                <div className="flex flex-col w-9/10 mx-auto my-8 p-4 text-lg bg-[var(--color-light-turquoise)] rounded-xl">                                                                                                    
+                <div className="flex flex-col w-9/10 mx-auto my-8 p-4 text-lg bg-[var(--color-light-turquoise)] rounded-xl">                                                                                                
                     <div className="py-4">
-                        {/*<h2 className="text-xl font-bold">{language === "zh-Hant" ? "摘要" : language === "zh-Hans" ? "摘要" : "What Happened"}</h2>*/}
-                        <p className="py-2">{article.description.synopsis}</p>                      
-                    </div>   
+                        {summaryLoading ? (
+                            <p className="text-sm text-gray-500">Loading summary...</p>
+                        ) : summaryError ? (
+                            <p className="text-sm text-red-500">Error: {summaryError}</p>
+                        ) : (
+                            <p className="py-2">{summary?.synopsis}</p>
+                        )}
+                    </div>
+
                     <div className="py-4">
-                        {/*<h2 className="text-xl font-bold">{language === "zh-Hant" ? "影響" : language === "zh-Hans" ? "影响" : "Significance and Implications"}</h2>*/}
-                        <p className="py-2">{article.description.implications}</p>                      
-                    </div>                    
+                        {summaryLoading ? (
+                            <p className="text-sm text-gray-500">Loading implications...</p>
+                        ) : summaryError ? (
+                            <p className="text-sm text-red-500">Error: {summaryError}</p>
+                        ) : (
+                            <p className="py-2">{summary?.implications}</p>
+                        )}
+                    </div>
+            
                     <div className="px-8 my-4 flex justify-between items-start">
                         <SummarySettingsDropdown
                             language={language}
@@ -420,7 +455,7 @@ function ViewArticle() {
                         Scroll to explore articles covering the development of this event over time.
                     </p>
                     {/* tiimeline component */}
-                    <div className="w-3/4 mx-auto max-w-[1200px]">
+                    <div className="w-3/4 mx-auto  max-w-[800px] 2xl:max-w-[1200px]">
                         <TimelineCarousel events={timelineEvents} />
 
                     </div>

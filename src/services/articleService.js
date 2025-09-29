@@ -42,3 +42,19 @@ export async function sendFeedback(articleID, feedback) {
 
     return true; 
 }
+
+export async function fetchSummary(articleID, language) {
+    const token = localStorage.getItem('jwt_token');
+
+    const res = await fetch(`https://api.zonenews.io/dev/article/${articleID}?lang=${language}`, {
+        method: "GET",
+        credentials: 'include',
+        headers: {
+        "Content-Type": "application/json",
+        },
+    });
+
+    if (!res.ok) throw new Error(`Failed to fetch summary ${articleID}: ${res.statusText}`);
+    const data = await res.json();
+    return data.data.description;
+}
