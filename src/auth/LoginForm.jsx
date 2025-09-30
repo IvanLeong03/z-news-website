@@ -13,6 +13,8 @@ export default function LoginForm() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const emailPlaceholder = language === "zh-Hant" ? "輸入電郵" : language === "zh-Hans" ? "输入电邮" : "Enter your email";
+  const pwPlaceholder = language === "zh-Hant" ? "輸入密碼" : language === "zh-Hans" ? "输入密码" : "Enter your password";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +40,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-lg my-32 mx-auto py-16 px-4 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-center mb-6">
         {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
       </h2>
@@ -60,7 +62,7 @@ export default function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-[var(--color-line-verylightgrey)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-line-grey)]"
-            placeholder="Enter your email"
+            placeholder={emailPlaceholder}
             autoComplete="email"
           />
         </div>
@@ -76,7 +78,7 @@ export default function LoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="block w-full px-3 py-2 border border-[var(--color-line-verylightgrey)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-line-grey)]"
-              placeholder="Enter your password"
+              placeholder={pwPlaceholder}
               autoComplete="current-password"
             />
             <button

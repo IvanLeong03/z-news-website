@@ -185,7 +185,9 @@ function ViewArticle() {
                             <div className="text-[var(--color-text-lightgrey)] text-sm my-2">
                                 <p>
                                     <label>{language === "zh-Hant" ? "發表日期" : language === "zh-Hans" ? "发表日期" : "Date published"}: </label>
-                                    {article.date.slice(5, 10)}
+                                    {article.date.slice(8, 10)}
+                                    <span>-</span>
+                                    {article.date.slice(5, 7)}
                                     <span>-</span>
                                     {article.date.slice(0, 4)}
                                 </p>
@@ -231,7 +233,9 @@ function ViewArticle() {
                             
                             <Link to="/user-guide" className="hover:underline">
                                 <p className="text-sm 2xl:text-base relative bottom-0 my-2">
-                                    Click here to for more details on how we calculate these metrics
+                                    {language === "zh-Hant" ? "點擊此處了解我們如何計算這些指標" 
+                                    : language === "zh-Hans" ? "点击此处了解我们如何计算这些指标" 
+                                    : "Click here to for more details on how we calculate these metrics"}
                                 </p>                                           
                             </Link>
                         </div>                            
@@ -298,11 +302,13 @@ function ViewArticle() {
                             {article.nSources}
                         </p> 
                         <h3
-                            className="text-lg underline mt-6 mb-2 cursor-pointer 
+                            className="text-lg mt-6 mb-2 cursor-pointer 
                             hover:text-[var(--color-primary)]"
                             onClick={() => setShowChartDesc(true)}
                         >
-                            How to read the chart?
+                            {language === "zh-Hant" ? "點擊此處了解上述圖表" 
+                                : language === "zh-Hans" ? "点击此处了解上述图表" 
+                                : "Click here to for more details about the chart"}
                         </h3>
                         {showChartDesc && (
                             <div>
@@ -312,7 +318,7 @@ function ViewArticle() {
                                     className="text-sm text-blue-600 hover:underline mb-2"
                                     onClick={() => setShowChartDesc(false)}
                                 >
-                                    Hide
+                                {language === "zh-Hant" ? "隱藏" : language === "zh-Hans" ? "隐藏" : "Hide"}
                                 </button>
                             </div>
                         )}
@@ -448,16 +454,16 @@ function ViewArticle() {
                     </div>                                               
                 </div>
                 {/* timeline */}
-                <div className="w-9/10 mx-auto rounded mt-12">
-                    <h2 className="text-2xl font-semibold">Timeline</h2>
-                    <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">
-                        The timeline shows the publication dates of articles related to this topic in chronological order.
-                        Scroll to explore articles covering the development of this event over time.
+                <div className="w-9/10 mx-auto rounded">
+                    <h2 className="text-2xl font-semibold">{language === "zh-Hant" ? "時間線" : language === "zh-Hans" ? "时间线" : "Timeline"}</h2>
+                    <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">                        
+                        {language === "zh-Hant" ? "時間線按時間順序顯示相關文章。按下左右按鈕可瀏覽事件發生前後的相關報導。" 
+                        : language === "zh-Hans" ? "时间线按时间顺序显示相关文章。按下左右按钮可浏览事件发生前后的相关报导。" 
+                        : "The timeline shows articles related to this event in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
                     </p>
                     {/* tiimeline component */}
-                    <div className="w-3/4 mx-auto  max-w-[800px] 2xl:max-w-[1200px]">
+                    <div className="w-3/4 mx-auto my-4 max-w-[800px] 2xl:max-w-[1200px]">
                         <TimelineCarousel events={timelineEvents} />
-
                     </div>
 
                 </div>

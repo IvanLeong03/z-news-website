@@ -115,7 +115,7 @@ function MainCol() {
           ))}
         </div>
         <div className="flex justify-center my-6">
-          <button className="relative px-2 rounded hover:text-[var(--color-primary)]">Load more ...</button>
+          <button className="relative px-2 rounded hover:text-[var(--color-primary)]">{language === 'zh-Hant' ? '查看更多' : language === 'zh-Hans' ? '查看更多' : ' Load more'}...</button>
         </div>
       </div>      
     </div>   

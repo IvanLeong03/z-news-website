@@ -21,7 +21,7 @@ function Legend() {
         </h2>
         
         <div className='flex flex-col justify-between py-4 my-8 text-[var(--color-gs-black)] border-b border-[var(--color-line-verylightgrey)] w-full'>
-            <h3 className='text-center underline'>Leaning distribution</h3>
+            <h3 className='text-center underline'>{language === 'zh-Hant' ? '立場分布' : language === 'zh-Hans' ? '立场分布' : 'Leaning distribution'}</h3>
             <div className='w-full mx-auto my-8'>
               <SplitBar />
             </div>
@@ -59,7 +59,7 @@ function Legend() {
             </div>
         </div>
         <div className='flex flex-col items-center text-[var(--color-gs-black)] py-2 border-b border-[var(--color-line-verylightgrey)] w-full'>
-            <h3 className='text-center underline mb-4'>Sentiment analysis</h3>
+            <h3 className='text-center underline mb-4'>{language === 'zh-Hant' ? '情感分析' : language === 'zh-Hans' ? '情感分析' : 'Sentiment analysis'}</h3>
             <div className='w-full my-4'>
               <SentimentSlider />
               <p className='text-center my-6'>{language === "zh-Hant" ? "或" : language === "zh-Hans" ? "或" : "or"}</p>
@@ -74,7 +74,7 @@ function Legend() {
             </p>
         </div>
         <div className='flex flex-col text-[var(--color-gs-black)] py-2 w-full'>
-            <h3 className='text-center underline my-4'>Subjectivity analysis</h3>            
+            <h3 className='text-center underline my-4'>{language === 'zh-Hant' ? '主觀性分析' : language === 'zh-Hans' ? '主观性分析' : 'Subjectivity analysis'}</h3>            
             <div className='w-full mx-auto my-4'>
               <SubjectivitySlider />
             </div>

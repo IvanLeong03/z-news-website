@@ -6,7 +6,7 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
 
     return (
         <div className="flex flex-col w-full text-sm text-[var(--color-gs-black)]">
-            <div className="flex justify-center w-full my-4 text-xl">
+            <div className="flex justify-center w-full mt-4 mb-8 text-xl">
                 {language === 'zh-Hant' ? '媒體分佈' : language === 'zh-Hans' ? '媒体分布' : 'Media Distribution'}
             </div>
             <div className='relative flex w-3/4 mx-auto h-60 2xl:h-80 shadow-sm'>
