@@ -168,7 +168,9 @@ function Feed(props) {
                             </Link>
                         </div>
                         <div className="flex text-[var(--color-primary)] text-sm my-1">
-                            <label>{article.sector}</label>
+                            { tag === 'personal' ? 
+                                <label>{article.region} | {article.sector}</label> :
+                                <label>{article.sector}</label>}
                         </div> 
                         <Link to={`/article/${article.articleID}`}>
                             <h2 className="font-semibold my-2">{article.title}</h2>
