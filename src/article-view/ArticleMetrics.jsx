@@ -9,22 +9,22 @@ function ArticleMetrics({article}) {
     const { language } = useLanguage();
 
     return (
-        <div className="px-4 rounded-xl flex flex-col justify-between border border-dashed border-[var(--color-line-grey)]">
-            <h2 className="font-semibold text-2xl my-2">Article in numbers</h2>
-            <div className="w-full grid grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr] items-center py-8 xl:py-16 ">
-                <div className="px-8 mx-4">
+        <div className="px-4 mb-8 flex flex-col justify-between border-b-2 border-[var(--color-line-darkgrey)]">
+            <h2 className="text-xl font-semibold mb-2">Coverage Analysis</h2>
+            <div className="w-full flex flex-col items-center py-8">
+                <div className="w-full px-8 my-8 pb-16 rounded-xl border border-[var(--color-line-darkgrey)]">
                     <SentimentGauge sentiment={article.metrics.sentiment}/>            
                 </div>
-                <div className="px-8 mx-4">
+                <div className="w-full px-8 my-8 py-4 rounded-xl border border-[var(--color-line-darkgrey)]">
                     <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
                 </div>
-                <div className="px-8 mx-4">
+                <div className="w-full px-8 mt-8 mb-2 py-12 rounded-xl border border-[var(--color-line-darkgrey)]">
                     <SplitBar cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100}/>
                 </div>
             </div>
             
             <Link to="/user-guide" className="hover:underline">
-                <p className="text-sm 2xl:text-base mt-2">
+                <p className="text-sm mb-8">
                     {language === "zh-Hant" ? "點擊此處了解我們如何計算這些指標" 
                     : language === "zh-Hans" ? "点击此处了解我们如何计算这些指标" 
                     : "Click here to for more details on how we calculate these metrics"}

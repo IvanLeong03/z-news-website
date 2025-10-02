@@ -5,10 +5,10 @@ import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
+import SentimentSlider from "../metric-components/SentimentSlider";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
 import { fetchArticle, fetchSummary } from "../services/articleService";
 import { saveArticle } from "../services/profileService";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import TimelineCarousel from "./TimelineCarousel";
 import ArticleMetrics from "./ArticleMetrics";
@@ -180,7 +180,7 @@ function ViewArticle() {
     
     return (
         <article className="grid grid-cols-[4fr_1fr] overflow-hidden justify-center items-start w-9/10 h-full mx-auto">
-            <div className="min-h-dvh px-1 py-4">
+            <div className="px-1 py-4">
                 <div className="flex-col flex-grow w-9/10 mx-auto">
                     {/* region, sector, date and time*/}
                     <div className="w-full flex justify-between items-center">
@@ -235,7 +235,6 @@ function ViewArticle() {
                         tone={tone}
                         setTone={setTone}
                         />
-                        <ArticleMetrics article={article} />
                     </div>                    
                 </div>
 
@@ -295,32 +294,44 @@ function ViewArticle() {
             { /* 2nd column */}
             <div className="h-full py-6 px-1 border-l border-[var(--color-line-darkgrey)]">
                 <div className="m-4 flex flex-col items-start">
-                    <h1 className="text-2xl mb-8 font-semibold">Discover more</h1>
-                    <h2 className="text-lg my-1">Related tags: </h2>
+                    <ArticleMetrics article={article} />
+                    <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
+                    <h2 className="text-lg my-2">Related tags: </h2>
                     {article.relatedTopics.map((t, index) => (
                         <button
                         key={index}
                         onClick={() => handleTopicClick(t)}
-                        className="my-1 px-2 rounded-r-lg rounded-l-lg text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)]"
+                        className="my-2 px-2 py-1 rounded-r-lg rounded-l-lg text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)] hover:px-4"
                         >
                             # {t}
                         </button>
                     ))}
                 </div>
-                <div className="mx-4 my-16 flex flex-col items-start">
-                    <h2 className="text-lg my-1">Related articles: </h2>
-                    <ul className="list-disc px-4">
+                <div className="mx-4 my-16 flex flex-col items-start">                    
+                    <h2 className="text-lg my-2">Related articles: </h2>
+                    <ul className="px-4">
                         {article.relatedArticles.map((a, index) => (
-                            <li key={index} className="my-2 hover:text-[var(--color-primary]">
-                                <Link to={`/article/${a.articleID}`}> 
-                                {a.title}
+                            <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:text-[var(--color-primary]">
+                                
+                                <Link to={`/article/${a.articleID}`}>            
+                                    <div className="flex text-[var(--color-primary)] text-sm mt-1">
+                                        <label>{a.region}</label>
+                                        <label className="mx-2">|</label>
+                                        <label>{a.sector}</label>
+                                    </div>
+                                    <div className="grid grid-cols-[3fr_2fr]">
+                                        <h2 className="my-2 text-lg pr-2">{a.title}</h2>    
+                                        <div className="w-full aspect-[16/9] overflow-hidden">
+                                            <img src={a.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
+                                        </div>      
+                                    </div>
                                 </Link>
                             </li>                            
                         ))}
                     </ul>
                 </div>
                 
-                <div className="flex flex-col h-dvh">
+                <div className="flex flex-col">
                     {/* Ads*/}                   
                 </div>                
             </div>
