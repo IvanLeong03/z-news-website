@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Ads from "../home-components/Ads";
 import { useParams, useNavigate } from "react-router-dom";
-import SentimentGauge from "../metric-components/SentimentGauge";
-import SubjectivitySlider from "../metric-components/SubjectivitySlider";
-import SplitBar from "../metric-components/SplitBar";
 import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { Link } from "react-router-dom";
@@ -17,12 +14,13 @@ import { TiMessages } from "react-icons/ti";
 import SummarySettingsDropdown from "./SummarySettingsDropdown";
 import FeedbackButton from "./FeedbackButton";
 import TimelineCarousel from "./TimelineCarousel";
+import ArticleMetrics from "./ArticleMetrics";
+import SummaryBlock from "./SummaryBlock";
 
 function ViewArticle() {
     const { id } = useParams();
     const { language} = useLanguage();
     const [summaryLanguage, setSummaryLanguage] = useState(language);
-    console.log("Summary language:", summaryLanguage);
     const [tone, setTone] = useState("straightforward");
     const navigate = useNavigate();
     const [article, setArticle] = useState(null);
@@ -75,7 +73,7 @@ function ViewArticle() {
         };
         loadArticle();
     }, [id, language]);
-
+    
     useEffect(() => {
         const loadSummary = async () => {
             if (!id || !summaryLanguage) return;
@@ -93,7 +91,7 @@ function ViewArticle() {
 
         loadSummary();
     }, [id, summaryLanguage, language]);
-
+    
 
     const handleBookmark = async () => {
         const newState = !bookmarked;
@@ -214,37 +212,17 @@ function ViewArticle() {
                         <h1 className="text-4xl font-semibold">{article.title}</h1>                                                
                     </div>
                     {/* picture and metrics (Sentiment and subjectivity) */}
-                    <div className="grid grid-cols-[2fr_1fr] 2xl:grid-cols-[3fr_1fr]">
-                        <div className="aspect-[16/9] overflow-hidden px-4">
+                    <div className="flex flex-col">
+                        <div className="aspect-[16/9] overflow-hidden">
                             <img src={article.pictureURL} className="w-full h-full object-cover" />
                         </div>
-                        <div className="px-4 rounded-xl flex flex-col justify-between">
-                            <div className="flex flex-col flex-grow justify-between items-center pt-4 2xl:pt-8 pb-4 2xl:pb-16 border border-dashed border-[var(--color-line-grey)]">
-                                <div className="w-4/5 scale-75 2xl:scale-100">
-                                    <SentimentGauge sentiment={article.metrics.sentiment}/>            
-                                </div>
-                                <div className="w-4/5 scale-75 2xl:scale-100">
-                                    <SubjectivitySlider subjScore={article.metrics.subjectivity}/>              
-                                </div>
-                                <div className="w-4/5 scale-75 2xl:scale-100">
-                                    <SplitBar cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100}/>
-                                </div>
-                            </div>
-                            
-                            <Link to="/user-guide" className="hover:underline">
-                                <p className="text-sm 2xl:text-base relative bottom-0 my-2">
-                                    {language === "zh-Hant" ? "點擊此處了解我們如何計算這些指標" 
-                                    : language === "zh-Hans" ? "点击此处了解我们如何计算这些指标" 
-                                    : "Click here to for more details on how we calculate these metrics"}
-                                </p>                                           
-                            </Link>
-                        </div>                            
-
+                        <ArticleMetrics article={article} />
                     </div>
                     
                 </div>
 
                 {/* summary */}
+                {/*}
                 <div className="flex flex-col w-9/10 mx-auto my-8 p-4 text-lg bg-[var(--color-light-turquoise)] rounded-xl">                                                                                                
                     <div className="py-4">
                         {summaryLoading ? (
@@ -285,13 +263,25 @@ function ViewArticle() {
                         <FeedbackButton language={language} articleID={id} />
                     </div>
                                         
-                    {/* disclaimer */}
+                    
                     <p className="text-[var(--color-text-lightgrey)] text-xs mt-8 py-2">
                         {language === "zh-Hant" ? "此摘要由 SearcherAI 生成。" 
                         : language === "zh-Hans" ? "此摘要由 SearcherAI 生成。" 
                         : "This summary is generated by SearcherAI."}
                     </p>                    
                 </div>
+                */}
+                <SummaryBlock 
+                summary={summary} 
+                summaryLoading={summaryLoading} 
+                summaryError={summaryError} 
+                id={id}
+                summaryLanguage={summaryLanguage}
+                setSummaryLanguage={setSummaryLanguage}
+                tone={tone}
+                setTone={setTone}
+                />
+
 
                 {/* leaning distribution */}
                 <div className="grid grid-cols-[2fr_1fr] p-2 w-9/10 mx-auto">                                                                                                    
@@ -459,7 +449,7 @@ function ViewArticle() {
                     <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">                        
                         {language === "zh-Hant" ? "時間線按時間順序顯示相關文章。按下左右按鈕可瀏覽事件發生前後的相關報導。" 
                         : language === "zh-Hans" ? "时间线按时间顺序显示相关文章。按下左右按钮可浏览事件发生前后的相关报导。" 
-                        : "The timeline shows articles related to this event in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
+                        : "The timeline shows related events in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
                     </p>
                     {/* tiimeline component */}
                     <div className="w-3/4 mx-auto my-4 max-w-[800px] 2xl:max-w-[1200px]">

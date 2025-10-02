@@ -78,7 +78,7 @@ function Navbar() {
                 </div>
 
                 {/* Right: Search and Account */}
-                <div className="flex items-center px-2 space-x-4 relative">
+                <div className="flex items-center justify-center px-2 space-x-4 relative">
                     <SearchBar />
                     <div className="relative group">
                         <button
