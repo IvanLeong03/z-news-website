@@ -179,7 +179,7 @@ function ViewArticle() {
     const visibleArticlesP = showAllP ? sortedArticlesP : sortedArticlesP.slice(0, 3);
     
     return (
-        <article className="grid grid-cols-[4fr_1fr] overflow-hidden justify-center items-start w-9/10 h-full mx-auto">
+        <article className="grid grid-cols-[4fr_1fr] overflow-hidden justify-center items-start w-4/5 h-full mx-auto">
             <div className="px-1 py-4">
                 <div className="flex-col flex-grow w-9/10 mx-auto">
                     {/* region, sector, date and time*/}
@@ -292,26 +292,29 @@ function ViewArticle() {
             </div>
 
             { /* 2nd column */}
-            <div className="h-full py-6 px-1 border-l border-[var(--color-line-darkgrey)]">
-                <div className="m-4 flex flex-col items-start">
+            <div className="h-full py-6 px-2 border-l-2 border-[var(--color-line-darkgrey)]">
+                <div className="flex flex-col items-start px-2">
                     <ArticleMetrics article={article} />
                     <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
                     <h2 className="text-lg my-2">Related tags: </h2>
-                    {article.relatedTopics.map((t, index) => (
-                        <button
-                        key={index}
-                        onClick={() => handleTopicClick(t)}
-                        className="my-2 px-2 py-1 rounded-r-lg rounded-l-lg text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)] hover:px-4"
-                        >
-                            # {t}
-                        </button>
-                    ))}
+                    <div className="flex gap-4 mx-auto">
+                        {article.relatedTopics.map((t, index) => (
+                            <button
+                            key={index}
+                            onClick={() => handleTopicClick(t)}
+                            className="my-2 px-2 py-1 rounded-r-lg rounded-l-lg text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)] hover:px-4"
+                            >
+                                # {t}
+                            </button>
+                        ))}
+                    </div>
+                    
                 </div>
-                <div className="mx-4 my-16 flex flex-col items-start">                    
+                <div className="px-2 my-16 flex flex-col items-start">                    
                     <h2 className="text-lg my-2">Related articles: </h2>
                     <ul className="px-4">
                         {article.relatedArticles.map((a, index) => (
-                            <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:text-[var(--color-primary]">
+                            <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:border-[var(--color-secondary-1)] ">
                                 
                                 <Link to={`/article/${a.articleID}`}>            
                                     <div className="flex text-[var(--color-primary)] text-sm mt-1">

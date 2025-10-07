@@ -90,15 +90,15 @@ function MainCol() {
         {/* Navigation buttons */}
         <button
           onClick={handlePrev}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] p-2 shadow-md z-10 rounded-full"
+          className="absolute left-10 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 shadow-md z-10 rounded-full"
         >
-          <FaArrowLeft color="white" />
+          <FaArrowLeft />
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-black)] p-2 shadow-md z-10 rounded-full"
+          className="absolute right-10 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 shadow-md z-10 rounded-full"
         >
-          <FaArrowRight color="white" />
+          <FaArrowRight />
         </button>
       </div>
 

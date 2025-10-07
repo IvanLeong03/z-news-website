@@ -5,7 +5,7 @@ import MainCol from "./MainCol";
 
 function Home() {
   return (
-    <div className="w-9/10 overflow-scroll mx-auto grid grid-cols-[1fr_3fr_1fr]">
+    <div className="w-4/5 overflow-scroll mx-auto grid grid-cols-[2fr_7fr_2fr]">
      <div className="min-w-0">< LeftCol /></div>
      <div className="min-w-0">< MainCol /></div>
      <div className="min-w-0">< RightCol /></div>

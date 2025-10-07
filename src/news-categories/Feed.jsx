@@ -95,7 +95,7 @@ function Feed(props) {
     if (error) return <div className="text-red-500">Error: {error}</div>;
 
     return (
-        <div className="flex flex-col w-[80%] mx-auto my-16">
+        <div className="flex flex-col w-3/4 mx-auto my-16">
             {tag && (<h1 className="text-5xl font-bold mb-8 pl-5">{headerName[tag][language]}</h1>)}
 
             {/* headline */}
@@ -128,7 +128,7 @@ function Feed(props) {
                                 </p>
                                 <label className="mx-1"> · </label>
                                 <p className="whitespace-nowrap">
-                                    {getHoursAgo(article.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                                    {getHoursAgo(article.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' h ago'}
                                 </p>
                             </div>
                         </div>
@@ -140,13 +140,13 @@ function Feed(props) {
                 {/* Navigation buttons */}
                 <button
                     onClick={handlePrev}
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
                 >
                     <FaArrowLeft />
                 </button>
                 <button
                     onClick={handleNext}
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
                 >
                     <FaArrowRight />
                 </button>
@@ -167,13 +167,13 @@ function Feed(props) {
                                 />
                             </Link>
                         </div>
-                        <div className="flex text-[var(--color-primary)] text-sm my-1">
+                        <div className="flex text-[var(--color-primary)] text-sm my-2">
                             { tag === 'personal' ? 
                                 <label>{article.region} | {article.sector}</label> :
                                 <label>{article.sector}</label>}
                         </div> 
                         <Link to={`/article/${article.articleID}`}>
-                            <h2 className="font-semibold my-2">{article.title}</h2>
+                            <h2 className="font-semibold mb-2">{article.title}</h2>
                         </Link>
                         <div className="flex flex-col my-4">
                             <Link to={`/article/${article.articleID}`}>
@@ -187,7 +187,7 @@ function Feed(props) {
                                 <label className="mx-1"> · </label>
                                 <p className="whitespace-nowrap">
                                     {getHoursAgo(article.date)}
-                                    {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                                    {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
                                 </p>
                             </div>                                                        
                         </div>

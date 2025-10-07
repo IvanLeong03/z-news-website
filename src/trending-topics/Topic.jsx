@@ -15,6 +15,11 @@ function Topic() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const NUM_ARTICLES = 4; // Change this value to fetch more or fewer articles
+    const topicLabel = {
+        "en": "Focus",
+        "zh-Hant": "主題",
+        "zh-Hans": "主题"
+    };
 
     useEffect(() => {
         const loadArticles = async () => {
@@ -50,8 +55,14 @@ function Topic() {
     }
 
     return (
-        <div className="w-[85%] min-h-dvh mx-auto my-8 p-2">
-            <h1 className="text-4xl mt-4 mb-24 pb-8 border-b-2 border-dashed border-[var(--color-line-darkgrey)]">{language === "zh-Hant" ? "主題: " : language === 'zh-Hans' ? '主题: ' :  'Topic: '} {topic}</h1>
+        <div className="w-3/4 mx-auto my-8 p-2">
+            <label className="bg-[var(--color-bg-grey)] px-2">{topicLabel[language]}</label>
+            <div className="flex items-center w-full border-b-2 border-dotted border-[var(--color-line-darkgrey)] mt-4 mb-12 pb-8">
+                <h1 className="text-4xl">{topic}</h1>
+                <button className="mx-16 px-4 rounded-lg border border-blue-300">
+                    <label>Follow</label>
+                </button>
+            </div>
             {articles.map((article, index) => (                
                 <div key={index}>
                     <SearchObject article={article}/>

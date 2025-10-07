@@ -19,13 +19,13 @@ function SplitBar({ cPercent = 50, pPercent = 50 }) {
       {/* bar */}
       <div className='relative flex w-full'>
         <div
-        className="flex items-center justify-center bg-[var(--color-bg-grey)] py-1 rounded-l-xl"
+        className="flex items-center justify-center bg-[var(--color-bg-grey)] py-1 rounded-l-lg"
         style={{ width:`${cPercent}%`, fontSize: cPercent < 20 ? '0.50rem' : '0.75rem'}}
       >
           {cPercent}%
         </div>
         <div
-          className="flex items-center justify-center bg-[var(--color-line-grey)] py-1 rounded-r-xl"
+          className="flex items-center justify-center bg-[var(--color-line-grey)] py-1 rounded-r-lg"
           style={{ width:`${pPercent}%`, fontSize: pPercent < 20 ? '0.50rem' : '0.75rem' }}
         >
           {pPercent}%

@@ -63,9 +63,9 @@ function SentimentGauge({ sentiment = 0 }) {
               </div>
             </div>
           )}
-        </div>
-        
+        </div>  
       </div>
+
       <svg width="200" height="165" viewBox="0 0 220 135">
       {/* Grey background arc */}
         <path

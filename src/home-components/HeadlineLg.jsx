@@ -45,7 +45,7 @@ function HeadlineLg({article}) {
                     <label className="mx-2"> · </label>
                     <p className="text-xs whitespace-nowrap">
                         {getHoursAgo(article.date)}
-                        {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                        {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
                     </p>
                 </div>
             </div>            

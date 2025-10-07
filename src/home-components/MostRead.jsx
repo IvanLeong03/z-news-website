@@ -52,7 +52,7 @@ function MostRead() {
       </h2>
 
       {mostReadArticles.map((article, index) => (
-        <div key={index} className="flex-grow flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)] hover:border-b-2  hover:border-[var(--color-secondary-1)]">
+        <div key={index} className="flex-grow flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)] hover:border-b-2 hover:border-[var(--color-secondary-1)]">
           <Link to={`/article/${article.articleID}`}>            
             <div className="flex text-[var(--color-primary)] text-sm mt-1">
               <label>{article.region}</label>
@@ -71,7 +71,7 @@ function MostRead() {
               <label className="mx-2"> · </label>
               <p className="text-xs whitespace-nowrap">
                 {getHoursAgo(article.date)}
-                {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' hours ago'}
+                {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
               </p>
             </div>
           </Link>

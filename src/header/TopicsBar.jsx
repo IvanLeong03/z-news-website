@@ -35,22 +35,20 @@ function TopicsBar() {
     };
     
     return (
-        <div className="w-9/10 mx-auto py-4 border-b border-[var(--color-line-grey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
-            <div className="mx-auto flex justify-between items-center h-full">
-                <div className="mx-auto flex justify-center items-center px-1">
-                    <div className="text-sm text-red-400">
-                        {language === "en" ? "Trending" : language === "zh-Hant" ? "熱門" : language === "zh-Hans" ? "热门" : "Trending"}:
-                    </div>
-                    {topics.map((topic, index) => (
-                        <button
-                        key={index}
-                        onClick={() => handleTopicClick(topic)}
-                        className="rounded-xl px-8 mx-4 border border-black hover:border-[var(--color-primary)] hover:bg-[var(--color-light-turquoise)]"
-                        >
+        <div className="w-full py-4 border-b border-[var(--color-line-grey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
+            <div className="max-w-1/2 mx-auto flex justify-between items-center h-full text-sm">
+                <div className="text-red-400 italic">
+                    {language === "en" ? "Hot" : language === "zh-Hant" ? "熱門" : language === "zh-Hans" ? "热门" : "Hot"}:
+                </div>
+                {topics.map((topic, index) => (
+                    <button
+                    key={index}
+                    onClick={() => handleTopicClick(topic)}
+                    className="px-8 mx-4 hover:text-[var(--color-primary)]"
+                    >
                         {topic.displayName}
-                        </button>
-                    ))}
-                </div>       
+                    </button>
+                ))}
             </div>
             
         </div>

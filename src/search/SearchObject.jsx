@@ -29,14 +29,14 @@ function SearchObject({article}) {
                     <p className="text-xs my-1 2xl:my-2">{article.date.slice(0,10)}</p>
                     <p className="text-sm my-1 2xl:my-2 text-[var(--color-primary)]">{article.region}</p>
                     <h2 className="text-2xl font-semibold my-2 2xl:my-4">{article.title}</h2>
-                    <div className="w-full grid grid-cols-[1fr_1fr_1fr] items-center">                    
-                        <div>
+                    <div className="w-full grid grid-cols-[1fr_1fr_1fr] items-center mt-8">                    
+                        <div className="pr-8">
                             <SentimentSlider sentiment={article.metrics.sentiment}/>
                         </div>
-                        <div className="scale-90 2xl:scale-100 px-16 2xl:px-32">
+                        <div className="px-12 2xl:px-20">
                             <SubjectivitySlider subjScore={Math.abs(article.metrics.subjectivity)}/>
                         </div>
-                        <div>
+                        <div className="pl-8">
                             <SplitBar cPercent={cp} pPercent={pp}/>
                         </div>
                     </div>
