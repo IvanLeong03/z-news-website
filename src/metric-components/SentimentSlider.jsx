@@ -16,7 +16,7 @@ function SentimentSlider({ sentiment = 0}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="w-full mb-4">
+    <div className="w-full">
       {/* Title + Sentiment Value */}
       <div className="flex items-center text-sm text-[var(--color-text-grey)] mb-1 relative">
         <span className="mr-1">

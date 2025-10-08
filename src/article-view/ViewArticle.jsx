@@ -30,10 +30,6 @@ function ViewArticle() {
     const [summaryLoading, setSummaryLoading] = useState(true);
     const [bookmarked, setBookmarked] = useState(false);
     const [sortOption, setSortOption] = useState("significance-desc"); //user preference should be fetched from backend
-    const [showAllC, setShowAllC] = useState(false);
-    const [showAllP, setShowAllP] = useState(false);
-    const [selectedView, setSelectedView] = useState("progressive");
-    const [isHovered, setIsHovered] = useState(false);
     const [showChartDesc, setShowChartDesc] = useState(false);
     const sizeDesc = {
         "en": "The size of the icon represents the media significance. The more significant the source, the larger the icon.",
@@ -171,23 +167,17 @@ function ViewArticle() {
         
         return sortedArticles;
     }
-
-    const sortedPublisherArticles = article?.articles ? sortPublisherArticles(article.articles) : [];
-    const sortedArticlesP = sortedPublisherArticles.filter(a => a.publisherStance.tag === "p");
-    const sortedArticlesC = sortedPublisherArticles.filter(a => a.publisherStance.tag === "c");
-    const visibleArticlesC = showAllC ? sortedArticlesC : sortedArticlesC.slice(0, 3);
-    const visibleArticlesP = showAllP ? sortedArticlesP : sortedArticlesP.slice(0, 3);
     
     return (
         <article className="grid grid-cols-[4fr_1fr] overflow-hidden justify-center items-start w-4/5 h-full mx-auto">
-            <div className="px-1 py-4">
+            <div className="px-1 py-4 min-w-0">
                 <div className="flex-col flex-grow w-9/10 mx-auto">
                     {/* region, sector, date and time*/}
                     <div className="w-full flex justify-between items-center">
                         <div className="flex flex-col justify-between items-start my-1">
-                            <div className="flex text-base text-[var(--color-gs-white)] gap-x-4">
-                                <label className="px-2 rounded-r-lg rounded-l-lg bg-[var(--color-primary)]">{article.region}</label>                            
-                                <label className="px-2 rounded-r-lg rounded-l-lg text-[var(--color-primary)] border border-[var(--color-primary)]">{article.sector}</label>
+                            <div className="flex flex-col text-base text-[var(--color-gs-white)]">
+                                <label className="py-2 text-[var(--color-primary)] text-xl">{article.region.toUpperCase()}</label>                            
+                                <label className="text-[var(--color-secondary-1)] text-base underline">{article.sector}</label>
                             </div>
                             <div className="text-[var(--color-text-lightgrey)] text-sm my-2">
                                 <p>
@@ -292,26 +282,26 @@ function ViewArticle() {
             </div>
 
             { /* 2nd column */}
-            <div className="h-full py-6 px-2 border-l-2 border-[var(--color-line-darkgrey)]">
+            <div className="min-w-0 h-full py-6 px-2 border-l-2 border-[var(--color-line-darkgrey)]">
                 <div className="flex flex-col items-start px-2">
                     <ArticleMetrics article={article} />
                     <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
-                    <h2 className="text-lg my-2">Related tags: </h2>
-                    <div className="flex gap-4 mx-auto">
+                    <h2 className="text-lg my-2 px-4">Related tags: </h2>
+                    <div className="flex flex-wrap gap-4 px-4">
                         {article.relatedTopics.map((t, index) => (
                             <button
                             key={index}
                             onClick={() => handleTopicClick(t)}
-                            className="my-2 px-2 py-1 rounded-r-lg rounded-l-lg text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)] hover:px-4"
+                            className="my-2 px-2 py-1 whitespace-nowrap shrink-0 rounded text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)]"
                             >
-                                # {t}
+                                {t}
                             </button>
                         ))}
                     </div>
                     
                 </div>
                 <div className="px-2 my-16 flex flex-col items-start">                    
-                    <h2 className="text-lg my-2">Related articles: </h2>
+                    <h2 className="text-lg my-2 px-4">Related articles: </h2>
                     <ul className="px-4">
                         {article.relatedArticles.map((a, index) => (
                             <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:border-[var(--color-secondary-1)] ">

@@ -83,7 +83,7 @@ function MainCol() {
     };
 
     return (
-        <div className="w-full flex flex-col justify-start items-center my-6 border-r border-l border-[var(--color-line-grey)]">
+        <div className="w-full flex flex-col justify-start items-center my-6 border-r-2 border-l-2 border-[var(--color-line-grey)]">
             { /* one large article, and the rest will be smaller ones */}
             <div className="relative w-full overflow-hidden">
                 <div

@@ -52,18 +52,18 @@ function SearchResults() {
     // You'll need to implement this in your Flask route
   };
 
-  if (loading) return <div className="p-4 w-[80%] mx-auto my-16">Loading...</div>;
-  if (error) return <div className="p-4 w-[80%] mx-auto my-16">Error: {error}</div>;
+  if (loading) return <div className="p-4 w-4/5 mx-auto my-16">Loading...</div>;
+  if (error) return <div className="p-4 w-4/5 mx-auto my-16">Error: {error}</div>;
 
   return (
-    <div className="p-4 w-4/5 mx-auto my-16">
+    <div className="p-4 w-4/5 mx-auto">
       <div className='w-full flex justify-between items-start my-8'>
-        <h1 className="text-3xl mb-8">
+        <h1 className="text-3xl mb-4">
           {language === "zh-Hant" ? "搜尋結果" : 
           language === 'zh-Hans' ? "搜寻结果" : "Search Results for"}: {query}
         </h1>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <label htmlFor="sort" className="mr-2">
             {language === 'zh-Hant' ? "優先展示" : 
             language === 'zh-Hans' ? "优先展示" : "Sort by"}:

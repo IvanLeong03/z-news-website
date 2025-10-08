@@ -10,8 +10,8 @@ function SummaryBlock({ summary, summaryLoading, summaryError, id, summaryLangua
 
 
     return (
-        <div className="flex flex-col my-4 p-4 text-lg bg-[var(--color-light-turquoise)] rounded-xl">                                                                                                
-            <h2 className="text-xl font-semibold underline my-2">Summary</h2>
+        <div className="flex flex-col my-4 p-4 text-lg border-3 border-double border-[var(--color-light-turquoise)] rounded-xl">                                                                                                
+            {/*<h2 className="text-xl font-semibold underline my-2">Summary</h2>*/}
             <div className="py-4 mb-2">
                 {summaryLoading ? (
                     <p className="text-sm text-gray-500">Loading summary...</p>
@@ -22,7 +22,7 @@ function SummaryBlock({ summary, summaryLoading, summaryError, id, summaryLangua
                 )}
             </div>
             
-            <h2 className="text-xl font-semibold underline my-2">Impact</h2>
+            {/*<h2 className="text-xl font-semibold underline my-2">Impact</h2>*/}
             <div className="py-4 mb-2">
                 {summaryLoading ? (
                     <p className="text-sm text-gray-500">Loading implications...</p>
