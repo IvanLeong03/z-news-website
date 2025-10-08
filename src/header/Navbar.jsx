@@ -6,15 +6,21 @@ import { FaUser } from "react-icons/fa";
 import EnLogo from "../assets/ZoneNewsLogo/zonenews__logo_primary_EN.jpg";
 import ChLogo from "../assets/ZoneNewsLogo/zonenews__logo_primary_CH.jpg";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
+import { BsGlobe } from "react-icons/bs";
 
 
 function Navbar() {
-    const { language } = useLanguage(); 
+    const { language, setLanguage } = useLanguage();    
     const navigate = useNavigate();
     const locale = mapFrontendLangToBackend(language);
     const [isScrolled, setIsScrolled] = useState(false);
     const lastStateRef = useRef(false);
     const tickingRef = useRef(false);
+    const LANGS = [
+        { code: "en", label: "English" },
+        { code: "zh-Hant", label: "繁體中文" },
+        { code: "zh-Hans", label: "简体中文" },
+    ];
 
     useEffect(() => {
         const UPPER = 120; // turn scrolled ON past here
@@ -104,6 +110,7 @@ function Navbar() {
                     {/* Right: Search and Account */}
                     <div className="flex items-center justify-center px-2 space-x-4 relative">
                         <SearchBar />
+                        {/* account */}
                         <div className="relative group">
                             <button
                                 className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
@@ -111,7 +118,7 @@ function Navbar() {
                             >
                                 <FaUser />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 text-center">
                                 <li>
                                     <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">
                                         {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
@@ -134,10 +141,35 @@ function Navbar() {
                                 </li>
                             </ul>
                         </div>
+                        {/* language */}
+                        <div className="relative group">
+                            <button
+                                className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                                aria-label="Account"
+                            >
+                                <BsGlobe />
+                            </button>
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-36 bg-white border border-gray-200 rounded-lg shadow-lg z-50 text-center">
+                                {LANGS.map(({ code, label }) => {
+                                    const selected = language === code;
+                                    return (
+                                        <button
+                                        key={code}                                
+                                        onClick={() => setLanguage(code)}
+                                        className={`px-4 py-2 hover:bg-[var(--color-bg-grey)] flex justify-between ${
+                                            selected
+                                            ? "underline decoration-2 underline-offset-4 font-semibold text-[var(--color-primary)]"
+                                            : ""
+                                        }`}
+                                        >
+                                        {label}                                        
+                                        </button>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                
+                </div>                                
             </nav>
         </div>
     )

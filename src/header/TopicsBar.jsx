@@ -35,24 +35,24 @@ function TopicsBar() {
     };
     
     return (
-        <div className="w-full py-4 border-b border-[var(--color-line-grey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8 md:h-10">
-            <div className="max-w-1/2 mx-auto flex justify-between items-center h-full text-sm">
-                <div className="text-red-400 italic">
+        <div className="w-full py-4 border-b border-[var(--color-line-grey)] bg-[var(--color-gs-white)] transition-all duration-300 h-8">
+            <div className="max-w-1/3 mx-auto h-full text-sm flex items-center">
+                <label className="text-red-400 italic mr-8 flex-shrink-0">
                     {language === "en" ? "Hot" : language === "zh-Hant" ? "熱門" : language === "zh-Hans" ? "热门" : "Hot"}:
-                </div>
-                {topics.map((topic, index) => (
-                    <button
-                    key={index}
-                    onClick={() => handleTopicClick(topic)}
-                    className="px-8 mx-4 hover:text-[var(--color-primary)]"
-                    >
-                        {topic.displayName}
-                    </button>
-                ))}
-            </div>
-            
+                </label>
+                <div className="flex-1 min-w-0 flex justify-evenly items-center">
+                    {topics.map((topic, index) => (
+                        <button
+                        key={index}
+                        onClick={() => handleTopicClick(topic)}
+                        className="hover:text-[var(--color-primary)]"
+                        >
+                            {topic.displayName}
+                        </button>
+                    ))}
+                </div>                
+            </div>            
         </div>
-
     )
 }
 

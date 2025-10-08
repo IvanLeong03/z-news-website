@@ -39,6 +39,8 @@ function SearchResults() {
       return new Date(b.date) - new Date(a.date);
     } else if (sort === "oldest") {
       return new Date(a.date) - new Date(b.date);
+    } else if (sort === "alphabetical") {
+      return a.title.localeCompare(b.title);
     }
     return 0;
   });
@@ -80,6 +82,10 @@ function SearchResults() {
             <option value="oldest">
               {language === 'zh-Hant' ? "最舊" : 
               language === 'zh-Hans' ? "最旧" : "Oldest"}
+            </option>
+            <option value="alphabetical">
+              {language === 'zh-Hant' ? "字母排序" : 
+              language === 'zh-Hans' ? "字母排序" : "Alphabetical"}
             </option>
           </select>
         </div>

@@ -3,33 +3,10 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
 function Footer() {
-    const { language, setLanguage } = useLanguage();    
-
+    const { language } = useLanguage();
+    
     return (
         <footer className="w-full h-[25vh] max-h-[10rem] flex flex-col justify-center items-center relative bottom-0 mx-auto border-t border-[rgba(37,37,37,0.75)]">
-            <div className="flex items-center space-x-2 my-8">
-                <span className="text-base">
-                    {language === "en" ? "Language" : language === "zh-Hant" ? "語言" : language === "zh-Hans" ? "语言" : "Language"}:
-                </span>
-                <button
-                    className={`border rounded-xl px-2 py-1 mx-1 ${language === "en" ? "bg-[var(--color-dark-turquoise)] text-white" : ""}`}
-                    onClick={() => setLanguage("en")}
-                >
-                    Eng
-                </button>
-                <button
-                    className={`border rounded-xl px-2 py-1 mx-1 ${language === "zh-Hant" ? "bg-[var(--color-dark-turquoise)] text-white" : ""}`}
-                    onClick={() => setLanguage("zh-Hant")}
-                >
-                    繁
-                </button>
-                <button
-                    className={`border rounded-xl px-2 py-1 mx-1 ${language === "zh-Hans" ? "bg-[var(--color-dark-turquoise)] text-white" : ""}`}
-                    onClick={() => setLanguage("zh-Hans")}
-                >
-                    简
-                </button>
-            </div> 
             
             <div className="flex w-3/5 mx-auto justify-between items-center">
                 <p>Copyright © 2025</p>
