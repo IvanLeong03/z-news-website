@@ -36,7 +36,7 @@ function ContextGenerator({language, articleID}) {
         <div className="relative inline-block text-left">
             <button
                 onClick={toggleDropdown} 
-                className="px-4 h-8 w-80 bg-[var(--color-primary)] rounded-md flex justify-center"
+                className="px-4 h-8 w-64 bg-[var(--color-primary)] rounded-md flex justify-center"
             >
                 <span className="flex items-center">
                     <TiMessages color="white"/>
@@ -47,7 +47,7 @@ function ContextGenerator({language, articleID}) {
             </button>
     
           {isOpen && (
-            <div className="relative right-0 w-80 bg-white border border-gray-300 rounded-md shadow-lg z-50 p-4 space-y-4">
+            <div className="relative right-0 w-64 bg-white border border-gray-300 rounded-md shadow-lg z-50 p-4 space-y-4">
                 <h2 className="text-base text-left">Help us improve</h2>
                 <textarea
                     id="feedback"

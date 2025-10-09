@@ -129,55 +129,22 @@ function ViewArticle() {
     const handleTopicClick = (tag) => {
         navigate(`/topics/${encodeURIComponent(tag)}`);
     };
-
-    // Sorting logic for linked articles
-    function sortPublisherArticles(articles) {
-        // Split the compound sortOption into criteria and order
-        const [criteria, order] = sortOption.split('-');
-        
-        // First, sort based on the criteria
-        let sortedArticles;
-        switch (criteria) {
-            case "significance":
-                sortedArticles = [...articles].sort((a, b) => b.mediaSignificance - a.mediaSignificance);
-                break;
-            case "publisherName":
-                sortedArticles = [...articles].sort((a, b) => b.publisherName.localeCompare(a.publisherName));
-                break;
-            case "publisherRegion":
-                sortedArticles = [...articles].sort((a, b) => (b.publisherRegion || "").localeCompare(a.publisherRegion || ""));
-                break;
-            case "stance":
-                sortedArticles = [...articles].sort((a, b) => (b.publisherStance.tag || "").localeCompare(a.publisherStance.tag || ""));
-                break;
-            case "date":
-                sortedArticles = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
-                break;
-            case "title":
-                sortedArticles = [...articles].sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            default:
-                return articles;
-        }
-        
-        // Then reverse if order is "asc" (ascending)
-        if (order === "asc") {
-            sortedArticles.reverse();
-        }
-        
-        return sortedArticles;
-    }
     
     return (
-        <article className="grid grid-cols-[4fr_1fr] overflow-hidden justify-center items-start w-4/5 h-full mx-auto">
+        <article className="overflow-hidden justify-center items-start w-2/3 h-full mx-auto">
             <div className="px-1 py-4 min-w-0">
-                <div className="flex-col flex-grow w-9/10 mx-auto">
+                <div className="flex flex-col">
                     {/* region, sector, date and time*/}
                     <div className="w-full flex justify-between items-center">
                         <div className="flex flex-col justify-between items-start my-1">
                             <div className="flex flex-col text-base text-[var(--color-gs-white)]">
                                 <label className="py-2 text-[var(--color-primary)] text-xl">{article.region.toUpperCase()}</label>                            
-                                <label className="text-[var(--color-secondary-1)] text-base underline">{article.sector}</label>
+                                <button 
+                                className="text-[var(--color-secondary-1)] text-base hover:underline"
+                                onClick={() => handleTopicClick(article.sector)}
+                                >
+                                    {article.sector}
+                                </button>
                             </div>
                             <div className="text-[var(--color-text-lightgrey)] text-sm my-2">
                                 <p>
@@ -206,128 +173,128 @@ function ViewArticle() {
                         </div>           
                     </div>
                                                   
-                    { /* article title, bookmark and share buttons */ }
-                    <div className="w-full my-2 pb-2 pr-8 flex justify-between items-center">
+                    { /* article title */ }
+                    <div className="w-full mt-2 mb-6 flex justify-between items-center">
                         <h1 className="text-4xl font-semibold">{article.title}</h1>                                                
                     </div>
                     {/* picture, summary and metrics */}
-                    <div className="flex flex-col">
-                        <div className="aspect-[16/9] overflow-hidden">
-                            <img src={article.pictureURL} className="w-full h-full object-cover" />
-                        </div>
-                        <SummaryBlock 
-                        summary={summary} 
-                        summaryLoading={summaryLoading} 
-                        summaryError={summaryError} 
-                        id={id}
-                        summaryLanguage={summaryLanguage}
-                        setSummaryLanguage={setSummaryLanguage}
-                        tone={tone}
-                        setTone={setTone}
-                        />
-                    </div>                    
-                </div>
-
-                {/* leaning distribution */}
-                <div className="grid grid-cols-[2fr_1fr] p-2 w-9/10 mx-auto">                                                                                                   
-                    <div className="py-4 pr-8 flex flex-col">
-                        <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
-                        <p className="text-base whitespace-nowrap my-2 text-center">                            
-                            {language === 'zh-Hant' ? '以上分佈來自: ' : language === 'zh-Hans' ? '以上分布来自: ' : 'We obtained this distribution from '}
-                            {article.nSources}
-                            {language === 'zh-Hant' ? ' 篇文章' : language === 'zh-Hans' ? ' 篇文章' : ' sources'}
-
-                        </p> 
-                        <h3
-                            className="text-sm mt-6 mb-2 cursor-pointer 
-                            hover:text-[var(--color-primary)]"
-                            onClick={() => setShowChartDesc(true)}
-                        >
-                            {language === "zh-Hant" ? "點擊此處了解上述圖表" 
-                                : language === "zh-Hans" ? "点击此处了解上述图表" 
-                                : "Click here to for more details about the chart"}
-                        </h3>
-                        {showChartDesc && (
-                            <div>
-                                <p className="text-base my-4">{sizeDesc[language]}</p>
-                                <p className="text-base my-4">{posDesc[language]}</p>
-                                <button
-                                    className="text-sm text-blue-600 hover:underline mb-2"
-                                    onClick={() => setShowChartDesc(false)}
-                                >
-                                {language === "zh-Hant" ? "隱藏" : language === "zh-Hans" ? "隐藏" : "Hide"}
-                                </button>
+                    <div className="grid grid-cols-[3fr_1fr] gap-4">
+                        { /* main grid: image, summary, timeline */}
+                        <div>
+                            <div className="aspect-[16/9] overflow-hidden">
+                                <img src={article.pictureURL} className="w-full h-full object-cover" />
                             </div>
-                        )}
-                    </div>                    
-                    <div className="pb-8 pl-2">                        
-                        <PublisherArticlesList articles={article?.articles || []} language={language} />
-                    </div>                                               
-                </div>
-                {/* timeline */}
-                <div className="w-9/10 mx-auto rounded">
-                    <h2 className="text-2xl font-semibold">{language === "zh-Hant" ? "時間線" : language === "zh-Hans" ? "时间线" : "Timeline"}</h2>
-                    <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">                        
-                        {language === "zh-Hant" ? "時間線按時間順序顯示相關文章。按下左右按鈕可瀏覽事件發生前後的相關報導。" 
-                        : language === "zh-Hans" ? "时间线按时间顺序显示相关文章。按下左右按钮可浏览事件发生前后的相关报导。" 
-                        : "The timeline shows related events in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
-                    </p>
-                    {/* tiimeline component */}
-                    <div className="w-3/4 mx-auto my-4 max-w-[800px] 2xl:max-w-[1200px]">
-                        <TimelineCarousel events={timelineEvents} />
-                    </div>
+                            <SummaryBlock 
+                            summary={summary} 
+                            summaryLoading={summaryLoading} 
+                            summaryError={summaryError} 
+                            id={id}
+                            summaryLanguage={summaryLanguage}
+                            setSummaryLanguage={setSummaryLanguage}
+                            tone={tone}
+                            setTone={setTone}
+                            /> 
+                            <PublisherArticlesList articles={article?.articles || []} language={language} />
+                            {/* timeline */}
+                            <div className="w-full py-2 px-4 rounded border-b border-[var(--color-primary)]">
+                                <h2 className="text-2xl font-semibold">{language === "zh-Hant" ? "時間線" : language === "zh-Hans" ? "时间线" : "Timeline"}</h2>
+                                <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">                        
+                                    {language === "zh-Hant" ? "時間線按時間順序顯示相關文章。按下左右按鈕可瀏覽事件發生前後的相關報導。" 
+                                    : language === "zh-Hans" ? "时间线按时间顺序显示相关文章。按下左右按钮可浏览事件发生前后的相关报导。" 
+                                    : "The timeline shows related events in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
+                                </p>
+                                {/* tiimeline component */}
+                                <div className="w-3/4 mx-auto my-4 max-w-[800px] 2xl:max-w-[1200px]">
+                                    <TimelineCarousel events={timelineEvents} />
+                                </div>
+                            </div>
+                        </div>
 
-                </div>
-                <Ads />                      
-            </div>
+                           
+                        {/* second grid: metrics */}
+                        <div className="px-2">
+                            <ArticleMetrics article={article} />
+                            {/* outlet distribution: expand to open? */}
+                            <div className="py-4 pr-8 flex flex-col">
+                                <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
+                                <p className="text-base whitespace-nowrap my-2 text-center">                            
+                                    {language === 'zh-Hant' ? '以上分佈來自: ' : language === 'zh-Hans' ? '以上分布来自: ' : 'We obtained this distribution from '}
+                                    {article.nSources}
+                                    {language === 'zh-Hant' ? ' 篇文章' : language === 'zh-Hans' ? ' 篇文章' : ' sources'}
 
-            { /* 2nd column */}
-            <div className="min-w-0 h-full py-6 px-2 border-l-2 border-[var(--color-line-darkgrey)]">
-                <div className="flex flex-col items-start px-2">
-                    <ArticleMetrics article={article} />
-                    <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
-                    <h2 className="text-lg my-2 px-4">Related tags: </h2>
-                    <div className="flex flex-wrap gap-4 px-4">
-                        {article.relatedTopics.map((t, index) => (
-                            <button
-                            key={index}
-                            onClick={() => handleTopicClick(t)}
-                            className="my-2 px-2 py-1 whitespace-nowrap shrink-0 rounded text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)]"
-                            >
-                                {t}
-                            </button>
-                        ))}
-                    </div>
-                    
-                </div>
-                <div className="px-2 my-16 flex flex-col items-start">                    
-                    <h2 className="text-lg my-2 px-4">Related articles: </h2>
-                    <ul className="px-4">
-                        {article.relatedArticles.map((a, index) => (
-                            <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:border-[var(--color-secondary-1)] ">
-                                
-                                <Link to={`/article/${a.articleID}`}>            
-                                    <div className="flex text-[var(--color-primary)] text-sm mt-1">
-                                        <label>{a.region}</label>
-                                        <label className="mx-2">|</label>
-                                        <label>{a.sector}</label>
+                                </p> 
+                                <h3
+                                    className="text-sm mt-6 mb-2 cursor-pointer 
+                                    hover:text-[var(--color-primary)]"
+                                    onClick={() => setShowChartDesc(true)}
+                                >
+                                    {language === "zh-Hant" ? "點擊此處了解上述圖表" 
+                                        : language === "zh-Hans" ? "点击此处了解上述图表" 
+                                        : "Click here to for more details about the chart"}
+                                </h3>
+                                {showChartDesc && (
+                                    <div>
+                                        <p className="text-base my-4">{sizeDesc[language]}</p>
+                                        <p className="text-base my-4">{posDesc[language]}</p>
+                                        <button
+                                            className="text-sm text-blue-600 hover:underline mb-2"
+                                            onClick={() => setShowChartDesc(false)}
+                                        >
+                                        {language === "zh-Hant" ? "隱藏" : language === "zh-Hans" ? "隐藏" : "Hide"}
+                                        </button>
                                     </div>
-                                    <div className="grid grid-cols-[3fr_2fr]">
-                                        <h2 className="my-2 text-lg pr-2">{a.title}</h2>    
-                                        <div className="w-full aspect-[16/9] overflow-hidden">
-                                            <img src={a.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
-                                        </div>      
-                                    </div>
-                                </Link>
-                            </li>                            
-                        ))}
-                    </ul>
+                                )}
+                            </div> 
+                            {/* discover more section */}
+                            <div className="flex flex-col justify-between">
+                                <div>
+                                    <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
+                                    <h2 className="text-lg my-2">Related tags: </h2>
+                                    <div className="flex flex-wrap gap-4">
+                                        {article.relatedTopics.map((t, index) => (
+                                            <button
+                                            key={index}
+                                            onClick={() => handleTopicClick(t)}
+                                            className="my-2 px-2 py-1 whitespace-nowrap shrink-0 rounded text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)]"
+                                            >
+                                                {t}
+                                            </button>
+                                        ))}
+                                    </div>                    
+                                </div>
+                                <div className="px-2 my-16 flex flex-col items-start">                    
+                                    <h2 className="text-lg my-2">Related articles: </h2>
+                                    <ul>
+                                        {article.relatedArticles.map((a, index) => (
+                                            <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:border-[var(--color-secondary-1)] ">                                        
+                                                <Link to={`/article/${a.articleID}`}>            
+                                                    <div className="flex text-[var(--color-primary)] text-sm mt-1">
+                                                        <label>{a.region}</label>
+                                                        <label className="mx-2">|</label>
+                                                        <label>{a.sector}</label>
+                                                    </div>
+                                                    <div className="grid grid-cols-[3fr_2fr]">
+                                                        <h2 className="my-2 text-lg pr-2">{a.title}</h2>    
+                                                        <div className="w-full aspect-[16/9] overflow-hidden">
+                                                            <img src={a.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
+                                                        </div>      
+                                                    </div>
+                                                </Link>
+                                            </li>                            
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>       
+                        </div>                    
+                                              
+                    </div>                                    
                 </div>
                 
-                <div className="flex flex-col">
-                    {/* Ads*/}                   
-                </div>                
-            </div>
+
+                
+                
+                <Ads />                      
+            </div>            
         </article>                
     )        
 

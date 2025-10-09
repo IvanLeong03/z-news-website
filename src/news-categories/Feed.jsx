@@ -6,7 +6,7 @@ import { fetchFeed } from "../services/feedService";
 import { fetchArticle } from "../services/articleService";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 function Feed(props) {
     const { language } = useLanguage();
@@ -30,7 +30,9 @@ function Feed(props) {
     const { tag } = props;
     const [articles, setArticles] = useState([]);
     const [headlineArticles, setHeadlineArticles] = useState([]);
-    const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);    
+    const firstHeadline = headlineArticles[0];
+    const carouselHeadlines = headlineArticles.slice(1);
+    const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(1);    
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);    
 
@@ -61,7 +63,7 @@ function Feed(props) {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentHeadlineIndex((prevIndex) =>
-            prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
+            prevIndex < carouselHeadlines.length - 1 ? prevIndex + 1 : 0
             );
         }, 5000);
         return () => clearInterval(interval);
@@ -69,13 +71,13 @@ function Feed(props) {
 
     const handleNext = () => {
         setCurrentHeadlineIndex((prevIndex) =>
-            prevIndex < headlineArticles.length - 1 ? prevIndex + 1 : 0
+            prevIndex < carouselHeadlines.length - 1 ? prevIndex + 1 : 0
         );        
     };
 
     const handlePrev = () => {
         setCurrentHeadlineIndex((prevIndex) =>
-            prevIndex > 0 ? prevIndex - 1 : headlineArticles.length - 1
+            prevIndex > 0 ? prevIndex - 1 : carouselHeadlines.length - 1
         );
     };
 
@@ -98,59 +100,99 @@ function Feed(props) {
         <div className="flex flex-col w-3/4 mx-auto my-16">
             {tag && (<h1 className="text-5xl font-bold mb-8 pl-5">{headerName[tag][language]}</h1>)}
 
-            {/* headline */}
-            <div className="overflow-hidden relative w-[95%] mx-auto">
-                <div
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${currentHeadlineIndex * 100}%)` }}
-                >
-                    {headlineArticles.map((article, index) => (
-                    <div key={article.articleID} className="min-w-full px-4 my-8">
-                        <Link to={`/article/${article.articleID}`}>
+            {/* headline section with standalone + carousel */}
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mb-12 items-start">
+                {/* Standalone headline */}
+                {firstHeadline && (
+                    <div className="px-4 my-8">
+                    <Link to={`/article/${firstHeadline.articleID}`}>
                         <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <img
-                            src={article.pictureURL}
-                            alt={article.title}
+                        <img
+                            src={firstHeadline.pictureURL}
+                            alt={firstHeadline.title}
                             className="object-cover w-full h-full"
-                            />
+                        />
                         </div>
-                        <h2 className="text-3xl font-bold mt-4">{article.title}</h2>
+                        <h2 className="text-3xl font-bold mt-4">{firstHeadline.title}</h2>
                         <p className="text-sm text-[var(--color-text-lightgrey)] my-2 line-clamp-2">
-                            {article.description.synopsis}
+                        {firstHeadline.description.synopsis}
                         </p>
                         <div className="w-full grid grid-cols-[3fr_1fr] my-2">
-                            <div className="w-2/3">
-                                <SentimentSlider sentiment={article.metrics.sentiment} />
-                            </div>
-                            <div className="flex text-xs px-4 items-center">
-                                <p className="whitespace-nowrap">
-                                    {article.nSources} {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
-                                </p>
-                                <label className="mx-1"> · </label>
-                                <p className="whitespace-nowrap">
-                                    {getHoursAgo(article.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : ' h ago'}
-                                </p>
-                            </div>
+                        <div className="w-2/3">
+                            <SentimentSlider sentiment={firstHeadline.metrics.sentiment} />
                         </div>
-                        </Link>
+                        <div className="flex text-xs px-4 items-center">
+                            <p className="whitespace-nowrap">
+                            {firstHeadline.nSources} {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
+                            </p>
+                            <label className="mx-1"> · </label>
+                            <p className="whitespace-nowrap">
+                            {getHoursAgo(firstHeadline.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
+                            </p>
+                        </div>
+                        </div>
+                    </Link>
                     </div>
-                    ))}
-                </div>
+                )}
 
-                {/* Navigation buttons */}
-                <button
-                    onClick={handlePrev}
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
-                >
-                    <FaArrowLeft />
-                </button>
-                <button
-                    onClick={handleNext}
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded-full"
-                >
-                    <FaArrowRight />
-                </button>
+                {/* Carousel for remaining headlines */}
+                <div className="overflow-hidden relative w-4/5 mx-auto">
+                    <div
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentHeadlineIndex * 100}%)` }}
+                    >
+                    {carouselHeadlines.map((article) => (
+                        <div key={article.articleID} className="min-w-full px-4 my-8">
+                            <Link to={`/article/${article.articleID}`}>
+                                <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
+                                <img
+                                    src={article.pictureURL}
+                                    alt={article.title}
+                                    className="object-cover w-full h-full"
+                                />
+                                </div>
+                                <h2 className="text-2xl font-semibold mt-4">{article.title}</h2>
+                                <p className="text-sm text-[var(--color-text-lightgrey)] my-2 line-clamp-2">
+                                {article.description.synopsis}
+                                </p>
+                                <div className="w-full grid grid-cols-[3fr_1fr] my-2">
+                                <div className="w-2/3">
+                                    <SentimentSlider sentiment={article.metrics.sentiment} />
+                                </div>
+                                <div className="flex text-xs px-4 items-center">
+                                    <p className="whitespace-nowrap">
+                                    {article.nSources} {language === 'zh-Hant' ? '篇文章' : language === 'zh-Hans' ? '篇文章' : ' articles'}
+                                    </p>
+                                    <label className="mx-1"> · </label>
+                                    <p className="whitespace-nowrap">
+                                    {getHoursAgo(article.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
+                                    </p>
+                                </div>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                    </div>
+
+                    {/* Navigation buttons */}
+                    <div className="relative w-full h-8">
+                        <button
+                            onClick={handlePrev}
+                            className="absolute left-2/5 top-0 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded"
+                        >
+                            <GrPrevious />
+                        </button>
+                        <button
+                            onClick={handleNext}
+                            className="absolute right-2/5 top-0 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded"
+                        >
+                            <GrNext />
+                        </button>
+                    </div>
+
+                </div>
             </div>
+
            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredArticles.map((article, index) => (
@@ -158,24 +200,29 @@ function Feed(props) {
                         key={index}
                         className="flex flex-col p-4 m-2 text-xl border-b border-[var(--color-line-verylightgrey)] hover:border-b-2 hover:border-[var(--color-primary)] hover:shadow-md"
                     >
-                        <div className="w-full aspect-[16/9] overflow-hidden border border-[var(--color-line-grey)]">
-                            <Link to={`/article/${article.articleID}`}>
-                                <img
-                                    src={article.pictureURL}
-                                    alt={article.title}
-                                    className="object-cover w-full h-full"
-                                />
-                            </Link>
+                        <div className="grid grid-cols-[2fr_3fr]">
+                            <div className="px-2">
+                                <div className="flex text-[var(--color-primary)] text-sm my-2">
+                                    { tag === 'personal' ? 
+                                        <label>{article.region} | {article.sector}</label> :
+                                        <label>{article.sector}</label>}
+                                </div> 
+                                <Link to={`/article/${article.articleID}`}>
+                                    <h2 className="mb-2">{article.title}</h2>
+                                </Link>
+                            </div>
+                            <div className="w-full aspect-[16/9] overflow-hidden">
+                                <Link to={`/article/${article.articleID}`}>
+                                    <img
+                                        src={article.pictureURL}
+                                        alt={article.title}
+                                        className="object-cover w-full h-full"
+                                    />
+                                </Link>
+                            </div>
                         </div>
-                        <div className="flex text-[var(--color-primary)] text-sm my-2">
-                            { tag === 'personal' ? 
-                                <label>{article.region} | {article.sector}</label> :
-                                <label>{article.sector}</label>}
-                        </div> 
-                        <Link to={`/article/${article.articleID}`}>
-                            <h2 className="font-semibold mb-2">{article.title}</h2>
-                        </Link>
-                        <div className="flex flex-col my-4">
+                        
+                        <div className="grid grid-cols-[3fr_1fr] my-2 items-center space-x-4 space-y-2 gap-x-4">
                             <Link to={`/article/${article.articleID}`}>
                                 <SentimentSlider sentiment={article.metrics.sentiment} />
                             </Link>

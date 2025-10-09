@@ -43,7 +43,7 @@ function SearchObject({article}) {
                 </Link>
             </div>
             {/* right: image */}
-            <div className="aspect-[16/9] overflow-hidden min-w-0 w-2/3 mx-auto">
+            <div className="aspect-[3/2] overflow-hidden min-w-0 w-2/3 mx-auto">
                 <Link to={`/article/${article.articleID}`}>
                     <img src={article.pictureURL} className="w-full h-full object-cover"/>
                 </Link>

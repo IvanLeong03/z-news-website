@@ -56,7 +56,7 @@ function SearchResults() {
   if (error) return <div className="p-4 w-4/5 mx-auto my-16">Error: {error}</div>;
 
   return (
-    <div className="p-4 w-4/5 mx-auto">
+    <div className="p-4 w-3/4 mx-auto">
       <div className='w-full flex justify-between items-start my-8'>
         <h1 className="text-3xl mb-4">
           {language === "zh-Hant" ? "搜尋結果" : 
