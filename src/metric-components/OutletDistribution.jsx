@@ -58,7 +58,7 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
                 />
             </div>
             {/* Labels under the graph */}
-            <div className='w-3/4 mx-auto flex justify-between my-2'>
+            <div className='w-full flex justify-between my-2'>
                 <div className="flex">
                     <div className="mr-1 h-4 w-4 rounded-full bg-[var(--color-bg-grey)]" />
                     <label>

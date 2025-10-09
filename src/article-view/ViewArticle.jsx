@@ -3,9 +3,7 @@ import Ads from "../home-components/Ads";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
-import { Link } from "react-router-dom";
 import OutletDistribution from "../metric-components/OutletDistribution";
-import SentimentSlider from "../metric-components/SentimentSlider";
 import { FaRegBookmark , FaBookmark} from "react-icons/fa";
 import { fetchArticle, fetchSummary } from "../services/articleService";
 import { saveArticle } from "../services/profileService";
@@ -14,6 +12,7 @@ import TimelineCarousel from "./TimelineCarousel";
 import ArticleMetrics from "./ArticleMetrics";
 import SummaryBlock from "./SummaryBlock";
 import PublisherArticlesList from "./PublisherArticlesList";
+import DiscoverMore from "./DiscoverMore";
 
 
 function ViewArticle() {
@@ -29,7 +28,6 @@ function ViewArticle() {
     const [loading, setLoading] = useState(true);
     const [summaryLoading, setSummaryLoading] = useState(true);
     const [bookmarked, setBookmarked] = useState(false);
-    const [sortOption, setSortOption] = useState("significance-desc"); //user preference should be fetched from backend
     const [showChartDesc, setShowChartDesc] = useState(false);
     const sizeDesc = {
         "en": "The size of the icon represents the media significance. The more significant the source, the larger the icon.",
@@ -137,16 +135,17 @@ function ViewArticle() {
                     {/* region, sector, date and time*/}
                     <div className="w-full flex justify-between items-center">
                         <div className="flex flex-col justify-between items-start my-1">
-                            <div className="flex flex-col text-base text-[var(--color-gs-white)]">
-                                <label className="py-2 text-[var(--color-primary)] text-xl">{article.region.toUpperCase()}</label>                            
+                            <div className="flex items-center space-x-2 text-lg text-[var(--color-primary)]">
+                                <label className="py-2 ">{article.region.toUpperCase()}</label>         
+                                <label> | </label>                   
                                 <button 
-                                className="text-[var(--color-secondary-1)] text-base hover:underline"
+                                className="hover:underline"
                                 onClick={() => handleTopicClick(article.sector)}
                                 >
                                     {article.sector}
                                 </button>
                             </div>
-                            <div className="text-[var(--color-text-lightgrey)] text-sm my-2">
+                            <div className="text-[var(--color-text-lightgrey)] text-sm my-2 italic">
                                 <p>
                                     <label>{language === "zh-Hant" ? "發表日期" : language === "zh-Hans" ? "发表日期" : "Date published"}: </label>
                                     {article.date.slice(8, 10)}
@@ -178,7 +177,7 @@ function ViewArticle() {
                         <h1 className="text-4xl font-semibold">{article.title}</h1>                                                
                     </div>
                     {/* picture, summary and metrics */}
-                    <div className="grid grid-cols-[3fr_1fr] gap-4">
+                    <div className="grid grid-cols-[3fr_1fr] gap-8">
                         { /* main grid: image, summary, timeline */}
                         <div>
                             <div className="aspect-[16/9] overflow-hidden">
@@ -204,25 +203,25 @@ function ViewArticle() {
                                     : "The timeline shows related events in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
                                 </p>
                                 {/* tiimeline component */}
-                                <div className="w-3/4 mx-auto my-4 max-w-[800px] 2xl:max-w-[1200px]">
+                                <div className="w-[85%] mx-auto my-4 max-w-[800px] 2xl:max-w-[1200px]">
                                     <TimelineCarousel events={timelineEvents} />
                                 </div>
                             </div>
                         </div>
-
                            
                         {/* second grid: metrics */}
                         <div className="px-2">
                             <ArticleMetrics article={article} />
                             {/* outlet distribution: expand to open? */}
-                            <div className="py-4 pr-8 flex flex-col">
+                            <div className="py-4 flex flex-col">
                                 <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
+                                {/*
                                 <p className="text-base whitespace-nowrap my-2 text-center">                            
                                     {language === 'zh-Hant' ? '以上分佈來自: ' : language === 'zh-Hans' ? '以上分布来自: ' : 'We obtained this distribution from '}
                                     {article.nSources}
                                     {language === 'zh-Hant' ? ' 篇文章' : language === 'zh-Hans' ? ' 篇文章' : ' sources'}
-
                                 </p> 
+                                */}
                                 <h3
                                     className="text-sm mt-6 mb-2 cursor-pointer 
                                     hover:text-[var(--color-primary)]"
@@ -246,54 +245,10 @@ function ViewArticle() {
                                 )}
                             </div> 
                             {/* discover more section */}
-                            <div className="flex flex-col justify-between">
-                                <div>
-                                    <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
-                                    <h2 className="text-lg my-2">Related tags: </h2>
-                                    <div className="flex flex-wrap gap-4">
-                                        {article.relatedTopics.map((t, index) => (
-                                            <button
-                                            key={index}
-                                            onClick={() => handleTopicClick(t)}
-                                            className="my-2 px-2 py-1 whitespace-nowrap shrink-0 rounded text-[var(--color-text-grey)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-gs-white)]"
-                                            >
-                                                {t}
-                                            </button>
-                                        ))}
-                                    </div>                    
-                                </div>
-                                <div className="px-2 my-16 flex flex-col items-start">                    
-                                    <h2 className="text-lg my-2">Related articles: </h2>
-                                    <ul>
-                                        {article.relatedArticles.map((a, index) => (
-                                            <li key={index} className="my-4 py-2 border-b border-[var(--color-line-verylightgrey)] hover:border-[var(--color-secondary-1)] ">                                        
-                                                <Link to={`/article/${a.articleID}`}>            
-                                                    <div className="flex text-[var(--color-primary)] text-sm mt-1">
-                                                        <label>{a.region}</label>
-                                                        <label className="mx-2">|</label>
-                                                        <label>{a.sector}</label>
-                                                    </div>
-                                                    <div className="grid grid-cols-[3fr_2fr]">
-                                                        <h2 className="my-2 text-lg pr-2">{a.title}</h2>    
-                                                        <div className="w-full aspect-[16/9] overflow-hidden">
-                                                            <img src={a.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
-                                                        </div>      
-                                                    </div>
-                                                </Link>
-                                            </li>                            
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>       
-                        </div>                    
-                                              
+                            < DiscoverMore article={article}/> 
+                        </div>                                                                  
                     </div>                                    
-                </div>
-                
-
-                
-                
-                <Ads />                      
+                </div>                     
             </div>            
         </article>                
     )        

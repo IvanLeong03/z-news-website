@@ -21,7 +21,7 @@ function TopicsBar() {
       setError(null);
       const backendLang = mapFrontendLangToBackend(language);
       const data = await fetchTopic(backendLang);
-      setTopics(Array.isArray(data) ? data : []);
+      setTopics(data);
     } catch (err) {
       setTopics([]);
       setError(err?.message || "Failed to load topics");
