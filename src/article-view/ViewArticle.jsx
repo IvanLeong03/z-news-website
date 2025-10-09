@@ -129,7 +129,7 @@ function ViewArticle() {
     };
     
     return (
-        <article className="overflow-hidden justify-center items-start w-2/3 h-full mx-auto">
+        <article className="overflow-hidden justify-center items-start w-2/3 max-w-[1600px] h-full mx-auto">
             <div className="px-1 py-4 min-w-0">
                 <div className="flex flex-col">
                     {/* region, sector, date and time*/}

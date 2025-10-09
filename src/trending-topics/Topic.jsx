@@ -55,7 +55,7 @@ function Topic() {
     }
 
     return (
-        <div className="w-3/4 mx-auto my-8 p-2">
+        <div className="w-3/4 mx-auto max-w-[1920px] my-8 p-2">
             <label className="bg-[var(--color-bg-grey)] px-2 my-2">{topicLabel[language]}</label>
             <div className="flex items-center w-full my-8 pb-8">
                 <h1 className="text-4xl">{topic}</h1>

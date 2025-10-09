@@ -97,7 +97,7 @@ function Feed(props) {
     if (error) return <div className="text-red-500">Error: {error}</div>;
 
     return (
-        <div className="flex flex-col w-3/4 mx-auto my-16">
+        <div className="flex flex-col w-3/4 mx-auto max-w-[1920px] my-16">
             {tag && (<h1 className="text-5xl font-bold mb-8 pl-5">{headerName[tag][language]}</h1>)}
 
             {/* headline section with standalone + carousel */}
