@@ -3,6 +3,7 @@ import { fetchSaved, deleteSavedArticle } from "../services/profileService";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
 function SavedArticles() {
     const { language } = useLanguage();
@@ -43,12 +44,12 @@ function SavedArticles() {
                                 <div className="flex items-start justify-between my-4">
                                     {/* left: date top, title below it */}
                                     <div className="px-2 flex flex-col">
-                                        <p className="text-sm text-gray-500">{new Date(article.date).toLocaleDateString()}</p>
+                                        <p className="text-sm text-[var(--color-text-lightgrey)] mb-1">{new Date(article.date).toLocaleDateString()}</p>
                                         <Link to={`/article/${article.articleID}`}>
                                             {article.title}
                                         </Link>
                                         <button
-                                            className="w-1/4 hover:text-[var(--color-primary)] text-sm rounded-xl border border-black px-2 my-2"
+                                            className="w-12 rounded-lg border border-[var(--color-secondary-1)] bg-[var(--color-secondary-1)] px-2 py-1 my-2 flex justify-center items-center text-sm"
                                             onClick={async () => {
                                                 try {
                                                     await deleteSavedArticle(article.articleID);
@@ -58,7 +59,7 @@ function SavedArticles() {
                                                 }
                                             }}
                                         >
-                                            Delete
+                                            <FaTrash color="white" />
                                         </button>
                                     </div>
                                     {/* right: image */}

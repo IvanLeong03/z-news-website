@@ -87,8 +87,8 @@ function Navbar() {
                     </Link>
 
                     {/* Center: Nav Links */}
-                    <div className="w-1/2 mx-auto flex items-center">
-                        <ul className="w-full flex justify-between text-xl">
+                    <div className="w-3/5 mx-auto flex items-center">
+                        <ul className="w-full flex justify-between text-lg 2xl:text-xl">
                             <li>
                                 <Link to="/hk">
                                     {language === "zh-Hant" ? "香港" : language === "zh-Hans" ? "香港" : "HONG KONG"}
@@ -136,7 +136,7 @@ function Navbar() {
                                 </li>
                                 <li>
                                     <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">
-                                        {language === "zh-Hant" ? "個人數據" : language === "zh-Hans" ? "个人数据" : "My Statistics"} (N/A)                                
+                                        {language === "zh-Hant" ? "回顧" : language === "zh-Hans" ? "回顾" : "Recap"} (N/A)                                
                                     </Link>
                                 </li>
                             </ul>

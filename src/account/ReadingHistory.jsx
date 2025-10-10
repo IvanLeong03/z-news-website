@@ -3,6 +3,8 @@ import { fetchHistory, deleteHistoryArticle } from "../services/profileService";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+
 
 function ReadingHistory() {
     const { language } = useLanguage();
@@ -58,7 +60,7 @@ function ReadingHistory() {
                                                 }
                                             }}
                                         >
-                                            Delete
+                                            <FaTrash />
                                         </button>
                                     </div>
                                     {/* right: image */}

@@ -132,6 +132,28 @@ function Account() {
           )}
         </div>
 
+        <div className="flex flex-col my-12">
+            <h2 className="font-semibold">
+                {language === "zh-Hant" ? "閱覽紀錄" : language === "zh-Hans" ? "阅览纪录" : "Reading History"}
+            </h2>
+            <Link to={"/account/reading-history"} className="text-[var(--color-dark-turquoise)] hover:underline">
+                <label className="text-sm text-[var(--color-text-lightgrey)]">
+                    {language === "zh-Hant" ? "查看過往閱讀活動" : language === "zh-Hans" ? "查看过往阅读活动" : "View your past reading activity"}                            
+                </label>
+            </Link>
+        </div>
+
+        <div className="flex flex-col my-12">
+            <h2 className="font-semibold">
+                {language === "zh-Hant" ? "已儲存文章" : language === "zh-Hans" ? "已储存文章" : "Saved Articles"}
+            </h2>
+            <Link to={"/account/saved"} className="text-[var(--color-dark-turquoise)] hover:underline">
+                <label className="text-sm text-[var(--color-text-lightgrey)]">
+                    {language === "zh-Hant" ? "查看收藏的文章" : language === "zh-Hans" ? "查看收藏的文章" : "View your saved items"}                            
+                </label>
+            </Link>
+        </div>
+
         {/* Regions */}
         <div className="flex flex-col my-12" aria-busy={regionsLoading}>
           <h2 className="font-semibold">
