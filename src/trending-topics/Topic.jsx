@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
-import SentimentSlider from "../metric-components/SentimentSlider";
-import SubjectivitySlider from "../metric-components/SubjectivitySlider";
 import { fetchArticle } from "../services/articleService";
 import SearchObject from "../search/SearchObject";
 

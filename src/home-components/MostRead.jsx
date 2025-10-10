@@ -107,12 +107,12 @@ function MostRead() {
             >
               <Link to={`/article/${article.articleID}`}>
                   <div className="flex text-[var(--color-primary)] my-1 items-center">
-                    <div className="rounded-full px-4 py-2 bg-[var(--color-primary)] text-[var(--color-gs-white)] mr-4">{index+1}</div>
+                    <div className="rounded-full px-4 py-2 bg-[var(--color-primary)] text-[var(--color-gs-white)] mr-2 2xl:mr-4">{index+1}</div>
                     <label className="text-sm">{article.region}</label>
-                    <label className="mx-2">|</label>
+                    <label className="mx-1 2xl:mx-2">|</label>
                     <label className="text-sm">{article.sector}</label>
                   </div>
-                  <h3 className="my-2 text-lg">{article.title}</h3>
+                  <h3 className="my-2 text-base 2xl:text-lg">{article.title}</h3>
                   <div className="w-full mb-4">
                     <SentimentSlider sentiment={article.metrics.sentiment} />
                   </div>

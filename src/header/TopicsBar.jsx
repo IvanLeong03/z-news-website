@@ -36,7 +36,7 @@ function TopicsBar() {
 
   return (
     <div className="w-full py-1 border-b border-[var(--color-line-grey)] bg-[var(--color-gs-white)]">
-      <div className="max-w-1/3 mx-auto text-sm flex justify-center items-center gap-6 px-4">
+      <div className="max-w-1/2 2xl:max-w-1/3 mx-auto text-sm flex justify-center items-center gap-6 px-4">
         <label className="text-red-400 italic flex-shrink-0 whitespace-nowrap break-keep">
           {language === "en"
             ? "Hot"
@@ -45,7 +45,6 @@ function TopicsBar() {
             : language === "zh-Hans"
             ? "热门"
             : "Hot"}
-          :
         </label>
 
         {error && (

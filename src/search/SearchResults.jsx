@@ -57,13 +57,19 @@ function SearchResults() {
 
   return (
     <div className="p-4 w-3/5 mx-auto max-w-[1600px]">
-      <div className='w-full flex justify-between items-start my-8'>
-        <h1 className="text-3xl mb-4">
-          {language === "zh-Hant" ? "搜尋結果" : 
-          language === 'zh-Hans' ? "搜寻结果" : "Search Results for"}: {query}
-        </h1>
+      <div className='w-full flex justify-between items-center my-8'>
+        <div className='flex flex-col mr-8'>
+          <h2 className='text-[var(--color-text-lightgrey)] text-base 2xl:text-lg'>
+            {language === "zh-Hant" ? "搜尋結果" : 
+            language === 'zh-Hans' ? "搜寻结果" : "Search Results"}:
+          </h2>
+          <h1 className="text-xl 2xl:text-2xl mb-4">
+              {query}
+          </h1>
+        </div>
+        
 
-        <div className="mb-4">
+        <div className="mb-4 text-sm">
           <label htmlFor="sort" className="mr-2">
             {language === 'zh-Hant' ? "優先展示" : 
             language === 'zh-Hans' ? "优先展示" : "Sort by"}:

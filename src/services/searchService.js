@@ -15,3 +15,22 @@ export async function fetchSearchResult(keyword) {
     const data = await res.json();
     return data.data.articles;
 }
+
+export async function fetchTrendingSearch (language) {
+    const token = localStorage.getItem('jwt_token');
+
+    const res = await fetch(`https://api.zonenews.io/dev/search/trending?lang=${language}`, {
+        method: "GET",
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(`Trending search failed: ${errorData.msg || res.statusText}`);
+    }
+
+    const data = await res.json();
+    return data.data.articles;
+}
