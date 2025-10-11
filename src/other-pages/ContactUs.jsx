@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactUs() {
     return (
-        <main className="w-[80%] mx-auto p-20">
+        <main className="w-[80%] min-h-[60dvh] mx-auto p-20">
             <h1 className="text-center text-4xl mx-2 my-6">Contact Us</h1>
 
             <p className="text-left my-8 w-3/4 mx-auto">

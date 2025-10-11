@@ -7,150 +7,104 @@ const MyTopics = () => {
   const { language } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [followedTopics, setFollowedTopics] = useState([]); // Default topic
+  const [followedTopics, setFollowedTopics] = useState([]);
+  const [selectedTopics, setSelectedTopics] = useState([]);
   const [allTopics, setAllTopics] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [suggestions, setSuggestions] = useState(allTopics);
-  const [isInputFocused, setIsInputFocused] = useState(false);
 
-  // Fetch user's followed topics
   useEffect(() => {
-    const loadFollowedTopics = async () => {
+    const loadTopics = async () => {
       try {
-          const backendLang = mapFrontendLangToBackend(language);
-          const followedTopics = await fetchPersonalTopics(backendLang);
-          setFollowedTopics(followedTopics);
+        const backendLang = mapFrontendLangToBackend(language);
+        const [followed, all] = await Promise.all([
+          fetchPersonalTopics(backendLang),
+          fetchAllTopics(backendLang),
+        ]);
+        setFollowedTopics(followed);
+        setSelectedTopics(followed);
+        setAllTopics(all);
       } catch (error) {
-          console.error("Failed to load topics:", error);
-          setError(error.message);
+        console.error("Failed to load topics:", error);
+        setError(error.message);
       } finally {
-          setLoading(false);
+        setLoading(false);
       }
-    };        
-    loadFollowedTopics();
+    };
+    loadTopics();
   }, [language]);
 
-  useEffect(() => {
-    const loadAllTopics = async () => {
-      try {
-          const backendLang = mapFrontendLangToBackend(language);
-          const AllTopics = await fetchAllTopics(backendLang);
-          setAllTopics(AllTopics);
-      } catch (error) {
-          console.error("Failed to load topics:", error);
-          setError(error.message);
-      } finally {
-          setLoading(false);
-      }
-    };        
-    loadAllTopics();
-  }, [language]);
+  const isSelected = (tag) => selectedTopics.some(t => t.tag === tag);
 
-  // Filter suggestions based on search term
-  useEffect(() => {
-    if (searchTerm.trim() === '') {
-      setSuggestions(allTopics);
-    } else {
-      setSuggestions(
-        allTopics.filter(topic => 
-          topic.tag.includes(searchTerm.toLowerCase())
-        )
-      );
-    }
-  }, [searchTerm]);
-
-  const handleFollow = async (topicObj) => {
-    try {
-      const backendLang = mapFrontendLangToBackend(language);
-      await editTopic('ADD', topicObj.tag, backendLang);
-      if (!followedTopics.some(t => t.tag === topicObj.tag)) {
-        setFollowedTopics([...followedTopics, topicObj]);
-      }
-      setSearchTerm('');
-    } catch (err) {
-      console.error(`Failed to follow topic ${topicObj.tag}:`, err);
-      setError(`Could not follow topic: ${topicObj.displayName}`);
-    }
+  const toggleLocalSelection = (topicObj) => {    
+    setSelectedTopics(prev =>
+      isSelected(topicObj.tag)
+        ? prev.filter(t => t.tag !== topicObj.tag)
+        : [...prev, topicObj]
+    );
   };
 
-  const handleUnfollow = async (topicObj) => {
+  const handleSaveChanges = async () => {
+    const backendLang = mapFrontendLangToBackend(language);
+    const originalTags = followedTopics.map(t => t.tag);
+    const newTags = selectedTopics.map(t => t.tag);
+
+    const toAdd = selectedTopics.filter(t => !originalTags.includes(t.tag));
+    const toRemove = followedTopics.filter(t => !newTags.includes(t.tag));
+
     try {
-      const backendLang = mapFrontendLangToBackend(language);
-      await editTopic('DELETE', topicObj.tag, backendLang);
-      setFollowedTopics(followedTopics.filter(t => t.tag !== topicObj.tag));
+      await Promise.all([
+        ...toAdd.map(t => editTopic('ADD', t.tag, backendLang)),
+        ...toRemove.map(t => editTopic('DELETE', t.tag, backendLang)),
+      ]);
+      setFollowedTopics(selectedTopics); // sync state
     } catch (err) {
-      console.error(`Failed to unfollow topic ${topicObj.tag}:`, err);
-      setError(`Could not unfollow topic: ${topicObj.displayName}`);
+      setError("Failed to save changes.");
     }
   };
 
   return (
-    <div className="max-w-[400px] mx-auto my-8 p-6 border border-[#ddd] rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">
-        {language === "zh-Hant" ? "選擇追蹤主題" : language === "zh-Hans" ? "选择追踪主题" : "Choose topics to follow"}                                
-      </h2>
-      <p className='text-xs text-gray-500 mb-4'>
-        {language === "zh-Hant" ? "決定個人推薦頁面中出現的文章" 
-        : language === "zh-Hans" ? "决定个人推荐页面中出现的文章" 
-        : "This influences the articles we recommend in your ‘For You’ tab."}                                
-      </p>
+    <div className='min-h-[60dvh]'>
+      <div className="max-w-[500px] mx-auto my-8 p-6 border border-[#ddd] rounded-lg">
+        <h2 className="text-xl font-semibold mb-4">
+          {language === "zh-Hant" ? "選擇追蹤主題" : language === "zh-Hans" ? "选择追踪主题" : "Choose topics to follow"}
+        </h2>
+        <p className='text-xs text-gray-500 mb-4'>
+          {language === "zh-Hant"
+            ? "決定個人推薦頁面中出現的文章"
+            : language === "zh-Hans"
+            ? "决定个人推荐页面中出现的文章"
+            : "This influences the articles we recommend in your ‘For You’ tab."}
+        </p>
 
-      {/* Search input with autocomplete */}
-      <div className="relative mb-6">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setTimeout(() => setIsInputFocused(false), 200)}
-          placeholder={language === "zh-Hant" ? "搜尋主題" : language === "zh-Hans" ? "搜索主题" : "Search topics..."}                                
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-dark-turquoise)]"
-        />
-        
-        {/* Autocomplete dropdown */}
-        {(isInputFocused || searchTerm) && suggestions.length > 0 && (
-          <ul className="absolute z-10 w-full mt-1 max-h-60 overflow-auto border border-gray-200 bg-white rounded-lg shadow-lg">
-            {suggestions.map((topic) => (
-              !followedTopics.includes(topic) && (
-                <li 
-                  key={topic.tag}
-                  onClick={() => handleFollow(topic)}
-                  className="p-3 hover:bg-gray-100 cursor-pointer capitalize"
-                >
-                  {topic.displayName}
-                </li>
-              )
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {/* Followed topics section */}
-      <div>
-        <h3 className="font-medium mb-3">{language === "zh-Hant" ? "已追蹤" : language === "zh-Hans" ? "已追踪" : "Following"} ({followedTopics.length})</h3>
-        {followedTopics.length === 0 ? (
-          <p className="text-sm text-gray-500">
-            {language === "zh-Hant" ? "未追蹤任何主題" : language === "zh-Hans" ? "未追踪任何主题": "You're not following any topics yet"}
-          </p>
+        {loading ? (
+          <p className="text-sm text-gray-500">{language === "zh-Hant" ? "載入中..." : language === "zh-Hans" ? "加载中..." : "Loading..."}</p>
         ) : (
-          <div className="flex flex-wrap gap-2">
-            {followedTopics.map((topic) => (
-              <div 
-                key={topic.tag} 
-                className="flex items-center bg-[var(--color-light-turquoise)] text-[var(--color-dark-turquoise)] px-3 py-2 rounded-full"
+          <div className="space-y-3">
+            {allTopics.map((topic) => (
+              <label
+                key={topic.tag}
+                className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
               >
-                <span className="mr-1">✓</span>
-                <span className="capitalize">{topic.displayName}</span>
-                <button 
-                  onClick={() => handleUnfollow(topic)}
-                  className="ml-2 text-gray-500 hover:text-black"
-                >
-                  ×
-                </button>
-              </div>
+                <span className="capitalize text-sm">{topic.displayName}</span>
+                <input
+                  type="checkbox"
+                  checked={isSelected(topic.tag)}
+                  onChange={() => toggleLocalSelection(topic)}
+                  className="accent-[var(--color-dark-turquoise)] w-4 h-4"
+                />
+              </label>
             ))}
           </div>
         )}
+
+        {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
+
+        <button
+          onClick={handleSaveChanges}
+          className="mt-6 w-full bg-[var(--color-dark-turquoise)] hover:brightness-75 text-white py-2 rounded-lg"
+        >
+          {language === "zh-Hant" ? "儲存變更" : language === "zh-Hans" ? "保存更改" : "Save Changes"}
+        </button>
+
       </div>
     </div>
   );
