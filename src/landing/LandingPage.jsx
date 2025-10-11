@@ -4,12 +4,6 @@ import SampleImage from "/src/assets/SampleImage.jpg";
 import { MdClose } from "react-icons/md";
 
 const LandingPage = () => {
-    useEffect(() => {
-        const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
-        if (isMobile) {
-            window.location.href = "https://yourapp.com/download"; // or App Store/Google Play link
-        }
-    }, []);
 
     return (
         <main className="landing-page w-dvw min-h-dvh text-[var(--color-gs-white)] bg-[var(--color-primary)] overflow-scroll py-8 lg:py-24 px-2 lg:px-8 flex items-center">
