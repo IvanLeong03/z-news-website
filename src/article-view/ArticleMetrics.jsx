@@ -10,8 +10,7 @@ function ArticleMetrics({article}) {
 
     return (
         <div className="mb-8 w-full flex flex-col justify-between">
-            <h2 className="text-xl font-semibold mb-2">Coverage Analysis</h2>
-            <div className="w-full flex flex-col gap-8 items-center py-4">
+            <div className="w-full flex flex-col gap-8 items-center pb-4">
                 <div className="w-full px-8 pt-2 pb-12 rounded-xl border border-[var(--color-line-darkgrey)]">
                     <SentimentGauge sentiment={article.metrics.sentiment}/>            
                 </div>

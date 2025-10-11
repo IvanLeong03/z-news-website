@@ -51,12 +51,12 @@ function AboutUs() {
             />
 
             <div
-                className="relative bg-[var(--color-light-turquoise)] rounded-lg text-lg mx-auto z-20 -mt-[20rem] pt-32 px-2 text-[var(--color-gs-black)]"
+                className="relative bg-[var(--color-light-turquoise)] rounded-lg text-lg 2xl:text-xl mx-auto z-20 -mt-[20rem] pt-32 px-2 text-[var(--color-gs-black)]"
                 style={sectionStyle}
             >   
                 {/* fetched from backend */}            
                 {about && (
-                    <p className="text-left my-8 w-2/3 mx-auto text-[var(--color-secondary-1)]">
+                    <p className="text-center my-8 w-1/2 mx-auto text-[var(--color-secondary-1)]">
                         {about}
                     </p>
                 )}

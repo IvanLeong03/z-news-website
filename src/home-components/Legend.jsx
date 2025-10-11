@@ -12,7 +12,7 @@ function Legend() {
 
   return (
     <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start py-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
-        <h2 className='font-bold text-xl my-8'>
+        <h2 className='font-bold text-xl my-4 2xl:my-8'>
           {language === "zh-Hant"
             ? "新聞指標"
             : language === "zh-Hans"

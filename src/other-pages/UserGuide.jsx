@@ -2,7 +2,7 @@ import React from "react";
 
 function UserGuide() {
   return (
-    <div className="w-full min-h-dvh flex flex-col justify-center items-center px-4 py-8">
+    <div className="w-full flex flex-col justify-center items-center px-4 py-8">
       <div className="max-w-2xl w-full">
         <h1 className="text-3xl font-bold my-6">User Guide</h1>
         <section className="my-8">

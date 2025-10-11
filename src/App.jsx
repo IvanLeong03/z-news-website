@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import { LanguageProvider } from "./context/LanguageContext"
 import Home from "./home-components/Home"
 import Navbar from "./header/Navbar"
@@ -19,15 +19,20 @@ import ReadingHistory from "./account/ReadingHistory"
 import ViewArticle from "./article-view/ViewArticle"
 import MyTopics from "./account/MyTopics"
 import Feed from "./news-categories/Feed"
+import LandingPage from "./landing/LandingPage"
 
 function App() {
+  const location = useLocation();
+  const hideHeader = location.pathname === "/"; // Add more paths if needed
+
   return (
       <main className='w-full max-w-[240rem] bg-[var(--color-gs-white)]'>
         <LanguageProvider>
-          <Navbar />
-          <TopicsBar />
+          {!hideHeader && <Navbar />}
+          {!hideHeader && <TopicsBar />}
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<LandingPage />}/>
+            <Route path="/home" element={<Home />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/terms-and-conditions" element={<TermsConditions />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -46,7 +51,7 @@ function App() {
             <Route path="/account/saved" element={<SavedArticles />} />
             <Route path="/account/reading-history" element={<ReadingHistory />} />
           </Routes>
-          <Footer />                
+          {!hideHeader && <Footer />}              
         </LanguageProvider>  
       </main>
   )

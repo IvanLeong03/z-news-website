@@ -50,7 +50,7 @@ function SubjectivitySlider({ subjScore = 0 }) {
   return (
     <div className="w-full">
       <div className="w-full flex justify-between items-center">
-        <h2>{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
+        <h2 className="text-sm xl:text-base">{language === "zh-Hant" ? "主觀性數值" : language === "zh-Hans" ? "主观性数值": "Subjectivity Score"}</h2>
         <div className="relative">
           <AiOutlineInfoCircle
             className="ml-2 text-gray-400 cursor-pointer z-20 h-4"
@@ -80,9 +80,9 @@ function SubjectivitySlider({ subjScore = 0 }) {
           )}
         </div>
       </div>
-      <div className="flex justify-between my-4">
+      <div className="flex flex-col sm:flex-row justify-between my-4">
         <div className="flex items-end pr-2">
-          <p className="text-5xl">{subjScoreRounded}</p>
+          <p className="text-4xl 2xl:text-5xl">{subjScoreRounded}</p>
           <div className="ml-2 text-[var(--color-line-lightgrey)]">/1</div>
         </div>
         <div className="text-xs text-center">

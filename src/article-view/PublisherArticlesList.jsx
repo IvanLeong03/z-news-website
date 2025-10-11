@@ -119,44 +119,44 @@ function PublisherArticlesList({ articles = [], language = "en" }) {
             <h2 className="text-xl font-bold">{labels.title[language]}</h2>
             <div className="flex items-center space-x-2 text-sm">
             {/* Criteria dropdown */}
-            <select
-                value={sortOption.split("-")[0]}
-                onChange={(e) => {
-                const order = sortOption.split("-")[1] || "desc";
-                setSortOption(`${e.target.value}-${order}`);
-                }}
-                className="border rounded px-2 py-1 focus:outline-none"
-            >
-                <option value="significance">{labels.sort.significance[language]}</option>
-                <option value="publisherName">{labels.sort.publisherName[language]}</option>
-                <option value="publisherRegion">{labels.sort.publisherRegion[language]}</option>
-                <option value="date">{labels.sort.date[language]}</option>
-                {/* Add more criteria if you re-enable them */}
-            </select>
+                <select
+                    value={sortOption.split("-")[0]}
+                    onChange={(e) => {
+                    const order = sortOption.split("-")[1] || "desc";
+                    setSortOption(`${e.target.value}-${order}`);
+                    }}
+                    className="border rounded px-2 py-1 focus:outline-none h-8"
+                >
+                    <option value="significance">{labels.sort.significance[language]}</option>
+                    <option value="publisherName">{labels.sort.publisherName[language]}</option>
+                    <option value="publisherRegion">{labels.sort.publisherRegion[language]}</option>
+                    <option value="date">{labels.sort.date[language]}</option>
+                    {/* Add more criteria if you re-enable them */}
+                </select>
 
-            {/* Order toggle button */}
-            <button
-                onClick={handleToggleOrder}
-                className="border rounded focus:outline-none flex px-1 items-center justify-between w-12 h-7"
-                title={sortOption.split("-")[1] === "asc" ? "ascending" : "descending"}
-            >
-                <FaArrowUp
-                className={`text-xs ${
-                    (sortOption.split("-")[1] || "desc") === "asc"
-                    ? "text-[var(--color-text-grey)]"
-                    : "text-[var(--color-line-verylightgrey)]"
-                }`}
-                size={32}
-                />
-                <FaArrowDown
-                className={`text-xs ${
-                    (sortOption.split("-")[1] || "desc") === "desc"
-                    ? "text-[var(--color-text-grey)]"
-                    : "text-[var(--color-line-verylightgrey)]"
-                }`}
-                size={32}
-                />
-            </button>
+                {/* Order toggle button */}
+                <button
+                    onClick={handleToggleOrder}
+                    className="border rounded focus:outline-none flex px-1 items-center justify-between h-8"
+                    title={sortOption.split("-")[1] === "asc" ? "ascending" : "descending"}
+                >
+                    <FaArrowUp
+                    className={`text-xs ${
+                        (sortOption.split("-")[1] || "desc") === "asc"
+                        ? "text-[var(--color-text-grey)]"
+                        : "text-[var(--color-line-verylightgrey)]"
+                    }`}
+                    size={28}
+                    />
+                    <FaArrowDown
+                    className={`text-xs ${
+                        (sortOption.split("-")[1] || "desc") === "desc"
+                        ? "text-[var(--color-text-grey)]"
+                        : "text-[var(--color-line-verylightgrey)]"
+                    }`}
+                    size={28}
+                    />
+                </button>
             </div>
         </div>
 

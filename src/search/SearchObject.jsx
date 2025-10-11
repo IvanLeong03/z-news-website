@@ -33,7 +33,7 @@ function SearchObject({article}) {
                         <div className="pr-8">
                             <SentimentSlider sentiment={article.metrics.sentiment}/>
                         </div>
-                        <div className="px-12 2xl:px-20">
+                        <div className="px-6 2xl:px-12">
                             <SubjectivitySlider subjScore={Math.abs(article.metrics.subjectivity)}/>
                         </div>
                         <div className="pl-8">

@@ -76,7 +76,7 @@ function Navbar() {
             >
                 <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr]">
                     {/* Left: Logo */}
-                    <Link to="/">
+                    <Link to="/home">
                         <div>                    
                             <img                             
                             src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
