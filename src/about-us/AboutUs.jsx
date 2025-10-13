@@ -3,6 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import Carousel from "./Carousel"; // Assuming you have a Carousel component
 import { fetchAbout } from "../services/infoService";
+import video1 from "/src/assets/aboutUsVideo.mp4"
 
 function AboutUs() {
     const { language, setLanguage } = useLanguage();
@@ -43,7 +44,7 @@ function AboutUs() {
     return (
         <main className="flex-col w-full mx-auto justify-center items-center text-center">            
             <video
-                src="/src/assets/aboutUsVideo.mp4"
+                src={video1}
                 className="w-full shadow-lg z-10 aspect-auto"
                 autoPlay
                 muted
