@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import SampleImage from "/src/assets/SampleImage.jpg";
+import img1 from "/src/assets/ZoneNewsLogo/zonenews__logo_secondary_EN.jpg";
 import { MdClose } from "react-icons/md";
 
 const LandingPage = () => {
@@ -12,10 +12,10 @@ const LandingPage = () => {
                 <p>Download the app from the App Store/Google Play</p>
                 {/* Add more content as needed */}
                 <div className="w-3/4 lg:w-1/3 mx-auto my-8">
-                    <img src={SampleImage} />
+                    <img src={img1} />
                 </div>
                 <div className="w-3/4 lg:w-1/3 mx-auto my-8">
-                    <img src={SampleImage} />
+                    <img src={img1} />
                 </div>
             </div>
             <div className="absolute top-4 right-4">
