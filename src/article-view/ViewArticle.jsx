@@ -129,7 +129,7 @@ function ViewArticle() {
     };
     
     return (
-        <article className="overflow-hidden justify-center items-start w-2/3 max-w-[1600px] h-full mx-auto">
+        <article className="overflow-hidden justify-center items-start w-2/3 mx-auto">
             <div className="px-1 py-4 min-w-0">
                 <div className="flex flex-col">
                     {/* region, sector, date and time*/}
@@ -195,7 +195,7 @@ function ViewArticle() {
                             /> 
                             <PublisherArticlesList articles={article?.articles || []} language={language} />
                             {/* timeline */}
-                            <div className="w-full py-2 px-4 rounded border-b border-[var(--color-primary)]">
+                            <div className="w-full p-4 rounded border-b border-[var(--color-primary)]">
                                 <h2 className="text-2xl font-semibold">{language === "zh-Hant" ? "時間線" : language === "zh-Hans" ? "时间线" : "Timeline"}</h2>
                                 <p className="my-2 text-sm text-[var(--color-text-lightgrey)]">                        
                                     {language === "zh-Hant" ? "時間線按時間順序顯示相關文章。按下左右按鈕可瀏覽事件發生前後的相關報導。" 
@@ -203,7 +203,7 @@ function ViewArticle() {
                                     : "The timeline shows related events in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
                                 </p>
                                 {/* tiimeline component */}
-                                <div className="w-[85%] mx-auto my-4 max-w-[600px] 2xl:max-w-[1200px]">
+                                <div className="w-4/5 mx-auto my-4 max-w-[480px] 2xl:max-w-[880px]">
                                     <TimelineCarousel events={timelineEvents} />
                                 </div>
                             </div>
