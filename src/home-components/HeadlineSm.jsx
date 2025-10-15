@@ -25,7 +25,7 @@ function HeadlineSm({article}) {
                     <label className="mx-2">|</label>
                     <label>{article.sector}</label>
                 </div>                                                                     
-                <h1 className="w-full text-lg lg:text-xl font-semibold text-left hover:text-[var(--color-text-lightgrey)]">{article.title}</h1>
+                <h1 className="w-full text-lg lg:text-xl font-semibold text-left hover:text-[var(--color-text-lightgrey)] line-clamp-2 h-[4rem]">{article.title}</h1>
                 <div className="w-2/3 my-2">
                     <SentimentSlider sentiment={article.metrics.sentiment}/>
                 </div> 

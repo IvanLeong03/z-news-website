@@ -135,7 +135,7 @@ function Navbar() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/account/topics" className="block px-4 py-2 hover:bg-gray-100">
+                                    <Link to="/recap" className="block px-4 py-2 hover:bg-gray-100">
                                         {language === "zh-Hant" ? "回顧" : language === "zh-Hans" ? "回顾" : "Recap"} (N/A)                                
                                     </Link>
                                 </li>

@@ -20,6 +20,7 @@ import ViewArticle from "./article-view/ViewArticle"
 import MyTopics from "./account/MyTopics"
 import Feed from "./news-categories/Feed"
 import LandingPage from "./landing/LandingPage"
+import Recap from "./recap/Recap"
 
 function App() {
   const location = useLocation();
@@ -50,6 +51,7 @@ function App() {
             <Route path="/account/topics" element={<MyTopics />} />
             <Route path="/account/saved" element={<SavedArticles />} />
             <Route path="/account/reading-history" element={<ReadingHistory />} />
+            <Route path="/recap" element={<Recap />} />
           </Routes>
           {!hideHeader && <Footer />}              
         </LanguageProvider>  

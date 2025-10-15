@@ -107,7 +107,7 @@ function MostRead() {
             >
               <Link to={`/article/${article.articleID}`}>
                   <div className="flex text-[var(--color-primary)] my-1 items-center">
-                    <div className="rounded-full px-4 py-2 bg-[var(--color-primary)] text-[var(--color-gs-white)] mr-2 2xl:mr-4">{index+1}</div>
+                    <div className="rounded-full h-6 w-6 text-sm 2xl:h-8 2xl:w-8 2xl:text-base bg-[var(--color-primary)] text-[var(--color-gs-white)] flex justify-center items-center mr-2 2xl:mr-4">{index+1}</div>
                     <label className="text-sm">{article.region}</label>
                     <label className="mx-1 2xl:mx-2">|</label>
                     <label className="text-sm">{article.sector}</label>

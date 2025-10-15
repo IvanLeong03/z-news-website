@@ -68,7 +68,7 @@ function AboutUs() {
             />
 
             <div
-                className="relative bg-[var(--color-light-turquoise)] rounded-lg text-base 2xl:text-lg mx-auto z-20 -mt-[20rem] pt-32 px-2 text-[var(--color-gs-black)]"
+                className="relative bg-gradient-to-b from-[var(--color-light-turquoise)] to-[var(--color-dark-turquoise)] rounded-lg text-base 2xl:text-lg mx-auto z-20 -mt-[10rem] pt-24 px-2 text-[var(--color-gs-black)]"
                 style={sectionStyle}
             >   
                 {/* fetched from backend */}            

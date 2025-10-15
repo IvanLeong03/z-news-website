@@ -7,37 +7,40 @@ const Carousel = () => {
   const carouselSlides = [
     {
       slideImg: Img1,
-      slideHeading: "Global Coverage",
-      slideDesc: "Global Coverage",
-      bottomText: "We provide news from Hong Kong, China and around the world.",
+      slideHeading: "AI Context",
+      slideDesc: "Understand everything, without gaps",
+      bottomText: "We provide the full backstory to every news event.",
     },
     {
       slideImg: Img1,
-      slideHeading: "Personalized Recommendations",
-      slideDesc: "Personalized Recommendations",
-      bottomText: "Articles tailored to your interests an reading history, selected by our AI algorithms.",
+      slideHeading: "In-depth analytics",
+      slideDesc: "Media bias, stance and distribution",
+      bottomText: "Understand different perspectives on important stories and develop a nuanced understanding.",
     },
     {
       slideImg: Img1,
-      slideHeading: "Powerful Search",
-      slideDesc: "Powerful Search",
-      bottomText: "Find specific news articles and topics quickly."
+      slideHeading: "Personalized experience",
+      slideDesc: "Follow everything you want (literally)",
+      bottomText: "We offer custom tags in addition to the defaults to premium users. Stay updated on any topic."
     },
     {
       slideImg: Img1,
-      slideHeading: "Coverage Analysis",
-      slideDesc: "Coverage Analysis",
-      bottomText: "Understand different perspectives on important stories.",
+      slideHeading: "Feel the event",
+      slideDesc: "Media sentiment quantified",
+      bottomText: "We carry out text analysis to calculate the overall tone.",
     },
     {
       slideImg: Img1,
-      slideHeading: "Reading History",
-      slideDesc: "Reading History",
-      bottomText: "Keep track of articles you've read so you can revisit them, and your activity helps optimise our recommendations.",
+      slideHeading: "Significance",
+      slideDesc: "Know the things you must know",
+      bottomText: "DALY (life-years) and economic impact analysis for every event.",
     },
   ];
 
-  const loopedSlides = [...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides, ...carouselSlides];
+  const loopedSlides = [];
+  while (loopedSlides.length < 50) {
+      loopedSlides.push(...carouselSlides);
+  }
   const controls = useAnimation();
   const [currentX, setCurrentX] = useState(0); // Store current x coordinate to change speed while staying in place
   const [speed, setSpeed] = useState(-2.5); // Speed in percentage
@@ -75,7 +78,7 @@ const Carousel = () => {
 
   return (
     <div className="w-full relative py-16 bg-darkWhite">
-      <h2 className="w-full text-center text-[1.5rem] md:text-[2.5rem] font-semibold">
+      <h2 className="w-full text-center text-2xl md:text-4xl font-semibold">
         Our Features
       </h2>
       <div className="relative my-4 overflow-hidden w-full">
@@ -93,7 +96,7 @@ const Carousel = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative overflow-hidden cursor-pointer h-[40dvh] w-[30dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+              <div className="relative overflow-hidden cursor-pointer rounded-md h-[50dvh] w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
                     src={slide.slideImg}
