@@ -203,7 +203,7 @@ function ViewArticle() {
                                     : "The timeline shows related events in chronological order. Use the navigation buttons to explore articles covering the development of this event over time."}
                                 </p>
                                 {/* tiimeline component */}
-                                <div className="w-4/5 mx-auto my-4 max-w-[480px] 2xl:max-w-[880px]">
+                                <div className="w-4/5 mx-auto my-4 max-w-[480px] 2xl:max-w-[720px]">
                                     <TimelineCarousel events={timelineEvents} />
                                 </div>
                             </div>
