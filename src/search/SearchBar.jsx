@@ -63,7 +63,7 @@ function SearchBar() {
     };
 
     const collapsedW = "w-24 md:w-32";
-    const expandedW = "w-48 md:w-56";
+    const expandedW = "w-42 md:w-56";
 
     return (
         <div

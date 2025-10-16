@@ -6,21 +6,24 @@ import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 function SubjectivitySlider({ subjScore = 0 }) {
   const { language } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
-  const highDesc = {
-    "zh-Hant": "高客觀性",
-    "zh-Hans": "高客观性",
-    "en": "High objectivity"
+
+  const labels = {
+    highDesc: {
+      "zh-Hant": "高度主觀",
+      "zh-Hans": "高度主观",
+      "en": "High Subjectivity"
+    },
+    medDesc: {
+      "zh-Hant": "中度主觀",
+      "zh-Hans": "中度主观",
+      "en": "Medium Subjectivity"
+    },
+    lowDesc: {
+      "zh-Hant": "低度主觀",
+      "zh-Hans": "低度主观",
+      "en": "Low Subjectivity" 
+    },
   };
-  const medDesc = {
-    "zh-Hant": "中等客觀性",
-    "zh-Hans": "中等客观性",
-    "en": "Medium objectivity"
-  };
-  const lowDesc = {
-    "zh-Hant": "低客觀性",
-    "zh-Hans": "低客观性",
-    "en": "Low objectivity" 
-  }
 
   const subjScoreRounded = Math.round(subjScore * 100) / 100; // Round to two decimal places
 
@@ -44,8 +47,6 @@ function SubjectivitySlider({ subjScore = 0 }) {
     clearTimeout(timerRef.current);
     setIsHovered(false);
   };
-  
-  
 
   return (
     <div className="w-full">
@@ -80,14 +81,14 @@ function SubjectivitySlider({ subjScore = 0 }) {
           )}
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row justify-between my-4">
-        <div className="flex items-end pr-2">
-          <p className="text-4xl 2xl:text-5xl">{subjScoreRounded}</p>
-          <div className="ml-2 text-[var(--color-line-lightgrey)]">/1</div>
+      <div className="flex flex-col 2xl:flex-row 2xl:justify-between gap-1 my-4 justify-between">
+        <div className="flex items-end">
+          <p className="text-5xl">{subjScoreRounded}</p>
+          <div className="text-xs text-[#999999] ml-1">/1</div>
         </div>
-        <div className="text-xs text-center">
+        <div className="text-sm mt-2 2xl:mt-0">
           <div className={boxColor}>
-            {subjScoreRounded < 0.2 ? highDesc[language] : subjScoreRounded < 0.6 ? medDesc[language] : lowDesc[language] } 
+            {subjScoreRounded < 0.2 ? labels.lowDesc[language] : subjScoreRounded < 0.6 ? labels.medDesc[language] : labels.highDesc[language] } 
           </div>
         </div>
       </div>

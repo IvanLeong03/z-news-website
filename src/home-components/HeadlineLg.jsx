@@ -14,7 +14,7 @@ function HeadlineLg({article}) {
     }
 
     return (
-        <article className="relative w-9/10 mx-auto flex flex-col mb-8">
+        <article className="relative w-[95%] mx-auto flex flex-col">
             {/* Image */} 
             <div className="aspect-[16/9] w-full max-w-full h-full">
                 <img src={article.pictureURL} alt="Headline" className="max-w-full w-full h-full object-cover" />
@@ -33,7 +33,7 @@ function HeadlineLg({article}) {
                 {article.description.synopsis}
             </p>
             {/* Metrics */}
-            <div className="w-full px-2 grid grid-cols-[2fr_1fr]">
+            <div className="w-full grid grid-cols-[2fr_1fr]">
                 <div>
                     <SentimentSlider sentiment={article.metrics.sentiment} />
                 </div>

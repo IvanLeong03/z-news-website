@@ -4,6 +4,43 @@ import { AiOutlineInfoCircle } from "react-icons/ai"; // info icon
 
 function SentimentSlider({ sentiment = 0}) {
   const { language } = useLanguage();
+  const labels = {
+    veryPos: {
+      "en": "Very positive",
+      "zh-Hant": "非常正面",
+      "zh-Hans": "非常正面",
+    },
+    pos: {
+      "en": "Positive",
+      "zh-Hant": "正面",
+      "zh-Hans": "正面",
+    },
+    slightlyPos: {
+      "en": "Slightly positive",
+      "zh-Hant": "略為正面",
+      "zh-Hans": "略为正面",
+    },
+    neutral: {
+      "en": "Neutral",
+      "zh-Hant": "中性",
+      "zh-Hans": "中興",
+    },
+    veryNeg: {
+      "en": "Very negative",
+      "zh-Hant": "非常負面",
+      "zh-Hans": "非常负面",
+    },
+    neg: {
+      "en": "Negative",
+      "zh-Hant": "負面",
+      "zh-Hans": "负面",
+    },
+    slightlyNeg: {
+      "en": "Slightly negative",
+      "zh-Hant": "略為負面",
+      "zh-Hans": "略为负面",
+    },
+  }
 
   // Clamp the score
   const clampedScore = Math.max(-1, Math.min(sentiment, 1));
@@ -19,17 +56,14 @@ function SentimentSlider({ sentiment = 0}) {
     <div className="w-full">
       {/* Title + Sentiment Value */}
       <div className="flex items-center text-sm text-[var(--color-text-grey)] mb-1 relative">
-        <span className="mr-1">
-          {language === "zh-Hant"
-            ? "情感數值:"
-            : language === "zh-Hans"
-            ? "情感数值:"
-            : "Sentiment:"}
-        </span>
-        <span className="ml-1 text-[1.25em]" style={{ color: barColor }}>
-          {clampedScore >= 0
-            ? `+${clampedScore.toFixed(2)}`
-            : clampedScore.toFixed(2)}
+        <span className="ml-1 text-lg" style={{ color: barColor }}>
+          {clampedScore >= 0.6 ? labels.veryPos[language] : 
+          clampedScore >= 0.3 ? labels.pos[language] :
+          clampedScore > 0.05 ? labels.slightlyPos[language] :
+          clampedScore >= -0.05 ? labels.neutral[language] :
+          clampedScore >= -0.3 ? labels.slightlyNeg[language] :
+          clampedScore >= -0.6 ? labels.neg[language] :
+          labels.veryNeg[language]}
         </span>
         <div className="relative">
           <AiOutlineInfoCircle

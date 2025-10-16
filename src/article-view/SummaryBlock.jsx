@@ -33,7 +33,7 @@ function SummaryBlock({ summary, summaryLoading, summaryError, id, summaryLangua
                 </li>
             </ul>
             
-            <div className="my-4 flex items-center justify-between">
+            <div className="my-4 flex items-start justify-between">
                 <SummarySettingsDropdown
                     language={language}
                     summaryLanguage={summaryLanguage}

@@ -14,11 +14,11 @@ function HeadlineSm({article}) {
     }
 
     return (
-        <article className="flex flex-col items-stretch w-9/10 mx-auto pb-4 border-b border-[var(--color-line-verylightgrey)]">
+        <article className="flex flex-col items-stretch w-[95%] mx-auto pb-4 border-b border-[var(--color-line-verylightgrey)] hover:shadow-md">
             {/* region, sector, headline, nSources and time */}
             <div className="w-full flex flex-col">
                 <div className="w-full aspect-[16/9] overflow-hidden">
-                    <img src={article.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
+                    <img src={article.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover hover:scale-105 transition duration-700 ease-in-out" />
                 </div>
                 <div className="flex text-[var(--color-primary)] my-2 text-sm">
                     <label>{article.region}</label>

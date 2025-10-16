@@ -74,14 +74,13 @@ function Navbar() {
                 border-b border-[var(--color-line-darkgrey)] transition-all duration-300
                 ${isScrolled ? "py-0 border-opacity-100 shadow-md" : "py-4 border-opacity-60"}`}
             >
-                <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr]">
+                <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr] border border-pink-200">
                     {/* Left: Logo */}
                     <Link to="/home">
                         <div>                    
                             <img                             
                             src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
                             alt="Logo"
-                            className="h-18"
                             />                                       
                         </div>
                     </Link>
@@ -91,17 +90,22 @@ function Navbar() {
                         <ul className="w-full flex justify-between text-lg 2xl:text-xl">
                             <li>
                                 <Link to="/hk">
-                                    {language === "zh-Hant" ? "香港" : language === "zh-Hans" ? "香港" : "HONG KONG"}
+                                    {language === "zh-Hant" ? "香港" : language === "zh-Hans" ? "香港" : "Hong Kong"}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/china">
-                                    {language === "zh-Hant" ? "中國" : language === "zh-Hans" ? "中国" : "CHINA"}
+                                    {language === "zh-Hant" ? "中國" : language === "zh-Hans" ? "中国" : "China"}
                                 </Link>
                             </li>
-                            <li>
+                            <li className="text-[var(--color-primary)] font-semibold">
                                 <Link to="/for-you">
-                                    {language === "zh-Hant" ? "個人推薦" : language === "zh-Hans" ? "个人推荐" : "RECOMMENDED"}
+                                    {language === "zh-Hant" ? "個人專屬" : language === "zh-Hans" ? "个人专属" : "Personal"}
+                                </Link>
+                            </li>
+                            <li className="text-[var(--color-gs-black]">
+                                <Link to="/recap">
+                                    {language === "zh-Hant" ? "回顧" : language === "zh-Hans" ? "回顾" : "Recap"}                           
                                 </Link>
                             </li>
                         </ul>
@@ -118,7 +122,7 @@ function Navbar() {
                             >
                                 <FaUser />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 text-center">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-48 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-center">
                                 <li>
                                     <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">
                                         {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
@@ -134,11 +138,13 @@ function Navbar() {
                                         {language === "zh-Hant" ? "追蹤主題" : language === "zh-Hans" ? "追踪主题" : "My Topics"}                                
                                     </Link>
                                 </li>
+                                {/*
                                 <li>
                                     <Link to="/recap" className="block px-4 py-2 hover:bg-gray-100">
-                                        {language === "zh-Hant" ? "回顧" : language === "zh-Hans" ? "回顾" : "Recap"} (N/A)                                
+                                        {language === "zh-Hant" ? "回顧" : language === "zh-Hans" ? "回顾" : "Recap"}                              
                                     </Link>
                                 </li>
+                                */}
                             </ul>
                         </div>
                         {/* language */}
@@ -149,7 +155,7 @@ function Navbar() {
                             >
                                 <BsGlobe />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 mt-1 w-36 bg-white border border-gray-200 rounded-lg shadow-lg z-50 text-center">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-center">
                                 {LANGS.map(({ code, label }) => {
                                     const selected = language === code;
                                     return (

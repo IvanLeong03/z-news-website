@@ -12,7 +12,7 @@ function Recap() {
 
 
     return (
-        <div className="w-2/3 mx-auto max-w-[1600px] py-8">
+        <div className="w-[62.5%] mx-auto max-w-[1600px] py-8">
             <h1 className="text-3xl text-[var(--color-primary)]">News Recap</h1>
 
             <div className="flex flex-col gap-16 mt-8">

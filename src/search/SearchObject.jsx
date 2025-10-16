@@ -26,18 +26,18 @@ function SearchObject({article}) {
             {/* left: date, title, metrics */}
             <div className="flex flex-col justify-center min-w-0">
                 <Link to={`/article/${article.articleID}`}>
-                    <p className="text-sm my-1 text-[var(--color-primary)]">{article.region}</p>
+                    <div className="flex text-sm text-[var(--color-primary)] my-1 2xl:my-2">
+                        <p>{article.region}</p>
+                        <label className="mx-1"> | </label>
+                        <p>{article.sector}</p>
+
+
+                    </div>
                     <p className="text-xs my-1">{article.date.slice(0,10)}</p>                    
                     <h2 className="text-2xl font-semibold mt-2 mb-8">{article.title}</h2>
-                    <div className="w-full grid grid-cols-[1fr_1fr_1fr] items-center">                    
+                    <div className="w-full items-center">                    
                         <div className="pr-8">
                             <SentimentSlider sentiment={article.metrics.sentiment}/>
-                        </div>
-                        <div className="px-6 2xl:px-12">
-                            <SubjectivitySlider subjScore={Math.abs(article.metrics.subjectivity)}/>
-                        </div>
-                        <div className="pl-8">
-                            <SplitBar cPercent={cp} pPercent={pp}/>
                         </div>
                     </div>
                 </Link>

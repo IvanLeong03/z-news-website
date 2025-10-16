@@ -27,7 +27,7 @@ function SentimentGauge({ sentiment = 0 }) {
   return (
     <div className="flex flex-col items-center">
       <div className="w-full flex justify-between items-center">
-        <h2>{language === "zh-Hant" ? "情感數值" : language === "zh-Hans" ? "情感数值" : "Sentiment Score"}</h2>
+        <h2 className="text-left">{language === "zh-Hant" ? "情感數值" : language === "zh-Hans" ? "情感数值" : "Media Sentiment"}</h2>
         <div className="relative">
           <AiOutlineInfoCircle
           className="ml-2 text-gray-400 cursor-pointer z-20 h-4"
@@ -103,8 +103,8 @@ function SentimentGauge({ sentiment = 0 }) {
         <text x="3" y="122" fontSize="12" fill="#999" textAnchor="start">
           -1
         </text>
-        <text x="0" y="138" fontSize="12" fill="#999" textAnchor="start">
-          {language === "zh-Hant" ? "悲觀" : language === "zh-Hans" ? "悲观" : "Pessimistic"}                                
+        <text x="5" y="138" fontSize="12" fill="#999" textAnchor="start">
+          {language === "zh-Hant" ? "負面" : language === "zh-Hans" ? "负面" : "Negative"}                                
         </text>
         <text x="110" y="4" fontSize="12" fill="#999" textAnchor="middle">
           0
@@ -112,11 +112,8 @@ function SentimentGauge({ sentiment = 0 }) {
         <text x="217" y="122" fontSize="12" fill="#999" textAnchor="end">
           +1
         </text>
-        <text x="220" y="138" fontSize="12" fill="#999" textAnchor="end">
-          {language === "zh-Hant" ? "樂觀" : language === "zh-Hans" ? "乐观" : "Optimistic"}                                
-        </text>
-        <text x="110" y="115" fontSize="15" fill="#999" textAnchor="middle">
-          {language === "zh-Hant" ? "情感" : language === "zh-Hans" ? "情感" : "Sentiment"}          
+        <text x="215" y="138" fontSize="12" fill="#999" textAnchor="end">
+          {language === "zh-Hant" ? "正面" : language === "zh-Hans" ? "正面" : "Positive"}                                
         </text>
         
       </svg>
@@ -124,7 +121,7 @@ function SentimentGauge({ sentiment = 0 }) {
 
       {/* Large score */}
       <div
-        className="text-5xl font-bold -mt-25"
+        className="text-5xl -mt-25 mx-auto"
         style={{ color: arcColor }}
       >
         {clampedScore >= 0

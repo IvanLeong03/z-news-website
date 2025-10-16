@@ -48,12 +48,12 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
                 
                 { /* section for conservative */}
                 <div
-                className="flex items-center justify-center bg-[var(--color-bg-grey)]"
+                className="flex items-center justify-center bg-[var(--color-bg-grey)] rounded-l-xl"
                 style={{ width:`${cPercent}%`}}
                 />
                 {/* section for progressive */}
                 <div
-                className="flex items-center justify-center bg-[var(--color-line-grey)]"
+                className="flex items-center justify-center bg-[var(--color-line-grey)] rounded-r-xl"
                 style={{ width:`${pPercent}%` }}
                 />
             </div>

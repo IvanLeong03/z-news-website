@@ -1,6 +1,6 @@
 // src/components/PublisherArticlesList.jsx
 import React, { useMemo, useState } from "react";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 
 function PublisherArticlesList({ articles = [], language = "en" }) {
     const labels = {
@@ -125,7 +125,7 @@ function PublisherArticlesList({ articles = [], language = "en" }) {
                     const order = sortOption.split("-")[1] || "desc";
                     setSortOption(`${e.target.value}-${order}`);
                     }}
-                    className="border rounded px-2 py-1 focus:outline-none h-8"
+                    className="border rounded px-2 py-1 focus:outline-none h-7"
                 >
                     <option value="significance">{labels.sort.significance[language]}</option>
                     <option value="publisherName">{labels.sort.publisherName[language]}</option>
@@ -137,24 +137,22 @@ function PublisherArticlesList({ articles = [], language = "en" }) {
                 {/* Order toggle button */}
                 <button
                     onClick={handleToggleOrder}
-                    className="border rounded focus:outline-none flex px-1 items-center justify-between h-8"
+                    className="border rounded focus:outline-none flex px-1 items-center justify-between h-7"
                     title={sortOption.split("-")[1] === "asc" ? "ascending" : "descending"}
                 >
                     <FaArrowUp
-                    className={`text-xs ${
+                    className={`text-base ${
                         (sortOption.split("-")[1] || "desc") === "asc"
                         ? "text-[var(--color-text-grey)]"
                         : "text-[var(--color-line-verylightgrey)]"
                     }`}
-                    size={28}
                     />
                     <FaArrowDown
-                    className={`text-xs ${
+                    className={`text-base ${
                         (sortOption.split("-")[1] || "desc") === "desc"
                         ? "text-[var(--color-text-grey)]"
                         : "text-[var(--color-line-verylightgrey)]"
                     }`}
-                    size={28}
                     />
                 </button>
             </div>

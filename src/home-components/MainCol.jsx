@@ -6,7 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { fetchFeed } from "../services/feedService";
 import { fetchArticle } from "../services/articleService";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 function MainCol() {
     const { language } = useLanguage();
@@ -17,30 +17,30 @@ function MainCol() {
     const [error, setError] = useState(null);
 
     const timeoutRef = useRef(null);
-    const AUTOPLAY_MS = 8000;
+    const AUTOPLAY_MS = 7000;
     
     useEffect(() => {
         const loadArticles = async () => {
             try {
-                    const backEndLang = mapFrontendLangToBackend(language);
-                    const results = await fetchFeed('today', backEndLang);
-                    // use 'headlines' to fetch the main articles
-                    const mainArticleResult = results.headlines; 
-                    const mainArticlesArray = []; //fetch detailed info for each main article
-                    for (let i = 0; i < mainArticleResult.length; i++) {
-                        mainArticlesArray.push(await fetchArticle(mainArticleResult[i].articleID, backEndLang));
-                    }
-                    // Set 'articles' as subArticles
-                    const subArticlesResults = results.articles;
+                const backEndLang = mapFrontendLangToBackend(language);
+                const results = await fetchFeed('today', backEndLang);
+                // use 'headlines' to fetch the main articles
+                const mainArticleResult = results.headlines; 
+                const mainArticlesArray = []; //fetch detailed info for each main article
+                for (let i = 0; i < mainArticleResult.length; i++) {
+                    mainArticlesArray.push(await fetchArticle(mainArticleResult[i].articleID, backEndLang));
+                }
+                // Set 'articles' as subArticles
+                const subArticlesResults = results.articles;
 
-                    setHeadlineArticles(mainArticlesArray);
-                    setCurrentHeadlineIndex(0); // Start with the first headline
-                    setSubArticles(subArticlesResults);
-                } catch (error) {
-                    console.error("Failed to load articles:", error);
-                    setError(error.message);
-                } finally {
-                    setLoading(false);
+                setHeadlineArticles(mainArticlesArray);
+                setCurrentHeadlineIndex(0); // Start with the first headline
+                setSubArticles(subArticlesResults);
+            } catch (error) {
+                console.error("Failed to load articles:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
             }
         };
         loadArticles();
@@ -99,21 +99,24 @@ function MainCol() {
                     ))}
                 </div>
 
-              {/* Navigation buttons */}
-                <button
-                  onClick={handlePrev}
-                  className="absolute left-10 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 shadow-md z-10 rounded-full"
-                  aria-label="Previous headline"
-                >
-                    <FaArrowLeft />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="absolute right-10 top-1/2 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 shadow-md z-10 rounded-full"
-                  aria-label="Next headline"
-                >
-                    <FaArrowRight />
-                </button>
+                {/* Navigation buttons */}
+                <div className="relative w-full h-8 flex my-8">
+                    <button
+                    onClick={handlePrev}
+                    className="absolute left-[42%] transform bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded"
+                    aria-label="Previous headline"
+                    >
+                        <GrPrevious />
+                    </button>
+                    <button
+                    onClick={handleNext}
+                    className="absolute right-[42%] transform bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded"
+                    aria-label="Next headline"
+                    >
+                        <GrNext />
+                    </button>
+
+                </div>                
             </div>
 
             <div className="mb-8 px-2">

@@ -129,7 +129,7 @@ function ViewArticle() {
     };
     
     return (
-        <article className="overflow-hidden justify-center items-start w-2/3 mx-auto">
+        <article className="overflow-hidden justify-center items-start w-3/4 max-w-[1920px] mx-auto border border-orange-400">
             <div className="px-1 py-4 min-w-0">
                 <div className="flex flex-col">
                     {/* region, sector, date and time*/}
@@ -177,7 +177,7 @@ function ViewArticle() {
                         <h1 className="text-4xl font-semibold">{article.title}</h1>                                                
                     </div>
                     {/* picture, summary and metrics */}
-                    <div className="grid grid-cols-[3fr_1fr] gap-8">
+                    <div className="grid grid-cols-[3fr_1fr] gap-4">
                         { /* main grid: image, summary, timeline */}
                         <div>
                             <div className="aspect-[16/9] overflow-hidden">
@@ -209,7 +209,7 @@ function ViewArticle() {
                             </div>
                         </div>
                            
-                        {/* second grid: metrics */}
+                        {/* second column: metrics */}
                         <div className="px-2">
                             <ArticleMetrics article={article} />
                             {/* outlet distribution: expand to open? */}

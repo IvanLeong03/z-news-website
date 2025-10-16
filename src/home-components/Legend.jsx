@@ -11,7 +11,7 @@ function Legend() {
   const { language } = useLanguage();
 
   return (
-    <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start py-4 border-b-2 border-[rgba(37,37,37,0.75)] text-xs lg:text-base">
+    <div className="relative w-9/10 mx-auto flex flex-col flex-grow justify-start items-start py-4 border-b border-[var(--color-line-grey)] text-xs lg:text-base">
         <h2 className='font-bold text-xl my-4 2xl:my-8'>
           {language === "zh-Hant"
             ? "新聞指標"
@@ -20,7 +20,7 @@ function Legend() {
             : "What are these?"}
         </h2>
         
-        <div className='flex flex-col justify-between py-4 my-8 text-[var(--color-gs-black)] border-b border-[var(--color-line-verylightgrey)] w-full'>
+        <div className='flex flex-col justify-between text-[var(--color-gs-black)] border-b border-[var(--color-line-verylightgrey)] w-full'>
             <h3 className='text-center underline'>{language === 'zh-Hant' ? '立場分布' : language === 'zh-Hans' ? '立场分布' : 'Leaning distribution'}</h3>
             <div className='w-full mx-auto my-8'>
               <SplitBar />
@@ -65,7 +65,7 @@ function Legend() {
               <p className='text-center my-6'>{language === "zh-Hant" ? "或" : language === "zh-Hans" ? "或" : "or"}</p>
               <SentimentGauge />
             </div>
-            <p className='my-16 text-base'>
+            <p className='my-8 text-base'>
               {language === "zh-Hant"
                 ? "根據文中正面和負面用字的比例計算情緒，給予-1（最悲觀）至 1 （最樂觀）的評分"
                 : language === "zh-Hans"
@@ -85,7 +85,7 @@ function Legend() {
                 ? "根据文中形容词和副词的比例计算主观性，给予0（最客观）至 1 （最主观）的评分"
                 : "We assign a score from 0 (most objective) to 1 (most subjective)."}
             </p>
-            <p className='mt-16 mb-2 text-sm'>
+            <p className='my-4 text-sm'>
               {language === "zh-Hant"
                 ? <>想了解更多指標計算方法，請參閱<Link to="/user-guide" className="text-blue-700 hover:cursor-pointer"> 使用指南 </Link></>
                 : language === "zh-Hans"

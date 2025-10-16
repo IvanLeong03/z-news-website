@@ -106,11 +106,11 @@ function MostRead() {
               className="flex flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)] hover:border-b-2 hover:border-[var(--color-secondary-1)]"
             >
               <Link to={`/article/${article.articleID}`}>
-                  <div className="flex text-[var(--color-primary)] my-1 items-center">
-                    <div className="rounded-full h-6 w-6 text-sm 2xl:h-8 2xl:w-8 2xl:text-base bg-[var(--color-primary)] text-[var(--color-gs-white)] flex justify-center items-center mr-2 2xl:mr-4">{index+1}</div>
-                    <label className="text-sm">{article.region}</label>
-                    <label className="mx-1 2xl:mx-2">|</label>
-                    <label className="text-sm">{article.sector}</label>
+                  <div className="flex text-[var(--color-primary)] my-1 items-center text-xs 2xl:text-sm ">
+                    <div className="rounded-full h-6 w-6 2xl:h-8 2xl:w-8 bg-[var(--color-primary)] text-[var(--color-gs-white)] flex justify-center items-center mr-2 2xl:mr-4">{index+1}</div>
+                    <label>{article.region}</label>
+                    <label className="mx-1">|</label>
+                    <label>{article.sector}</label>
                   </div>
                   <h3 className="my-2 text-base 2xl:text-lg">{article.title}</h3>
                   <div className="w-full mb-4">
