@@ -14,7 +14,7 @@ function HeadlineSm({article}) {
     }
 
     return (
-        <article className="flex flex-col items-stretch w-[95%] mx-auto pb-4 border-b border-[var(--color-line-verylightgrey)] hover:shadow-md">
+        <article className="flex flex-col items-stretch w-[95%] mx-auto pb-4 border-b border-[var(--color-line-verylightgrey)] hover:border-[var(--color-line-darkgrey)]">
             {/* region, sector, headline, nSources and time */}
             <div className="w-full flex flex-col">
                 <div className="w-full aspect-[16/9] overflow-hidden">

@@ -176,13 +176,14 @@ function Feed(props) {
                     </div>
 
                     {/* Navigation buttons */}
-                    <div className="relative w-full h-8 mt-4">
+                    <div className="relative w-full h-8 mt-4 flex">
                         <button
                             onClick={handlePrev}
                             className="absolute left-[35%] top-0 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded"
                         >
                             <GrPrevious />
                         </button>
+                        <label className="text-xs absolute top-0 left-[50%] transform -translate-y-1/2 -translate-x-1/2">{currentHeadlineIndex+1} of {carouselHeadlines.length}</label>
                         <button
                             onClick={handleNext}
                             className="absolute right-[35%] top-0 transform -translate-y-1/2 bg-[var(--color-gs-white)] hover:bg-[var(--color-light-turquoise)] p-2 z-10 rounded"
@@ -201,7 +202,7 @@ function Feed(props) {
                         key={index}
                         className="flex flex-col p-4 m-2 text-xl border-b border-[var(--color-line-verylightgrey)] hover:border-b-2 hover:border-[var(--color-primary)] hover:shadow-md"
                     >
-                        <div className="grid grid-cols-[3fr_2fr] 2xl:grid-cols-[2fr_3fr] items-center">
+                        <div className="grid grid-cols-[3fr_2fr] items-center">
                             <div className="px-2">
                                 <div className="flex text-[var(--color-primary)] text-sm my-1">
                                     { tag === 'personal' ? 
@@ -212,7 +213,7 @@ function Feed(props) {
                                     <h2 className="mb-2 text-lg 2xl:text-xl">{article.title}</h2>
                                 </Link>
                             </div>
-                            <div className="w-full aspect-[3/2] 2xl:aspect-[16/9] overflow-hidden">
+                            <div className="w-full px-2 aspect-[3/2] 2xl:aspect-[16/9] overflow-hidden">
                                 <Link to={`/article/${article.articleID}`}>
                                     <img
                                         src={article.pictureURL}

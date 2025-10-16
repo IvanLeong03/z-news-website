@@ -23,7 +23,7 @@ function SentimentSlider({ sentiment = 0}) {
     neutral: {
       "en": "Neutral",
       "zh-Hant": "中性",
-      "zh-Hans": "中興",
+      "zh-Hans": "中性",
     },
     veryNeg: {
       "en": "Very negative",
@@ -40,6 +40,11 @@ function SentimentSlider({ sentiment = 0}) {
       "zh-Hant": "略為負面",
       "zh-Hans": "略为负面",
     },
+    hoverDesc: {
+      "en": "The overall tone of reporting on this event, based on text analysis of articles.",
+      "zh-Hant": "通過對文章進行文本分析，得出此詞事件報導的總體基調。",
+      "zh-Hans": "通过对文章的文本分析，得出此次事件报道的总体基调。",
+    }
   }
 
   // Clamp the score
@@ -55,8 +60,8 @@ function SentimentSlider({ sentiment = 0}) {
   return (
     <div className="w-full">
       {/* Title + Sentiment Value */}
-      <div className="flex items-center text-sm text-[var(--color-text-grey)] mb-1 relative">
-        <span className="ml-1 text-lg" style={{ color: barColor }}>
+      <div className="flex gap-8 items-center text-sm text-[var(--color-text-grey)] mb-1 relative">
+        <span className="text-lg" style={{ color: barColor }}>
           {clampedScore >= 0.6 ? labels.veryPos[language] : 
           clampedScore >= 0.3 ? labels.pos[language] :
           clampedScore > 0.05 ? labels.slightlyPos[language] :
@@ -73,24 +78,16 @@ function SentimentSlider({ sentiment = 0}) {
           />
           {isHovered && (
             <div
-              className="absolute left-1/2 -translate-x-[66%] bottom-full mb-4 z-[999] w-56"
+              className="absolute left-1/2 -translate-x-[50%] bottom-full mb-4 z-[999] w-56"
               style={{ pointerEvents: "none" }}
             >
               <div className="relative">
-                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
-                  <p>+1 indicates the most positive sentiment, -1 indicates the most negative.</p>
-                  <p>This event has received mostly{" "}
-                    {clampedScore > 0
-                      ? "positive"
-                      : clampedScore < 0
-                      ? "negative"
-                      : "neutral"}{" "}
-                    coverage.
-                  </p>
+                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded-xl px-3 py-2 shadow-lg">
+                  <p>{labels.hoverDesc[language]}</p>
                 </div>
                 {/* Speech bubble tail */}
                 <div
-                  className="absolute left-[66%] top-full -translate-x-1/2 w-0 h-0"
+                  className="absolute left-[50%] top-full w-0 h-0"
                   style={{
                     borderLeft: "8px solid transparent",
                     borderRight: "8px solid transparent",

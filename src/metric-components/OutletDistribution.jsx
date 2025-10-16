@@ -6,10 +6,10 @@ function OutletDistribution({ cPercent, pPercent, cIcons, pIcons }) {
 
     return (
         <div className="flex flex-col w-full text-sm text-[var(--color-gs-black)]">
-            <div className="flex justify-center w-full mt-4 mb-8 text-xl">
+            <div className="flex justify-center w-full my-4 text-xl font-semibold">
                 {language === 'zh-Hant' ? '媒體分佈' : language === 'zh-Hans' ? '媒体分布' : 'Media Distribution'}
             </div>
-            <div className='relative flex h-48 shadow-sm'>
+            <div className='relative flex h-48 2xl:h-60 shadow-sm'>
                 {/* Logos plotted inside padded area */}
                 {/* conservative icons */}
                 <div className="absolute inset-x-[5%] w-[90%] inset-y-[10%] h-[80%]">

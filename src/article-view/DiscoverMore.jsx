@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function DiscoverMore({article}) {
 
     return (
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between rounded-lg border border-[var(--color-line-verylightgrey)] px-4">
             <div>
                 <h1 className="text-2xl my-8 font-semibold">Discover more</h1>
                 <h2 className="text-lg my-2">Related tags: </h2>
@@ -20,7 +20,7 @@ function DiscoverMore({article}) {
                     ))}
                 </div>                    
             </div>
-            <div className="px-2 my-16 flex flex-col items-start">                    
+            <div className="my-12 flex flex-col items-start">                    
                 <h2 className="text-lg my-2">Related articles: </h2>
                 <ul>
                     {article.relatedArticles.map((a, index) => (
@@ -34,7 +34,7 @@ function DiscoverMore({article}) {
                                 <div className="grid grid-cols-[3fr_2fr]">
                                     <h2 className="my-2 text-lg pr-2">{a.title}</h2>    
                                     <div className="w-full aspect-[16/9] overflow-hidden">
-                                        <img src={a.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover" />
+                                        <img src={a.pictureURL} alt='HeadlineImage' className="w-full h-full object-cover hover:scale-105 transition duration-700 ease-in-out" />
                                     </div>      
                                 </div>
                             </Link>

@@ -1,0 +1,46 @@
+/* Dots container */
+.maincol-swiper .swiper-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  bottom: 1px;
+}
+
+/* Base bullet: dot */
+.maincol-swiper .swiper-pagination-bullet.bullet {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #e5e7eb; /* light gray */
+  opacity: 1;          /* override Swiper default */
+  overflow: hidden;
+  transition: width 200ms ease, background-color 200ms ease;
+}
+
+/* Active bullet: longer pill */
+.maincol-swiper .swiper-pagination-bullet-active.bullet {
+  width: 30px;        /* longer active “dot” */
+  background: #bbbbbb;
+}
+
+/* Inner fill (progress) */
+.maincol-swiper .swiper-pagination-bullet .bullet-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: #606060; 
+}
+
+/* Animate fill only on the active bullet */
+.maincol-swiper .swiper-pagination-bullet-active .bullet-fill {
+  animation: bullet-progress var(--bullet-duration, 7000ms) linear forwards;
+}
+
+
+@keyframes bullet-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}

@@ -23,6 +23,11 @@ function SubjectivitySlider({ subjScore = 0 }) {
       "zh-Hans": "低度主观",
       "en": "Low Subjectivity" 
     },
+    hoverDesc: {
+      "en": "Measures how subjective media reporting on this event is, beased on text analysis of articles.",
+      "zh-Hant": "根據文章的文本分析，衡量媒體對此事件報導的主觀性",
+      "zh-Hans": "根据文章的文本分析，衡量媒体对此事件报道的主观性。",
+    }
   };
 
   const subjScoreRounded = Math.round(subjScore * 100) / 100; // Round to two decimal places
@@ -64,8 +69,8 @@ function SubjectivitySlider({ subjScore = 0 }) {
               style={{ pointerEvents: "none" }}
             >
               <div className="relative">
-                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded px-3 py-2 shadow-lg">
-                  0 represents completely objective content, while 1 represents completely subjective content.
+                <div className="bg-[var(--color-gs-black)] text-[var(--color-gs-white)] text-xs rounded-xl px-3 py-2 shadow-lg">
+                  {labels.hoverDesc[language]}
                 </div>
                 {/* Speech bubble tail */}
                 <div

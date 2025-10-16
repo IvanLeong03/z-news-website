@@ -84,7 +84,7 @@ function Account() {
             {profileLoading ? (
               <div className="h-6 w-40 bg-gray-200 rounded motion-safe:animate-pulse my-2" />
             ) : profile ? (
-              <p className="my-2 text-xl text-[var(--color-primary)]">{profile.profileID}</p>
+              <p className="my-2 text-xl text-[var(--color-primary)] font-semibold">{profile.profileID}</p>
             ) : (
               <p className="my-2 text-sm text-gray-500">—</p>
             )}
@@ -93,7 +93,7 @@ function Account() {
             {profileLoading ? (
               <div className="h-4 w-56 bg-gray-200 rounded motion-safe:animate-pulse mt-2 mb-8" />
             ) : profile ? (
-              <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">{profile.email}</p>
+              <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">youremail@email.com</p>
             ) : (
               <p className="mt-2 mb-8 text-[var(--color-text-lightgrey)]">Not signed in (email)</p>
             )}

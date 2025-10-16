@@ -74,7 +74,7 @@ function Navbar() {
                 border-b border-[var(--color-line-darkgrey)] transition-all duration-300
                 ${isScrolled ? "py-0 border-opacity-100 shadow-md" : "py-4 border-opacity-60"}`}
             >
-                <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr] border border-pink-200">
+                <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr]">
                     {/* Left: Logo */}
                     <Link to="/home">
                         <div>                    

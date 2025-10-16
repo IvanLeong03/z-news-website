@@ -22,7 +22,7 @@ function SearchObject({article}) {
 
     return (
         //same object as the topic one
-        <div className="grid grid-cols-[3fr_1fr] w-full border-b border-[var(--color-line-verylightgrey)] items-center py-2">
+        <div className="grid grid-cols-[3fr_1fr] w-full border-b border-[var(--color-line-verylightgrey)] items-center py-2 px-8">
             {/* left: date, title, metrics */}
             <div className="flex flex-col justify-center min-w-0">
                 <Link to={`/article/${article.articleID}`}>
@@ -36,7 +36,7 @@ function SearchObject({article}) {
                     <p className="text-xs my-1">{article.date.slice(0,10)}</p>                    
                     <h2 className="text-2xl font-semibold mt-2 mb-8">{article.title}</h2>
                     <div className="w-full items-center">                    
-                        <div className="pr-8">
+                        <div className="w-1/3">
                             <SentimentSlider sentiment={article.metrics.sentiment}/>
                         </div>
                     </div>

@@ -39,16 +39,40 @@ function ViewArticle() {
         "zh-Hant": "圖標的位置反映媒體來源的偏見。來源越偏向任一方立場，圖標距離分界線就越遠。",
         "zh-Hans": "图标的位置代表了媒體来源的偏见。来源越偏向任一立场，图标距离分界线就越远。"
     };
-    const showMoreText = {
-        "en": "Show More",
-        "zh-Hant": "顯示更多",
-        "zh-Hans": "显示更多",
+
+    const labels = {
+        general: {
+            "en": "This graph maps media reporting patterns of each outlet.",
+            "zh-Hant": "該圖表反映各媒體渠道的報導模式。",
+            "zh-Hans": "该图表反映各媒体渠道的报导模式。"
+        },
+        xDesc: {
+            "en": "The X-axis measures media bias.",
+            "zh-Hant": "X 軸衡量媒體偏見。",
+            "zh-Hans": "X 轴衡量媒体偏见。"
+        },
+        yDesc: {
+            "en": "The Y-axis denotes the timing of reporting.",
+            "zh-Hant": "Y 軸表示報導時間。",
+            "zh-Hans": "Y 轴表示报导时间。"
+        },
+        sizeDesc: {
+            "en": "The size of each icon represents the assessed media significance.",
+            "zh-Hant": "每個圖表的大小代表評估出來的媒體重要性。",
+            "zh-Hans": "每个图标的大小代表评估的媒体重要性。"
+        },
+        showMore: {
+            "en": "Click here to for more details about the chart",
+            "zh-Hant": "點擊此處了解上述圖表",
+            "zh-Hans": "点击此处了解上述图表",
+        },
+        showLess: {
+            "en": "Hide",
+            "zh-Hant": "隱藏",
+            "zh-Hans": "隐藏",
+        }
     };
-    const showLessText = {
-        "en": "Show Less",
-        "zh-Hant": "顯示更少",
-        "zh-Hans": "显示更少",
-    };
+
     const timelineEvents = [
         { date: "02-01-2025", description: "Initial rumors surface about trade negotiations." },
         { date: "15-01-2025", description: "Vietnamese officials confirm preliminary talks with the U.S." },
@@ -129,7 +153,7 @@ function ViewArticle() {
     };
     
     return (
-        <article className="overflow-hidden justify-center items-start w-3/4 max-w-[1920px] mx-auto border border-orange-400">
+        <article className="overflow-hidden justify-center items-start w-3/4 max-w-[1920px] mx-auto">
             <div className="px-1 py-4 min-w-0">
                 <div className="flex flex-col">
                     {/* region, sector, date and time*/}
@@ -213,33 +237,34 @@ function ViewArticle() {
                         <div className="px-2">
                             <ArticleMetrics article={article} />
                             {/* outlet distribution: expand to open? */}
-                            <div className="py-4 flex flex-col">
+                            <div className="py-4 flex flex-col mb-[25dvh]">
                                 <OutletDistribution cPercent={article.coverage.percentage.centric*100} pPercent={article.coverage.percentage.progressive*100} cIcons={article.coverage.icons.centric} pIcons={article.coverage.icons.progressive} />
-                                {/*
-                                <p className="text-base whitespace-nowrap my-2 text-center">                            
-                                    {language === 'zh-Hant' ? '以上分佈來自: ' : language === 'zh-Hans' ? '以上分布来自: ' : 'We obtained this distribution from '}
+
+                                <p className="text-sm whitespace-nowrap my-2 text-center">                            
+                                    {language === 'zh-Hant' ? '樣本數: ' : language === 'zh-Hans' ? '样本数: ' : 'Total number of sources: '}
                                     {article.nSources}
-                                    {language === 'zh-Hant' ? ' 篇文章' : language === 'zh-Hans' ? ' 篇文章' : ' sources'}
                                 </p> 
-                                */}
                                 <h3
                                     className="text-sm mt-6 mb-2 cursor-pointer 
                                     hover:text-[var(--color-primary)]"
                                     onClick={() => setShowChartDesc(true)}
                                 >
-                                    {language === "zh-Hant" ? "點擊此處了解上述圖表" 
-                                        : language === "zh-Hans" ? "点击此处了解上述图表" 
-                                        : "Click here to for more details about the chart"}
+                                    {labels.showMore[language]}
                                 </h3>
                                 {showChartDesc && (
-                                    <div>
-                                        <p className="text-base my-4">{sizeDesc[language]}</p>
-                                        <p className="text-base my-4">{posDesc[language]}</p>
+                                    <div className="my-2 px-2">
+                                        <label>{labels.general[language]}</label>
+                                        <ul className="list-disc list-outside pl-6 text-sm space-y-2 mt-2">
+                                            <li>{labels.xDesc[language]}</li>
+                                            <li>{labels.yDesc[language]}</li>
+                                            <li>{labels.sizeDesc[language]}</li>
+                                        </ul>
+
                                         <button
-                                            className="text-sm text-blue-600 hover:underline mb-2"
+                                            className="text-sm text-blue-600 hover:underline my-2"
                                             onClick={() => setShowChartDesc(false)}
                                         >
-                                        {language === "zh-Hant" ? "隱藏" : language === "zh-Hans" ? "隐藏" : "Hide"}
+                                        {labels.showLess[language]}
                                         </button>
                                     </div>
                                 )}
