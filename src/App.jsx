@@ -26,12 +26,13 @@ import Personal from "./personal/Personal"
 function App() {
   const location = useLocation();
   const hideHeader = location.pathname === "/"; // Add more paths if needed
+  const hideTopicsBar = location.pathname === "/about-us";
 
   return (
       <main className='w-full max-w-[240rem] bg-[var(--color-gs-white)]'>
         <LanguageProvider>
           {!hideHeader && <Navbar />}
-          {!hideHeader && <TopicsBar />}
+          {!hideHeader && !hideTopicsBar && <TopicsBar />}
           <Routes>
             <Route path="/" element={<LandingPage />}/>
             <Route path="/home" element={<Home />} />

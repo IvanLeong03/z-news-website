@@ -67,10 +67,14 @@ function AboutUs() {
                 loop
             />
 
+            <h1 className="absolute top-[40%] left-[50%] -translate-x-1/2 text-7xl text-[var(--color-gs-white)]">The Future of News-reading</h1>
+
             <div
-                className="relative bg-gradient-to-b from-[var(--color-light-turquoise)] to-[var(--color-dark-turquoise)] rounded-lg text-base 2xl:text-lg mx-auto z-20 -mt-[10rem] pt-24 px-2 text-[var(--color-gs-black)]"
+                className="relative bg-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto z-20 -mt-[10rem] pt-24 px-2 text-[var(--color-gs-black)]"
                 style={sectionStyle}
             >   
+            
+                <h2 className="text-3xl font-semibold mb-16">Your one stop, multi-dimensional news platform.</h2>
                 {/* fetched from backend */}            
                 {about && (
                     <p className="text-center my-8 w-1/2 mx-auto text-[var(--color-secondary-1)]">
@@ -89,6 +93,10 @@ function AboutUs() {
                 </p>    
                 <Carousel />                               
             </div>     
+
+            <section className="min-h-[30dvh]">
+                {/* about team members + origin + extra info*/}
+            </section>
                              
         </main>
     )

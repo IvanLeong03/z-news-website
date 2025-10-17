@@ -43,7 +43,7 @@ const Carousel = () => {
   }
   const controls = useAnimation();
   const [currentX, setCurrentX] = useState(0); // Store current x coordinate to change speed while staying in place
-  const [speed, setSpeed] = useState(-2.5); // Speed in percentage
+  const [speed, setSpeed] = useState(-2); // Speed in percentage
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const Carousel = () => {
 
   return (
     <div className="w-full relative py-16 bg-darkWhite">
-      <h2 className="w-full text-center text-2xl md:text-4xl font-semibold">
+      <h2 className="w-full text-center text-2xl 2xl:text-3xl font-semibold">
         Our Features
       </h2>
       <div className="relative my-4 overflow-hidden w-full">
@@ -96,7 +96,7 @@ const Carousel = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative overflow-hidden cursor-pointer rounded-md h-[50dvh] w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+              <div className="relative overflow-hidden cursor-pointer rounded-md h-[30dvh] w-[22dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
                     src={slide.slideImg}

@@ -53,7 +53,7 @@ function SentimentSlider({ sentiment = 0}) {
   const percentage = ((clampedScore + 1) / 2) * 100;
 
   // Determine color based on score sign
-  const barColor = clampedScore >= 0 ? "#239b98" : "#7f2538";
+  const barColor = clampedScore >= 0.05 ? "#239b98" : clampedScore >= -0.05 ? "#808080" : "#7f2538";
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -61,7 +61,7 @@ function SentimentSlider({ sentiment = 0}) {
     <div className="w-full">
       {/* Title + Sentiment Value */}
       <div className="flex gap-8 items-center text-sm text-[var(--color-text-grey)] mb-1 relative">
-        <span className="text-lg" style={{ color: barColor }}>
+        <span className="text-base" style={{ color: barColor }}>
           {clampedScore >= 0.6 ? labels.veryPos[language] : 
           clampedScore >= 0.3 ? labels.pos[language] :
           clampedScore > 0.05 ? labels.slightlyPos[language] :

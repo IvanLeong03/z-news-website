@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchProfile, fetchPublisherRegion, editPublisherRegion } from "../services/profileService";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
+import ReactCountryFlag from 'react-country-flag';
 
 function Account() {
   const { language } = useLanguage();
@@ -17,6 +18,16 @@ function Account() {
 
   const [profileError, setProfileError] = useState(null);
   const [regionsError, setRegionsError] = useState(null);
+
+  const flags = {
+    "hk": "HK",
+    "china": "CN",
+    "uk": "GB",
+    "usa": "US",
+    "asia-others": "",
+    "europe-others": "EU",
+  }
+
 
   const loadProfile = useCallback(async () => {
     try {
@@ -191,6 +202,7 @@ function Account() {
                       onChange={(e) => handleCheck(e, region.tag)}
                     />
                     {region.displayName}
+                    <ReactCountryFlag countryCode={flags[region.tag]} />
                   </label>
                 ))}
           </div>

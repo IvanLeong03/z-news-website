@@ -7,21 +7,27 @@ function HeadlineCard({ article }) {
     if (!article) return null;
     return (
         <Link to={`/article/${article.articleID}`} className="block h-full">
-        <div className="flex flex-col border border-[var(--color-line-grey)] rounded-lg overflow-hidden">
+        <div className="flex flex-col border-b border-[var(--color-line-grey)] hover:border-[var(--color-line-darkgrey)] overflow-hidden">
             <div className="w-full mx-auto aspect-[16/9] overflow-hidden">
                 <img src={article.pictureURL} alt={article.title} className="w-full h-full object-cover" />
             </div>
-            <div className="p-4">
-                <div className="text-sm text-[var(--color-primary)] mb-2">
-                    <label>{article.region}</label>
+            <div className="p-2">
+                <div className="text-base text-[var(--color-custom-navy)] mb-2">
+                    <label>{article.region.toUpperCase()}</label>
                     <label className="mx-1">|</label>
                     <label>{article.sector}</label>
                 </div>
-                <h3 className="text-2xl font-bold line-clamp-2">{article.title}</h3>
+                <h3 className="text-2xl font-semibold line-clamp-2">{article.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-lightgrey)] line-clamp-3">
                 {article.description.synopsis}
                 </p>
-                <label className="text-sm my-2">{article.date.slice(11, 16)}</label>
+                <div className="flex gap-16 w-full items-center">
+                    <label className="text-base">Last updated: {article.date.slice(11, 16)}</label>
+                    <div className="my-4 w-1/2">
+                        <SentimentSlider sentiment={article.metrics.sentiment}/>
+                    </div>  
+                </div>
+                             
             </div>
         </div>
         </Link>
