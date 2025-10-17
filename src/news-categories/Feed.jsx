@@ -90,7 +90,7 @@ function Feed(props) {
     
     // Filter out headline articles from the main articles list
     const headlineIDs = headlineArticles.map(article => article.articleID);
-    const filteredArticles = articles.filter(article => !headlineIDs.includes(article.articleID));
+    //const filteredArticles = articles.filter(article => !headlineIDs.includes(article.articleID));
 
     if (loading) return <div>Loading articles...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;
@@ -127,7 +127,7 @@ function Feed(props) {
                                 </p>
                                 <label className="mx-1"> · </label>
                                 <p className="whitespace-nowrap">
-                                {getHoursAgo(firstHeadline.date)} {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
+                                {firstHeadline.date.slice(11, 16)}
                                 </p>
                             </div>
                         </div>
@@ -166,7 +166,7 @@ function Feed(props) {
                                         </p>
                                         <label className="mx-1"> · </label>
                                         <p className="whitespace-nowrap">
-                                        {getHoursAgo(article.date)} h
+                                        {article.date.slice(11, 16)} 
                                         </p>
                                     </div>
                                 </div>
@@ -191,13 +191,12 @@ function Feed(props) {
                             <GrNext />
                         </button>
                     </div>
-
                 </div>
             </div>
 
            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredArticles.map((article, index) => (
+                {articles.map((article, index) => (
                     <div
                         key={index}
                         className="flex flex-col p-4 m-2 text-xl border-b border-[var(--color-line-verylightgrey)] hover:border-b-2 hover:border-[var(--color-primary)] hover:shadow-md"
@@ -205,9 +204,7 @@ function Feed(props) {
                         <div className="grid grid-cols-[3fr_2fr] items-center">
                             <div className="px-2">
                                 <div className="flex text-[var(--color-primary)] text-sm my-1">
-                                    { tag === 'personal' ? 
-                                        <label>{article.region} | {article.sector}</label> :
-                                        <label>{article.sector}</label>}
+                                    <label>{article.sector}</label>
                                 </div> 
                                 <Link to={`/article/${article.articleID}`}>
                                     <h2 className="mb-2 text-lg 2xl:text-xl">{article.title}</h2>
@@ -235,8 +232,7 @@ function Feed(props) {
                                 </p>
                                 <label className="mx-1"> · </label>
                                 <p className="whitespace-nowrap">
-                                    {getHoursAgo(article.date)}
-                                    {language === 'zh-Hant' ? '小時前' : language === 'zh-Hans' ? '小时前' : 'h ago'}
+                                    { getHoursAgo(article.date) > 4 ? `${getHoursAgo(article.date)}h ago` : article.date.slice(11, 16) }
                                 </p>
                             </div>                                                        
                         </div>

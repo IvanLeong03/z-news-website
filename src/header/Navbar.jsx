@@ -99,7 +99,7 @@ function Navbar() {
                                 </Link>
                             </li>
                             <li className="text-[var(--color-primary)] font-semibold">
-                                <Link to="/for-you">
+                                <Link to="/personal">
                                     {language === "zh-Hant" ? "個人專屬" : language === "zh-Hans" ? "个人专属" : "Personal"}
                                 </Link>
                             </li>

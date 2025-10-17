@@ -14,7 +14,6 @@ import SummaryBlock from "./SummaryBlock";
 import PublisherArticlesList from "./PublisherArticlesList";
 import DiscoverMore from "./DiscoverMore";
 
-
 function ViewArticle() {
     const { id } = useParams();
     const { language} = useLanguage();
