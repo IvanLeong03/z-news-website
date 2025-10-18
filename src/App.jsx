@@ -26,7 +26,8 @@ import Personal from "./personal/Personal"
 function App() {
   const location = useLocation();
   const hideHeader = location.pathname === "/"; // Add more paths if needed
-  const hideTopicsBar = location.pathname === "/about-us";
+  const hideTopicsBar = location.pathname === "/about-us" || location.pathname === "/privacy-policy" || location.pathname === "/terms-and-conditions"
+  || location.pathname === "/user-guide" || location.pathname === "/contact-us";
 
   return (
       <main className='w-full max-w-[240rem] bg-[var(--color-gs-white)]'>

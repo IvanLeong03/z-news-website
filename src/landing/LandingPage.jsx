@@ -3,25 +3,25 @@ import { Link } from "react-router-dom";
 import img1 from "/src/assets/ZoneNewsLogo/zonenews__logo_secondary_EN.jpg";
 import { MdClose } from "react-icons/md";
 import AppStoreButton from "../../public/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
-import PlayStoreBtn from "/src/assets/GetItOnGooglePlay_Badge_Web_color_English.svg";
+import PlayStoreBtnOfficial from "../../public/GetItOnGooglePlay_Badge_Web_color_English.svg";
 import LandingLogo from "/src/assets/ZoneNewsLogo/zonenews__logo_primary_EN.jpg";
 
 const LandingPage = () => {
 
     return (
-        <main className="landing-page w-dvw min-h-dvh text-[var(--color-text-grey)] bg-[var(--color-light)] overflow-scroll py-8 lg:py-24 px-8 flex items-center">
+        <main className="landing-page w-dvw min-h-dvh text-[var(--color-text-grey)] bg-[var(--color-light)] overflow-scroll py-8 lg:py-24 px-16 flex items-center">
             <div className="flex flex-col justify-center items-center">
-                <h1 className="font-semibold text-2xl lg:text-3xl my-4">The Multidimensional News App of the Future</h1>
+                <h1 className="font-semibold text-2xl lg:text-3xl my-8 lg:my-4">The Multidimensional News App of the Future</h1>
                 <p>Read personalized reports from dozens of sources, with cutting edge data analysis, comprehensive context, AI support, and more</p>
-                <div className="flex justify-evenly w-full bg-green-200 my-4">
+                <div className="flex justify-evenly items-center w-full my-8 lg:my-4">
                     <button>
                         <a href="https://www.zonenews.io" target="blank">
-                            <img src={AppStoreButton} />
+                            <img src={AppStoreButton} className="w-32"/>
                         </a>
                     </button>
-                    <button className="z-20">
-                        <a href="https://www.youtube.com" target="blank">
-                            <img src={PlayStoreBtn} />
+                    <button>
+                        <a href="https://www.zonenews.io" target="blank">
+                            <img src={PlayStoreBtnOfficial} className="w-32"/>
                         </a>
                     </button>
                 </div>

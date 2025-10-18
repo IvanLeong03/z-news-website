@@ -6,8 +6,7 @@ function Footer() {
     const { language } = useLanguage();
     
     return (
-        <footer className="w-full h-[25vh] max-h-[10rem] flex flex-col justify-center items-center relative bottom-0 mx-auto border-t border-[rgba(37,37,37,0.75)]">
-            
+        <footer className="w-full h-[25vh] max-h-[10rem] flex flex-col justify-center items-center relative bottom-0 mx-auto bg-[var(--color-bg-grey)]">        
             <div className="flex w-3/5 mx-auto justify-between items-center">
                 <p>Copyright © 2025</p>
                 <p>
