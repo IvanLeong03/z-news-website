@@ -96,7 +96,7 @@ const Carousel = () => {
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <div className="relative overflow-hidden cursor-pointer rounded-md h-[30dvh] w-[22dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+                        <div className="relative overflow-hidden cursor-pointer rounded-md h-[40dvh] w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                             <div className="absolute inset-0 w-full h-full overflow-hidden">
                                 <img
                                   src={slide.slideImg}
@@ -114,16 +114,16 @@ const Carousel = () => {
                                 />
                             </div>
                             {/* text */}
-                            <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
-                                <div className="pl-4 pt-4 flex-grow">
-                                    <h3 className="text-white text-sm md:text-base xl:text-lg">{slide.slideHeading}</h3>
-                                    <p className="text-xl md:text-2xl text-darkWhite mt-2 font-semibold">
+                            <div className="absolute inset-0 p-4 2xl:p-8 flex flex-col justify-between z-10">
+                                <div className="px-2">
+                                    <h3 className="text-white text-sm md:text-base 2xl:text-lg">{slide.slideHeading}</h3>
+                                    <p className="text-lg md:text-xl 2xl:text-2xl text-darkWhite mt-2 font-semibold">
                                         {slide.slideDesc}
                                     </p>
                                 </div>
                                 {/* Bottom text */}
                                 <div className="px-4 py-2">
-                                    <p className="text-sm md:text-base lg:text-lg text-darkWhite text-ellipsis">
+                                    <p className="text-sm md:text-base 2xl:text-lg text-ellipsis">
                                         {slide.bottomText}
                                     </p>
                                 </div>
