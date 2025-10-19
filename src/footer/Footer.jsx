@@ -6,7 +6,7 @@ function Footer() {
     const { language } = useLanguage();
     
     return (
-        <footer className="w-full h-[25vh] max-h-[10rem] flex flex-col justify-center items-center relative bottom-0 mx-auto bg-[var(--color-bg-grey)]">        
+        <footer className="w-full h-[20dvh] max-h-[288px] flex flex-col justify-center items-center relative bottom-0 mx-auto bg-[var(--color-bg-grey)]">        
             <div className="flex w-3/5 mx-auto justify-between items-center">
                 <p>Copyright © 2025</p>
                 <p>
@@ -33,8 +33,7 @@ function Footer() {
                     <Link to='/contact-us'>
                     {language === 'zh-Hant' ? "聯絡我們" : language === "zh-Hans" ? "联系我们" : "Contact Us"}
                     </Link>
-                </p>
-                
+                </p>                
             </div>
 
         </footer>

@@ -1,16 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
-import Carousel from "./Carousel"; // Assuming you have a Carousel component
+import Carousel from "./Carousel";
 import { fetchAbout } from "../services/infoService";
 import video1 from "/src/assets/aboutUsVideo.mp4"
+
+function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+function lerp(a, b, t) { return a + (b - a) * t; }
 
 function AboutUs() {
     const { language, setLanguage } = useLanguage();
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [about, setAbout] = useState();
+    const [error, setError] = useState(null);
+
+    const heroRef = useRef(null);
+    const cardRef = useRef(null);
+    const rafRef = useRef(null);
+
     const [sectionStyle, setSectionStyle] = useState({ width: '65%', opacity: 0.5 });
+
+    // animated state for the card
+    const [cardStyle, setCardStyle] = useState({
+        // start fairly small and translucent
+        width: "65%",
+        opacity: 0.5,
+    });
+
     const labels = {
         about: {
             "en": ["Zone News is the multidimensional news platform of the future,",  " allowing you to collate information from dozens of sources\
@@ -30,51 +46,104 @@ function AboutUs() {
 
     useEffect(() => {
         const loadAbout = async () => {
-        try {
-            const backendLang = mapFrontendLangToBackend(language);
-            const aboutUsInfo = await fetchAbout(backendLang);
-            setAbout(aboutUsInfo);
-        } catch (error) {
-            console.error("Failed to load topics:", error);
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
+            try {
+                const backendLang = mapFrontendLangToBackend(language);
+                const aboutUsInfo = await fetchAbout(backendLang);
+                setAbout(aboutUsInfo);
+            } catch (e) {
+                setError(e.message || "Failed to load about data");
+            } finally {
+                setLoading(false);
+            }
         };        
         loadAbout();
     }, [language]);
 
-    if (error) return <div className="text-red-500">Error: {error}</div>;
-
+     // Set a viewport-relative overlap once, and on resize
     useEffect(() => {
-        function handleScroll() {
-            const scrollY = window.scrollY;
-            const newWidth = Math.min(100, 65 + (scrollY / 10)) + '%';
-            const newOpacity = scrollY > 500 ? 1 : Math.min(0.5 + (scrollY / 1000));
-            setSectionStyle({ width: newWidth, opacity: newOpacity });
-        }
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        const setOverlap = () => {
+        // 12vh, but keep sane limits across tiny/huge screens
+        const overlap = Math.round(
+            clamp(window.innerHeight * 0.12, 80, 280) // px
+        );
+        document.documentElement.style.setProperty("--overlap", `${overlap}px`);
+        };
+        setOverlap();
+        window.addEventListener("resize", setOverlap);
+        return () => window.removeEventListener("resize", setOverlap);
     }, []);
 
+    // Scroll-driven width/opacity based on progress past the hero
+    const onScroll = useCallback(() => {
+        if (rafRef.current) return; // throttle to rAF
+        rafRef.current = requestAnimationFrame(() => {
+            rafRef.current = null;
+
+            const hero = heroRef.current;
+            if (!hero) return;
+
+            const heroRect = hero.getBoundingClientRect();
+            const viewportH = window.innerHeight;
+
+            // progress: 0 when we're at top of page, rising to 1 by the time the hero is mostly scrolled past
+            // You can tune the start/end points:
+            const start = viewportH * 0.10;     // when the card just peeks
+            const end   = viewportH * 0.70;     // when it should be fully expanded
+            const y = viewportH - heroRect.bottom; // how much of hero bottom has gone past the viewport bottom
+            const t = clamp((y - start) / (end - start), 0, 1);
+
+            // map t → width/opacity
+            const widthPct = lerp(65, 100, t); // 65% → 96%
+            const opacity  = lerp(0.5, 1, t); // 0.5 → 1
+
+            setCardStyle({
+                width: `${widthPct}%`,
+                opacity,
+            });
+        });
+    }, []);
+
+    useEffect(() => {
+        onScroll(); // set initial
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [onScroll]);
+
+
     return (
-        <main className="flex-col w-full mx-auto justify-center items-center text-center">            
-            <video
+        <main className="flex-col w-full justify-center items-center text-center">            
+            {/* hero */}
+            <section
+                ref={heroRef}
+                className="relative w-full overflow-hidden"
+                // Give the hero a sane, scalable height
+                style={{
+                    height: "clamp(60vh, 80vh, 92vh)",
+                }}            
+            >
+                <video
                 src={video1}
-                className="w-full shadow-lg z-10 aspect-auto"
+                className="absolute inset-0 w-full h-full object-cover"
                 autoPlay
                 muted
                 loop
-            />
+                playsInline
+                />
+                <h1 className="absolute top-[40%] left-[50%] -translate-x-1/2 text-6xl text-[var(--color-gs-white)] font-bold">The Future of <br/>News-reading</h1>
+            </section>
 
-            <h1 className="absolute top-[40%] left-[50%] -translate-x-1/2 text-6xl text-[var(--color-gs-white)] font-bold">The Future of <br/>News-reading</h1>
-
-            <div
-                className="relative bg-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto z-20 -mt-[16rem] pt-12 px-2 text-[var(--color-gs-black)]"
-                style={sectionStyle}
-            >   
-            
-                <h2 className="text-2xl 2xl:text-3xl font-semibold my-12 w-2/3 mx-auto text-left">Your one stop, multi-dimensional news platform.</h2>
+            <section
+                ref={cardRef}
+                className="relative z-10 bg-white rounded-lg text-base 2xl:text-lg mx-auto pt-12 px-2 text-[var(--color-gs-black)] will-change-transform will-change-opacity"
+                style={{
+                transform: "translateY(calc(var(--overlap, 140px) * -1))",
+                width: cardStyle.width,
+                opacity: cardStyle.opacity,
+                transition: "width 200ms linear, opacity 200ms linear", // small smoothing between rAF steps
+                }}
+            >
+                <h2 className="text-2xl 2xl:text-3xl font-semibold my-12 mx-auto">Your one stop, multi-dimensional news platform.</h2>
+                {error && <p className="text-[var(--color-secondary-1)]">{error}</p>} 
                 {/* fetched from backend */}            
                 {about && (
                     <p className="text-[var(--color-secondary-1)]">
@@ -91,16 +160,10 @@ function AboutUs() {
                         <span className="text-[var(--color-primary)]">{labels.mission[language][1]}</span>
                         <span>{labels.mission[language][2]}</span>
                     </p>
-                </div>
+                </div> 
 
-                {/*    
-                <p className="text-left text-sm mt-16 mb-8 w-1/3 mx-auto">
-                    Our other flagship product, Zimuth Terminal, is an AI-powered Media Monitoring assistant that was designed for communication
-                    firms. To learn more, please visit <a href="https://zimuth.ai" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">zimuth.ai</a>.
-                </p>    
-                */}
-                <Carousel />                               
-            </div>     
+                <Carousel /> 
+            </section>        
 
             <section className="min-h-[30dvh]">
                 {/* about team members + origin + extra info*/}

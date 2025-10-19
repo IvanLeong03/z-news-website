@@ -62,7 +62,7 @@ const MyTopics = () => {
   };
 
   return (
-    <div className='min-h-[60dvh]'>
+    <div className='min-h-[80dvh]'>
       <div className="max-w-[500px] mx-auto my-8 p-6 border border-[#ddd] rounded-lg">
         <h2 className="text-xl font-semibold mb-4">
           {language === "zh-Hant" ? "選擇追蹤主題" : language === "zh-Hans" ? "选择追踪主题" : "Choose topics to follow"}

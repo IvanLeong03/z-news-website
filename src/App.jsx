@@ -22,6 +22,7 @@ import Feed from "./news-categories/Feed"
 import LandingPage from "./landing/LandingPage"
 import Recap from "./recap/Recap"
 import Personal from "./personal/Personal"
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
   return (
       <main className='w-full max-w-[240rem] bg-[var(--color-gs-white)]'>
         <LanguageProvider>
+          <ScrollToTop />
           {!hideHeader && <Navbar />}
           {!hideHeader && !hideTopicsBar && <TopicsBar />}
           <Routes>

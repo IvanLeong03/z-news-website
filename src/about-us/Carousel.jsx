@@ -38,7 +38,7 @@ const Carousel = () => {
     ];
 
     const loopedSlides = [];
-    while (loopedSlides.length < 50) {
+    while (loopedSlides.length < 100) {
         loopedSlides.push(...carouselSlides);
     }
     const controls = useAnimation();
@@ -48,7 +48,7 @@ const Carousel = () => {
 
     useEffect(() => {
         const updateAnimation = () => {
-            const newSpeed = isHovered ? speed*0.5 : speed;
+            const newSpeed = isHovered ? speed*0.3 : speed;
             controls.start({
                 x: [currentX, currentX + newSpeed],
                 transition: {
