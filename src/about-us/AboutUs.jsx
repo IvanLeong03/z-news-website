@@ -18,13 +18,11 @@ function AboutUs() {
     const cardRef = useRef(null);
     const rafRef = useRef(null);
 
-    const [sectionStyle, setSectionStyle] = useState({ width: '65%', opacity: 0.5 });
-
     // animated state for the card
     const [cardStyle, setCardStyle] = useState({
         // start fairly small and translucent
         width: "65%",
-        opacity: 0.5,
+        opacity: 0.7,
     });
 
     const labels = {
@@ -87,14 +85,13 @@ function AboutUs() {
 
             // progress: 0 when we're at top of page, rising to 1 by the time the hero is mostly scrolled past
             // You can tune the start/end points:
-            const start = viewportH * 0.10;     // when the card just peeks
-            const end   = viewportH * 0.70;     // when it should be fully expanded
+            const start = viewportH * 0.01;     // when the card just peeks
+            const end   = viewportH * 0.20;     // when it should be fully expanded
             const y = viewportH - heroRect.bottom; // how much of hero bottom has gone past the viewport bottom
-            const t = clamp((y - start) / (end - start), 0, 1);
-
+            const t = clamp((y - start) / (end - start), 0, 1);0
             // map t → width/opacity
             const widthPct = lerp(65, 100, t); // 65% → 96%
-            const opacity  = lerp(0.5, 1, t); // 0.5 → 1
+            const opacity  = lerp(0.7, 1, t); // 0.5 → 1
 
             setCardStyle({
                 width: `${widthPct}%`,
@@ -118,7 +115,7 @@ function AboutUs() {
                 className="relative w-full overflow-hidden"
                 // Give the hero a sane, scalable height
                 style={{
-                    height: "clamp(60vh, 80vh, 92vh)",
+                    height: "clamp(66vh, 88vh, 102vh)",
                 }}            
             >
                 <video
@@ -134,7 +131,7 @@ function AboutUs() {
 
             <section
                 ref={cardRef}
-                className="relative z-10 bg-white rounded-lg text-base 2xl:text-lg mx-auto pt-12 px-2 text-[var(--color-gs-black)] will-change-transform will-change-opacity"
+                className="relative z-10 bg-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto pt-24 text-[var(--color-gs-black)] will-change-transform will-change-opacity"
                 style={{
                 transform: "translateY(calc(var(--overlap, 140px) * -1))",
                 width: cardStyle.width,
@@ -142,27 +139,32 @@ function AboutUs() {
                 transition: "width 200ms linear, opacity 200ms linear", // small smoothing between rAF steps
                 }}
             >
-                <h2 className="text-2xl 2xl:text-3xl font-semibold my-12 mx-auto">Your one stop, multi-dimensional news platform.</h2>
-                {error && <p className="text-[var(--color-secondary-1)]">{error}</p>} 
-                {/* fetched from backend */}            
-                {about && (
-                    <p className="text-[var(--color-secondary-1)]">
-                        {about}  (taken from the backend: https://api.zonenews.io/dev/info/aboutus)
-                    </p>
-                )}
-                <div className="w-2/3 mx-auto flex justify-evenly items-start space-x-16 my-8">
-                    <p className="text-left px-4">
-                        <span className="text-[var(--color-primary)]">{labels.about[language][0]}</span>
-                        <span>{labels.about[language][1]}</span>
-                    </p>
-                    <p className="text-left px-4 pt-24">
-                        <span>{labels.mission[language][0]}</span>
-                        <span className="text-[var(--color-primary)]">{labels.mission[language][1]}</span>
-                        <span>{labels.mission[language][2]}</span>
-                    </p>
-                </div> 
+                <div className="w-[65dvw] mx-auto">
+                    <h2 className="text-2xl 2xl:text-3xl font-semibold my-12 mx-auto">Your one stop, multi-dimensional news platform.</h2>
+                    {error && <p className="text-[var(--color-secondary-1)]">{error}</p>} 
+                    {/* fetched from backend */}            
+                    {about && (
+                        <p className="text-[var(--color-secondary-1)]">
+                            {about}  (taken from the backend: https://api.zonenews.io/dev/info/aboutus)
+                        </p>
+                    )}
+                    <div className="w-full px-4 flex justify-evenly items-start space-x-16 my-8">
+                        <p className="text-left px-4">
+                            <span className="text-[var(--color-primary)]">{labels.about[language][0]}</span>
+                            <span>{labels.about[language][1]}</span>
+                        </p>
+                        <p className="text-left px-4 pt-24">
+                            <span>{labels.mission[language][0]}</span>
+                            <span className="text-[var(--color-primary)]">{labels.mission[language][1]}</span>
+                            <span>{labels.mission[language][2]}</span>
+                        </p>
+                    </div>
+                </div>
+                 
 
-                <Carousel /> 
+                <div className="bg-[var(--color-line-darkgrey)]">
+                    <Carousel /> 
+                </div>
             </section>        
 
             <section className="min-h-[30dvh]">

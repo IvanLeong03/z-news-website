@@ -78,7 +78,7 @@ const Carousel = () => {
 
     return (
         <div className="w-full relative py-8">
-            <h2 className="w-2/3 mx-auto text-left text-2xl 2xl:text-3xl font-semibold my-12">
+            <h2 className="w-2/3 mx-auto text-left text-2xl 2xl:text-3xl font-semibold mb-12 mt-4 text-[var(--color-gs-white)]">
                 A new way of reading news
             </h2>
             <div className="overflow-hidden w-full">
