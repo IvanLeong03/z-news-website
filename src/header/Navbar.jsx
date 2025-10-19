@@ -54,7 +54,7 @@ function Navbar() {
     return (
         <div className="sticky top-0 z-50 w-full flex flex-col">
             {/* date and time bar */}
-            <div className="flex w-full justify-center space-x-6 text-sm text-center bg-black p-1 text-[#fefefe]">
+            <div className="flex w-full justify-center space-x-6 text-xs text-center bg-black p-1 text-[#fefefe] max-h-[3dvh]">
                 <label>
                     {new Date().toLocaleDateString(locale, 
                         {
@@ -70,7 +70,7 @@ function Navbar() {
             </div>
             {/* main nav bar */}
             <nav
-                className={`w-full bg-[var(--color-gs-white)]
+                className={`w-full bg-[var(--color-gs-white)] max-h-[12dvh]
                 border-b border-[var(--color-line-darkgrey)] transition-all duration-300
                 ${isScrolled ? "py-0 border-opacity-100 shadow-md" : "py-4 border-opacity-60"}`}
             >

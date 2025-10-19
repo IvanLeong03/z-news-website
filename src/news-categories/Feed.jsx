@@ -92,7 +92,11 @@ function Feed(props) {
     const headlineIDs = headlineArticles.map(article => article.articleID);
     //const filteredArticles = articles.filter(article => !headlineIDs.includes(article.articleID));
 
-    if (loading) return <div>Loading articles...</div>;
+    if (loading) return (
+        <div className="min-h-[80dvh] flex items-center">
+            <label className="mx-auto">Loading articles...</label>
+        </div>
+    ) ;
     if (error) return <div className="text-red-500">Error: {error}</div>;
 
     return (

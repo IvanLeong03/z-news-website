@@ -62,7 +62,7 @@ function AboutUs() {
         const setOverlap = () => {
         // 12vh, but keep sane limits across tiny/huge screens
         const overlap = Math.round(
-            clamp(window.innerHeight * 0.12, 80, 280) // px
+            clamp(window.innerHeight * 0.20, 80, 432) // px
         );
         document.documentElement.style.setProperty("--overlap", `${overlap}px`);
         };
@@ -85,13 +85,13 @@ function AboutUs() {
 
             // progress: 0 when we're at top of page, rising to 1 by the time the hero is mostly scrolled past
             // You can tune the start/end points:
-            const start = viewportH * 0.01;     // when the card just peeks
-            const end   = viewportH * 0.20;     // when it should be fully expanded
+            const start = viewportH * -0.10;     // when the card just peeks
+            const end   = viewportH * -0.03;     // when it should be fully expanded
             const y = viewportH - heroRect.bottom; // how much of hero bottom has gone past the viewport bottom
             const t = clamp((y - start) / (end - start), 0, 1);0
             // map t → width/opacity
             const widthPct = lerp(65, 100, t); // 65% → 96%
-            const opacity  = lerp(0.7, 1, t); // 0.5 → 1
+            const opacity  = lerp(0.7, 1, t*2); // 0.5 → 1
 
             setCardStyle({
                 width: `${widthPct}%`,
@@ -106,37 +106,39 @@ function AboutUs() {
         return () => window.removeEventListener("scroll", onScroll);
     }, [onScroll]);
 
-
     return (
         <main className="flex-col w-full justify-center items-center text-center">            
             {/* hero */}
             <section
                 ref={heroRef}
-                className="relative w-full overflow-hidden"
+                className="relative w-full overflow-hidden h-dvh bg-orange-200"
                 // Give the hero a sane, scalable height
-                style={{
-                    height: "clamp(66vh, 88vh, 102vh)",
-                }}            
+                //style={{
+                //    height: "clamp(80dvh, 90dvh, 100dvh)",
+                //}}            
             >
+                 
                 <video
-                src={video1}
-                className="absolute inset-0 w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
+                    src={video1}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                 />
+                
+                
                 <h1 className="absolute top-[40%] left-[50%] -translate-x-1/2 text-6xl text-[var(--color-gs-white)] font-bold">The Future of <br/>News-reading</h1>
             </section>
 
             <section
                 ref={cardRef}
-                className="relative z-10 bg-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto pt-24 text-[var(--color-gs-black)] will-change-transform will-change-opacity"
+                className="relative z-10 bg-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto pt-[10dvh] text-[var(--color-gs-black)] will-change-transform will-change-opacity"
                 style={{
                 transform: "translateY(calc(var(--overlap, 140px) * -1))",
                 width: cardStyle.width,
                 opacity: cardStyle.opacity,
-                transition: "width 200ms linear, opacity 200ms linear", // small smoothing between rAF steps
+                transition: "width 10ms linear, opacity 10ms linear", // small smoothing between rAF steps
                 }}
             >
                 <div className="w-[65dvw] mx-auto">
@@ -159,16 +161,20 @@ function AboutUs() {
                             <span>{labels.mission[language][2]}</span>
                         </p>
                     </div>
-                </div>
-                 
-
+                </div>                
                 <div className="bg-[var(--color-line-darkgrey)]">
                     <Carousel /> 
                 </div>
             </section>        
 
-            <section className="min-h-[30dvh]">
+            <section className="bg-green-200">
                 {/* about team members + origin + extra info*/}
+                <div className="w-2/3 mx-auto bg-amber-300 p-4">
+                    <h2 className="text-2xl 2xl:text-3xl font-semibold mb-12">Origin</h2>
+                    <p>
+                        I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I'm fucking retarded but I don't care, I'm beautiful. I'm having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me "Apache" and respect my right to kill from above and kill needlessly. If you can't accept me you're a heliphobe and need to check your vehicle privilege. Thank you for being so understanding.
+                    </p>
+                </div>
             </section>
                              
         </main>
