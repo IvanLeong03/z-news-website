@@ -54,6 +54,7 @@ function Navbar() {
     return (
         <div className="sticky top-0 z-50 w-full flex flex-col">
             {/* date and time bar */}
+            {/*
             <div className="flex w-full justify-center space-x-6 text-xs text-center bg-black p-1 text-[#fefefe] max-h-[3dvh]">
                 <label>
                     {new Date().toLocaleDateString(locale, 
@@ -68,6 +69,7 @@ function Navbar() {
                     {new Date().toLocaleDateString(locale, {weekday: "long",})}
                 </label>
             </div>
+            */}
             {/* main nav bar */}
             <nav
                 className={`w-full bg-[var(--color-gs-white)] max-h-[12dvh]

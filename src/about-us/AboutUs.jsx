@@ -107,17 +107,16 @@ function AboutUs() {
     }, [onScroll]);
 
     return (
-        <main className="flex-col w-full justify-center items-center text-center">            
+        <main className="flex-col w-full justify-center items-center text-center bg-[var(--color-gs-black)]">            
             {/* hero */}
             <section
                 ref={heroRef}
-                className="relative w-full overflow-hidden h-dvh bg-orange-200"
+                className="relative w-full overflow-hidden h-dvh"
                 // Give the hero a sane, scalable height
                 //style={{
                 //    height: "clamp(80dvh, 90dvh, 100dvh)",
                 //}}            
-            >
-                 
+            >                 
                 <video
                     src={video1}
                     className="absolute inset-0 w-full h-full object-cover"
@@ -125,9 +124,7 @@ function AboutUs() {
                     muted
                     loop
                     playsInline
-                />
-                
-                
+                />                                
                 <h1 className="absolute top-[30%] left-[50%] -translate-x-1/2 text-6xl text-[var(--color-gs-white)] font-bold">The Future of <br/>News-reading</h1>
             </section>
 
@@ -142,7 +139,7 @@ function AboutUs() {
                 }}
             >
                 <div className="w-[65dvw] mx-auto">
-                    <h2 className="text-3xl 2xl:text-4xl font-semibold mb-16 mt-8 mx-auto">Your one stop, multi-dimensional news platform.</h2>
+                    <h2 className="text-4xl 2xl:text-6xl font-semibold mb-16 mt-8 mx-auto">Your one stop, multi-dimensional news platform.</h2>
                     {error && <p className="text-[var(--color-secondary-1)]">{error}</p>} 
                     {/* fetched from backend */}            
                     {/*about && (
@@ -150,12 +147,12 @@ function AboutUs() {
                             {about}  (taken from the backend: https://api.zonenews.io/dev/info/aboutus)
                         </p>
                     )*/}
-                    <div className="w-full px-4 flex justify-evenly items-start space-x-20 my-8">
+                    <div className="w-full px-4 flex justify-evenly items-start space-x-24 my-8">
                         <p className="text-left px-8">
                             <span className="text-[var(--color-primary)]">{labels.about[language][0]}</span>
                             <span>{labels.about[language][1]}</span>
                         </p>
-                        <p className="text-left px-8 pt-40">
+                        <p className="text-left px-8 pt-48">
                             <span>{labels.mission[language][0]}</span>
                             <span className="text-[var(--color-primary)]">{labels.mission[language][1]}</span>
                             <span>{labels.mission[language][2]}</span>
@@ -170,8 +167,8 @@ function AboutUs() {
             <section className="bg-black text-[var(--color-gs-white)]">
                 {/* about team members + origin + extra info*/}
                 <div className="w-2/3 mx-auto p-4">
-                    <h2 className="text-3xl 2xl:text-4xl font-semibold mb-16">Why we started</h2>
-                    <p>
+                    <h2 className="text-4xl 2xl:text-6xl font-semibold mb-16">Why we started</h2>
+                    <p className="mb-4">
                         I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I'm fucking retarded but I don't care, I'm beautiful. I'm having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me "Apache" and respect my right to kill from above and kill needlessly. If you can't accept me you're a heliphobe and need to check your vehicle privilege. Thank you for being so understanding.
                     </p>
                 </div>

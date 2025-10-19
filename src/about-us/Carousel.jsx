@@ -78,7 +78,7 @@ const Carousel = () => {
 
     return (
         <div className="w-full relative py-8">
-            <h2 className="w-2/3 mx-auto text-left text-2xl 2xl:text-3xl font-semibold mb-16 mt-4 text-[var(--color-gs-white)]">
+            <h2 className="w-2/3 mx-auto text-left text-4xl 2xl:text-6xl font-semibold mb-16 mt-4 text-[var(--color-gs-white)]">
                 A new way of reading news
             </h2>
             <div className="overflow-hidden w-full">
@@ -96,7 +96,7 @@ const Carousel = () => {
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <div className="relative overflow-hidden cursor-pointer rounded-md h-[40dvh] w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
+                        <div className="relative overflow-hidden cursor-pointer rounded-md h-[60dvh] w-[25dvw] mx-2 shadow-lg z-1 transition-transform duration-300 ease-in-out hover:brightness-90">
                             <div className="absolute inset-0 w-full h-full overflow-hidden">
                                 <img
                                   src={slide.slideImg}
