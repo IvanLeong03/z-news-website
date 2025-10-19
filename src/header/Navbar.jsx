@@ -122,7 +122,7 @@ function Navbar() {
                             >
                                 <FaUser />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-48 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-center">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-48 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 justify-start">
                                 <li>
                                     <Link to="/login" className="block px-4 py-2 font-bold hover:bg-gray-100">
                                         {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
@@ -155,7 +155,7 @@ function Navbar() {
                             >
                                 <BsGlobe />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-center">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-left">
                                 {LANGS.map(({ code, label }) => {
                                     const selected = language === code;
                                     return (
@@ -164,7 +164,7 @@ function Navbar() {
                                         onClick={() => setLanguage(code)}
                                         className={`px-4 py-2 hover:bg-[var(--color-bg-grey)] flex justify-between ${
                                             selected
-                                            ? "underline decoration-2 underline-offset-4 font-semibold text-[var(--color-primary)]"
+                                            ? "decoration-2 underline-offset-4 font-semibold text-[var(--color-primary)]"
                                             : ""
                                         }`}
                                         >

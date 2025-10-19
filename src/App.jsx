@@ -27,7 +27,7 @@ import ScrollToTop from "./ScrollToTop";
 function App() {
   const location = useLocation();
   const hideHeader = location.pathname === "/"; // Add more paths if needed
-  const hideTopicsBar = location.pathname === "/about-us" || location.pathname === "/privacy-policy" || location.pathname === "/terms-and-conditions"
+  const hideTopicsBar = location.pathname === "/about-us" || location.pathname === "/about-us/" || location.pathname === "/privacy-policy" || location.pathname === "/terms-and-conditions"
   || location.pathname === "/user-guide" || location.pathname === "/contact-us";
 
   return (

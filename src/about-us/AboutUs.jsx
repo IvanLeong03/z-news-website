@@ -142,20 +142,20 @@ function AboutUs() {
                 }}
             >
                 <div className="w-[65dvw] mx-auto">
-                    <h2 className="text-3xl 2xl:text-4xl font-semibold mb-12 mt-8 mx-auto">Your one stop, multi-dimensional news platform.</h2>
+                    <h2 className="text-3xl 2xl:text-4xl font-semibold mb-16 mt-8 mx-auto">Your one stop, multi-dimensional news platform.</h2>
                     {error && <p className="text-[var(--color-secondary-1)]">{error}</p>} 
                     {/* fetched from backend */}            
-                    {about && (
+                    {/*about && (
                         <p className="text-yellow-200">
                             {about}  (taken from the backend: https://api.zonenews.io/dev/info/aboutus)
                         </p>
-                    )}
+                    )*/}
                     <div className="w-full px-4 flex justify-evenly items-start space-x-20 my-8">
                         <p className="text-left px-8">
                             <span className="text-[var(--color-primary)]">{labels.about[language][0]}</span>
                             <span>{labels.about[language][1]}</span>
                         </p>
-                        <p className="text-left px-8 pt-32">
+                        <p className="text-left px-8 pt-40">
                             <span>{labels.mission[language][0]}</span>
                             <span className="text-[var(--color-primary)]">{labels.mission[language][1]}</span>
                             <span>{labels.mission[language][2]}</span>
@@ -170,7 +170,7 @@ function AboutUs() {
             <section className="bg-black text-[var(--color-gs-white)]">
                 {/* about team members + origin + extra info*/}
                 <div className="w-2/3 mx-auto p-4">
-                    <h2 className="text-3xl 2xl:text-4xl font-semibold mb-12">Why we started</h2>
+                    <h2 className="text-3xl 2xl:text-4xl font-semibold mb-16">Why we started</h2>
                     <p>
                         I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I'm fucking retarded but I don't care, I'm beautiful. I'm having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me "Apache" and respect my right to kill from above and kill needlessly. If you can't accept me you're a heliphobe and need to check your vehicle privilege. Thank you for being so understanding.
                     </p>
