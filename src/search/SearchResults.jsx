@@ -56,7 +56,7 @@ function SearchResults() {
   if (error) return <div className="p-4 w-4/5 mx-auto my-16">Error: {error}</div>;
 
   return (
-    <div className="p-4 w-3/5 mx-auto max-w-[1536px]">
+    <div className="p-4 w-3/5 mx-auto max-w-[1536px] min-h-[80dvh]">
       <div className='w-full flex justify-between items-center my-8'>
         <div className='flex flex-col mr-8'>
           <h2 className='text-[var(--color-text-lightgrey)] text-base 2xl:text-lg'>

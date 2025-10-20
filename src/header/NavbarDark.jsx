@@ -1,16 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import SearchBar from "../search/SearchBar";
+import SearchBarDark from "../search/SearchBarDark";
 import { useLanguage } from "../context/LanguageContext";
-import { FaUser } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
-import EnLogo from "../assets/ZoneNewsLogo/zonenews__logo_primary_EN.jpg";
-import ChLogo from "../assets/ZoneNewsLogo/zonenews__logo_primary_CH.jpg";
+import EnLogo from "../assets/ZoneNewsLogo/zonenews_logo_primary_EN_WHITE.png";
+import ChLogo from "../assets/ZoneNewsLogo/zonenews_logo_primary_CH_WHITE.png";
 import { mapFrontendLangToBackend } from "../context/LangConverter";
 import { BsGlobe } from "react-icons/bs";
 
 
-function Navbar() {
+function NavbarDark() {
     const { language, setLanguage } = useLanguage();    
     const navigate = useNavigate();
     const locale = mapFrontendLangToBackend(language);
@@ -54,32 +53,15 @@ function Navbar() {
 
     return (
         <div className="sticky top-0 z-50 w-full flex flex-col">
-            {/*
-            <div className="flex w-full justify-center space-x-6 text-xs text-center bg-black p-1 text-[#fefefe] max-h-[3dvh]">
-                <label>
-                    {new Date().toLocaleDateString(locale, 
-                        {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        })
-                    }
-                </label>
-                <label>
-                    {new Date().toLocaleDateString(locale, {weekday: "long",})}
-                </label>
-            </div>
-            */}
-            {/* main nav bar */}
             <nav
-                className={`w-full bg-[var(--color-gs-white)] max-h-[12dvh]
+                className={`w-full bg-[var(--color-gs-black)] text-[var(--color-gs-white)] max-h-[12dvh]
                 border-b border-[var(--color-line-darkgrey)] transition-all duration-300
                 ${isScrolled ? "py-0 border-opacity-100 shadow-md" : "py-2 border-opacity-60"}`}
             >
                 <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr]">
                     {/* Left: Logo */}
                     <Link to="/home">
-                        <div>                    
+                        <div className="bg-[var(--color-gs-black)]">                    
                             <img                             
                             src={language === "zh-Hant" || language === "zh-Hans" ? ChLogo : EnLogo}
                             alt="Logo"
@@ -115,16 +97,16 @@ function Navbar() {
 
                     {/* Right: Search and Account */}
                     <div className="flex items-center justify-center px-2 space-x-4 relative">
-                        <SearchBar />
+                        <SearchBarDark />
                         {/* language */}
                         <div className="relative group">
                             <button
-                                className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                                className="p-2 rounded-full hover:bg-[var(--color-text-lightgrey)] focus:outline-none"
                                 aria-label="Account"
                             >
                                 <BsGlobe />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-left">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-black)] border border-gray-800 rounded-lg shadow-lg z-50 text-left">
                                 {LANGS.map(({ code, label }) => {
                                     const selected = language === code;
                                     return (
@@ -146,12 +128,12 @@ function Navbar() {
                         {/* account */}
                         <div className="relative group">
                             <button
-                                className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                                className="p-2 rounded-full hover:bg-[var(--color-text-lightgrey)] focus:outline-none"
                                 aria-label="Account"
                             >
                                 <FaBars />
                             </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-56 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 justify-start">
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-56 bg-[var(--color-gs-black)] border border-gray-800 rounded-lg shadow-lg z-50 justify-start">
                                 <li>
                                     <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">
                                         {language === "zh-Hant" ? "登入" : language === "zh-Hans" ? "登录" : "Login"}
@@ -169,13 +151,6 @@ function Navbar() {
                                     </Link>
                                 </li>
                                 <div className="h-1 bg-[var(--color-line-verylightgrey)] w-[95%] mx-auto my-4" />
-                                {/*
-                                <li>
-                                    <Link to="/recap" className="block px-4 py-2 hover:bg-gray-100">
-                                        {language === "zh-Hant" ? "回顧" : language === "zh-Hans" ? "回顾" : "Recap"}                              
-                                    </Link>
-                                </li>
-                                */}
                                 <label className="block font-semibold px-4 py-2">Help</label>
                                 <li>
                                     <Link to="/user-guide" className="block px-4 py-2 hover:bg-gray-100">
@@ -201,4 +176,4 @@ function Navbar() {
     )
 }
 
-export default Navbar;
+export default NavbarDark;

@@ -8,7 +8,7 @@ function Footer() {
     const isAboutUs = location.pathname === "/about-us" || location.pathname === "/about-us/";
     
     return (
-        <footer className={`w-full h-[20dvh] max-h-[288px] flex flex-col justify-center items-center relative bottom-0 mx-auto ${isAboutUs ? "bg-[var(--color-gs-black)] text-[var(--color-gs-white)]" : "bg-[var(--color-line-grey)] text-[var(-color-text-grey)]"}`}>        
+        <footer className={`w-full h-[20dvh] max-h-[288px] flex flex-col justify-center items-center relative bottom-0 mx-auto ${isAboutUs ? "bg-[var(--color-gs-black)] text-[var(--color-gs-white)]" : "bg-[var(--color-line-verylightgrey)] text-[var(-color-text-grey)]"}`}>        
             <div className="flex w-3/5 mx-auto justify-between items-center">
                 <p>Copyright © 2025</p>
                 <p>

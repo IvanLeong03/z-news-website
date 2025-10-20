@@ -31,11 +31,10 @@ function MainCol() {
 
             const headlines = results.headlines || [];
             const detailed = await Promise.all(
-            headlines.map(h => fetchArticle(h.articleID, backEndLang))
+                headlines.map(h => fetchArticle(h.articleID, backEndLang))
             );
-
             setHeadlineArticles(detailed);
-            setSubArticles(results.articles || []);
+            setSubArticles(results.articles);
         } catch (err) {
             console.error("Failed to load articles:", err);
             setError(err.message || "Failed to load");
@@ -95,9 +94,7 @@ function MainCol() {
                 ))}
             </div>
             <div className="flex justify-center my-6">
-            <button className="relative px-2 rounded hover:text-[var(--color-primary)]">
-                {language === "zh-Hant" ? "查看更多" : language === "zh-Hans" ? "查看更多" : " Load more"}...
-            </button>
+            {/* page numbers and navigation if needed? */}
             </div>
         </div>
         </div>

@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom"
 import { LanguageProvider } from "./context/LanguageContext"
 import Home from "./home-components/Home"
 import Navbar from "./header/Navbar"
+import NavbarDark from "./header/NavbarDark"
 import TopicsBar from "./header/TopicsBar"
 import Footer from "./footer/Footer"
 import AboutUs from "./about-us/AboutUs"
@@ -32,12 +33,14 @@ function App() {
   || location.pathname === "/terms-and-conditions" || location.pathname === "/terms-and-conditions/"
   || location.pathname === "/user-guide" || location.pathname === "/user-guide/"
   || location.pathname === "/contact-us" || location.pathname === "/contact-us/";
+  const useDarkNavbar = location.pathname === "/about-us" || location.pathname === "/about-us/" ;
 
   return (
       <main className='w-full max-w-[240rem] bg-[var(--color-gs-white)]'>
         <LanguageProvider>
           <ScrollToTop />
-          {!hideHeader && <Navbar />}
+          {!hideHeader && !useDarkNavbar && <Navbar />}
+          {useDarkNavbar && <NavbarDark />}
           {!hideHeader && !hideTopicsBar && <TopicsBar />}
           <Routes>
             <Route path="/" element={<LandingPage />}/>
