@@ -4,6 +4,7 @@ import { mapFrontendLangToBackend } from "../context/LangConverter";
 import Carousel from "./Carousel";
 import { fetchAbout } from "../services/infoService";
 import video1 from "/src/assets/aboutUsVideo.mp4"
+import { motion } from "framer-motion";
 
 function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
 function lerp(a, b, t) { return a + (b - a) * t; }
@@ -107,7 +108,7 @@ function AboutUs() {
     }, [onScroll]);
 
     return (
-        <main className="flex-col w-full justify-center items-center text-center bg-[var(--color-gs-black)]">            
+        <main className="flex-col w-full items-center text-center bg-[var(--color-gs-black)]">            
             {/* hero */}
             <section
                 ref={heroRef}
@@ -138,8 +139,17 @@ function AboutUs() {
                 transition: "width 100ms linear, opacity 100ms linear", // small smoothing between rAF steps
                 }}
             >
-                <div className="w-[65dvw] mx-auto">
-                    <h2 className="text-3xl 2xl:text-5xl font-semibold mb-16 mt-8 mx-auto">Your one stop, multi-dimensional news platform.</h2>
+                <div className="w-[65dvw] mx-auto mb-24">
+                    <motion.h2
+                        className="text-3xl 2xl:text-5xl font-semibold mb-16 mt-8 mx-auto"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.6 }}  // fire when 40% is visible, only once
+                        transition={{ duration: 0.9, ease: "easeOut" }}
+                    >
+                        Your one stop, multi-dimensional news platform.
+                    </motion.h2>
+
                     {error && <p className="text-[var(--color-secondary-1)]">{error}</p>} 
                     {/* fetched from backend */}            
                     {/*about && (
@@ -147,7 +157,7 @@ function AboutUs() {
                             {about}  (taken from the backend: https://api.zonenews.io/dev/info/aboutus)
                         </p>
                     )*/}
-                    <div className="w-full px-4 flex justify-evenly items-start space-x-24 my-8">
+                    <div className="w-full px-12 flex justify-evenly items-start space-x-24 my-8">
                         <p className="text-left px-8">
                             <span className="text-[var(--color-primary)]">{labels.about[language][0]}</span>
                             <span>{labels.about[language][1]}</span>
@@ -159,15 +169,24 @@ function AboutUs() {
                         </p>
                     </div>
                 </div>                
-                <div className="bg-[var(--color-gs-black)] mt-16">
+                <div className="bg-[var(--color-gs-black)] pt-[10dvh]">
                     <Carousel /> 
                 </div>
             </section>        
 
-            <section className="bg-black text-[var(--color-gs-white)]">
+            <section className="bg-black text-[var(--color-gs-white)] pt-[10dvh] -mt-16">
+                {/* negative top margin to move section up, covering the space below carousel cards*/}
                 {/* about team members + origin + extra info*/}
                 <div className="w-2/3 mx-auto p-4">
-                    <h2 className="text-3xl 2xl:text-5xl font-semibold mb-16">Why we started.</h2>
+                    <motion.h2
+                    className="text-3xl 2xl:text-5xl font-semibold mb-16 mt-4"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
+                    >
+                        Why we started.
+                    </motion.h2>
                     <p className="my-8">
                         I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I'm fucking retarded but I don't care, I'm beautiful. I'm having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me "Apache" and respect my right to kill from above and kill needlessly. If you can't accept me you're a heliphobe and need to check your vehicle privilege. Thank you for being so understanding.
                     </p>
