@@ -116,6 +116,33 @@ function Navbar() {
                     {/* Right: Search and Account */}
                     <div className="flex items-center justify-center px-2 space-x-4 relative">
                         <SearchBar />
+                        {/* language */}
+                        <div className="relative group">
+                            <button
+                                className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                                aria-label="Account"
+                            >
+                                <BsGlobe />
+                            </button>
+                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-left">
+                                {LANGS.map(({ code, label }) => {
+                                    const selected = language === code;
+                                    return (
+                                        <button
+                                        key={code}                                
+                                        onClick={() => setLanguage(code)}
+                                        className={`px-4 py-2 hover:bg-[var(--color-bg-grey)] flex justify-between ${
+                                            selected
+                                            ? "decoration-2 underline-offset-4 font-semibold text-[var(--color-primary)]"
+                                            : ""
+                                        }`}
+                                        >
+                                        {label}                                        
+                                        </button>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                         {/* account */}
                         <div className="relative group">
                             <button
@@ -148,34 +175,7 @@ function Navbar() {
                                 </li>
                                 */}
                             </ul>
-                        </div>
-                        {/* language */}
-                        <div className="relative group">
-                            <button
-                                className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
-                                aria-label="Account"
-                            >
-                                <BsGlobe />
-                            </button>
-                            <ul className="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 w-36 bg-[var(--color-gs-white)] border border-gray-200 rounded-lg shadow-lg z-50 text-left">
-                                {LANGS.map(({ code, label }) => {
-                                    const selected = language === code;
-                                    return (
-                                        <button
-                                        key={code}                                
-                                        onClick={() => setLanguage(code)}
-                                        className={`px-4 py-2 hover:bg-[var(--color-bg-grey)] flex justify-between ${
-                                            selected
-                                            ? "decoration-2 underline-offset-4 font-semibold text-[var(--color-primary)]"
-                                            : ""
-                                        }`}
-                                        >
-                                        {label}                                        
-                                        </button>
-                                    );
-                                })}
-                            </ul>
-                        </div>
+                        </div>                        
                     </div>
                 </div>                                
             </nav>

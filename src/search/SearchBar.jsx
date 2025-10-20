@@ -63,19 +63,20 @@ function SearchBar() {
     };
 
     const collapsedW = "w-24 md:w-32";
-    const expandedW = "w-42 md:w-56";
+    const expandedW = "w-48 md:w-64";
 
     return (
         <div
         ref={wrapperRef}
-        className={`relative ${open ? expandedW : collapsedW} transition-all duration-300 ease-in-out`}
+        className={`relative ${collapsedW} overflow-visible`}
         role="combobox"
         aria-expanded={open}
         >
         {/* Input container (fixed height) */}
             <form
                 onSubmit={handleSearch}
-                className={`relative flex items-center rounded-xl border border-[rgba(96,96,96,0.38)] bg-white transition-all duration-300 ${
+                className={`absolute right-0 top-1/2 -translate-y-1/2 ${open ? expandedW : collapsedW} transition-[width] duration-300 ease-in-out
+                 flex items-center rounded-xl border border-[var(--color-line-darkgrey)] bg-white ${
                 open ? "shadow-md" : ""
                 }`}
             >
@@ -95,9 +96,10 @@ function SearchBar() {
 
         {/* Popdown – expands *below* the input */}
             <div
-                className={`absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out origin-top ${
-                open ? "max-h-80 opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0"
-                }`}
+                className={`absolute right-0 top-full mt-5 ${open ? expandedW : collapsedW} transition-[width] duration-300 ease-in-out
+                  bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden origin-top 
+                   ${ open ? "max-h-80 opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0"}`
+                }
             >
                 <div className="px-3 pt-2 text-xs text-[var(--color-text-lightgrey)]">
                     {language.startsWith("zh") ? "熱門搜尋" : "Trending searches"}
