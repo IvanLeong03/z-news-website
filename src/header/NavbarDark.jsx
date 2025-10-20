@@ -54,9 +54,9 @@ function NavbarDark() {
     return (
         <div className="sticky top-0 z-50 w-full flex flex-col">
             <nav
-                className={`w-full bg-[var(--color-gs-black)] text-[var(--color-gs-white)] max-h-[12dvh]
-                border-b border-[var(--color-line-darkgrey)] transition-all duration-300
-                ${isScrolled ? "py-0 border-opacity-100 shadow-md" : "py-2 border-opacity-60"}`}
+                className={`w-full bg-[var(--color-gs-black)] text-[var(--color-gs-white)] max-h-[10dvh]
+                 transition-all duration-300
+                ${isScrolled ? "py-0 shadow-md" : "py-2"}`}
             >
                 <div className="w-4/5 max-w-[2048px] mx-auto grid grid-cols-[1fr_3fr_1fr]">
                     {/* Left: Logo */}

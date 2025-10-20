@@ -106,21 +106,11 @@ function Latest() {
                     className="flex flex-col justify-between items-start py-2 border-b border-[var(--color-line-grey)] hover:border-b-2 hover:border-[var(--color-secondary-1)]"
                     >
                     <Link to={`/article/${article.articleID}`}>
-                        <div className="flex text-[var(--color-primary)] my-1 items-center text-xs 2xl:text-sm ">
-                            <label>{article.region}</label>
-                            <label className="mx-1">|</label>
-                            <label>{article.sector}</label>
-                        </div>
-                        <h3 className="my-2 text-base 2xl:text-lg">{article.title}</h3>
-                        <div className="w-full mb-4">
-                            <SentimentSlider sentiment={article.metrics.sentiment} />
-                        </div>
-
-                        <div className="flex space-x-4 py-1 mb-1">
-                            <p className="text-xs whitespace-nowrap">
+                        <div className="flex space-x-4 py-1 mb-1 text-base">
+                            <p className="whitespace-nowrap">
                             {article.date.slice(10, 16)}                            
                             </p>
-                            <p className="text-xs whitespace-nowrap">
+                            <p className="whitespace-nowrap">
                             ({getHoursAgo(article.date)}
                             {language === "zh-Hant"
                                 ? "小時前"
@@ -129,7 +119,16 @@ function Latest() {
                                 : "h ago"})
                             </p>
                         </div>
-
+                        
+                        <div className="flex text-[var(--color-primary)] my-1 items-center text-xs 2xl:text-sm ">
+                            <label>{article.region}</label>
+                            <label className="mx-1">|</label>
+                            <label>{article.sector}</label>
+                        </div>
+                        <h3 className="my-2 text-base 2xl:text-lg">{article.title}</h3>
+                        <div className="w-full mb-4">
+                            <SentimentSlider sentiment={article.metrics.sentiment} />
+                        </div>                        
                     </Link>
                     </div>
                 ))

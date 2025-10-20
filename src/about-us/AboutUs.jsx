@@ -23,7 +23,7 @@ function AboutUs() {
     const [cardStyle, setCardStyle] = useState({
         // start fairly small and translucent
         width: "65%",
-        opacity: 0.7,
+        opacity: 0.6,
     });
 
     const labels = {
@@ -92,7 +92,7 @@ function AboutUs() {
             const t = clamp((y - start) / (end - start), 0, 1);0
             // map t → width/opacity
             const widthPct = lerp(65, 100, t); // 65% → 96%
-            const opacity  = lerp(0.7, 1, t*2); // 0.5 → 1
+            const opacity  = lerp(0.6, 1, t); // 0.6 → 1
 
             setCardStyle({
                 width: `${widthPct}%`,
@@ -131,7 +131,7 @@ function AboutUs() {
 
             <section
                 ref={cardRef}
-                className="relative z-10 bg-black text-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto pt-[10dvh] will-change-transform will-change-opacity"
+                className="relative z-10 bg-[#070707] text-[var(--color-gs-white)] rounded-lg text-base 2xl:text-lg mx-auto pt-[10dvh] will-change-transform will-change-opacity"
                 style={{
                 transform: "translateY(calc(var(--overlap, 140px) * -1))",
                 width: cardStyle.width,
@@ -145,7 +145,7 @@ function AboutUs() {
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.6 }}  // fire when 40% is visible, only once
-                        transition={{ duration: 0.9, ease: "easeOut" }}
+                        transition={{ duration: 0.9, ease: "easeOut", delay: 0.05 }}
                     >
                         Your one stop, multi-dimensional news platform.
                     </motion.h2>
